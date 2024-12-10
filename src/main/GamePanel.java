@@ -34,17 +34,21 @@ public class GamePanel extends JPanel implements Runnable{
 
     // SYSTEM
 
-    TileManager  tileM = new TileManager(this);
+    public long starttime;
+    public boolean actionActive;
+    public TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler();
-    Sound sound = new Sound();
+    Sound music = new Sound();
+    Sound se = new Sound();
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
+    public UI ui = new UI(this);
     Thread gameThread;
 
     // ENTITY AND OBJECT
 
-    public Player player = new Player(this,keyH);
-    public SuperObject obj[] = new SuperObject[10];
+    public Player player = new Player(this,keyH, tileM);
+    public SuperObject obj[] = new SuperObject[20];
 
 
 
@@ -77,30 +81,19 @@ public class GamePanel extends JPanel implements Runnable{
     double delta = 0;
     long lastTime = System.nanoTime();
     long currentTime;
-    long timer = 0;
-    int drawCount = 0;
 
     while(gameThread != null) {
 
         currentTime = System.nanoTime();
 
         delta += (currentTime - lastTime) / drawInterval;
-        timer += (currentTime - lastTime);
         lastTime = currentTime;
         
         if (delta >= 1) {
             update();
             repaint();
             delta--;
-            drawCount++;
         }
-
-        if (timer >= 1000000000) {
-            System.out.println("FPS:" + drawCount);
-            drawCount = 0;
-            timer = 0;
-        }
-
         }
     }
 
@@ -108,12 +101,28 @@ public class GamePanel extends JPanel implements Runnable{
 
         player.update();
 
+        // TIMER LOGIC
+        if (actionActive == true) {
+            long elapsedTime = System.currentTimeMillis() - starttime;
+            if (elapsedTime > 13000) {
+            obj[10].worldX = 1000 * tileSize;
+            obj[10].worldY = 1000 * tileSize;
+            playMusic(0); 
+            actionActive = false;
+            }
+        }
     }
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D)g;
+
+        // DEBUG
+        long drawStart = 0;
+        if (keyH.checkDrawTime == true) {
+            drawStart = System.nanoTime();
+        }
 
         // TILE
         tileM.draw(g2);
@@ -128,22 +137,36 @@ public class GamePanel extends JPanel implements Runnable{
         // PLAYER
         player.draw(g2);
 
+        // UI
+        ui.draw(g2);
 
+        
+        // DEBUG 
+        if (keyH.checkDrawTime == true) {
+            long drawEnd = System.nanoTime();
+            long passed = drawEnd - drawStart;
+            g2.setColor(Color.white);
+            g2.drawString("Draw Time: " + passed, 10, 400);
+            System.out.println("Draw Time: " + passed);
+        }
+        
         g2.dispose();
     }
+
+        // MUSIC METHODS
     public void playMusic(int i) {
 
-        sound.setFile(i);
-        sound.play();
-        sound.loop();
+        music.setFile(i);
+        music.play();
+        music.loop();
     }
     public void stopMusic() {
 
-        sound.stop();
+        music.stop();
     }
     public void playSE(int i) {
 
-        sound.setFile(i);
-        sound.play();
+        se.setFile(i);
+        se.play();
     }
 }
