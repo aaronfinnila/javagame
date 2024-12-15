@@ -20,7 +20,7 @@ public class TileManager {
     public TileManager(GamePanel gp) {
         this.gp = gp;
 
-        tile = new Tile[10];
+        tile = new Tile[30];
 
         mapTileNum = new int[gp.maxWorldCol] [gp.maxWorldRow];
 
@@ -30,25 +30,57 @@ public class TileManager {
 
     public void getTileImage() {
 
-        setup(0, "newgrass", false);
+        // PLACEHOLDER START
 
-        setup(1, "stonewall", true);
+        setup(0, "grass1", false);
 
-        setup(2, "newwater", true);
+        setup(1, "grass1", false);
 
-        setup(3, "newdirt", false);
+        setup(2, "placeholder", false);
 
-        setup(4, "newtree", true);
+        setup(3, "placeholder", false);
 
-        setup(5, "newsand", false);
+        setup(4, "placeholder", false);
 
-        setup(6, "dirtwall", true);
+        setup(5, "placeholder", false);
 
-        setup(7, "window", true);
+        setup(6, "placeholder", false);
 
-        setup(8, "woodwall", true);
+        setup(7, "placeholder", false);
 
-        setup(9, "brickwall", true);
+        setup(8, "placeholder", false);
+ 
+        setup(9, "placeholder", false);
+
+        // PLACEHOLDER END
+
+        setup(10, "grass1", false);
+
+        setup(11, "grass2", false);
+        
+        setup(12, "newdirt", false);
+
+        setup(13, "water", true);
+
+        setup(14, "grasswaterbottom", true);
+
+        setup(15, "grasswaterleft", true);
+
+        setup(16, "grasswaterright", true);
+
+        setup(17, "grasswatertop", true);
+
+        setup(18, "gwtopleft", true);
+
+        setup(19, "gwtopright", true);
+
+        setup(20, "gwbottomleft", true);
+
+        setup(21, "gwbottomright", true);
+
+        setup(22, "rock1", true);
+
+        setup(23, "rock2", true);
 }
 
 public void setup(int index, String imageName, boolean collision){
@@ -118,7 +150,7 @@ public void loadMap(String filePath) {
                 worldY + gp.tileSize > gp.player.worldY - gp.player.screenY && 
                 worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
 
-                g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+                    g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
             }
             
             worldCol++;
