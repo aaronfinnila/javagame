@@ -102,6 +102,7 @@ public class GamePanel extends JPanel implements Runnable{
         player.update();
 
         // TIMER LOGIC
+        
         if (actionActive == true) {
             long elapsedTime = System.currentTimeMillis() - starttime;
             if (elapsedTime > 13000) {
@@ -119,15 +120,18 @@ public class GamePanel extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D)g;
 
         // DEBUG
+
         long drawStart = 0;
         if (keyH.checkDrawTime == true) {
             drawStart = System.nanoTime();
         }
 
         // TILE
+
         tileM.draw(g2);
 
         // OBJECT
+
         for(int i = 0; i < obj.length; i++) {
             if (obj[i] != null) {
                 obj[i].draw(g2, this);
@@ -135,13 +139,16 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
         // PLAYER
+
         player.draw(g2);
 
         // UI
+
         ui.draw(g2);
 
         
         // DEBUG 
+
         if (keyH.checkDrawTime == true) {
             long drawEnd = System.nanoTime();
             long passed = drawEnd - drawStart;
@@ -154,6 +161,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
         // MUSIC METHODS
+
     public void playMusic(int i) {
 
         music.setFile(i);

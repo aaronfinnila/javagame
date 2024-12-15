@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import java.awt.Graphics2D;
@@ -20,7 +21,7 @@ public class TileManager {
     public TileManager(GamePanel gp) {
         this.gp = gp;
 
-        tile = new Tile[30];
+        tile = new Tile[50];
 
         mapTileNum = new int[gp.maxWorldCol] [gp.maxWorldRow];
 
@@ -30,7 +31,7 @@ public class TileManager {
 
     public void getTileImage() {
 
-        // PLACEHOLDER START
+        // PLACEHOLDER
 
         setup(0, "grass1", false);
 
@@ -52,23 +53,23 @@ public class TileManager {
  
         setup(9, "placeholder", false);
 
-        // PLACEHOLDER END
+        // GRASS
 
         setup(10, "grass1", false);
 
         setup(11, "grass2", false);
+
+        setup(12, "grass3", false);
+
+        setup(22, "grass4", false);
         
-        setup(12, "newdirt", false);
+        setup(14, "gwbottom", true);
 
-        setup(13, "water", true);
+        setup(15, "gwleft", true);
 
-        setup(14, "grasswaterbottom", true);
+        setup(16, "gwright", true);
 
-        setup(15, "grasswaterleft", true);
-
-        setup(16, "grasswaterright", true);
-
-        setup(17, "grasswatertop", true);
+        setup(17, "gwtop", true);
 
         setup(18, "gwtopleft", true);
 
@@ -78,9 +79,15 @@ public class TileManager {
 
         setup(21, "gwbottomright", true);
 
-        setup(22, "rock1", true);
+        // WATER
 
-        setup(23, "rock2", true);
+        setup(13, "water", true);
+
+        // ROCK
+
+        setup(23, "rock1", true);
+
+        setup(24, "rock2", true);
 }
 
 public void setup(int index, String imageName, boolean collision){
@@ -101,6 +108,7 @@ public void loadMap(String filePath) {
     try {
         InputStream is = getClass().getResourceAsStream(filePath);
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        Random random = new Random();
 
         int col = 0;
         int row = 0;
@@ -116,6 +124,21 @@ public void loadMap(String filePath) {
                 int num = Integer.parseInt(numbers[col]);
 
                 mapTileNum[col][row] = num;
+
+                // RANDOMIZE GRASS TILES
+                
+                if (num == 11) {
+                    int numb = random.nextInt(3);
+                    if (numb == 0) {
+                        mapTileNum[col][row] = 11;
+                    }
+                    if (numb == 1) {
+                        mapTileNum[col][row] = 12;
+                    }
+                    if (numb == 2) {
+                        mapTileNum[col][row] = 22;
+                    }
+                }
                 col++;
             }
             if(col == gp.maxWorldCol) {
@@ -149,7 +172,6 @@ public void loadMap(String filePath) {
                 worldX - gp.tileSize < gp.player.worldX + gp.player.screenX && 
                 worldY + gp.tileSize > gp.player.worldY - gp.player.screenY && 
                 worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
-
                     g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
             }
             
