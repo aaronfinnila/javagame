@@ -1,9 +1,8 @@
 package main;
 
+import entity.NPC_Rubert;
 import obj.OBJ_Boots;
 import obj.OBJ_Chest;
-import obj.OBJ_DoorLower;
-import obj.OBJ_DoorUpper;
 import obj.OBJ_Key;
 import obj.OBJ_Questionmark;
 import obj.OBJ_Questionmark2;
@@ -26,13 +25,23 @@ public class AssetSetter {
         gp.obj[1].worldX = 8 * gp.tileSize;
         gp.obj[1].worldY = 7 * gp.tileSize; 
 
-        gp.obj[9] = new OBJ_Questionmark(gp);
-        gp.obj[9].worldX = 10 * gp.tileSize;
-        gp.obj[9].worldY = 40 * gp.tileSize;
+        gp.obj[2] = new OBJ_Questionmark(gp);
+        gp.obj[2].worldX = 10 * gp.tileSize;
+        gp.obj[2].worldY = 40 * gp.tileSize;
 
-        gp.obj[10] = new OBJ_Questionmark2(gp);
-        gp.obj[10].worldX = 1000 * gp.tileSize;
-        gp.obj[10].worldY = 1000 * gp.tileSize;
+        gp.obj[3] = new OBJ_Questionmark2(gp);
+        gp.obj[3].worldX = 1000 * gp.tileSize;
+        gp.obj[3].worldY = 1000 * gp.tileSize;
 
+        gp.obj[4] = new OBJ_Boots(gp);
+        gp.obj[4].worldX = 20 * gp.tileSize;
+        gp.obj[4].worldY = 20 * gp.tileSize;
+
+    }
+
+    public void setNPC() {
+        gp.npc[0] = new NPC_Rubert(gp);
+        gp.npc[0].worldX = 35 * gp.tileSize;
+        gp.npc[0].worldY = 35 * gp.tileSize;
     }
 }

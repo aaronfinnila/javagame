@@ -10,7 +10,6 @@ import javax.imageio.ImageIO;
 import java.awt.Graphics2D;
 
 import main.GamePanel;
-import main.UtilityTool;
 
 public class TileManager {
 
@@ -81,18 +80,26 @@ public class TileManager {
 
         // WATER
 
-        setup(13, "water", true);
+        setup(13, "water2", true);
+
+        setup(29, "water1", true);
 
         // ROCK
 
         setup(23, "rock1", true);
 
         setup(24, "rock2", true);
+
+        setup(25, "bigrocktl", true);
+
+        setup(26, "bigrocktr", true);
+
+        setup(27, "bigrockbl", true);
+
+        setup(28, "bigrockbr", true);
 }
 
 public void setup(int index, String imageName, boolean collision){
-
-    UtilityTool utool = new UtilityTool();
 
     try {
         tile[index] = new Tile();
@@ -125,8 +132,8 @@ public void loadMap(String filePath) {
 
                 mapTileNum[col][row] = num;
 
-                // RANDOMIZE GRASS TILES
-                
+                // RANDOMIZE TILES
+
                 if (num == 11) {
                     int numb = random.nextInt(3);
                     if (numb == 0) {
@@ -137,6 +144,14 @@ public void loadMap(String filePath) {
                     }
                     if (numb == 2) {
                         mapTileNum[col][row] = 22;
+                    }
+                }
+                if (num == 13) {
+                    int numb = random.nextInt(10);
+                    if (numb == 0) {
+                        mapTileNum[col][row] = 13;
+                    } else {
+                        mapTileNum[col][row] = 13;
                     }
                 }
                 col++;
