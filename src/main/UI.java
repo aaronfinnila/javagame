@@ -3,7 +3,6 @@ package main;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.text.DecimalFormat;
 
 public class UI {
 
@@ -13,9 +12,6 @@ public class UI {
     public boolean messageOn = false;
     public String message = "";
     int messageCounter = 0;
-
-    double playTime;
-    DecimalFormat dFormat = new DecimalFormat("#0.00");
 
     public UI(GamePanel gp) {
 
@@ -37,6 +33,8 @@ public class UI {
         g2.setFont(arial_40);
         g2.setColor(Color.white);
 
+        // PLAY STATE
+
         if (gp.gameState == gp.playState) {
             if (messageOn == true) {
                 g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40F));
@@ -50,8 +48,17 @@ public class UI {
                 messageOn = false;
             }
         }
+
+        // PAUSE STATE
+
         if (gp.gameState == gp.pauseState) {
             drawPauseScreen();
+        }
+
+        // DIALOGUE STATE
+
+        if (gp.gameState == gp.dialogueState) {
+            drawDialogueScreen();
         }
 }
 
@@ -63,6 +70,24 @@ public void drawPauseScreen() {
     int y = gp.screenHeight/4;
 
     g2.drawString(text, x, y);
+}
+
+public void drawDialogueScreen() {
+     
+    // WINDOW
+
+    int x = gp.tileSize * 2;
+    int y = gp.tileSize/2;
+    int width = gp.screenWidth - (gp.tileSize * 4);
+    int height = gp.tileSize * 5;
+
+    drawSubWindow(x, y, width, height);
+}
+
+public void drawSubWindow(int x, int y, int width, int height) {
+
+    Color c = new Color(0, 0, 0);
+    g2.setColor(c);
 }
 
 public int getXforCenteredText(String text) {

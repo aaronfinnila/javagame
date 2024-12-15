@@ -160,7 +160,7 @@ public void getPlayerImage() {
                     gp.playSE(2);
                     speed += 1;
                     gp.obj[i] = null;
-                    gp.ui.showMessage("Speed up!");
+                    gp.ui.showMessage("You got boots!");
                     break;
                 case "Questionmark":
                 if (!gp.actionActive) {
