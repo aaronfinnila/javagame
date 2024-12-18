@@ -37,8 +37,10 @@ public class GamePanel extends JPanel implements Runnable{
 
     public long starttime;
     public boolean actionActive;
+    public boolean soundeffectActive;
+    public boolean musicPlaying;
     public TileManager tileM = new TileManager(this);
-    KeyHandler keyH = new KeyHandler(this);
+    public KeyHandler keyH = new KeyHandler(this);
     Sound music = new Sound();
     Sound se = new Sound();
     public CollisionChecker cChecker = new CollisionChecker(this);
@@ -121,23 +123,27 @@ public class GamePanel extends JPanel implements Runnable{
                     npc[i].update();
                 }
             }
-        }
-        if (gameState == pauseState) {
 
-        }
-
-        // TIMER LOGIC
-
-        if (actionActive == true) {
-            long elapsedTime = System.currentTimeMillis() - starttime;
-            if (elapsedTime > 13000) {
-            obj[3].worldX = 1000 * tileSize;
-            obj[3].worldY = 1000 * tileSize;
-            playMusic(0); 
-            actionActive = false;
+            // QUESTIONMARK OBJECT
+            
+            if (actionActive == true) {
+                long elapsedTime = System.currentTimeMillis() - starttime;
+                if (elapsedTime > 13000 && gameState == playState) {
+                    obj[3].worldX = 1000 * tileSize;
+                    obj[3].worldY = 1000 * tileSize;
+                    if (musicPlaying != true) {
+                        playMusic(0); 
+                    }
+                    actionActive = false;
+                }
             }
         }
+        
+        if (gameState == pauseState) {
+    
+        }
     }
+    
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
@@ -209,5 +215,11 @@ public class GamePanel extends JPanel implements Runnable{
 
         se.setFile(i);
         se.play();
+    }
+    public void stopSE() {
+        if (soundeffectActive == true) {
+            se.stop();
+            soundeffectActive = false;
+        } else {}
     }
 }

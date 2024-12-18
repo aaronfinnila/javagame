@@ -145,13 +145,15 @@ public void getPlayerImage() {
                     break;
 
                 case "Chest":
-                if (hasKey != 0) {
+                if (hasKey != 0 && gp.keyH.ePressed == true) {
                     gp.playSE(1);
-                    gp.ui.showMessage("You got an item!");
+                    gp.ui.showMessage("You found an item!");
+                    gp.obj[5].worldX = 10 * gp.tileSize;
+                    gp.obj[5].worldY = 7 * gp.tileSize;
                     gp.obj[i].usedObject = true;
                     hasKey--;
                 } else {
-                    if (gp.obj[i].usedObject == false) {
+                    if (gp.obj[i].usedObject == false && hasKey == 0 && keyH.ePressed == true) {
                         gp.ui.showMessage("You need a key!");
                     }
                 }
@@ -171,6 +173,7 @@ public void getPlayerImage() {
                 gp.obj[3].worldX = 3 * gp.tileSize;
                 gp.obj[3].worldY = 37 * gp.tileSize;
                 gp.actionActive = true;
+                gp.soundeffectActive = true;
                 }
                 break;
                 }
@@ -180,8 +183,40 @@ public void getPlayerImage() {
         public void interactNPC(int i) {
 
             if (i != 999) {
+                
+                if (i == 1) {
+                    if (gp.keyH.ePressed == true) {
+                        gp.gameState = gp.dialogueState;
+                        gp.npc[i].speak();
+                        if (gp.player.speed > 4) {
+                            gp.npc[1].dialogues[5] = "So you increased your speed! Impressive.\nI suppose you're ready to hear more.";
+                            gp.npc[1].dialogues[6] = "A long, long time ago, a strong warrior\ncame to this island.";
+                            gp.npc[1].dialogues[7] = "He was from Midland, and he came\nto search for the legendary\ntreasure he had heard so much about.";
+                            gp.npc[1].dialogues[8] = "With sword and bow in tow,\nhe begun his adventure.\nBut very soon he realized...";
+                            gp.npc[1].dialogues[9] = "That this was no ordinary island.";
+                            gp.npc[1].dialogues[10] = "That's enough for now.\nIncrease your speed even more,\nand I might tell you the rest.";
+                        }
+                        if (gp.player.speed > 5) {
+                            gp.npc[1].dialogues[11] = "You seem faster. I think you're ready\nto hear some more...";
+                            gp.npc[1].dialogues[12] = "After spending some time on the island,\nthe warrior noticed that something\nwasn't right.";
+                            gp.npc[1].dialogues[13] = "The people were all really friendly,\nthe place was beautiful and the scenery\nwas out of this world.";
+                            gp.npc[1].dialogues[14] = "But soon he noticed something strange.";
+                            gp.npc[1].dialogues[15] = "One night when he suddenly woke up,\nhe heard strange noises.";
+                            gp.npc[1].dialogues[16] = "It sounded like they were coming from\nthe town square. The following day he\ndecided to ask someone about it.";
+                            gp.npc[1].dialogues[17] = "However, when he mentioned it to\nany of the townsfolk, they started\nacting strange.";
+                            gp.npc[1].dialogues[18] = "It was like they were avoiding the subject.";
+                            gp.npc[1].dialogues[19] = "Like they were hiding something.";
+                            gp.npc[1].dialogues[20] = "Alright, that's it for now.\nCome talk to me again when you've\nimproved your speed.";
+                        }
+                    }
+                }
+                else if (gp.keyH.ePressed == true) {
+                gp.gameState = gp.dialogueState;
+                gp.npc[i].speak();
             }
+            gp.keyH.ePressed = false;
         }
+    }
     
     public void draw(Graphics2D g2) {
 

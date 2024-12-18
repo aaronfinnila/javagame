@@ -20,7 +20,7 @@ public class TileManager {
     public TileManager(GamePanel gp) {
         this.gp = gp;
 
-        tile = new Tile[50];
+        tile = new Tile[100];
 
         mapTileNum = new int[gp.maxWorldCol] [gp.maxWorldRow];
 
@@ -33,70 +33,75 @@ public class TileManager {
         // PLACEHOLDER
 
         setup(0, "grass1", false);
-
         setup(1, "grass1", false);
-
         setup(2, "placeholder", false);
-
         setup(3, "placeholder", false);
-
         setup(4, "placeholder", false);
-
         setup(5, "placeholder", false);
-
         setup(6, "placeholder", false);
-
         setup(7, "placeholder", false);
-
         setup(8, "placeholder", false);
- 
         setup(9, "placeholder", false);
 
         // GRASS
 
         setup(10, "grass1", false);
-
         setup(11, "grass2", false);
-
         setup(12, "grass3", false);
-
         setup(22, "grass4", false);
-        
+
         setup(14, "gwbottom", true);
-
         setup(15, "gwleft", true);
-
         setup(16, "gwright", true);
-
         setup(17, "gwtop", true);
-
         setup(18, "gwtopleft", true);
-
         setup(19, "gwtopright", true);
-
         setup(20, "gwbottomleft", true);
-
         setup(21, "gwbottomright", true);
 
         // WATER
 
         setup(13, "water2", true);
-
         setup(29, "water1", true);
 
         // ROCK
 
         setup(23, "rock1", true);
-
         setup(24, "rock2", true);
 
         setup(25, "bigrocktl", true);
-
         setup(26, "bigrocktr", true);
-
         setup(27, "bigrockbl", true);
-
         setup(28, "bigrockbr", true);
+
+        // TREE
+
+        setup(29, "tree1tl", true);
+        setup(30, "tree1tr", true);
+        setup(31, "tree1bl", true);
+        setup(32, "tree1br", true);
+
+        setup(33, "tree2tl", true);
+        setup(34, "tree2tr", true);
+        setup(35, "tree2bl", true);
+        setup(36, "tree2br", true);
+
+        setup(37, "tree3tl", true);
+        setup(38, "tree3tr", true);
+        setup(39, "tree3ml", true);
+        setup(40, "tree3mr", true);
+        setup(41, "tree3bl", true);
+        setup(42, "tree3br", true);
+
+        setup(43, "tree4tl", true);
+        setup(44, "tree4tm", true);
+        setup(45, "tree4tr", true);
+        setup(46, "tree4ml", true);
+        setup(47, "tree4mm", true);
+        setup(48, "tree4mr", true);
+        setup(49, "tree4bl", true);
+        setup(50, "tree4bm", true);
+        setup(51, "tree4br", true);
 }
 
 public void setup(int index, String imageName, boolean collision){

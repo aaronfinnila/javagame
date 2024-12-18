@@ -13,6 +13,7 @@ public class NPC_Rubert extends Entity {
         speed = 1;
 
         getImage();
+        setDialogue();
     }
     public void getImage() {
 
@@ -25,6 +26,14 @@ public class NPC_Rubert extends Entity {
     right1 = setup("/res/npc/rubert_right_1");
     right2 = setup("/res/npc/rubert_right_2");
 }
+
+public void setDialogue() {
+    dialogues[0] = "Woof Woof!";
+    dialogues[1] = "Are you here for the \nlegendary treasure?";
+    dialogues[2] = "I'm just a dog!";
+    dialogues[3] = "What are you looking at?";
+}
+
 public void setAction() {
 
     actionLockCounter++;
@@ -49,5 +58,8 @@ public void setAction() {
         actionLockCounter = 0;
     }
 
+}
+public void speak() {
+    super.speak();
 }
 }
