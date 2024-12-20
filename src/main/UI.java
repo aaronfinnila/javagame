@@ -48,6 +48,13 @@ public class UI {
         g2.setFont(ocraext);
         g2.setColor(Color.white);
 
+
+        // TITLE STATE
+
+        if(gp.gameState == gp.titleState) {
+            drawTitleScreen();
+        }
+
         // PLAY STATE
 
         if (gp.gameState == gp.playState) {
@@ -77,6 +84,37 @@ public class UI {
         }
 }
 
+public void drawTitleScreen() {
+
+    // BACKGROUND
+
+    g2.setColor(new Color(40, 100, 40));
+    g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+    // TITLE NAME
+
+    g2.setFont(g2.getFont().deriveFont(Font.BOLD, 96F));
+    String text = "Rilk";
+    int x = getXforCenteredText(text);
+    int y = gp.tileSize * 3;
+
+    // SHADOW
+
+    g2.setColor(Color.black);
+    g2.drawString(text, x+5, y+5);
+
+    // MAIN COLOR
+
+    g2.setColor(Color.white);
+    g2.drawString(text, x, y);
+
+    // CHARACTER IMAGE
+
+    x = gp.screenWidth / 2 - (gp.tileSize*1);
+    y += gp.tileSize*2;
+    g2.drawImage(gp.npc[0].down1, x, y, gp.tileSize*2, gp.tileSize*2, null);
+    }
+    
 public void drawPauseScreen() {
 
     g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 60F));

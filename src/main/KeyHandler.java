@@ -54,6 +54,22 @@ public class KeyHandler implements KeyListener{
             if (code == KeyEvent.VK_E) {
                 ePressed = true;
             }
+
+            if (code == KeyEvent.VK_M) {
+                if (gp.musicPlaying == true) {
+                    gp.stopMusic();
+                } else if (gp.musicPlaying == false) {
+                    gp.playMusic(0);
+                }
+            }
+
+            if (code == KeyEvent.VK_N) {
+                if (gp.player.speed < 10) {
+                    gp.player.speed = 12;
+                } else if (gp.player.speed >= 12){
+                    gp.player.speed = 4;
+                }
+            }
     
             // DEBUG
 
