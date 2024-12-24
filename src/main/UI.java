@@ -5,19 +5,25 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
+
+import obj.OBJ_Heart;
 
 public class UI {
 
     GamePanel gp;
     Graphics2D g2;
+    BufferedImage heart_full, heart_half, heart_empty;
     Font arial_40, arial_80B, arial_50B, ocraext;
     public boolean messageOn = false;
+    public boolean damagePitDraw = false;
     public String message = "";
     int messageCounter = 0;
     public String currentDialogue = "";
+    public int commandNumber = 0;
 
     public UI(GamePanel gp) {
 
@@ -32,8 +38,10 @@ public class UI {
             e.printStackTrace();
         }
 
-        arial_40 = new Font("Arial", Font.PLAIN, 40);
-        arial_80B = new Font("Arial", Font.BOLD, 80);
+        OBJ_Heart heart = new OBJ_Heart(gp);
+        heart_empty = heart.image3;
+        heart_half = heart.image2;
+        heart_full = heart.image;
     }
 
     public void showMessage(String text) {
@@ -69,6 +77,8 @@ public class UI {
                 messageCounter = 0;
                 messageOn = false;
             }
+
+            drawPlayerLife();
         }
 
         // PAUSE STATE
@@ -82,6 +92,40 @@ public class UI {
         if (gp.gameState == gp.dialogueState) {
             drawDialogueScreen();
         }
+    }
+
+public void drawPlayerLife() {
+
+    int x = gp.tileSize/2;
+    int y = gp.tileSize/2;
+    int i = 0;
+
+    // DRAW MAX HEALTH
+
+    while (i < gp.player.maxHealth/2) {
+        g2.drawImage(heart_empty, x, y, null);
+        i++;
+        x += gp.tileSize;
+    }
+
+
+    // RESET
+
+    x = gp.tileSize/2;
+    y = gp.tileSize/2;
+    i = 0;
+
+    // DRAW CURRENT HEALTH
+
+    while (i < gp.player.health) {
+        g2.drawImage(heart_half, x, y, null);
+        i++;
+        if (i < gp.player.health) {
+            g2.drawImage(heart_full, x, y, null);
+        }
+        i++;
+        x += gp.tileSize;
+    }
 }
 
 public void drawTitleScreen() {
@@ -110,9 +154,49 @@ public void drawTitleScreen() {
 
     // CHARACTER IMAGE
 
-    x = gp.screenWidth / 2 - (gp.tileSize*1);
-    y += gp.tileSize*2;
-    g2.drawImage(gp.npc[0].down1, x, y, gp.tileSize*2, gp.tileSize*2, null);
+    x = gp.screenWidth / 2 - (gp.tileSize)/2 - 30;
+    y += gp.tileSize*1 + 10;
+    g2.drawImage(gp.player.down1, x, y, gp.tileSize*2, gp.tileSize*2, null);
+
+    // MENU
+
+    g2.setFont(g2.getFont().deriveFont(Font.BOLD, 36F));
+    text = "NEW GAME";
+    x = gp.screenWidth / 2 - (gp.tileSize*2) - 15;
+    y = gp.screenHeight - (gp.tileSize * 4);
+
+    g2.setColor(Color.black);
+    g2.drawString(text, x+3, y+3);
+    g2.setColor(Color.white);
+    g2.drawString(text, x, y);
+    if (commandNumber == 0) {
+        g2.drawString(">", x-gp.tileSize, y);
+    }
+
+    g2.setFont(g2.getFont().deriveFont(Font.BOLD, 36F));
+    text = "LOAD GAME";
+    x = gp.screenWidth / 2 - (gp.tileSize*2) - 15;
+    y = gp.screenHeight - (gp.tileSize * 3);
+    g2.setColor(Color.black);
+    g2.drawString(text, x+3, y+3);
+    g2.setColor(Color.white);
+    g2.drawString(text, x, y);
+    if (commandNumber == 1) {
+        g2.drawString(">", x-gp.tileSize, y);
+    }
+
+
+    g2.setFont(g2.getFont().deriveFont(Font.BOLD, 36F));
+    text = "QUIT";
+    x = gp.screenWidth / 2 - (gp.tileSize*2) - 15;
+    y = gp.screenHeight - (gp.tileSize * 2);
+    g2.setColor(Color.black);
+    g2.drawString(text, x+3, y+3);
+    g2.setColor(Color.white);
+    g2.drawString(text, x, y);
+    if (commandNumber == 2) {
+        g2.drawString(">", x-gp.tileSize, y);
+    }
     }
     
 public void drawPauseScreen() {
@@ -140,6 +224,10 @@ public void drawDialogueScreen() {
     // NPC SPECIFIC FONT SIZE
 
     if (Arrays.asList(gp.npc[1].dialogues).contains(currentDialogue)) {
+        textSize = 20;
+    }
+
+    if (currentDialogue == "The goddess statue fills you with joy.\nYour health has been replenished.") {
         textSize = 20;
     }
 

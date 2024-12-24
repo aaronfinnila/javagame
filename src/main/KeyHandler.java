@@ -55,6 +55,8 @@ public class KeyHandler implements KeyListener{
                 ePressed = true;
             }
 
+            // ADMIN KEYBINDS
+
             if (code == KeyEvent.VK_M) {
                 if (gp.musicPlaying == true) {
                     gp.stopMusic();
@@ -91,8 +93,6 @@ public class KeyHandler implements KeyListener{
                 gp.playMusic(0);
                 gp.musicPlaying = true;
             }
-
-
         }
 
         // DIALOGUE STATE
@@ -100,6 +100,32 @@ public class KeyHandler implements KeyListener{
         if (gp.gameState == gp.dialogueState) {
             if (code == KeyEvent.VK_SPACE) {
                 gp.gameState = gp.playState;
+            }
+        }
+
+        if (gp.gameState == gp.titleState) {
+            if (code == KeyEvent.VK_S) {
+                gp.ui.commandNumber++;
+                if (gp.ui.commandNumber > 2) {
+                    gp.ui.commandNumber = 0;
+                }
+            }
+
+            if (code == KeyEvent.VK_W) {
+                gp.ui.commandNumber--;
+                if (gp.ui.commandNumber < 0) {
+                    gp.ui.commandNumber = 2;
+                }
+            }
+
+            if (code == KeyEvent.VK_ENTER) {
+                if (gp.ui.commandNumber == 0) {
+                    gp.gameState = gp.playState;
+                    gp.playMusic(0);
+                }
+                if (gp.ui.commandNumber == 2) {
+                    System.exit(0);
+                }
             }
         }
     }

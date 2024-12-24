@@ -102,7 +102,16 @@ public class TileManager {
         setup(49, "tree4bl", true);
         setup(50, "tree4bm", true);
         setup(51, "tree4br", true);
-}
+
+        // GODDESS STATUE
+
+        setup(52, "goddess1_tl", true);
+        setup(53, "goddess1_tr", true);
+        setup(54, "goddess1_ml", true);
+        setup(55, "goddess1_mr", true);
+        setup(56, "goddess1_bl", true);
+        setup(57, "goddess1_br", true);
+    }
 
 public void setup(int index, String imageName, boolean collision){
 

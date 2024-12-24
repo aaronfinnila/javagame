@@ -40,6 +40,8 @@ public class Player extends Entity {
         worldY = 1150;
         speed = 4;
         direction = "down";
+        maxHealth = 6;
+        health = maxHealth;
     }
 public void getPlayerImage() {
 
@@ -84,6 +86,10 @@ public void getPlayerImage() {
 
          int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
          interactNPC(npcIndex);
+
+         // CHECK EVENT COLLISION
+
+         gp.eHandler.checkEvent();
 
          // IF COLLISION IS FALSE, PLAYER CAN MOVE
 
