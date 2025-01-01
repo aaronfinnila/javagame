@@ -37,6 +37,7 @@ public class EventHandler {
     public void checkEvent(){
         if (hit(38,14,"any") == true) {damagePit(38, 14, gp.dialogueState);}
         if (hit(38, 10, "up") == true && gp.keyH.ePressed == true && eventRect[38][10].eventDone == false) {healingStatue(38, 10, gp.dialogueState);}
+        if (hit(10, 10, "any") == true && eventRect[10][10].eventDone == false) {teleportPlayer(10, 10, gp.dialogueState);}
     }
 
     public boolean hit(int col, int row, String reqDirection){
@@ -75,5 +76,12 @@ public class EventHandler {
 
         gp.player.health = gp.player.maxHealth;
         eventRect[col][row].eventDone = true;
+    }
+
+    public void teleportPlayer(int col, int row, int gameState) {
+        gp.gameState = gameState;
+        gp.player.worldX = 1150;
+        gp.player.worldY = 1150;
+        gp.ui.currentDialogue = "You teleported!";
     }
 }

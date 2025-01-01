@@ -38,6 +38,8 @@ public class UI {
             e.printStackTrace();
         }
 
+        // HUD HEARTS
+        
         OBJ_Heart heart = new OBJ_Heart(gp);
         heart_empty = heart.image3;
         heart_half = heart.image2;

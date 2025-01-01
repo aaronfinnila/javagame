@@ -4,12 +4,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.swing.JPanel;
 
 import entity.Entity;
 import entity.Player;
-import obj.SuperObject;
 import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable{
@@ -52,8 +55,9 @@ public class GamePanel extends JPanel implements Runnable{
     // ENTITY AND OBJECT
 
     public Player player = new Player(this,keyH, tileM);
-    public SuperObject obj[] = new SuperObject[20];
+    public Entity obj[] = new Entity[20];
     public Entity npc[] = new Entity[10];
+    ArrayList<Entity> entityList = new ArrayList<>();
 
     // GAME STATE
 
@@ -171,32 +175,45 @@ public class GamePanel extends JPanel implements Runnable{
             // TILE
             
             tileM.draw(g2);
+
+            // ADD PLAYER TO LIST
+
+            entityList.add(player);
+
+            // ADD NPC'S TO LIST
+
+            entityList.addAll(Arrays.asList(npc));
+
+            // ADD OBJECTS TO LIST
+
+            entityList.addAll(Arrays.asList(obj));
             
-            // OBJECT
-            
-            for(int i = 0; i < obj.length; i++) {
-                if (obj[i] != null) {
-                    obj[i].draw(g2, this);
+
+            // SORT
+
+            Collections.sort(entityList, new Comparator<Entity>() {
+
+                @ Override
+                public int compare(Entity e1, Entity e2) {
+                    int result = Integer.compare(e1.worldY, e2.worldY);
+                    return result;
                 }
+            });
+
+            // DRAW ENTITIES
+
+            for (int i=0;i<entityList.size(); i++) {
+                entityList.get(i).draw(g2);
             }
-            
-            // NPC
-            
-            for(int i=0; i < npc.length; i++) {
-                if(npc[i] != null) {
-                    npc[i].draw(g2);
-                }
-            }
-            
-            // PLAYER
-            
-                player.draw(g2);
-            
+
+            // CLEAR ENTTY LIST
+
+            entityList.clear();
+
             // UI
             
             ui.draw(g2);
-            
-                    
+             
             // DEBUG 
             
             if (keyH.checkDrawTime == true) {
