@@ -108,7 +108,11 @@ public class Entity {
 
         try {
             image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
-            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+            if (imagePath != "/res/extra/questionable") {
+                image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+            } else {
+                image = uTool.scaleImage(image, gp.screenWidth, gp.screenHeight);
+            }
         }catch(IOException e) {
             e.printStackTrace();
         }

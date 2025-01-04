@@ -2,6 +2,7 @@ package main;
 
 import entity.NPC_Rock;
 import entity.NPC_Rubert;
+import monster.MON_Slime;
 import obj.OBJ_Boots;
 import obj.OBJ_Chest;
 import obj.OBJ_Key;
@@ -44,6 +45,7 @@ public class AssetSetter {
     }
 
     public void setNPC() {
+
         gp.npc[0] = new NPC_Rubert(gp);
         gp.npc[0].worldX = 35 * gp.tileSize;
         gp.npc[0].worldY = 35 * gp.tileSize;
@@ -51,5 +53,10 @@ public class AssetSetter {
         gp.npc[1] = new NPC_Rock(gp);
         gp.npc[1].worldX = 22 * gp.tileSize;
         gp.npc[1].worldY = 11 * gp.tileSize;
+    }
+
+    public void setMonster() {
+        
+        gp.monster[0] = new MON_Slime(gp);
     }
 }
