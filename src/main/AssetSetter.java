@@ -58,5 +58,7 @@ public class AssetSetter {
     public void setMonster() {
         
         gp.monster[0] = new MON_Slime(gp);
+        gp.monster[0].worldX = gp.tileSize*10;
+        gp.monster[0].worldY = gp.tileSize*32;
     }
 }

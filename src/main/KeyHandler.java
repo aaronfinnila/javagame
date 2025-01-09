@@ -6,7 +6,8 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener{
 
     GamePanel gp;
-    public boolean upPressed, downPressed, leftPressed, rightPressed, ePressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, ePressed, spacePressed,
+    qPressed;
 
     // DEBUG
 
@@ -28,6 +29,10 @@ public class KeyHandler implements KeyListener{
         // PLAY STATE
 
         if (gp.gameState == gp.playState) {
+
+            if (code == KeyEvent.VK_Q) {
+                gp.player.attacking = true;
+            }
 
             if (code == KeyEvent.VK_W) {
                 upPressed = true;
@@ -100,9 +105,11 @@ public class KeyHandler implements KeyListener{
         if (gp.gameState == gp.dialogueState) {
             if (code == KeyEvent.VK_SPACE) {
                 gp.gameState = gp.playState;
-            }
         }
+    }
 
+        // TITLE STATE
+        
         if (gp.gameState == gp.titleState) {
             if (code == KeyEvent.VK_S) {
                 gp.ui.commandNumber++;
@@ -138,6 +145,10 @@ public class KeyHandler implements KeyListener{
 
         if (gp.gameState == gp.playState) {
 
+            if (code == KeyEvent.VK_Q) {
+
+            }
+
             if (code == KeyEvent.VK_W) {
                 upPressed = false;
             }
@@ -156,6 +167,10 @@ public class KeyHandler implements KeyListener{
 
             if (code == KeyEvent.VK_E) {
                 ePressed = false;
+            }
+
+            if (code == KeyEvent.VK_SPACE) {
+                spacePressed = false;
             }
         }
 
@@ -198,6 +213,10 @@ public class KeyHandler implements KeyListener{
 
             if (code == KeyEvent.VK_E) {
                 ePressed = false;
+            }
+
+            if (code == KeyEvent.VK_SPACE) {
+                spacePressed = false;
             }
         }
 

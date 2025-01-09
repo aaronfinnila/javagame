@@ -9,7 +9,7 @@ public class OBJ_Questionmark2 extends Entity {
         super(gp);
 
         name = "Questionmark2";
-        down1 = setup("/res/extra/questionable");
+        down1 = setup("/res/extra/questionable", gp.screenWidth, gp.screenHeight);
         collision = true;
     }
 }

@@ -9,7 +9,7 @@ public class OBJ_Questionmark extends Entity {
         super(gp);
 
         name = "Questionmark";
-        down1 = setup("/res/objects/questionmark");
+        down1 = setup("/res/objects/questionmark", gp.tileSize, gp.tileSize);
         collision = true;
     }
 }

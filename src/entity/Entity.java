@@ -1,5 +1,6 @@
 package entity;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -18,22 +19,31 @@ public class Entity {
     public int maxHealth;
     public int health;
 
+    public BufferedImage attackDown1, attackDown2, attackLeft1, attackLeft2, attackUp1,
+    attackUp2, attackRight1, attackRight2;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public String direction = "down";
 
-    public int spriteCounter = 0;
+    public int moveCounter = 0;
     public int standCounter = 0;
+    public int attackCounter = 0;
+    public int attackNum = 1;
     public int spriteNum = 1;
+    public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
     public String dialogues[] = new String[30];
-    int dialogueIndex = 0;
+    public int dialogueIndex = 0;
     public BufferedImage image, image2, image3;
     public String name;
     public boolean collision = false;
     public boolean usedObject = false;
+    public boolean invincible = false;
+    public boolean attacking = false;
+    public int invincibleCounter = 0;
+    public int type;
 
     public Entity(GamePanel gp) {
         this.gp = gp;
@@ -47,11 +57,12 @@ public class Entity {
         if (dialogues[dialogueIndex] == null) {
             dialogueIndex = 0;
         }
+
         gp.ui.currentDialogue = dialogues[dialogueIndex];
         dialogueIndex++;
     
         switch(gp.player.direction) {
-            case "up":
+            case "up": 
                 direction = "down";
                 break;
             case "down":
@@ -73,7 +84,22 @@ public class Entity {
         collisionOn = false;
         gp.cChecker.checkTile(this);
         gp.cChecker.checkObject(this, false);
-        gp.cChecker.checkPlayer(this);
+        gp.cChecker.checkEntity(this, gp.npc);
+        gp.cChecker.checkEntity(this, gp.monster);
+        boolean contactPlayer = gp.cChecker.checkPlayer(this);
+
+        if (this.type == 2 && contactPlayer == true) {
+            if (gp.player.invincible == false) {
+                gp.player.health--;
+                gp.player.invincible = true;
+            }
+        }
+
+        if (this.type == 1 && gp.gameState == gp.dialogueState) {
+            if (gp.keyH.spacePressed == true) {
+                dialogueIndex++;
+            }
+        }
 
         // IF COLLISION IS FALSE, NPC CAN MOVE
         
@@ -90,29 +116,33 @@ public class Entity {
             }
          }
 
-         spriteCounter++;
-         if (spriteCounter > 12) {
+         moveCounter++;
+         if (moveCounter > 12) {
             if (spriteNum == 1) {
                 spriteNum = 2;
             }
             else if (spriteNum == 2) {
                 spriteNum = 1;
             }
-            spriteCounter = 0;
+            moveCounter = 0;
+        }
+
+        if (invincible == true) {
+            invincibleCounter++;
+            if (invincibleCounter > 20) {
+                invincible = false;
+                invincibleCounter = 0;
+            }
         }
     }
 
-        public BufferedImage setup(String imagePath) {
+        public BufferedImage setup(String imagePath, int width, int height) {
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
 
         try {
             image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
-            if (imagePath != "/res/extra/questionable") {
-                image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-            } else {
-                image = uTool.scaleImage(image, gp.screenWidth, gp.screenHeight);
-            }
+            image = uTool.scaleImage(image, width, height);
         }catch(IOException e) {
             e.printStackTrace();
         }
@@ -132,40 +162,30 @@ public class Entity {
 
                 switch(direction) {
                     case "up":
-                        if(spriteNum == 1) {
-                        image = up1;
-                        }
-                        if (spriteNum == 2) {
-                            image = up2;
-                        }
+                        if(spriteNum == 1) {image = up1;}
+                        if (spriteNum == 2) {image = up2;}
                         break;
                     case "down":
-                    if(spriteNum == 1) {
-                        image = down1;
-                    }
-                    if (spriteNum == 2) {
-                        image = down2;
-                    }
+                        if(spriteNum == 1) {image = down1;}
+                        if (spriteNum == 2) {image = down2;}
                         break;
                     case "left": 
-                    if (spriteNum == 1) {
-                        image = left1;
-                    }
-                    if (spriteNum == 2) {
-                        image = left2;
-                    }
+                        if (spriteNum == 1) {image = left1;}
+                        if (spriteNum == 2) {image = left2;}
                         break;
                     case "right":
-                    if (spriteNum == 1) {
-                        image = right1;
-                    }
-                    if (spriteNum == 2) {
-                        image = right2;
-                    }
+                        if (spriteNum == 1) {image = right1;}
+                        if (spriteNum == 2) {image = right2;}
                         break;
                 }
             }
 
+            if (invincible == true) {
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+            }
+
             g2.drawImage(image, screenX, screenY, null);
+
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         }
     }

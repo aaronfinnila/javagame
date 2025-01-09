@@ -5,6 +5,7 @@ import main.GamePanel;
 public class NPC_Rock extends Entity {
 
     public NPC_Rock(GamePanel gp) {
+
         super(gp);
         speed = 0;
         direction = "still";
