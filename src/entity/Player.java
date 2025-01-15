@@ -27,13 +27,13 @@ public class Player extends Entity {
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
 
-        solidArea = new Rectangle(8, 16);
+        solidArea = new Rectangle(8, 16, 32, 32);
         solidArea.width = 32;
         solidArea.height = 32;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
-        attackArea.width = 36;
+        attackArea.height = 36;
         attackArea.width = 36;
 
         setDefaultValues();
@@ -186,9 +186,9 @@ public void getPlayerAttackImage() {
 
             switch(direction) {
                 case "up": worldY -= attackArea.height; break;
-                case "down": worldY += gp.tileSize; break;
+                case "down": worldY += attackArea.height; break;
                 case "left": worldX -= attackArea.width; break;
-                case "right": worldX += gp.tileSize; break;
+                case "right": worldX += attackArea.width; break;
             }
 
             // solidArea becomes attackArea
@@ -286,24 +286,25 @@ public void getPlayerAttackImage() {
                         gp.gameState = gp.dialogueState;
                         gp.npc[i].speak();
                         if (gp.player.speed > 4) {
-                            gp.npc[1].dialogues[5] = "So you increased your speed! Impressive.\nI suppose you're ready to hear more.";
+                            gp.npc[1].dialogues[5] = "You seem faster.\nI suppose you're ready to hear more.";
                             gp.npc[1].dialogues[6] = "A long, long time ago, a strong warrior\ncame to this island.";
                             gp.npc[1].dialogues[7] = "He was from Midland, and he came\nto search for the legendary\ntreasure he had heard so much about.";
-                            gp.npc[1].dialogues[8] = "With sword and bow in tow,\nhe begun his adventure.\nBut very soon he realized...";
-                            gp.npc[1].dialogues[9] = "That this was no ordinary island.";
-                            gp.npc[1].dialogues[10] = "That's enough for now.\nIncrease your speed even more,\nand I might tell you the rest.";
+                            gp.npc[1].dialogues[8] = "With sword and bow in tow, he begun\nhis adventure, filled with excitement,\ntreasure gleaming in his eyes.";
+                            gp.npc[1].dialogues[9] = "He headed for that town.\nBut when he got there, he noticed\nsomething strange...";
+                            gp.npc[1].dialogues[10] = "That's enough for now.\nIncrease your speed even more\nif you want to hear the rest.";
                         }
                         if (gp.player.speed > 5) {
                             gp.npc[1].dialogues[11] = "You seem faster. I think you're ready\nto hear some more...";
-                            gp.npc[1].dialogues[12] = "After spending some time on the island,\nthe warrior noticed that something\nwasn't right.";
+                            gp.npc[1].dialogues[12] = "After spending some more time in the town,\nthe warrior noticed that something\nwasn't right.";
                             gp.npc[1].dialogues[13] = "The people were all really friendly,\nthe place was beautiful and the scenery\nwas out of this world.";
-                            gp.npc[1].dialogues[14] = "But soon he noticed something strange.";
-                            gp.npc[1].dialogues[15] = "One night when he suddenly woke up,\nhe heard strange noises.";
-                            gp.npc[1].dialogues[16] = "It sounded like they were coming from\nthe town square. The following day he\ndecided to ask someone about it.";
-                            gp.npc[1].dialogues[17] = "However, when he mentioned it to\nany of the townsfolk, they started\nacting strange.";
-                            gp.npc[1].dialogues[18] = "It was like they were avoiding the subject.";
-                            gp.npc[1].dialogues[19] = "Like they were hiding something.";
-                            gp.npc[1].dialogues[20] = "Alright, that's it for now.\nCome talk to me again when you've\nimproved your speed.";
+                            gp.npc[1].dialogues[14] = "One night, when he suddenly woke up,\nhe heard strange noises.";
+                            gp.npc[1].dialogues[15] = "It sounded like they were coming from\nthe town square. The following day he\ndecided to ask someone about it.";
+                            gp.npc[1].dialogues[16] = "However, when he mentioned it to\nany of the townsfolk, they started\nacting strange.";
+                            gp.npc[1].dialogues[17] = "It was like they were avoiding the subject.";
+                            gp.npc[1].dialogues[18] = "That town is not what it seems...";
+                            gp.npc[1].dialogues[19] = "But I suppose you have no other\nchoice than to go there and\nsee for yourself.";
+                            gp.npc[1].dialogues[20] = "Best of luck kiddo...\n";
+                            gp.npc[1].dialogues[21] = "Judging from the way you look,\nyou're gonna need it...";
                         }
                     }
                 }
@@ -328,26 +329,43 @@ public void getPlayerAttackImage() {
     public void damageMonster(int i) {
 
         if (i != 999) {
-            System.out.println("Hit");
             if(gp.monster[i].invincible == false) {
                 gp.monster[i].health--;
                 gp.monster[i].invincible = true;
             }
 
             if (gp.monster[i].health <= 0) {
-                gp.monster[i] = null;
+                gp.monster[i].dying = true;
             }
-        } else {
-            System.out.println("False");
         }
     }
     
     public void draw(Graphics2D g2) {
 
+        
+
         BufferedImage image = null;
         int tempScreenX = screenX;
         int tempScreenY = screenY;
 
+        // DEBUG attackArea
+
+/* 		tempScreenX = screenX + solidArea.x;
+		tempScreenY = screenY + solidArea.y;		
+
+		switch(direction) {
+		case "up": tempScreenY = screenY - attackArea.height; break;
+		case "down": tempScreenY = screenY + attackArea.height; break; 
+		case "left": tempScreenX = screenX - attackArea.width; break;
+		case "right": tempScreenX = screenX + attackArea.width; break;
+		}				
+		g2.setColor(Color.red);
+        g2.setStroke(new BasicStroke(1));
+		g2.drawRect(tempScreenX, tempScreenY, gp.tileSize, gp.tileSize);
+
+        tempScreenX = screenX;
+        tempScreenY = screenY;
+ */
         switch(direction) {
             case "up":
                 if (attacking == false) {

@@ -40,6 +40,12 @@ public class MON_Slime extends Entity {
         right2 = setup("/res/monster/slime_down2", gp.tileSize, gp.tileSize);
         left1 = setup("/res/monster/slime_down1", gp.tileSize, gp.tileSize);
         left2 = setup("/res/monster/slime_down2", gp.tileSize, gp.tileSize);
+
+        death1 = setup("/res/monster/slime_death1", gp.tileSize*2, gp.tileSize*2);
+        death2 = setup("/res/monster/slime_death2", gp.tileSize*2, gp.tileSize*2);
+        death3 = setup("/res/monster/slime_death3", gp.tileSize*2, gp.tileSize*2);
+        death4 = setup("/res/monster/slime_death4", gp.tileSize*2, gp.tileSize*2);
+        death5 = setup("/res/monster/slime_death5", gp.tileSize*2, gp.tileSize*2);
     }
 
     public void setAction() {

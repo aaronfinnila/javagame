@@ -15,36 +15,47 @@ public class Entity {
 
     GamePanel gp;
     public int worldX, worldY;
-    public int speed;
-    public int maxHealth;
-    public int health;
-
+    public BufferedImage death1, death2, death3, death4, death5;
     public BufferedImage attackDown1, attackDown2, attackLeft1, attackLeft2, attackUp1,
     attackUp2, attackRight1, attackRight2;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-    public String direction = "down";
-
-    public int moveCounter = 0;
-    public int standCounter = 0;
-    public int attackCounter = 0;
-    public int attackNum = 1;
-    public int spriteNum = 1;
+    public BufferedImage image, image2, image3;
     public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX, solidAreaDefaultY;
-    public boolean collisionOn = false;
-    public int actionLockCounter = 0;
     public String dialogues[] = new String[30];
-    public int dialogueIndex = 0;
-    public BufferedImage image, image2, image3;
-    public String name;
-    public boolean collision = false;
+    
+    // STATE
+    
+    public String direction = "down";
+    public boolean collisionOn = false;
     public boolean usedObject = false;
     public boolean invincible = false;
     public boolean attacking = false;
-    public int invincibleCounter = 0;
+    public boolean dying = false;
+    public boolean alive = true;
     public int type;
+    
+    // COUNTERS
+    
+    public int actionLockCounter = 0;
+    public int moveCounter = 0;
+    public int standCounter = 0;
+    public int attackCounter = 0;
+    public int invincibleCounter = 0;
+    public int attackNum = 1;
+    public int spriteNum = 1;
+    public int dialogueIndex = 0;
+    public int dyingCounter = 0;
+    
+    // ATTRIBUTES
 
+    public int speed;
+    public String name;
+    public boolean collision = false;
+    public int maxHealth;
+    public int health;
+    
     public Entity(GamePanel gp) {
         this.gp = gp;
         worldY = 0;
@@ -129,7 +140,7 @@ public class Entity {
 
         if (invincible == true) {
             invincibleCounter++;
-            if (invincibleCounter > 20) {
+            if (invincibleCounter > 35) {
                 invincible = false;
                 invincibleCounter = 0;
             }
@@ -181,11 +192,32 @@ public class Entity {
             }
 
             if (invincible == true) {
-                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+                changeAlpha(g2, 0.3f);
+            }
+
+            if (dying == true) {
+                changeAlpha(g2, 1f);
+                dyingCounter++;
+                
+                if (dyingCounter >= 0 && dyingCounter <= 10) {image = death1;}
+                if (dyingCounter >= 10 && dyingCounter <= 15) {image = death2;}
+                if (dyingCounter >= 15 && dyingCounter <= 20) {image = death3;}
+                if (dyingCounter >= 20 && dyingCounter <= 25) {image = death4;}
+                if (dyingCounter >= 25 && dyingCounter <= 30) {image = death5;}
+                if (dyingCounter >= 30) {
+                    dying = false;
+                    alive = false;
+                };
+                screenX = worldX - gp.player.worldX + gp.player.screenX - gp.tileSize/2;
+                screenY = worldY - gp.player.worldY + gp.player.screenY - gp.tileSize/2;
             }
 
             g2.drawImage(image, screenX, screenY, null);
 
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+            changeAlpha(g2, 1f);
+        }
+
+        public void changeAlpha(Graphics2D g2, float alpha) {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
         }
     }
