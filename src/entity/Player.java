@@ -169,6 +169,9 @@ public void getPlayerAttackImage() {
 
         attackCounter++;
 
+        if (attackCounter > 0 && attackCounter < 2) {
+            gp.playSE(5);
+        }
         if (attackCounter <= 5) {
             attackNum = 1;
         }
@@ -320,6 +323,7 @@ public void getPlayerAttackImage() {
 
         if (i != 999) {
             if (invincible == false) {
+                gp.playSE(6);
                 health--;
                 invincible = true;
             }
@@ -330,11 +334,13 @@ public void getPlayerAttackImage() {
 
         if (i != 999) {
             if(gp.monster[i].invincible == false) {
+                gp.playSE(7);
                 gp.monster[i].health--;
                 gp.monster[i].invincible = true;
             }
 
             if (gp.monster[i].health <= 0) {
+                gp.stopSE();
                 gp.monster[i].dying = true;
             }
         }
