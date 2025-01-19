@@ -1,6 +1,7 @@
 package entity;
 
 import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -34,7 +35,7 @@ public class Entity {
     public boolean attacking = false;
     public boolean dying = false;
     public boolean alive = true;
-    public int type;
+    public boolean hpBarOn = false;
     
     // COUNTERS
     
@@ -47,19 +48,33 @@ public class Entity {
     public int spriteNum = 1;
     public int dialogueIndex = 0;
     public int dyingCounter = 0;
+    public int hpBarCounter;
     
     // ATTRIBUTES
-
+    
+    public int type;
     public int speed;
     public String name;
     public boolean collision = false;
     public int maxHealth;
     public int health;
+    public int level;
+    public int strength;
+    public int dexterity;
+    public int defense;
+    public int attack;
+    public int exp;
+    public int nextLevelExp;
+    public int coin;
+    public Entity currentWeapon;
+    public Entity currentShield;
     
     public Entity(GamePanel gp) {
         this.gp = gp;
         worldY = 0;
     }
+
+    public void damageReaction() {}
 
     public void setAction() {}
 
@@ -191,7 +206,30 @@ public class Entity {
                 }
             }
 
+            // Monster HP bar
+
+            if (type == 2 && hpBarOn == true) {
+
+                double oneScale = (double)gp.tileSize/maxHealth;
+                double hpBarValue = oneScale*health;
+
+                g2.setColor(new Color(35, 35, 35));
+                g2.fillRect(screenX-1, screenY-16, gp.tileSize+2, 12);
+
+                g2.setColor(new Color(255,0,30));
+                g2.fillRect(screenX, screenY - 15, (int)hpBarValue, 10);
+
+                hpBarCounter++;
+
+                if (hpBarCounter > 600) {
+                    hpBarCounter = 0;
+                    hpBarOn = false;
+                }
+            }
+
             if (invincible == true) {
+                hpBarOn = true;
+                hpBarCounter = 0;
                 changeAlpha(g2, 0.3f);
             }
 

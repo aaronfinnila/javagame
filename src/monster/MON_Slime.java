@@ -17,7 +17,7 @@ public class MON_Slime extends Entity {
         type = 2;
         name = "Slime";
         speed = 1;
-        maxHealth = 4;
+        maxHealth = 20;
         health = maxHealth;
 
         solidArea.x = 3;
@@ -73,4 +73,22 @@ public class MON_Slime extends Entity {
     }
     }
 
+    public void damageReaction() {
+        actionLockCounter = 0;
+        String pdir = gp.player.direction;
+        switch (pdir) {
+            case "down":
+                direction = "up";
+                break;
+            case "up":
+                direction = "down";
+                break;
+            case "left":
+                direction = "right";
+                break;
+            case "right":
+                direction = "left";
+                break;
+        }
+    }
 }

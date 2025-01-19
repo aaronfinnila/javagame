@@ -337,6 +337,7 @@ public void getPlayerAttackImage() {
                 gp.playSE(7);
                 gp.monster[i].health--;
                 gp.monster[i].invincible = true;
+                gp.monster[i].damageReaction();
             }
 
             if (gp.monster[i].health <= 0) {
