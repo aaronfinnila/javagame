@@ -6,6 +6,8 @@ import java.awt.image.BufferedImage;
 
 import main.GamePanel;
 import main.KeyHandler;
+import obj.OBJ_Shield_Default;
+import obj.OBJ_Sword_Default;
 import tile.TileManager;
 
 public class Player extends Entity {
@@ -44,11 +46,31 @@ public class Player extends Entity {
 
         worldX = 1150;
         worldY = 1150;
-        speed = 4;
         direction = "down";
+        
+        speed = 4;
         maxHealth = 6;
         health = maxHealth;
+        level = 1;
+        strength = 1;
+        dexterity = 1;
+        exp = 1;
+        nextLevelExp = 5;
+        gold = 0;
+        currentWeapon = new OBJ_Sword_Default(gp);
+        currentShield = new OBJ_Shield_Default(gp);
+        attack = getAttack();
+        defense = getDefense();
     }
+
+    public int getAttack() {
+        return attack = strength * currentWeapon.attackValue;
+    }
+
+    public int getDefense() {
+        return defense = dexterity * currentShield.defenseValue;
+    }
+
 public void getPlayerImage() {
 
     up1 = setup("/res/player/boy_up_1", gp.tileSize, gp.tileSize);

@@ -52,7 +52,7 @@ public class Entity {
     
     // ATTRIBUTES
     
-    public int type;
+    public int type; // 0 = player, 1 = npc, 2 = monster
     public int speed;
     public String name;
     public boolean collision = false;
@@ -65,9 +65,14 @@ public class Entity {
     public int attack;
     public int exp;
     public int nextLevelExp;
-    public int coin;
+    public int gold;
     public Entity currentWeapon;
     public Entity currentShield;
+
+    // ITEM ATTRIBUTES
+
+    public int attackValue;
+    public int defenseValue;
     
     public Entity(GamePanel gp) {
         this.gp = gp;
