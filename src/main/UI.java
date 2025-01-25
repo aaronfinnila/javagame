@@ -282,7 +282,7 @@ public void drawDialogueScreen() {
 
     drawSubWindow(x, y, width, height);
 
-    // NPC SPECIFIC FONT SIZE
+    // CONDITIONAL FONT SIZE
 
     if (Arrays.asList(gp.npc[1].dialogues).contains(currentDialogue)) {
         textSize = 20;
@@ -290,6 +290,10 @@ public void drawDialogueScreen() {
 
     if (currentDialogue == "The goddess statue fills you with joy.\nYour health has been replenished.") {
         textSize = 20;
+    }
+
+    if (gp.ui.currentDialogue.equals("You are now level " + gp.player.level + "!\nYou feel stronger than before!")) {
+        textSize = 28;
     }
 
     g2.setFont(g2.getFont().deriveFont(Font.PLAIN, textSize));
@@ -356,7 +360,7 @@ public void drawCharacterScreen() {
     g2.drawString(value, textX, textY);
     textY += lineHeight;
 
-    value = String.valueOf(gp.player.health);
+    value = String.valueOf(gp.player.maxHealth);
     textX = getXforAlignToRightText(value, tailX);
     g2.drawString(value, textX, textY);
     textY += lineHeight;

@@ -144,6 +144,9 @@ public class KeyHandler implements KeyListener{
 
     public void dialogueState(int code) {
         if (code == KeyEvent.VK_SPACE) {
+            if (gp.ui.currentDialogue.equals("You are now level " + gp.player.level + "!\nYou feel stronger than before!")) {
+                gp.playMusic(0);
+            }
             gp.gameState = gp.playState;
     }
 

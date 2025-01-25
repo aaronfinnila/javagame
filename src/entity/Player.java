@@ -54,7 +54,7 @@ public class Player extends Entity {
         level = 1;
         strength = 1;
         dexterity = 1;
-        exp = 1;
+        exp = 0;
         nextLevelExp = 5;
         gold = 0;
         currentWeapon = new OBJ_Sword_Default(gp);
@@ -115,6 +115,10 @@ public void getPlayerAttackImage() {
          else if (keyH.rightPressed == true) {
             direction = "right";
          }
+
+         // CHECK LEVELUP
+
+         checkLevelUp();
 
          // CHECK TILE COLLISION
 
@@ -372,11 +376,6 @@ public void getPlayerAttackImage() {
 
             if (gp.monster[i].health <= 0) {
                 gp.monster[i].dying = true;
-                gp.ui.showExpMessage("You received " + gp.monster[i].exp + " exp!");
-                gp.ui.showGoldMessage("You received " + gp.monster[i].gold + " gold!");
-                exp += gp.monster[i].exp;
-                gold += gp.monster[i].gold;
-                System.out.println(exp);
             }
         }
     }
@@ -385,18 +384,18 @@ public void getPlayerAttackImage() {
 
         if (exp >= nextLevelExp) {
             level++;
-            exp = exp - nextLevelExp;
-            nextLevelExp = nextLevelExp*2;
             maxHealth += 2;
-            health += maxHealth;
+            health = maxHealth;
             strength++;
             dexterity++;
             attack = getAttack();
             defense = getDefense();
-
-            gp.playSE(9);
-            gp.gameState = gp.dialogueState;
             gp.ui.currentDialogue = "You are now level " + level + "!\nYou feel stronger than before!";
+            gp.gameState = gp.dialogueState;
+            gp.stopMusic();
+            gp.playSE(9);
+            exp = exp - nextLevelExp;
+            nextLevelExp = nextLevelExp*2;
         }
     }
     

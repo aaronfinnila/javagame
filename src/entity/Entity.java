@@ -247,7 +247,14 @@ public class Entity {
                 dyingCounter++;
                 
                 if (dyingCounter >= 0 && dyingCounter <= 10) {image = death1;}
-                if (dyingCounter > 0 && dyingCounter < 2) {gp.playSE(8);}
+                if (dyingCounter > 0 && dyingCounter < 2) {
+                    gp.playSE(8);
+                    gp.ui.showExpMessage("You received " + exp + " exp!");
+                    gp.ui.showGoldMessage("You received " + gold + " gold!");
+                    gp.player.exp += exp;
+                    gp.player.gold += gold;
+                    System.out.println(gp.player.exp);
+                }
                 if (dyingCounter >= 10 && dyingCounter <= 15) {image = death2;}
                 if (dyingCounter >= 15 && dyingCounter <= 20) {image = death3;}
                 if (dyingCounter >= 20 && dyingCounter <= 25) {image = death4;}
