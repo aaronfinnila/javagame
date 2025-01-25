@@ -17,8 +17,13 @@ public class MON_Slime extends Entity {
         type = 2;
         name = "Slime";
         speed = 1;
-        maxHealth = 20;
+        maxHealth = 4;
         health = maxHealth;
+        attack = 3;
+        defense = 0;
+        exp = 2;
+        Random random = new Random();
+        gold = random.nextInt(1, 3);
 
         solidArea.x = 3;
         solidArea.y = 18;

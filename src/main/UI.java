@@ -17,11 +17,17 @@ public class UI {
     GamePanel gp;
     Graphics2D g2;
     BufferedImage heart_full, heart_half, heart_empty;
-    Font arial_40, arial_80B, arial_50B, ocraext;
+    Font arial_40, arial_80B, arial_50B, ocraext, consola;
     public boolean messageOn = false;
+    public boolean goldMessageOn = false;
+    public boolean expMessageOn = false;
     public boolean damagePitDraw = false;
+    public String expMessage = "";
+    public String goldMessage = "";
     public String message = "";
-    int messageCounter = 0;
+    public int expMessageCounter;
+    public int goldMessageCounter;
+    public int messageCounter;
     public String currentDialogue = "";
     public int commandNumber = 0;
 
@@ -30,8 +36,10 @@ public class UI {
         this.gp = gp;
 
         InputStream is = getClass().getResourceAsStream("/res/font/OCRAEXT.TTF");
+        InputStream is2 = getClass().getResourceAsStream("/res/font/CONSOLA.TTF");
         try {
             ocraext = Font.createFont(Font.TRUETYPE_FONT, is);
+            consola = Font.createFont(Font.TRUETYPE_FONT, is2);
         } catch (FontFormatException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -47,10 +55,23 @@ public class UI {
     }
 
     public void showMessage(String text) {
-
+        
         messageOn = true;
         message = text;
     }
+
+    public void showExpMessage(String text) {
+    
+        expMessageOn = true;
+        expMessage = text;
+    }
+
+    public void showGoldMessage(String text) {
+
+        goldMessageOn = true;
+        goldMessage = text;
+    }
+
     public void draw(Graphics2D g2) {
 
         this.g2 = g2;
@@ -72,12 +93,45 @@ public class UI {
                 g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40F));
                 int x = getXforCenteredText(message);
                 int y = gp.screenHeight/4;
+                g2.setColor(Color.black);
+                g2.drawString(message, x+2, y+2);
+                g2.setColor(Color.white);
                 g2.drawString(message, x, y);
                 messageCounter++;
             }
             if (messageCounter > 120) {
                 messageCounter = 0;
                 messageOn = false;
+            }
+            if (expMessageOn == true) {
+                int x = 15;
+                int y = gp.tileSize*10;
+                g2.setFont(consola);
+                g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 23F));
+                g2.setColor(Color.black);
+                g2.drawString(expMessage, x+2, y+2);
+                g2.setColor(Color.white);
+                g2.drawString(expMessage, x, y);
+                expMessageCounter++;
+                if (expMessageCounter > 120) {
+                    expMessageCounter = 0;
+                    expMessageOn = false;
+                }
+            }
+            if (goldMessageOn == true) {
+                int x = 15;
+                int y = gp.tileSize*11;
+                g2.setFont(consola);
+                g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 23F));
+                g2.setColor(Color.black);
+                g2.drawString(goldMessage, x+2, y+2);
+                g2.setColor(Color.white);
+                g2.drawString(goldMessage, x, y);
+                goldMessageCounter++;
+                if (goldMessageCounter > 120) {
+                    goldMessageCounter = 0;
+                    goldMessageOn = false;
+                }
             }
             drawPlayerLife();
         }
@@ -98,6 +152,7 @@ public class UI {
             drawCharacterScreen();
         }
     }
+
 
 public void drawPlayerLife() {
 
@@ -260,8 +315,8 @@ public void drawCharacterScreen() {
     // TEXT
 
     g2.setColor(Color.white);
+    g2.setFont(consola);
     g2.setFont(g2.getFont().deriveFont(21F));
-
     int textX = frameX + 20;
     int textY = frameY + gp.tileSize;
     final int lineHeight = 35;
@@ -344,6 +399,7 @@ public void drawCharacterScreen() {
     g2.drawImage(gp.player.currentWeapon.down1, tailX - gp.tileSize - 15, textY-15, null);
     textY += gp.tileSize;
     g2.drawImage(gp.player.currentShield.down1, tailX - gp.tileSize - 15, textY-5, null);
+    g2.setFont(ocraext);
 }
 
 public void drawSubWindow(int x, int y, int width, int height) {

@@ -346,7 +346,11 @@ public void getPlayerAttackImage() {
         if (i != 999) {
             if (invincible == false) {
                 gp.playSE(6);
-                health--;
+                int damage = gp.monster[i].attack - defense;
+                if (damage < 0) {
+                    damage = 0;
+                }
+                health -= damage;
                 invincible = true;
             }
         }
@@ -357,21 +361,46 @@ public void getPlayerAttackImage() {
         if (i != 999) {
             if(gp.monster[i].invincible == false) {
                 gp.playSE(7);
-                gp.monster[i].health--;
+                int damage = attack - gp.monster[i].defense;
+                if (damage < 0) {
+                    damage = 0;
+                }
+                gp.monster[i].health -= damage;
                 gp.monster[i].invincible = true;
                 gp.monster[i].damageReaction();
             }
 
             if (gp.monster[i].health <= 0) {
-                gp.stopSE();
                 gp.monster[i].dying = true;
+                gp.ui.showExpMessage("You received " + gp.monster[i].exp + " exp!");
+                gp.ui.showGoldMessage("You received " + gp.monster[i].gold + " gold!");
+                exp += gp.monster[i].exp;
+                gold += gp.monster[i].gold;
+                System.out.println(exp);
             }
+        }
+    }
+
+    public void checkLevelUp() {
+
+        if (exp >= nextLevelExp) {
+            level++;
+            exp = exp - nextLevelExp;
+            nextLevelExp = nextLevelExp*2;
+            maxHealth += 2;
+            health += maxHealth;
+            strength++;
+            dexterity++;
+            attack = getAttack();
+            defense = getDefense();
+
+            gp.playSE(9);
+            gp.gameState = gp.dialogueState;
+            gp.ui.currentDialogue = "You are now level " + level + "!\nYou feel stronger than before!";
         }
     }
     
     public void draw(Graphics2D g2) {
-
-        
 
         BufferedImage image = null;
         int tempScreenX = screenX;

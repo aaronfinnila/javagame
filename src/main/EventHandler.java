@@ -75,6 +75,7 @@ public class EventHandler {
         gp.ui.currentDialogue = "The goddess statue fills you with joy.\nYour health has been replenished.";
 
         gp.player.health = gp.player.maxHealth;
+        gp.aSetter.setMonster();
         eventRect[col][row].eventDone = true;
     }
 
