@@ -274,8 +274,8 @@ public void getPlayerAttackImage() {
                 if (hasKey != 0 && gp.keyH.ePressed == true) {
                     gp.playSE(1);
                     gp.ui.showMessage("You found an item!");
-                    gp.obj[5].worldX = 10 * gp.tileSize;
-                    gp.obj[5].worldY = 7 * gp.tileSize;
+                    gp.obj[4].worldX = 10 * gp.tileSize;
+                    gp.obj[4].worldY = 7 * gp.tileSize + 10;
                     gp.obj[i].usedObject = true;
                     hasKey--;
                 } else {
@@ -302,6 +302,13 @@ public void getPlayerAttackImage() {
                 gp.soundeffectActive = true;
                 }
                 break;
+                case "Coin":
+                    gp.playSE(1);
+                    gold += 5;
+                    gp.obj[i] = null;
+                    gp.ui.showMessage("You found a coin!");
+                    gp.ui.showGoldMessage("You got 5 gold!");
+                    break;
                 }
             }
         }
@@ -314,19 +321,19 @@ public void getPlayerAttackImage() {
                     if (gp.keyH.ePressed == true) {
                         gp.gameState = gp.dialogueState;
                         gp.npc[i].speak();
-                        if (gp.player.speed > 4) {
-                            gp.npc[1].dialogues[5] = "You seem faster.\nI suppose you're ready to hear more.";
+                        if (gp.player.level > 1) {
+                            gp.npc[1].dialogues[5] = "You're stronger.\nI suppose you're ready to hear more.";
                             gp.npc[1].dialogues[6] = "A long, long time ago, a strong warrior\ncame to this island.";
                             gp.npc[1].dialogues[7] = "He was from Midland, and he came\nto search for the legendary\ntreasure he had heard so much about.";
                             gp.npc[1].dialogues[8] = "With sword and bow in tow, he begun\nhis adventure, filled with excitement,\ntreasure gleaming in his eyes.";
                             gp.npc[1].dialogues[9] = "He headed for that town.\nBut when he got there, he noticed\nsomething strange...";
-                            gp.npc[1].dialogues[10] = "That's enough for now.\nIncrease your speed even more\nif you want to hear the rest.";
+                            gp.npc[1].dialogues[10] = "That's enough for now. Increase your\nstrength even more if you want to\nhear the rest.";
                         }
-                        if (gp.player.speed > 5) {
-                            gp.npc[1].dialogues[11] = "You seem faster. I think you're ready\nto hear some more...";
+                        if (gp.player.level > 2) {
+                            gp.npc[1].dialogues[11] = "You seem stronger. I think you're ready\nto hear some more...";
                             gp.npc[1].dialogues[12] = "After spending some more time in the town,\nthe warrior noticed that something\nwasn't right.";
                             gp.npc[1].dialogues[13] = "The people were all really friendly,\nthe place was beautiful and the scenery\nwas out of this world.";
-                            gp.npc[1].dialogues[14] = "One night, when he suddenly woke up,\nhe heard strange noises.";
+                            gp.npc[1].dialogues[14] = "But one night, when he suddenly woke up,\nhe heard strange noises.";
                             gp.npc[1].dialogues[15] = "It sounded like they were coming from\nthe town square. The following day he\ndecided to ask someone about it.";
                             gp.npc[1].dialogues[16] = "However, when he mentioned it to\nany of the townsfolk, they started\nacting strange.";
                             gp.npc[1].dialogues[17] = "It was like they were avoiding the subject.";
@@ -351,8 +358,8 @@ public void getPlayerAttackImage() {
             if (invincible == false) {
                 gp.playSE(6);
                 int damage = gp.monster[i].attack - defense;
-                if (damage < 0) {
-                    damage = 0;
+                if (damage <= 0) {
+                    damage = 1;
                 }
                 health -= damage;
                 invincible = true;

@@ -122,10 +122,11 @@ public class Entity {
         if (this.type == 2 && contactPlayer == true) {
             if (gp.player.invincible == false) {
                 int damage = attack - gp.player.defense;
-                if (damage < 0) {
-                    damage = 0;
+                if (damage <= 0) {
+                    damage = 1;
                 }
                 gp.player.health -= damage;
+                gp.playSE(6);
                 gp.player.invincible = true;
             }
         }
@@ -253,7 +254,6 @@ public class Entity {
                     gp.ui.showGoldMessage("You received " + gold + " gold!");
                     gp.player.exp += exp;
                     gp.player.gold += gold;
-                    System.out.println(gp.player.exp);
                 }
                 if (dyingCounter >= 10 && dyingCounter <= 15) {image = death2;}
                 if (dyingCounter >= 15 && dyingCounter <= 20) {image = death3;}

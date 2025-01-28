@@ -3,8 +3,8 @@ package main;
 import entity.NPC_Rock;
 import entity.NPC_Rubert;
 import monster.MON_Slime;
-import obj.OBJ_Boots;
 import obj.OBJ_Chest;
+import obj.OBJ_Coin;
 import obj.OBJ_Key;
 import obj.OBJ_Questionmark;
 import obj.OBJ_Questionmark2;
@@ -33,15 +33,11 @@ public class AssetSetter {
 
         gp.obj[3] = new OBJ_Questionmark2(gp);
         gp.obj[3].worldX = 1000 * gp.tileSize;
-        gp.obj[3].worldY = 1000 * gp.tileSize;
+        gp.obj[3].worldY = 1000 * gp.tileSize;  
 
-        gp.obj[4] = new OBJ_Boots(gp);
-        gp.obj[4].worldX = 33 * gp.tileSize;
-        gp.obj[4].worldY = 7 * gp.tileSize;
-
-        gp.obj[5] = new OBJ_Boots(gp);
-        gp.obj[5].worldX = 1200 * gp.tileSize;
-        gp.obj[5].worldY = 1200 * gp.tileSize;
+        gp.obj[4] = new OBJ_Coin(gp);
+        gp.obj[4].worldX = 1000 * gp.tileSize;
+        gp.obj[4].worldY = 1000 * gp.tileSize;
     }
 
     public void setNPC() {
@@ -72,5 +68,9 @@ public class AssetSetter {
         gp.monster[3] = new MON_Slime(gp);
         gp.monster[3].worldX = gp.tileSize*22;
         gp.monster[3].worldY = gp.tileSize*32;
+
+        gp.monster[4] = new MON_Slime(gp);
+        gp.monster[4].worldX = gp.tileSize*24;
+        gp.monster[4].worldY = gp.tileSize*32;
     }
 }

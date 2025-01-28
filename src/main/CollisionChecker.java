@@ -149,7 +149,6 @@ public int checkEntity(Entity entity, Entity[] target) {
             target[i].solidArea.y = target[i].solidAreaDefaultY;
         }
     }
-
     return index;
 }
 

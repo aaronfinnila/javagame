@@ -19,7 +19,7 @@ public void setDialogue() {
     dialogues[1] = "I've seen plenty youngins just like you,\ngreener than the grass of Midland.";
     dialogues[2] = "Most of their stories don't end too well...";
     dialogues[3] = "That place is beautiful on the surface,\nbut underneath...";
-    dialogues[4] = "I can tell you more when you're ready.\nTry increasing your speed as a start.";
+    dialogues[4] = "I can tell you more when you're ready.\nStart with defeating those slimes south\nof here.";
 }
 
 public void setAction() {}

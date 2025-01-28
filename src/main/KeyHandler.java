@@ -8,10 +8,7 @@ public class KeyHandler implements KeyListener{
     GamePanel gp;
     public boolean upPressed, downPressed, leftPressed, rightPressed, ePressed, spacePressed,
     qPressed;
-
-    // DEBUG
-
-    boolean checkDrawTime = false;
+    boolean showDebug = false;
 
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
@@ -122,15 +119,17 @@ public class KeyHandler implements KeyListener{
             }
         }
 
-        // DEBUG
-
         if (code == KeyEvent.VK_T) {
-            if (checkDrawTime == false) {
-                checkDrawTime = true;
+            if (showDebug == false) {
+                showDebug = true;
             }
-            else if (checkDrawTime == true) {
-                checkDrawTime = false;
+            else if (showDebug == true) {
+                showDebug = false;
             }
+        }
+
+        if (code == KeyEvent.VK_Y) {
+            gp.tileM.loadMap("/res/maps/worldmap02.txt");
         }
     }
 
