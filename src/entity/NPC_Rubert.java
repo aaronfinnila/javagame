@@ -31,7 +31,7 @@ public void setDialogue() {
     dialogues[1] = "Are you here for the \nlegendary treasure?";
     dialogues[2] = "I'm just a dog!";
     dialogues[3] = "What are you looking at?";
-    dialogues[4] = "That shirt looks hideous!";
+    dialogues[4] = "That shirt looks hideous";
 }
 
 public void setAction() {

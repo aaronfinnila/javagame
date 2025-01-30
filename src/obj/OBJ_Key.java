@@ -10,6 +10,8 @@ public class OBJ_Key extends Entity {
 
         name = "Key";
         down1 = setup("/res/objects/key", gp.tileSize, gp.tileSize);
+        image = down1;
         collision = true;
+        description = name + "\n\nIt opens a door.";
     }
 }

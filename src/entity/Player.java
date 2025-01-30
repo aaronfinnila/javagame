@@ -3,9 +3,11 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import main.GamePanel;
 import main.KeyHandler;
+import obj.OBJ_Key;
 import obj.OBJ_Shield_Default;
 import obj.OBJ_Sword_Default;
 import tile.TileManager;
@@ -19,6 +21,8 @@ public class Player extends Entity {
     public final int screenY;
     public int hasKey = 0;
     int standCounter = 0;
+    public ArrayList<Entity> inventory = new ArrayList<>();
+    public final int inventorySize = 25;
 
     public Player(GamePanel gp, KeyHandler keyH, TileManager tileM) {
 
@@ -41,6 +45,7 @@ public class Player extends Entity {
         setDefaultValues();
         getPlayerImage();
         getPlayerAttackImage();
+        setItems();
     }
     public void setDefaultValues() {
 
@@ -61,6 +66,13 @@ public class Player extends Entity {
         currentShield = new OBJ_Shield_Default(gp);
         attack = getAttack();
         defense = getDefense();
+    }
+
+    public void setItems() {
+
+        inventory.add(currentWeapon);
+        inventory.add(currentShield);
+        inventory.add(new OBJ_Key(gp));
     }
 
     public int getAttack() {
