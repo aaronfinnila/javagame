@@ -52,7 +52,6 @@ public class Entity {
     
     // ATTRIBUTES
     
-    public int type; // 0 = player, 1 = npc, 2 = monster
     public int speed;
     public String name;
     public boolean collision = false;
@@ -68,13 +67,17 @@ public class Entity {
     public int gold;
     public Entity currentWeapon;
     public Entity currentShield;
-
+    
     // ITEM ATTRIBUTES
-
+    
     public int attackValue;
     public int defenseValue;
     public String description = "";
     
+    // TYPE
+
+    public int type; // 0 = player, 1 = npc, 2 = monster, sword = 3, shield = 4, consumable = 5
+
     public Entity(GamePanel gp) {
         this.gp = gp;
         worldY = 0;
@@ -261,7 +264,6 @@ public class Entity {
                 if (dyingCounter >= 20 && dyingCounter <= 25) {image = death4;}
                 if (dyingCounter >= 25 && dyingCounter <= 30) {image = death5;}
                 if (dyingCounter >= 30) {
-                    dying = false;
                     alive = false;
                 };
                 screenX = worldX - gp.player.worldX + gp.player.screenX - gp.tileSize/2;

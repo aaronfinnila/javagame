@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import main.GamePanel;
 import main.KeyHandler;
 import obj.OBJ_Key;
+import obj.OBJ_Longsword;
 import obj.OBJ_Shield_Default;
 import obj.OBJ_Sword_Default;
 import tile.TileManager;
@@ -72,7 +73,6 @@ public class Player extends Entity {
 
         inventory.add(currentWeapon);
         inventory.add(currentShield);
-        inventory.add(new OBJ_Key(gp));
     }
 
     public int getAttack() {
@@ -261,27 +261,29 @@ public void getPlayerAttackImage() {
         
         if (i != 999) {
 
-
-            
             String objectName = gp.obj[i].name;
 
             switch(objectName) {
 
-                case "Key":
+                case "Longsword":
+                if (inventorySize > inventory.size()) {
+                    gp.playSE(1);
+                    gp.obj[i] = null;
+                    inventory.add(new OBJ_Longsword(gp));
+                    gp.ui.showMessage("You got a Longsword!");
+                }
+                break;
+                case "Creamor Key":
+                if (inventorySize > inventory.size()) {
                     gp.playSE(1);
                     hasKey++;
                     gp.obj[i] = null;
+                    inventory.add(new OBJ_Key(gp));
                     gp.ui.showMessage("You got a key!");
-                    break;
-                case "Door":
-                    break;
-
-                case "DoorLower":
-                    break;
-
-                case "DoorUpper":
-                    break;
-
+                } else {
+                    gp.ui.showMessage("Your inventory is full!");
+                }
+                break;
                 case "Chest":
                 if (hasKey != 0 && gp.keyH.ePressed == true) {
                     gp.playSE(1);
@@ -367,7 +369,7 @@ public void getPlayerAttackImage() {
     public void contactMonster(int i) {
 
         if (i != 999) {
-            if (invincible == false) {
+            if (invincible == false && gp.monster[i].dying == false) {
                 gp.playSE(6);
                 int damage = gp.monster[i].attack - defense;
                 if (damage <= 0) {
@@ -392,8 +394,8 @@ public void getPlayerAttackImage() {
                 gp.monster[i].invincible = true;
                 gp.monster[i].damageReaction();
             }
-
             if (gp.monster[i].health <= 0) {
+                gp.monster[i].health = 0;
                 gp.monster[i].dying = true;
             }
         }
@@ -415,6 +417,27 @@ public void getPlayerAttackImage() {
             gp.playSE(9);
             exp = exp - nextLevelExp;
             nextLevelExp = nextLevelExp*2;
+        }
+    }
+
+    public void selectItem() {
+
+        int itemIndex = gp.ui.itemIndexOnSlot;
+        System.out.println(itemIndex);
+
+        if (itemIndex < inventory.size()) {
+            Entity selectedItem = inventory.get(itemIndex);
+            if (selectedItem.type == 3) {
+                currentWeapon = selectedItem;
+                attack = getAttack();
+            }
+            if (selectedItem.type == 4) {
+                currentShield = selectedItem;
+                defense = getDefense();
+            }
+            if (selectedItem.type == 5) {
+
+            }
         }
     }
     

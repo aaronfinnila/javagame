@@ -12,6 +12,7 @@ public class OBJ_Shield_Default extends Entity {
         down1 = setup("/res/objects/shield0",gp.tileSize,gp.tileSize);
         image = down1;
         defenseValue = 1;
+        type = 4;
         description = name + "\n\nWeary old wooden shield.\nHas a slight rotten scent\nto it.";
     }
 }

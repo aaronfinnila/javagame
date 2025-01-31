@@ -6,6 +6,7 @@ import monster.MON_Slime;
 import obj.OBJ_Chest;
 import obj.OBJ_Coin;
 import obj.OBJ_Key;
+import obj.OBJ_Longsword;
 import obj.OBJ_Questionmark;
 import obj.OBJ_Questionmark2;
 
@@ -38,6 +39,10 @@ public class AssetSetter {
         gp.obj[4] = new OBJ_Coin(gp);
         gp.obj[4].worldX = 1000 * gp.tileSize;
         gp.obj[4].worldY = 1000 * gp.tileSize;
+
+        gp.obj[5] = new OBJ_Longsword(gp);
+        gp.obj[5].worldX = 41 * gp.tileSize;
+        gp.obj[5].worldY = 7 * gp.tileSize;
     }
 
     public void setNPC() {

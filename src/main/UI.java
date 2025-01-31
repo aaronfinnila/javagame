@@ -33,6 +33,7 @@ public class UI {
     public int commandNumber = 0;
     public int slotCol = 0;
     public int slotRow = 0;
+    public int itemIndexOnSlot = 0;
 
     public UI(GamePanel gp) {
 
@@ -174,6 +175,12 @@ public void drawInventory() {
     int slotYCount = 0;
 
     for (Entity e : gp.player.inventory) {
+
+        
+        if (e == gp.player.currentWeapon || e == gp.player.currentShield) {
+            g2.setColor(new Color(240,190,90));
+            g2.fillRoundRect(slotX,slotY,gp.tileSize,gp.tileSize,10,10);
+        }
         g2.drawImage(e.image, slotX, slotY, null);
         slotX += gp.tileSize;
         slotXCount++;
@@ -184,7 +191,7 @@ public void drawInventory() {
             slotXCount = 0;
         }
     }
-
+    
     int cursorX = slotXstart + (gp.tileSize * slotCol);
     int cursorY = slotYstart + (gp.tileSize * slotRow);
     int cursorWidth = gp.tileSize;
@@ -193,18 +200,19 @@ public void drawInventory() {
     g2.setColor(Color.white);
     g2.setStroke(new BasicStroke(3));
     g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
-
+    
     int dFrameX = frameX;
     int dFrameY = frameY + frameHeight;
     int dFrameWidth = frameWidth;
     int dFrameHeight = gp.tileSize*4;
-    drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
-
+    
     int textX = dFrameX + 20;
     int textY = dFrameY + 29;
     g2.setFont(g2.getFont().deriveFont(15F));
     int itemIndex = slotCol + (slotRow * 5);
+    itemIndexOnSlot = itemIndex;
     if (itemIndex < gp.player.inventory.size()) {
+        drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
         String message = gp.player.inventory.get(itemIndex).description;
         for (String line : message.split("\n")) {
             g2.drawString(line, textX, textY);
@@ -214,7 +222,7 @@ public void drawInventory() {
 }
 
 public void drawPlayerLife() {
-
+    
     int x = gp.tileSize/2;
     int y = gp.tileSize/2;
     int i = 0;

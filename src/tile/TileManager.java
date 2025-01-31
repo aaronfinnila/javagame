@@ -62,7 +62,7 @@ public class TileManager {
         // WATER
 
         setup(13, "water2", true);
-        setup(29, "water1", true);
+        setup(58, "water1", true);
 
         // ROCK
 
@@ -165,7 +165,7 @@ public void loadMap(String filePath) {
                     if (numb == 0) {
                         mapTileNum[col][row] = 13;
                     } else {
-                        mapTileNum[col][row] = 13;
+                        mapTileNum[col][row] = 58;
                     }
                 }
                 col++;
