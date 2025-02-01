@@ -44,6 +44,7 @@ public class Entity {
     public int standCounter = 0;
     public int attackCounter = 0;
     public int invincibleCounter = 0;
+    public int shotAvailableCounter = 0;
     public int attackNum = 1;
     public int spriteNum = 1;
     public int dialogueIndex = 0;
@@ -67,6 +68,7 @@ public class Entity {
     public int gold;
     public Entity currentWeapon;
     public Entity currentShield;
+    public Projectile projectile;
     
     // ITEM ATTRIBUTES
     
@@ -274,7 +276,7 @@ public class Entity {
 
             changeAlpha(g2, 1f);
         }
-
+        
         public void changeAlpha(Graphics2D g2, float alpha) {
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
         }

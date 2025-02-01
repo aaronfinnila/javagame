@@ -6,8 +6,7 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener{
 
     GamePanel gp;
-    public boolean upPressed, downPressed, leftPressed, rightPressed, ePressed, spacePressed,
-    qPressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, ePressed, spacePressed, shootKeyPressed, qPressed;
     boolean showDebug = false;
 
     public KeyHandler(GamePanel gp) {
@@ -99,6 +98,10 @@ public class KeyHandler implements KeyListener{
 
         if (code == KeyEvent.VK_E) {
             ePressed = true;
+        }
+
+        if (code == KeyEvent.VK_R) {
+            shootKeyPressed = true;
         }
 
         // ADMIN KEYBINDS
@@ -220,6 +223,10 @@ public class KeyHandler implements KeyListener{
             if (code == KeyEvent.VK_SPACE) {
                 spacePressed = false;
             }
+
+            if (code == KeyEvent.VK_R) {
+                shootKeyPressed = false;
+            }
         }
 
         // PAUSE STATE
@@ -265,6 +272,10 @@ public class KeyHandler implements KeyListener{
 
             if (code == KeyEvent.VK_SPACE) {
                 spacePressed = false;
+            }
+
+            if (code == KeyEvent.VK_R) {
+                shootKeyPressed = false;
             }
         }
 

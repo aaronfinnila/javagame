@@ -27,7 +27,7 @@ public class NPC_Rubert extends Entity {
 }
 
 public void setDialogue() {
-    dialogues[0] = "Woof Woof!";
+    dialogues[0] = "Kämppä räjähtäny ku hui-\nlannu ja goonannu\nkertausten jälkee...";
     dialogues[1] = "Are you here for the \nlegendary treasure?";
     dialogues[2] = "I'm just a dog!";
     dialogues[3] = "What are you looking at?";

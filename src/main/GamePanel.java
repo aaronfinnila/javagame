@@ -32,7 +32,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int maxWorldCol = 50;
     public final int maxWorldRow = 50;
 
-    //FPS
+    // FPS
 
     int FPS = 60;
 
@@ -58,6 +58,7 @@ public class GamePanel extends JPanel implements Runnable{
     public Entity obj[] = new Entity[20];
     public Entity npc[] = new Entity[20];
     public Entity monster[] = new Entity[20];
+    public ArrayList<Entity> projectileList = new ArrayList<>();
     ArrayList<Entity> entityList = new ArrayList<>();
 
     // GAME STATE
@@ -134,13 +135,26 @@ public class GamePanel extends JPanel implements Runnable{
 
             // MONSTER
 
-            for (int i=0;i<monster.length;i++) {
+            for (int i = 0; i < monster.length; i++) {
                 if (monster[i] != null) {
                     if (monster[i].alive == true && monster[i].dying == false) {
                         monster[i].update();
                     }
                     if (monster[i].alive == false) {
                         monster[i] = null;
+                    }
+                }
+            }
+
+            // PROJECTILE
+
+            for (int i = 0; i < projectileList.size(); i++) {
+                if (projectileList.get(i) != null) {
+                    if (projectileList.get(i).alive == true) {
+                        projectileList.get(i).update();
+                    }
+                    if (projectileList.get(i).alive == false) {
+                        projectileList.remove(i);
                     }
                 }
             }
@@ -215,6 +229,14 @@ public class GamePanel extends JPanel implements Runnable{
             // ADD MONSTERS TO LIST
 
             for (Entity e : monster) {
+                if (e != null) {
+                    entityList.add(e);
+                }
+            }
+
+            // ADD PROJECTILES TO LIST
+
+            for (Entity e : projectileList) {
                 if (e != null) {
                     entityList.add(e);
                 }

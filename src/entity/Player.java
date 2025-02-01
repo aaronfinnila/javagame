@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import main.GamePanel;
 import main.KeyHandler;
+import obj.OBJ_Arrow;
 import obj.OBJ_Key;
 import obj.OBJ_Longsword;
 import obj.OBJ_Shield_Default;
@@ -65,6 +66,7 @@ public class Player extends Entity {
         gold = 0;
         currentWeapon = new OBJ_Sword_Default(gp);
         currentShield = new OBJ_Shield_Default(gp);
+        projectile = new OBJ_Arrow(gp);
         attack = getAttack();
         defense = getDefense();
     }
@@ -193,6 +195,16 @@ public void getPlayerAttackImage() {
                 standCounter = 0;
             }
         }
+       
+        if (gp.keyH.shootKeyPressed == true && projectile.alive == false && shotAvailableCounter == 30) {
+
+            projectile.set(worldX, worldY, direction, true, this);
+
+            gp.projectileList.add(projectile);
+
+            shotAvailableCounter = 0;
+            gp.playSE(11);
+        }
 
         if (invincible == true) {
             invincibleCounter++;
@@ -200,6 +212,10 @@ public void getPlayerAttackImage() {
                 invincible = false;
                 invincibleCounter = 0;
             }
+        }
+
+        if (shotAvailableCounter < 30) {
+            shotAvailableCounter++;
         }
     }
 
@@ -240,7 +256,7 @@ public void getPlayerAttackImage() {
             // Check monster collision with the updated worldX, worldY and solidArea
 
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-            damageMonster(monsterIndex);
+            damageMonster(monsterIndex, attack);
 
             // After checking collision, restore original values
     
@@ -381,7 +397,7 @@ public void getPlayerAttackImage() {
         }
     }
 
-    public void damageMonster(int i) {
+    public void damageMonster(int i, int attack) {
 
         if (i != 999) {
             if(gp.monster[i].invincible == false) {

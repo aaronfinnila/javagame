@@ -1,5 +1,6 @@
 package main;
 
+import entity.NPC_Kalsu;
 import entity.NPC_Rock;
 import entity.NPC_Rubert;
 import monster.MON_Slime;
@@ -54,6 +55,10 @@ public class AssetSetter {
         gp.npc[1] = new NPC_Rock(gp);
         gp.npc[1].worldX = 22 * gp.tileSize;
         gp.npc[1].worldY = 11 * gp.tileSize;
+
+        gp.npc[2] = new NPC_Kalsu(gp);
+        gp.npc[2].worldX = 41 * gp.tileSize;
+        gp.npc[2].worldY = 33 * gp.tileSize;
     }
 
     public void setMonster() {
