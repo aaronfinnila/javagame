@@ -21,6 +21,7 @@ public class NPC_Kalsu extends Entity {
 
 public void setDialogue() {
     dialogues[0] = "You gotta lock in bro";
+    dialogues[1] = "Elos vaan kale";
 }
 
 public void setAction() {}

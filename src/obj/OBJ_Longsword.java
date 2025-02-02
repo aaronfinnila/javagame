@@ -9,7 +9,7 @@ public class OBJ_Longsword extends Entity {
         super(gp);
 
         name = "Longsword";
-        down1 = setup("/res/objects/longsword",gp.tileSize,gp.tileSize+20);
+        down1 = setup("/res/objects/longsword",gp.tileSize,gp.tileSize);
         image = down1;
         attackValue = 2;
         type = 3;

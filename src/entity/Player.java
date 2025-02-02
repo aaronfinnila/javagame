@@ -439,7 +439,6 @@ public void getPlayerAttackImage() {
     public void selectItem() {
 
         int itemIndex = gp.ui.itemIndexOnSlot;
-        System.out.println(itemIndex);
 
         if (itemIndex < inventory.size()) {
             Entity selectedItem = inventory.get(itemIndex);
