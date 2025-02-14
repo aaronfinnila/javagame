@@ -66,6 +66,8 @@ public class Entity {
     public int exp;
     public int nextLevelExp;
     public int gold;
+    public int arrows;
+    public int useCost;
     public Entity currentWeapon;
     public Entity currentShield;
     public Projectile projectile;
@@ -126,15 +128,7 @@ public class Entity {
         boolean contactPlayer = gp.cChecker.checkPlayer(this);
 
         if (this.type == 2 && contactPlayer == true) {
-            if (gp.player.invincible == false) {
-                int damage = attack - gp.player.defense;
-                if (damage <= 0) {
-                    damage = 1;
-                }
-                gp.player.health -= damage;
-                gp.playSE(6);
-                gp.player.invincible = true;
-            }
+            damagePlayer(attack);
         }
 
         if (this.type == 1 && gp.gameState == gp.dialogueState) {
@@ -176,7 +170,22 @@ public class Entity {
                 invincibleCounter = 0;
             }
         }
+        if (shotAvailableCounter < 30) {
+            shotAvailableCounter++;
+        }
     }
+
+        public void damagePlayer(int attack) {
+            if (gp.player.invincible == false) {
+                int damage = attack - gp.player.defense;
+                if (damage <= 0) {
+                    damage = 1;
+                }
+                gp.player.health -= damage;
+                gp.playSE(6);
+                gp.player.invincible = true;
+            }
+        }
 
         public BufferedImage setup(String imagePath, int width, int height) {
         UtilityTool uTool = new UtilityTool();

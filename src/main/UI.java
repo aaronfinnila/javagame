@@ -11,13 +11,14 @@ import java.io.InputStream;
 import java.util.Arrays;
 
 import entity.Entity;
+import obj.OBJ_Arrow;
 import obj.OBJ_Heart;
 
 public class UI {
 
     GamePanel gp;
     Graphics2D g2;
-    BufferedImage heart_full, heart_half, heart_empty;
+    BufferedImage heart_full, heart_half, heart_empty, arrow;
     Font arial_40, arial_80B, arial_50B, ocraext, consola;
     public boolean messageOn = false;
     public boolean goldMessageOn = false;
@@ -50,12 +51,14 @@ public class UI {
             e.printStackTrace();
         }
 
-        // HUD HEARTS
+        // HUD OBJECTS
         
         OBJ_Heart heart = new OBJ_Heart(gp);
         heart_empty = heart.image3;
         heart_half = heart.image2;
         heart_full = heart.image;
+        Entity arrowEnt = new OBJ_Arrow(gp);
+        arrow = arrowEnt.image;
     }
 
     public void showMessage(String text) {
@@ -253,6 +256,18 @@ public void drawPlayerLife() {
         i++;
         x += gp.tileSize;
     }
+
+    // DRAW ARROWS
+
+    x = gp.tileSize/2;
+    y = gp.tileSize*2;
+    i = 0;
+    g2.drawImage(arrow, x, y, null);
+    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20F));
+    if (gp.player.arrows == 0) {
+        g2.setColor(Color.RED);
+    }
+    g2.drawString("x" + gp.player.arrows, x+3, y+48);
 }
 
 public void drawTitleScreen() {
@@ -389,7 +404,7 @@ public void drawCharacterScreen() {
     g2.setFont(consola);
     g2.setFont(g2.getFont().deriveFont(21F));
     int textX = frameX + 20;
-    int textY = frameY + gp.tileSize;
+    int textY = frameY + 33;
     final int lineHeight = 35;
 
     // NAMES
@@ -410,8 +425,10 @@ public void drawCharacterScreen() {
     textY += lineHeight;
     g2.drawString("Next Level", textX, textY);
     textY += lineHeight;
+    g2.drawString("Arrows", textX, textY);
+    textY += lineHeight;
     g2.drawString("Gold", textX, textY);
-    textY += lineHeight + 20;
+    textY += lineHeight + 15;
     g2.drawString("Weapon:", textX, textY);
     textY += lineHeight + 15;
     g2.drawString("Shield:", textX, textY);
@@ -419,7 +436,7 @@ public void drawCharacterScreen() {
     // VALUES
 
     int tailX = (frameX + frameWidth) - 30;
-    textY = frameY + gp.tileSize;
+    textY = frameY + 33;
     String value;
 
     value = String.valueOf(gp.player.level);
@@ -462,14 +479,19 @@ public void drawCharacterScreen() {
     g2.drawString(value, textX, textY);
     textY += lineHeight;
 
+    value = String.valueOf(gp.player.arrows);
+    textX = getXforAlignToRightText(value, tailX);
+    g2.drawString(value, textX, textY);
+    textY += lineHeight;
+
     value = String.valueOf(gp.player.gold);
     textX = getXforAlignToRightText(value, tailX);
     g2.drawString(value, textX, textY);
     textY += lineHeight;
 
-    g2.drawImage(gp.player.currentWeapon.down1, tailX - gp.tileSize - 15, textY-15, null);
+    g2.drawImage(gp.player.currentWeapon.down1, tailX - gp.tileSize - 15, textY-20, null);
     textY += gp.tileSize;
-    g2.drawImage(gp.player.currentShield.down1, tailX - gp.tileSize - 15, textY-5, null);
+    g2.drawImage(gp.player.currentShield.down1, tailX - gp.tileSize - 15, textY-10, null);
     g2.setFont(ocraext);
 }
 

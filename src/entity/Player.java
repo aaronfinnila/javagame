@@ -58,6 +58,7 @@ public class Player extends Entity {
         speed = 4;
         maxHealth = 6;
         health = maxHealth;
+        arrows = 5;
         level = 1;
         strength = 1;
         dexterity = 1;
@@ -196,14 +197,17 @@ public void getPlayerAttackImage() {
             }
         }
        
-        if (gp.keyH.shootKeyPressed == true && projectile.alive == false && shotAvailableCounter == 30) {
+        if (gp.keyH.shootKeyPressed == true && projectile.alive == false && shotAvailableCounter == 30 && projectile.haveResource(this) == true) {
 
             projectile.set(worldX, worldY, direction, true, this);
 
             gp.projectileList.add(projectile);
 
             shotAvailableCounter = 0;
+
             gp.playSE(11);
+
+            projectile.subtractResource(this);
         }
 
         if (invincible == true) {

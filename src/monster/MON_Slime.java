@@ -4,6 +4,7 @@ import java.util.Random;
 
 import entity.Entity;
 import main.GamePanel;
+import obj.OBJ_Arrow;
 
 public class MON_Slime extends Entity {
     
@@ -24,6 +25,7 @@ public class MON_Slime extends Entity {
         exp = 2;
         Random random = new Random();
         gold = random.nextInt(1, 3);
+        projectile = new OBJ_Arrow(gp);
 
         solidArea.x = 3;
         solidArea.y = 18;
@@ -73,9 +75,16 @@ public class MON_Slime extends Entity {
         if (i > 75 && i <= 100) {
             direction = "right";
         }
-
+        
         actionLockCounter = 0;
     }
+    // MONSTER PROJECTILE
+/*     int i = new Random().nextInt(100)+1;
+    if (i > 99 && projectile.alive == false && shotAvailableCounter == 30) {
+        projectile.set(worldX, worldY, direction, true, this);
+        gp.projectileList.add(projectile);
+        shotAvailableCounter = 0;
+    } */
     }
 
     public void damageReaction() {
