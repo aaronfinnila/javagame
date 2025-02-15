@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import main.GamePanel;
 import main.KeyHandler;
 import obj.OBJ_Arrow;
-import obj.OBJ_Key;
-import obj.OBJ_Longsword;
 import obj.OBJ_Shield_Default;
 import obj.OBJ_Sword_Default;
 import tile.TileManager;
@@ -22,7 +20,6 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     public int hasKey = 0;
-    int standCounter = 0;
     public ArrayList<Entity> inventory = new ArrayList<>();
     public final int inventorySize = 25;
 
@@ -49,6 +46,7 @@ public class Player extends Entity {
         getPlayerAttackImage();
         setItems();
     }
+
     public void setDefaultValues() {
 
         worldX = 1150;
@@ -99,14 +97,42 @@ public void getPlayerImage() {
 }
 
 public void getPlayerAttackImage() {
-    attackUp1 = setup("/res/player/boy_attack_up1", gp.tileSize, gp.tileSize*2);
-    attackUp2 = setup("/res/player/boy_attack_up2", gp.tileSize, gp.tileSize*2);
-    attackLeft1 = setup("/res/player/boy_attack_left1", gp.tileSize*2, gp.tileSize);
-    attackLeft2 = setup("/res/player/boy_attack_left2", gp.tileSize*2, gp.tileSize);
-    attackDown1 = setup("/res/player/boy_attack_down1", gp.tileSize, gp.tileSize*2);
-    attackDown2 = setup("/res/player/boy_attack_down2", gp.tileSize, gp.tileSize*2);
-    attackRight1 = setup("/res/player/boy_attack_right1", gp.tileSize*2, gp.tileSize);
-    attackRight2 = setup("/res/player/boy_attack_right2", gp.tileSize*2, gp.tileSize);
+    // TODO:
+    // new attack sprites for longsword
+    // longsword collision (increased range)
+
+    if (currentWeapon.name == "Badgers Scimitar") {
+        attackUp1 = setup("/res/player/boy_attack_up1", gp.tileSize, gp.tileSize*2);
+        attackUp2 = setup("/res/player/boy_attack_up2", gp.tileSize, gp.tileSize*2);
+        attackLeft1 = setup("/res/player/boy_attack_left1", gp.tileSize*2, gp.tileSize);
+        attackLeft2 = setup("/res/player/boy_attack_left2", gp.tileSize*2, gp.tileSize);
+        attackDown1 = setup("/res/player/boy_attack_down1", gp.tileSize, gp.tileSize*2);
+        attackDown2 = setup("/res/player/boy_attack_down2", gp.tileSize, gp.tileSize*2);
+        attackRight1 = setup("/res/player/boy_attack_right1", gp.tileSize*2, gp.tileSize);
+        attackRight2 = setup("/res/player/boy_attack_right2", gp.tileSize*2, gp.tileSize);
+    }
+}
+
+public void getPlayerShootImage() {
+
+    if (currentShoot.name == "Wooden Bow") {
+        shootDown1 = setup("/res/player/boy_bow_down1", gp.tileSize, gp.tileSize);
+        shootDown2 = setup("/res/player/boy_bow_down2", gp.tileSize, gp.tileSize);
+        shootDown3 = setup("/res/player/boy_bow_down3", gp.tileSize, gp.tileSize);
+        shootDown4 = setup("/res/player/boy_bow_down4", gp.tileSize, gp.tileSize);
+        shootLeft1 = setup("/res/player/boy_bow_left1", gp.tileSize, gp.tileSize);
+        shootLeft2 = setup("/res/player/boy_bow_left2", gp.tileSize, gp.tileSize);
+        shootLeft3 = setup("/res/player/boy_bow_left3", gp.tileSize, gp.tileSize);
+        shootLeft4 = setup("/res/player/boy_bow_left4", gp.tileSize, gp.tileSize);
+        shootUp1 = setup("/res/player/boy_bow_up1", gp.tileSize, gp.tileSize);
+        shootUp2 = setup("/res/player/boy_bow_up2", gp.tileSize, gp.tileSize);
+        shootUp3 = setup("/res/player/boy_bow_up3", gp.tileSize, gp.tileSize);
+        shootUp4 = setup("/res/player/boy_bow_up4", gp.tileSize, gp.tileSize);
+        shootRight1 = setup("/res/player/boy_bow_right1", gp.tileSize, gp.tileSize);
+        shootRight2 = setup("/res/player/boy_bow_right2", gp.tileSize, gp.tileSize);
+        shootRight3 = setup("/res/player/boy_bow_right3", gp.tileSize, gp.tileSize);
+        shootRight4 = setup("/res/player/boy_bow_right4", gp.tileSize, gp.tileSize);
+    }
 }
 
     public void update() {
@@ -197,17 +223,37 @@ public void getPlayerAttackImage() {
             }
         }
        
-        if (gp.keyH.shootKeyPressed == true && projectile.alive == false && shotAvailableCounter == 30 && projectile.haveResource(this) == true) {
+        if (gp.keyH.shootKeyPressed == true && projectile.alive == false && shotAvailableCounter == 30 && projectile.haveResource(this) == true
+        && currentShoot != null) {
 
-            projectile.set(worldX, worldY, direction, true, this);
+            shooting = true;
+        }
 
-            gp.projectileList.add(projectile);
-
-            shotAvailableCounter = 0;
-
-            gp.playSE(11);
-
-            projectile.subtractResource(this);
+        if (shooting == true) {
+            shootCounter++;
+            
+            if (shootCounter <= 5 && shootCounter >= 0) {
+                shootNum = 1;
+            }
+            if (shootCounter > 5 && shootCounter <= 15) {
+                shootNum = 2;
+            }
+            if (shootCounter > 15 && shootCounter < 25) {
+                shootNum = 3;
+            }
+            if (shootCounter > 25 && gp.keyH.shootKeyPressed == false) {
+                shootNum = 4;
+                projectile.set(worldX, worldY+5, direction, true, this);
+                gp.projectileList.add(projectile);
+                shotAvailableCounter = 0;
+                gp.playSE(11);
+                projectile.subtractResource(this);
+                shootCounter = -22;
+            }
+            if (shootCounter == -10) {
+                shootCounter = 0;
+                shooting = false;
+            }
         }
 
         if (invincible == true) {
@@ -281,35 +327,15 @@ public void getPlayerAttackImage() {
         
         if (i != 999) {
 
+            String text;
             String objectName = gp.obj[i].name;
-
-            switch(objectName) {
-
-                case "Longsword":
-                if (inventorySize > inventory.size()) {
-                    gp.playSE(1);
-                    gp.obj[i] = null;
-                    inventory.add(new OBJ_Longsword(gp));
-                    gp.ui.showMessage("You got a Longsword!");
-                }
-                break;
-                case "Creamor Key":
-                if (inventorySize > inventory.size()) {
-                    gp.playSE(1);
-                    hasKey++;
-                    gp.obj[i] = null;
-                    inventory.add(new OBJ_Key(gp));
-                    gp.ui.showMessage("You got a key!");
-                } else {
-                    gp.ui.showMessage("Your inventory is full!");
-                }
-                break;
-                case "Chest":
+            
+            if (objectName == "Chest") {
                 if (hasKey != 0 && gp.keyH.ePressed == true) {
                     gp.playSE(1);
                     gp.ui.showMessage("You found an item!");
-                    gp.obj[4].worldX = 10 * gp.tileSize;
-                    gp.obj[4].worldY = 7 * gp.tileSize + 10;
+                    gp.obj[2].worldX = 8 * gp.tileSize;
+                    gp.obj[2].worldY = 40 * gp.tileSize;
                     gp.obj[i].usedObject = true;
                     hasKey--;
                 } else {
@@ -317,33 +343,25 @@ public void getPlayerAttackImage() {
                         gp.ui.showMessage("You need a key!");
                     }
                 }
-                break;
-                case "Boots":
-                    gp.playSE(2);
-                    speed += 1;
-                    gp.obj[i] = null;
-                    gp.ui.showMessage("You got boots!");
-                    break;
-                case "Questionmark":
-                if (!gp.actionActive) {
+            } else if (objectName == "Coin") {
+                gold += 5;
+                gp.playSE(1);
+                text = "You got a " + objectName + "!";
+                gp.ui.showMessage(text);
+                gp.ui.showGoldMessage("You got 5 gold!");
                 gp.obj[i] = null;
-                gp.starttime = System.currentTimeMillis();
-                gp.playSE(4);
-                gp.stopMusic();
-                gp.obj[3].worldX = 3 * gp.tileSize;
-                gp.obj[3].worldY = 37 * gp.tileSize;
-                gp.actionActive = true;
-                gp.soundeffectActive = true;
-                }
-                break;
-                case "Coin":
+            } else {
+                if (inventory.size() != inventorySize) {
+                    if (objectName == "Creamor Key") {hasKey++;}
+                    inventory.add(gp.obj[i]);
                     gp.playSE(1);
-                    gold += 5;
-                    gp.obj[i] = null;
-                    gp.ui.showMessage("You found a coin!");
-                    gp.ui.showGoldMessage("You got 5 gold!");
-                    break;
+                    text = "You got a " + objectName + "!";
+                } else {
+                    text = "You cannot carry any more!";
                 }
+                gp.ui.showMessage(text);
+                gp.obj[i] = null;
+            }
             }
         }
 
@@ -449,13 +467,19 @@ public void getPlayerAttackImage() {
             if (selectedItem.type == 3) {
                 currentWeapon = selectedItem;
                 attack = getAttack();
+                getPlayerAttackImage();
             }
             if (selectedItem.type == 4) {
                 currentShield = selectedItem;
                 defense = getDefense();
             }
             if (selectedItem.type == 5) {
-
+                currentShoot = selectedItem;
+                getPlayerShootImage();
+            }
+            if (selectedItem.type == 6) {
+                selectedItem.use(this);
+                inventory.remove(itemIndex);
             }
         }
     }
@@ -486,45 +510,69 @@ public void getPlayerAttackImage() {
  */
         switch(direction) {
             case "up":
-                if (attacking == false) {
+                if (attacking == false && shooting == false) {
                     if(spriteNum == 1) {image = up1;}
-                    if (spriteNum == 2) {image = up2;}
+                    if(spriteNum == 2) {image = up2;}
                 }
                 if (attacking == true) {
                     tempScreenY = screenY - gp.tileSize;
                     if(attackNum == 1) {image = attackUp1;}
                     if (attackNum == 2) {image = attackUp2;}
                 }
+                if (shooting == true) {
+                    if(shootNum == 1) {image = shootUp1;}
+                    if(shootNum == 2) {image = shootUp2;}
+                    if(shootNum == 3) {image = shootUp3;}
+                    if(shootNum == 4) {image = shootUp4;}
+                }
                 break;
             case "down":
-                if (attacking == false) {
+                if (attacking == false && shooting == false) {
                     if(spriteNum == 1) {image = down1;}
-                    if (spriteNum == 2) {image = down2;}
+                    if(spriteNum == 2) {image = down2;}
                 }
                 if (attacking == true) {
                     if(attackNum == 1) {image = attackDown1;}
-                    if (attackNum == 2) {image = attackDown2;}
+                    if(attackNum == 2) {image = attackDown2;}
+                }
+                if (shooting == true) {
+                    if(shootNum == 1) {image = shootDown1;}
+                    if(shootNum == 2) {image = shootDown2;}
+                    if(shootNum == 3) {image = shootDown3;}
+                    if(shootNum == 4) {image = shootDown4;}
                 }
                 break;
-            case "left": 
-                if (attacking == false) {
+            case "left":
+                if (attacking == false && shooting == false) {
                     if(spriteNum == 1) {image = left1;}
-                    if (spriteNum == 2) {image = left2;}
+                    if(spriteNum == 2) {image = left2;}
                 }
                 if (attacking == true) {
                     tempScreenX = tempScreenX - gp.tileSize;
                     if(attackNum == 1) {image = attackLeft1;}
-                    if (attackNum == 2) {image = attackLeft2;}
+                    if(attackNum == 2) {image = attackLeft2;}
+                }
+                if (shooting == true) {
+                    if(shootNum == 1) {image = shootLeft1;}
+                    if(shootNum == 2) {image = shootLeft2;}
+                    if(shootNum == 3) {image = shootLeft3;}
+                    if(shootNum == 4) {image = shootLeft4;}
                 }
                 break;
             case "right":
-                if (attacking == false) {
+                if (attacking == false && shooting == false) {
                     if(spriteNum == 1) {image = right1;}
-                    if (spriteNum == 2) {image = right2;}
+                    if(spriteNum == 2) {image = right2;}
                 }
                 if (attacking == true) {
                     if(attackNum == 1) {image = attackRight1;}
-                    if (attackNum == 2) {image = attackRight2;}
+                    if(attackNum == 2) {image = attackRight2;}
+                }
+                if (shooting == true) {
+                    if(shootNum == 1) {image = shootRight1;}
+                    if(shootNum == 2) {image = shootRight2;}
+                    if(shootNum == 3) {image = shootRight3;}
+                    if(shootNum == 4) {image = shootRight4;}
                 }
                 break;
         }

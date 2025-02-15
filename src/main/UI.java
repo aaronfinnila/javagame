@@ -141,6 +141,9 @@ public class UI {
                 }
             }
             drawPlayerLife();
+            if (gp.player.currentShoot != null) {
+                drawPlayerAmmo();
+            }
         }
 
         // PAUSE STATE
@@ -180,7 +183,7 @@ public void drawInventory() {
     for (Entity e : gp.player.inventory) {
 
         
-        if (e == gp.player.currentWeapon || e == gp.player.currentShield) {
+        if (e == gp.player.currentWeapon || e == gp.player.currentShield || e == gp.player.currentShoot) {
             g2.setColor(new Color(240,190,90));
             g2.fillRoundRect(slotX,slotY,gp.tileSize,gp.tileSize,10,10);
         }
@@ -221,7 +224,22 @@ public void drawInventory() {
             g2.drawString(line, textX, textY);
             textY += 20;
         }
-    } 
+        if (gp.player.inventory.get(itemIndex).type == 3 || gp.player.inventory.get(itemIndex).type == 5) {
+            g2.setFont(consola);
+            g2.setFont(g2.getFont().deriveFont(15F));
+            g2.drawString("Attack: " + gp.player.inventory.get(itemIndex).attackValue,dFrameX+15,dFrameY+170);
+        }
+        if (gp.player.inventory.get(itemIndex).type == 4) {
+            g2.setFont(consola);
+            g2.setFont(g2.getFont().deriveFont(15F));
+            g2.drawString("Defense: " + gp.player.inventory.get(itemIndex).defenseValue,dFrameX+15,dFrameY+170);
+        }
+        if (gp.player.inventory.get(itemIndex).type == 6) {
+            g2.setFont(consola);
+            g2.setFont(g2.getFont().deriveFont(15F));
+            g2.drawString("Healing: " + gp.player.inventory.get(itemIndex).healingValue,dFrameX+15,dFrameY+170);
+        }
+    }
 }
 
 public void drawPlayerLife() {
@@ -256,18 +274,19 @@ public void drawPlayerLife() {
         i++;
         x += gp.tileSize;
     }
+}
 
-    // DRAW ARROWS
+public void drawPlayerAmmo() {
+        // DRAW ARROWS
 
-    x = gp.tileSize/2;
-    y = gp.tileSize*2;
-    i = 0;
-    g2.drawImage(arrow, x, y, null);
-    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20F));
-    if (gp.player.arrows == 0) {
-        g2.setColor(Color.RED);
-    }
-    g2.drawString("x" + gp.player.arrows, x+3, y+48);
+        int x = gp.tileSize/2;
+        int y = gp.tileSize*2;
+        g2.drawImage(arrow, x, y, null);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20F));
+        if (gp.player.arrows == 0) {
+            g2.setColor(Color.RED);
+        }
+        g2.drawString("x" + gp.player.arrows, x+3, y+48);
 }
 
 public void drawTitleScreen() {
@@ -376,6 +395,10 @@ public void drawDialogueScreen() {
 
     if (gp.ui.currentDialogue.equals("You are now level " + gp.player.level + "!\nYou feel stronger than before!")) {
         textSize = 28;
+    }
+
+    if (gp.ui.currentDialogue.equals("You drink the Red Potion!\nYour health has been\nreplenished by 4.")) {
+        textSize = 30;
     }
 
     g2.setFont(g2.getFont().deriveFont(Font.PLAIN, textSize));

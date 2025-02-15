@@ -4,12 +4,12 @@ import entity.NPC_Kalsu;
 import entity.NPC_Rock;
 import entity.NPC_Rubert;
 import monster.MON_Slime;
+import obj.OBJ_Bow_Default;
 import obj.OBJ_Chest;
 import obj.OBJ_Coin;
 import obj.OBJ_Key;
 import obj.OBJ_Longsword;
-import obj.OBJ_Questionmark;
-import obj.OBJ_Questionmark2;
+import obj.OBJ_Potion_Red;
 
 public class AssetSetter {
 
@@ -27,22 +27,22 @@ public class AssetSetter {
 
         gp.obj[1] = new OBJ_Chest(gp);
         gp.obj[1].worldX = 8 * gp.tileSize;
-        gp.obj[1].worldY = 7 * gp.tileSize; 
+        gp.obj[1].worldY = 42 * gp.tileSize; 
 
-        gp.obj[2] = new OBJ_Questionmark(gp);
-        gp.obj[2].worldX = 8 * gp.tileSize;
-        gp.obj[2].worldY = 42 * gp.tileSize;
+        gp.obj[2] = new OBJ_Coin(gp);
+        gp.obj[2].worldX = 1000 * gp.tileSize;
+        gp.obj[2].worldY = 1000 * gp.tileSize;
 
-        gp.obj[3] = new OBJ_Questionmark2(gp);
-        gp.obj[3].worldX = 1000 * gp.tileSize;
-        gp.obj[3].worldY = 1000 * gp.tileSize;  
+        gp.obj[3] = new OBJ_Longsword(gp);
+        gp.obj[3].worldX = 41 * gp.tileSize;
+        gp.obj[3].worldY = 7 * gp.tileSize;
 
-        gp.obj[4] = new OBJ_Coin(gp);
-        gp.obj[4].worldX = 1000 * gp.tileSize;
-        gp.obj[4].worldY = 1000 * gp.tileSize;
+        gp.obj[4] = new OBJ_Bow_Default(gp);
+        gp.obj[4].worldX = 35 * gp.tileSize;
+        gp.obj[4].worldY = 7 * gp.tileSize;
 
-        gp.obj[5] = new OBJ_Longsword(gp);
-        gp.obj[5].worldX = 41 * gp.tileSize;
+        gp.obj[5] = new OBJ_Potion_Red(gp);
+        gp.obj[5].worldX = 33 * gp.tileSize;
         gp.obj[5].worldY = 7 * gp.tileSize;
     }
 

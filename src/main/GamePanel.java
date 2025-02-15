@@ -158,20 +158,6 @@ public class GamePanel extends JPanel implements Runnable{
                     }
                 }
             }
-
-            // QUESTIONMARK OBJECT
-            
-            if (actionActive == true) {
-                long elapsedTime = System.currentTimeMillis() - starttime;
-                if (elapsedTime > 13000 && gameState == playState) {
-                    obj[3].worldX = 1000 * tileSize;
-                    obj[3].worldY = 1000 * tileSize;
-                    if (musicPlaying != true) {
-                        playMusic(0); 
-                    }
-                    actionActive = false;
-                }
-            }
         }
         
         if (gameState == pauseState) {

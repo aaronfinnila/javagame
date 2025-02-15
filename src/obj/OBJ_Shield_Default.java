@@ -9,7 +9,7 @@ public class OBJ_Shield_Default extends Entity {
         super(gp);
 
         name = "Wooden Shield";
-        down1 = setup("/res/objects/shield0",gp.tileSize,gp.tileSize);
+        down1 = setup("/res/objects/defaultshield",gp.tileSize,gp.tileSize);
         image = down1;
         defenseValue = 1;
         type = 4;

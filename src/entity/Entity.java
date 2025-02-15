@@ -21,6 +21,8 @@ public class Entity {
     attackUp2, attackRight1, attackRight2;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public BufferedImage image, image2, image3;
+    public BufferedImage shootDown1, shootDown2, shootDown3, shootDown4, shootLeft1, shootLeft2, shootLeft3, shootLeft4,
+    shootUp1, shootUp2, shootUp3, shootUp4, shootRight1, shootRight2, shootRight3, shootRight4;
     public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX, solidAreaDefaultY;
@@ -33,6 +35,7 @@ public class Entity {
     public boolean usedObject = false;
     public boolean invincible = false;
     public boolean attacking = false;
+    public boolean shooting = false;
     public boolean dying = false;
     public boolean alive = true;
     public boolean hpBarOn = false;
@@ -43,9 +46,11 @@ public class Entity {
     public int moveCounter = 0;
     public int standCounter = 0;
     public int attackCounter = 0;
+    public int shootCounter = 0;
     public int invincibleCounter = 0;
     public int shotAvailableCounter = 0;
     public int attackNum = 1;
+    public int shootNum = 1;
     public int spriteNum = 1;
     public int dialogueIndex = 0;
     public int dyingCounter = 0;
@@ -61,6 +66,7 @@ public class Entity {
     public int level;
     public int strength;
     public int dexterity;
+    public int healingValue;
     public int defense;
     public int attack;
     public int exp;
@@ -70,6 +76,7 @@ public class Entity {
     public int useCost;
     public Entity currentWeapon;
     public Entity currentShield;
+    public Entity currentShoot;
     public Projectile projectile;
     
     // ITEM ATTRIBUTES
@@ -80,7 +87,7 @@ public class Entity {
     
     // TYPE
 
-    public int type; // 0 = player, 1 = npc, 2 = monster, sword = 3, shield = 4, consumable = 5
+    public int type; // 0 = player, 1 = npc, 2 = monster, 3 = sword, 4 = shield, 5 = shoot, 6 = consumable
 
     public Entity(GamePanel gp) {
         this.gp = gp;
@@ -90,6 +97,8 @@ public class Entity {
     public void damageReaction() {}
 
     public void setAction() {}
+
+    public void use(Entity entity) {}
 
     public void speak() {
 
