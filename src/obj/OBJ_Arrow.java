@@ -41,4 +41,11 @@ public class OBJ_Arrow extends Projectile {
     public void subtractResource(Entity user) {
         user.arrows -= useCost;
     }
+
+    public void use(Entity entity) {
+        gp.player.arrows++;
+        gp.ui.showMessage("You found Arrows!");
+        gp.ui.showGoldMessage("You received 1 Arrow!");
+        gp.playSE(13);
+    }
 }

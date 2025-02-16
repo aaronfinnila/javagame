@@ -54,6 +54,7 @@ public class Entity {
     public int spriteNum = 1;
     public int dialogueIndex = 0;
     public int dyingCounter = 0;
+    public int hasKey = 0;
     public int hpBarCounter;
     
     // ATTRIBUTES
@@ -87,7 +88,8 @@ public class Entity {
     
     // TYPE
 
-    public int type; // 0 = player, 1 = npc, 2 = monster, 3 = sword, 4 = shield, 5 = shoot, 6 = consumable
+    public int type; /* 0 = player, 1 = npc, 2 = monster, 3 = sword, 4 = shield, 5 = shoot,
+    6 = consumable, 7 = pickup only, 8 = static object (chest etc) */
 
     public Entity(GamePanel gp) {
         this.gp = gp;

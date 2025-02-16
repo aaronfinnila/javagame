@@ -4,6 +4,7 @@ import entity.NPC_Kalsu;
 import entity.NPC_Rock;
 import entity.NPC_Rubert;
 import monster.MON_Slime;
+import obj.OBJ_Arrow;
 import obj.OBJ_Bow_Default;
 import obj.OBJ_Chest;
 import obj.OBJ_Coin;
@@ -44,6 +45,15 @@ public class AssetSetter {
         gp.obj[5] = new OBJ_Potion_Red(gp);
         gp.obj[5].worldX = 33 * gp.tileSize;
         gp.obj[5].worldY = 7 * gp.tileSize;
+
+        gp.obj[6] = new OBJ_Key(gp);
+        gp.obj[6].worldX = 39 * gp.tileSize;
+        gp.obj[6].worldY = 42 * gp.tileSize;
+
+        gp.obj[7] = new OBJ_Arrow(gp);
+        gp.obj[7].type = 7;
+        gp.obj[7].worldX = 35 * gp.tileSize;
+        gp.obj[7].worldY = 42 * gp.tileSize; 
     }
 
     public void setNPC() {
