@@ -5,6 +5,7 @@ import java.util.Random;
 import entity.Entity;
 import main.GamePanel;
 import obj.OBJ_Arrow;
+import obj.OBJ_Coin;
 
 public class MON_Slime extends Entity {
     
@@ -103,6 +104,18 @@ public class MON_Slime extends Entity {
             case "right":
                 direction = "left";
                 break;
+        }
+    }
+
+    public void checkDrop() {
+
+        int i = new Random().nextInt(100)+1;
+
+        if (i < 50) {
+            dropItem(new OBJ_Coin(gp));
+        }
+        if (i >= 50) {
+            dropItem(new OBJ_Arrow(gp));
         }
     }
 }

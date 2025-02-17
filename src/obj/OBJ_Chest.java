@@ -20,8 +20,13 @@ public class OBJ_Chest extends Entity {
             if (gp.player.hasKey != 0 && gp.keyH.ePressed == true && this.usedObject == false) {
                 gp.playSE(12);
                 gp.ui.showMessage("You found an item!");
-                gp.obj[2].worldX = 8 * gp.tileSize;
-                gp.obj[2].worldY = 40 * gp.tileSize;
+                for (int i = 0; i < gp.obj.length;i++) {
+                    if (gp.obj[i] == null) {
+                        gp.obj[i] = new OBJ_Coin(gp);
+                        gp.obj[i].worldX = gp.tileSize*8;
+                        gp.obj[i].worldY = gp.tileSize*40;
+                    }
+                }
                 this.down1 = setup("/res/objects/chestused", gp.tileSize, gp.tileSize+15);
                 this.worldY -= 15;
                 solidArea.height += 10;
@@ -30,6 +35,7 @@ public class OBJ_Chest extends Entity {
                 for (int i=0;i<gp.player.inventory.size();i++) {
                     if (gp.player.inventory.get(i).name.equals("Creamor Key")) {
                         gp.player.inventory.remove(i);
+                        break;
                     }
                 }
             } else {

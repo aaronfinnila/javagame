@@ -7,10 +7,10 @@ import monster.MON_Slime;
 import obj.OBJ_Arrow;
 import obj.OBJ_Bow_Default;
 import obj.OBJ_Chest;
-import obj.OBJ_Coin;
 import obj.OBJ_Key;
 import obj.OBJ_Longsword;
 import obj.OBJ_Potion_Red;
+import tile_interactive.IT_SmallRock;
 
 public class AssetSetter {
 
@@ -30,30 +30,25 @@ public class AssetSetter {
         gp.obj[1].worldX = 8 * gp.tileSize;
         gp.obj[1].worldY = 42 * gp.tileSize; 
 
-        gp.obj[2] = new OBJ_Coin(gp);
-        gp.obj[2].worldX = 1000 * gp.tileSize;
-        gp.obj[2].worldY = 1000 * gp.tileSize;
+        gp.obj[2] = new OBJ_Longsword(gp);
+        gp.obj[2].worldX = 41 * gp.tileSize;
+        gp.obj[2].worldY = 7 * gp.tileSize;
 
-        gp.obj[3] = new OBJ_Longsword(gp);
-        gp.obj[3].worldX = 41 * gp.tileSize;
+        gp.obj[3] = new OBJ_Bow_Default(gp);
+        gp.obj[3].worldX = 35 * gp.tileSize;
         gp.obj[3].worldY = 7 * gp.tileSize;
 
-        gp.obj[4] = new OBJ_Bow_Default(gp);
-        gp.obj[4].worldX = 35 * gp.tileSize;
+        gp.obj[4] = new OBJ_Potion_Red(gp);
+        gp.obj[4].worldX = 33 * gp.tileSize;
         gp.obj[4].worldY = 7 * gp.tileSize;
 
-        gp.obj[5] = new OBJ_Potion_Red(gp);
-        gp.obj[5].worldX = 33 * gp.tileSize;
-        gp.obj[5].worldY = 7 * gp.tileSize;
+        gp.obj[5] = new OBJ_Key(gp);
+        gp.obj[5].worldX = 39 * gp.tileSize;
+        gp.obj[5].worldY = 42 * gp.tileSize;
 
-        gp.obj[6] = new OBJ_Key(gp);
-        gp.obj[6].worldX = 39 * gp.tileSize;
-        gp.obj[6].worldY = 42 * gp.tileSize;
-
-        gp.obj[7] = new OBJ_Arrow(gp);
-        gp.obj[7].type = 7;
-        gp.obj[7].worldX = 35 * gp.tileSize;
-        gp.obj[7].worldY = 42 * gp.tileSize; 
+        gp.obj[6] = new OBJ_Arrow(gp);
+        gp.obj[6].worldX = 35 * gp.tileSize;
+        gp.obj[6].worldY = 42 * gp.tileSize; 
     }
 
     public void setNPC() {
@@ -92,5 +87,13 @@ public class AssetSetter {
         gp.monster[4] = new MON_Slime(gp);
         gp.monster[4].worldX = gp.tileSize*24;
         gp.monster[4].worldY = gp.tileSize*32;
+    }
+
+    public void setInteractiveTile() {
+
+        int i = 0;
+        gp.iTile[i] = new IT_SmallRock(gp,20,20);i++;
+        gp.iTile[i] = new IT_SmallRock(gp,21,20);i++;
+        gp.iTile[i] = new IT_SmallRock(gp,22,20);i++;
     }
 }

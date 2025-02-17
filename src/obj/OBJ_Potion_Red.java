@@ -24,9 +24,6 @@ public class OBJ_Potion_Red extends Entity {
         gp.gameState = gp.dialogueState;
         gp.ui.currentDialogue = "You drink the " + name + "!\nYour health has been\nreplenished by " + healingValue + ".";
         entity.health += healingValue;
-        if (gp.player.maxHealth < gp.player.health) {
-            gp.player.health = gp.player.maxHealth;
-        }
         gp.playSE(2);
     }
 

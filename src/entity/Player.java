@@ -257,6 +257,10 @@ public void getPlayerShootImage() {
         if (shotAvailableCounter < 30) {
             shotAvailableCounter++;
         }
+
+        if (health > maxHealth) {
+            health = maxHealth;
+        }
     }
 
     public void shooting() {
