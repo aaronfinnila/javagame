@@ -224,7 +224,7 @@ public void drawInventory() {
             g2.drawString(line, textX, textY);
             textY += 20;
         }
-        if (gp.player.inventory.get(itemIndex).type == 3 || gp.player.inventory.get(itemIndex).type == 5) {
+        if (gp.player.inventory.get(itemIndex).type == 3 || gp.player.inventory.get(itemIndex).type == 5 || gp.player.inventory.get(itemIndex).type == 9) {
             g2.setFont(consola);
             g2.setFont(g2.getFont().deriveFont(15F));
             g2.drawString("Attack: " + gp.player.inventory.get(itemIndex).attackValue,dFrameX+15,dFrameY+170);

@@ -11,9 +11,22 @@ public class InteractiveTile extends Entity {
     public InteractiveTile(GamePanel gp, int col, int row) {
         super(gp);
         this.gp = gp;
+        this.type = 10;
+    }
+
+    public boolean isCorrectItem(Entity entity) {
+        boolean isCorrectItem = false;
+        return isCorrectItem;
     }
 
     public void update() {
 
+        if (invincible == true) {
+            invincibleCounter++;
+            if (invincibleCounter > 20) {
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
     }
 }

@@ -89,7 +89,7 @@ public class Entity {
     // TYPE
 
     public int type; /* 0 = player, 1 = npc, 2 = monster, 3 = sword, 4 = shield, 5 = shoot,
-    6 = consumable, 7 = pickup only, 8 = static object (chest etc) */
+    6 = consumable, 7 = pickup only, 8 = static object, 9 = hammer, 10 = interactive tile */
 
     public Entity(GamePanel gp) {
         this.gp = gp;
@@ -150,6 +150,7 @@ public class Entity {
         gp.cChecker.checkObject(this, false);
         gp.cChecker.checkEntity(this, gp.npc);
         gp.cChecker.checkEntity(this, gp.monster);
+        gp.cChecker.checkEntity(this, gp.iTile);
         boolean contactPlayer = gp.cChecker.checkPlayer(this);
 
         if (this.type == 2 && contactPlayer == true) {

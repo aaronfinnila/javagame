@@ -121,6 +121,19 @@ public void getPlayerAttackImage() {
         attackRight1 = setup("/res/player/boy_scimitar_right1", gp.tileSize*2, gp.tileSize);
         attackRight2 = setup("/res/player/boy_longsword_right", gp.tileSize*2, gp.tileSize);
     }
+
+    if (currentWeapon.name == "Hammer") {
+        attackArea.height = currentWeapon.attackArea.height;
+        attackArea.width = currentWeapon.attackArea.width;
+        attackUp1 = setup("/res/player/boy_hammer_up1", gp.tileSize, gp.tileSize*2);
+        attackUp2 = setup("/res/player/boy_hammer_up2", gp.tileSize, gp.tileSize*2);
+        attackLeft1 = setup("/res/player/boy_hammer_left1", gp.tileSize*2, gp.tileSize);
+        attackLeft2 = setup("/res/player/boy_hammer_left2", gp.tileSize*2, gp.tileSize);
+        attackDown1 = setup("/res/player/boy_hammer_down1", gp.tileSize, gp.tileSize*2);
+        attackDown2 = setup("/res/player/boy_hammer_down2", gp.tileSize, gp.tileSize*2);
+        attackRight1 = setup("/res/player/boy_hammer_right1", gp.tileSize*2, gp.tileSize);
+        attackRight2 = setup("/res/player/boy_hammer_right2", gp.tileSize*2, gp.tileSize);
+    }
 }
 
 public void getPlayerShootImage() {
@@ -194,6 +207,10 @@ public void getPlayerShootImage() {
 
          int monsterIndex =gp.cChecker.checkEntity(this, gp.monster);
          contactMonster(monsterIndex);
+
+         // CHECK INTERACTIVE TILE COLLISION
+
+         gp.cChecker.checkEntity(this, gp.iTile);
 
          // CHECK EVENT COLLISION
 
@@ -296,7 +313,8 @@ public void getPlayerShootImage() {
         attackCounter++;
 
         if (attackCounter > 0 && attackCounter < 2) {
-            gp.playSE(5);
+            if (currentWeapon.type == 3) {gp.playSE(5);}
+            if (currentWeapon.type == 9) {gp.playSE(14);}
         }
         if (attackCounter <= 5) {
             attackNum = 1;
@@ -329,6 +347,9 @@ public void getPlayerShootImage() {
 
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
             damageMonster(monsterIndex, attack);
+
+            int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
+            damageInteractiveTile(iTileIndex);
 
             // After checking collision, restore original values
     
@@ -456,6 +477,23 @@ public void getPlayerShootImage() {
         }
     }
 
+    public void damageInteractiveTile(int i) {
+        if (i != 999 && gp.iTile[i].destructible == true && gp.iTile[i].isCorrectItem(this) == true && gp.iTile[i].invincible == false) {
+            gp.iTile[i].health--;
+            gp.iTile[i].invincible = true;
+            if (gp.iTile[i].name.equals("IT_SmallRock")) {
+                gp.playSE(15);
+                if (gp.iTile[i].health < 2) {
+                    System.out.println(gp.iTile[i].health);
+                    gp.iTile[i].down1 = gp.iTile[i].down2;
+                }
+            }
+            if (gp.iTile[i].health <= 0) {
+                gp.iTile[i] = null;
+            }
+        }
+    }
+
     public void checkLevelUp() {
 
         if (exp >= nextLevelExp) {
@@ -481,7 +519,7 @@ public void getPlayerShootImage() {
 
         if (itemIndex < inventory.size()) {
             Entity selectedItem = inventory.get(itemIndex);
-            if (selectedItem.type == 3) {
+            if (selectedItem.type == 3 || selectedItem.type == 9) {
                 currentWeapon = selectedItem;
                 attack = getAttack();
                 getPlayerAttackImage();
@@ -549,8 +587,15 @@ public void getPlayerShootImage() {
                     if(spriteNum == 2) {image = down2;}
                 }
                 if (attacking == true && shooting == false) {
-                    if(attackNum == 1) {image = attackDown1;}
-                    if(attackNum == 2) {image = attackDown2;}
+                    if(attackNum == 1) {
+                        image = attackDown1;
+                        if (currentWeapon.name.equals("Hammer")) {
+                            tempScreenY -= gp.tileSize;
+                        }
+                    }
+                    if(attackNum == 2) {
+                        image = attackDown2;
+                    }
                 }
                 if (shooting == true && attacking == false) {
                     if(shootNum == 1) {image = shootDown1;}

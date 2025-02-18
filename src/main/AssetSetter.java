@@ -7,6 +7,7 @@ import monster.MON_Slime;
 import obj.OBJ_Arrow;
 import obj.OBJ_Bow_Default;
 import obj.OBJ_Chest;
+import obj.OBJ_Hammer;
 import obj.OBJ_Key;
 import obj.OBJ_Longsword;
 import obj.OBJ_Potion_Red;
@@ -48,7 +49,11 @@ public class AssetSetter {
 
         gp.obj[6] = new OBJ_Arrow(gp);
         gp.obj[6].worldX = 35 * gp.tileSize;
-        gp.obj[6].worldY = 42 * gp.tileSize; 
+        gp.obj[6].worldY = 42 * gp.tileSize;
+
+        gp.obj[7] = new OBJ_Hammer(gp);
+        gp.obj[7].worldX = 34 * gp.tileSize;
+        gp.obj[7].worldY = 42 * gp.tileSize;
     }
 
     public void setNPC() {
