@@ -167,8 +167,8 @@ public class UI {
     }
 
 public void drawInventory() {
-    int frameX = gp.tileSize*9;
-    int frameY = gp.tileSize*1;
+    int frameX = gp.tileSize*12;
+    int frameY = gp.tileSize;
     int frameWidth = gp.tileSize*6-10;
     int frameHeight = gp.tileSize*6-10;
     drawSubWindow(frameX, frameY, frameWidth, frameHeight);
@@ -415,7 +415,7 @@ public void drawCharacterScreen() {
 
     // CREATE A FRAME
 
-    final int frameX = gp.tileSize;
+    final int frameX = gp.tileSize*2;
     final int frameY = gp.tileSize;
     final int frameWidth = gp.tileSize*5;
     final int frameHeight = gp.tileSize*10;

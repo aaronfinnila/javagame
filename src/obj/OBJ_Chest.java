@@ -25,6 +25,7 @@ public class OBJ_Chest extends Entity {
                         gp.obj[i] = new OBJ_Coin(gp);
                         gp.obj[i].worldX = gp.tileSize*8;
                         gp.obj[i].worldY = gp.tileSize*40;
+                        break;
                     }
                 }
                 this.down1 = setup("/res/objects/chestused", gp.tileSize, gp.tileSize+15);
