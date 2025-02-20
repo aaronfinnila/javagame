@@ -481,10 +481,11 @@ public void getPlayerShootImage() {
         if (i != 999 && gp.iTile[i].destructible == true && gp.iTile[i].isCorrectItem(this) == true && gp.iTile[i].invincible == false) {
             gp.iTile[i].health--;
             gp.iTile[i].invincible = true;
+
+            generateParticle(gp.iTile[i], gp.iTile[i]);
             if (gp.iTile[i].name.equals("IT_SmallRock")) {
                 gp.playSE(15);
                 if (gp.iTile[i].health < 2) {
-                    System.out.println(gp.iTile[i].health);
                     gp.iTile[i].down1 = gp.iTile[i].down2;
                 }
             }
