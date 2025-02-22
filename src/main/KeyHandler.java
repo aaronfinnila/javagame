@@ -37,6 +37,9 @@ public class KeyHandler implements KeyListener{
         else if (gp.gameState == gp.characterState) {
             characterState(code);
         }
+        else if (gp.gameState == gp.optionsState) {
+            optionsState(code);
+        }
     }
 
     public void titleState(int code) {
@@ -54,7 +57,7 @@ public class KeyHandler implements KeyListener{
             }
         }
 
-        if (code == KeyEvent.VK_ENTER) {
+        if (code == KeyEvent.VK_SPACE) {
             if (gp.ui.commandNumber == 0) {
                 gp.gameState = gp.playState;
                 gp.playMusic(0);
@@ -102,6 +105,10 @@ public class KeyHandler implements KeyListener{
 
         if (code == KeyEvent.VK_R) {
             shootKeyPressed = true;
+        }
+
+        if (code == KeyEvent.VK_ESCAPE) {
+            gp.gameState = gp.optionsState;
         }
 
         // ADMIN KEYBINDS
@@ -185,6 +192,62 @@ public class KeyHandler implements KeyListener{
         }
         if (code == KeyEvent.VK_SPACE) {
             gp.player.selectItem();
+        }
+    }
+
+    public void optionsState(int code) {
+
+        if (code == KeyEvent.VK_ESCAPE) {
+            gp.gameState = gp.playState;
+        }
+        if (code == KeyEvent.VK_SPACE) {
+            spacePressed = true;
+        }
+
+        int maxCommandNum = 0;
+        switch(gp.ui.subState) {
+            case 0: maxCommandNum = 5; break;
+            case 3: maxCommandNum = 1; break;
+        }
+        if (code == KeyEvent.VK_S) {
+            gp.ui.commandNumber++;
+            gp.playSE(10);
+            if (gp.ui.commandNumber > maxCommandNum) {
+                gp.ui.commandNumber = 0;
+            }
+        }
+        if (code == KeyEvent.VK_W) {
+            gp.ui.commandNumber--;
+            gp.playSE(10);
+            if (gp.ui.commandNumber < 0) {
+                gp.ui.commandNumber = maxCommandNum;
+            }
+        }
+        if (code == KeyEvent.VK_A) {
+            if (gp.ui.subState == 0) {
+                if (gp.ui.commandNumber == 1 && gp.music.volumeScale > 0) {
+                    gp.music.volumeScale--;
+                    gp.music.checkVolume();
+                    gp.playSE(10);
+                }
+                if (gp.ui.commandNumber == 2 && gp.se.volumeScale > 0) {
+                    gp.se.volumeScale--;
+                    gp.playSE(10);
+                }
+            }
+        }
+        if (code == KeyEvent.VK_D) {
+            if (gp.ui.subState == 0) {
+                if (gp.ui.commandNumber == 1 && gp.music.volumeScale < 5) {
+                    gp.music.volumeScale++;
+                    gp.music.checkVolume();
+                    gp.playSE(10);
+                }
+                if (gp.ui.commandNumber == 2 && gp.se.volumeScale < 5) {
+                    gp.se.volumeScale++;
+                    gp.playSE(10);
+                }
+            }
         }
     }
 
