@@ -40,6 +40,9 @@ public class KeyHandler implements KeyListener{
         else if (gp.gameState == gp.optionsState) {
             optionsState(code);
         }
+        else if (gp.gameState == gp.gameOverState) {
+            gameOverState(code);
+        }
     }
 
     public void titleState(int code) {
@@ -251,13 +254,37 @@ public class KeyHandler implements KeyListener{
         }
     }
 
+    public void gameOverState(int code) {
+
+        if (code == KeyEvent.VK_W) {
+            gp.ui.commandNumber--;
+            if (gp.ui.commandNumber < 0) {
+                gp.ui.commandNumber = 1;
+            }
+            gp.playSE(10);
+        }
+        if (code == KeyEvent.VK_S) {
+            gp.ui.commandNumber++;
+            if (gp.ui.commandNumber > 1) {
+                gp.ui.commandNumber = 0;
+            }
+            gp.playSE(10);
+        }
+        if (code == KeyEvent.VK_SPACE) {
+            if (gp.ui.commandNumber == 0) {
+                gp.gameState = gp.playState;
+                gp.retry();
+            }
+            else if (gp.ui.commandNumber == 1) {
+                gp.gameState = gp.titleState;
+                gp.restart();
+            }
+        }
+    }
+
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
-
-        // PLAY STATE 
-
-        if (gp.gameState == gp.playState) {
 
             if (code == KeyEvent.VK_Q) {
                 attackKeyPressed = false;
@@ -290,58 +317,5 @@ public class KeyHandler implements KeyListener{
             if (code == KeyEvent.VK_R) {
                 shootKeyPressed = false;
             }
-        }
-
-        // PAUSE STATE
-
-        if (code == KeyEvent.VK_W) {
-            upPressed = false;
-        }
-
-        if (code == KeyEvent.VK_S) {
-            downPressed = false;
-        }
-
-        if (code == KeyEvent.VK_A) {
-            leftPressed = false;
-        }
-
-        if (code == KeyEvent.VK_D) {
-            rightPressed = false;
-        }
-
-        // DIALOGUE STATE 
-        
-        if (gp.gameState == gp.dialogueState) {
-            if (code == KeyEvent.VK_W) {
-                upPressed = false;
-            }
-    
-            if (code == KeyEvent.VK_S) {
-                downPressed = false;
-            }
-    
-            if (code == KeyEvent.VK_A) {
-                leftPressed = false;
-            }
-    
-            if (code == KeyEvent.VK_D) {
-                rightPressed = false;
-            }
-
-            if (code == KeyEvent.VK_E) {
-                ePressed = false;
-            }
-
-            if (code == KeyEvent.VK_SPACE) {
-                spacePressed = false;
-            }
-
-            if (code == KeyEvent.VK_R) {
-                shootKeyPressed = false;
-            }
-        }
-
     }
-
 }

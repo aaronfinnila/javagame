@@ -69,8 +69,22 @@ public class Player extends Entity {
         defense = getDefense();
     }
 
+    public void setDefaultPositions() {
+
+        worldX = 1150;
+        worldY = 1150;
+        direction = "down";
+    }
+
+    public void restoreHealth() {
+
+        health = maxHealth;
+        invincible = false;
+    }
+
     public void setItems() {
 
+        inventory.clear();
         inventory.add(currentWeapon);
         inventory.add(currentShield);
     }
@@ -159,7 +173,7 @@ public void getPlayerShootImage() {
 }
 
     public void update() {
-
+        
         if (gp.keyH.attackKeyPressed == true && shooting != true) {
             attacking = true;
         }
@@ -277,6 +291,16 @@ public void getPlayerShootImage() {
 
         if (health > maxHealth) {
             health = maxHealth;
+        }
+
+        if (health <= 0) {
+            System.out.println(attacking);
+            attacking = false;
+            shooting = false;
+            gp.gameState = gp.gameOverState;
+            gp.playSE(16);
+            gp.stopMusic();
+            System.out.println(attacking);
         }
     }
 
