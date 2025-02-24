@@ -21,10 +21,10 @@ public class OBJ_Chest extends Entity {
                 gp.playSE(12);
                 gp.ui.showMessage("You found an item!");
                 for (int i = 0; i < gp.obj.length;i++) {
-                    if (gp.obj[i] == null) {
-                        gp.obj[i] = new OBJ_Coin(gp);
-                        gp.obj[i].worldX = gp.tileSize*8;
-                        gp.obj[i].worldY = gp.tileSize*40;
+                    if (gp.obj[gp.currentMap][i] == null) {
+                        gp.obj[gp.currentMap][i] = new OBJ_Coin(gp);
+                        gp.obj[gp.currentMap][i].worldX = gp.tileSize*8;
+                        gp.obj[gp.currentMap][i].worldY = gp.tileSize*40;
                         break;
                     }
                 }

@@ -3,85 +3,105 @@ package main;
 public class EventHandler {
 
     GamePanel gp;
-    EventRect eventRect[][];
+    EventRect eventRect[][][];
+
+    int previousEventX, previousEventY;
+    boolean canTouchEvent = false;
 
     public EventHandler(GamePanel gp) {
         this.gp = gp;
 
-        eventRect = new EventRect[gp.maxWorldCol][gp.maxWorldRow];
+        eventRect = new EventRect[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
 
+        int map = 0;
         int col = 0;
         int row = 0;
-        while (col < gp.maxWorldCol && row < gp.maxWorldRow) {
+        while (map < gp.maxMap && col < gp.maxWorldCol && row < gp.maxWorldRow) {
 
-            eventRect[col][row] = new EventRect();
-            eventRect[col][row].x = 23;
-            eventRect[col][row].y = 23;
-            eventRect[col][row].width = 2;
-            eventRect[col][row].height = 2;
-            eventRect[col][row].eventRectDefaultX = eventRect[col][row].x;
-            eventRect[col][row].eventRectDefaultY = eventRect[col][row].y;
+            eventRect[map][col][row] = new EventRect();
+            eventRect[map][col][row].x = 23;
+            eventRect[map][col][row].y = 23;
+            eventRect[map][col][row].width = 2;
+            eventRect[map][col][row].height = 2;
+            eventRect[map][col][row].eventRectDefaultX = eventRect[map][col][row].x;
+            eventRect[map][col][row].eventRectDefaultY = eventRect[map][col][row].y;
 
             col++;
             if (col == gp.maxWorldCol) {
                 col = 0;
                 row++;
+                if (row == gp.maxWorldRow) {
+                    row = 0;
+                    map++;
+                }
             }
-
         }
-        eventRect[38][10].x = 0;
-        eventRect[38][10].y = 16; 
-        eventRect[38][10].width = 32;
     }
 
     public void checkEvent(){
-        if (hit(38, 10, "up") == true && gp.keyH.ePressed == true && eventRect[38][10].eventDone == false) {healingStatue(38, 10, gp.dialogueState);}
+
+        int xDistance = Math.abs(gp.player.worldX - previousEventX);
+        int yDistance = Math.abs(gp.player.worldY - previousEventY);
+        int distance = Math.max(xDistance, yDistance);
+        if (distance > gp.tileSize) {
+            canTouchEvent = true;
+        }
+        if (canTouchEvent == true) {
+            if (hit(0, 38, 10, "up") == true && gp.keyH.ePressed == true && eventRect[0][38][10].eventDone == false) {healingStatue(0, 38, 10, gp.dialogueState);}
+            else if (hit(0,24,19,"any") == true) {teleportPlayer(1, 24, 25);}
+            else if (hit(1,24,19,"any") == true) {teleportPlayer(0, 24, 25);}
+        }
     }
 
-    public boolean hit(int col, int row, String reqDirection){
+    public boolean hit(int map, int col, int row, String reqDirection){
 
         boolean hit = false;
 
-        gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
-        gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
-        eventRect[col][row].x = col*gp.tileSize + eventRect[col][row].x;
-        eventRect[col][row].y = row*gp.tileSize + eventRect[col][row].y;
-
-        if(gp.player.solidArea.intersects(eventRect[col][row]) && eventRect[col][row].eventDone == false) {
-            if (gp.player.direction.contentEquals(reqDirection) || reqDirection.equals("any")) {
-                hit = true;
+        if (map == gp.currentMap) {  
+            gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
+            gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
+            eventRect[map][col][row].x = col*gp.tileSize + eventRect[map][col][row].x;
+            eventRect[map][col][row].y = row*gp.tileSize + eventRect[map][col][row].y;
+    
+            if(gp.player.solidArea.intersects(eventRect[map][col][row]) && eventRect[map][col][row].eventDone == false) {
+                if (gp.player.direction.contentEquals(reqDirection) || reqDirection.equals("any")) {
+                    hit = true;
+                }
             }
+    
+            gp.player.solidArea.x = gp.player.solidAreaDefaultX;
+            gp.player.solidArea.y = gp.player.solidAreaDefaultY;
+            eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
+            eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
         }
-
-        gp.player.solidArea.x = gp.player.solidAreaDefaultX;
-        gp.player.solidArea.y = gp.player.solidAreaDefaultY;
-        eventRect[col][row].x = eventRect[col][row].eventRectDefaultX;
-        eventRect[col][row].y = eventRect[col][row].eventRectDefaultY;
 
         return hit;
     }
 
-    public void damagePit(int col, int row, int gameState) {
+    public void damagePit(int map, int col, int row, int gameState) {
         gp.gameState = gameState;
         gp.ui.currentDialogue = "You fall into a pit!";
         gp.player.health--;
-        eventRect[col][row].eventDone = true;
+        eventRect[map][col][row].eventDone = true;
         }
 
-    public void healingStatue(int col, int row, int gameState) {
+    public void healingStatue(int map, int col, int row, int gameState) {
         gp.gameState = gameState;
         gp.ui.currentDialogue = "The goddess statue fills you with joy.\nYour health has been replenished.";
 
         gp.player.health = gp.player.maxHealth;
         gp.aSetter.setMonster();
-        eventRect[col][row].eventDone = true;
+        eventRect[map][col][row].eventDone = true;
     }
 
-    public void teleportPlayer(int col, int row, int gameState) {
-        gp.gameState = gameState;
-        gp.player.worldX = 1150;
-        gp.player.worldY = 1150;
-        gp.ui.currentDialogue = "You teleported!";
-        eventRect[col][row].eventDone = true;
+    public void teleportPlayer(int map, int col, int row) {
+
+        gp.currentMap = map;
+        gp.player.worldX = gp.tileSize * col;
+        gp.player.worldY = gp.tileSize * row;
+        previousEventX = gp.player.worldX;
+        previousEventY = gp.player.worldY;
+        canTouchEvent = false;
+        eventRect[map][col][row].eventDone = true;
     }
 }

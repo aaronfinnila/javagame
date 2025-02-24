@@ -397,11 +397,11 @@ public void drawDialogueScreen() {
 
     // CONDITIONAL FONT SIZE
 
-    if (Arrays.asList(gp.npc[1].dialogues).contains(currentDialogue)) {
+    if (Arrays.asList(gp.npc[gp.currentMap][1].dialogues).contains(currentDialogue)) {
         textSize = 20;
     }
 
-    if (currentDialogue == "The goddess statue fills you with joy.\nYour health has been replenished.") {
+    if (gp.ui.currentDialogue.equals("The goddess statue fills you with joy.\nYour health has been replenished.")) {
         textSize = 20;
     }
 

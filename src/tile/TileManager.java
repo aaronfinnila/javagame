@@ -15,17 +15,18 @@ public class TileManager {
 
     GamePanel gp;
     public Tile[] tile;
-    public int mapTileNum[][];
+    public int mapTileNum[][][];
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
 
         tile = new Tile[100];
 
-        mapTileNum = new int[gp.maxWorldCol] [gp.maxWorldRow];
+        mapTileNum = new int[gp.maxMap][gp.maxWorldCol] [gp.maxWorldRow];
 
         getTileImage();
-        loadMap("/res/maps/worldmap02.txt");
+        loadMap("/res/maps/worldmap02.txt", 0);
+        loadMap("/res/maps/testmap01.txt", 1);
     }
 
     public void getTileImage() {
@@ -124,7 +125,7 @@ public void setup(int index, String imageName, boolean collision){
     }
 }
 
-public void loadMap(String filePath) {
+public void loadMap(String filePath, int map) {
 
     try {
         InputStream is = getClass().getResourceAsStream(filePath);
@@ -144,28 +145,28 @@ public void loadMap(String filePath) {
 
                 int num = Integer.parseInt(numbers[col]);
 
-                mapTileNum[col][row] = num;
+                mapTileNum[map][col][row] = num;
 
                 // RANDOMIZE TILES
 
                 if (num == 11) {
                     int numb = random.nextInt(3);
                     if (numb == 0) {
-                        mapTileNum[col][row] = 11;
+                        mapTileNum[map][col][row] = 11;
                     }
                     if (numb == 1) {
-                        mapTileNum[col][row] = 12;
+                        mapTileNum[map][col][row] = 12;
                     }
                     if (numb == 2) {
-                        mapTileNum[col][row] = 22;
+                        mapTileNum[map][col][row] = 22;
                     }
                 }
                 if (num == 13) {
                     int numb = random.nextInt(10);
                     if (numb == 0) {
-                        mapTileNum[col][row] = 13;
+                        mapTileNum[map][col][row] = 13;
                     } else {
-                        mapTileNum[col][row] = 58;
+                        mapTileNum[map][col][row] = 58;
                     }
                 }
                 col++;
@@ -190,7 +191,7 @@ public void loadMap(String filePath) {
 
         while (worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow) {
 
-            int tileNum = mapTileNum[worldCol][worldRow];
+            int tileNum = mapTileNum[gp.currentMap][worldCol][worldRow];
 
             int worldX = worldCol * gp.tileSize;
             int worldY = worldRow * gp.tileSize;

@@ -393,21 +393,21 @@ public void getPlayerShootImage() {
     public void pickUpObject(int i) {
         
         if (i != 999) {
-            int type = gp.obj[i].type;
+            int type = gp.obj[gp.currentMap][i].type;
             String text;
-            String objectName = gp.obj[i].name;
+            String objectName = gp.obj[gp.currentMap][i].name;
 
             // PICKUP ONLY ITEMS
 
             if (type == 7) {
-                gp.obj[i].use(this);
-                gp.obj[i] = null;
+                gp.obj[gp.currentMap][i].use(this);
+                gp.obj[gp.currentMap][i] = null;
             }
 
             // STATIC OBJECTS
 
             else if (type == 8) {
-                gp.obj[i].use(this);
+                gp.obj[gp.currentMap][i].use(this);
             }
 
             // INVENTORY ITEMS
@@ -415,14 +415,14 @@ public void getPlayerShootImage() {
             else {
                 if (inventory.size() != inventorySize) {
                     if (objectName == "Creamor Key") {hasKey++;}
-                    inventory.add(gp.obj[i]);
+                    inventory.add(gp.obj[gp.currentMap][i]);
                     gp.playSE(1);
                     text = "You got a " + objectName + "!";
                 } else {
                     text = "You cannot carry any more!";
                 }
                 gp.ui.showMessage(text);
-                gp.obj[i] = null;
+                gp.obj[gp.currentMap][i] = null;
             }
             }
         }
@@ -434,33 +434,33 @@ public void getPlayerShootImage() {
                 if (i == 1) {
                     if (gp.keyH.ePressed == true) {
                         gp.gameState = gp.dialogueState;
-                        gp.npc[i].speak();
+                        gp.npc[gp.currentMap][i].speak();
                         if (gp.player.level > 1) {
-                            gp.npc[1].dialogues[5] = "You're stronger.\nI suppose you're ready to hear more.";
-                            gp.npc[1].dialogues[6] = "A long, long time ago, a strong warrior\ncame to this island.";
-                            gp.npc[1].dialogues[7] = "He was from Midland, and he came\nto search for the legendary\ntreasure he had heard so much about.";
-                            gp.npc[1].dialogues[8] = "With sword and bow in tow, he begun\nhis adventure, filled with excitement,\ntreasure gleaming in his eyes.";
-                            gp.npc[1].dialogues[9] = "He headed for that town.\nBut when he got there, he noticed\nsomething strange...";
-                            gp.npc[1].dialogues[10] = "That's enough for now. Increase your\nstrength even more if you want to\nhear the rest.";
+                            gp.npc[gp.currentMap][1].dialogues[5] = "You're stronger.\nI suppose you're ready to hear more.";
+                            gp.npc[gp.currentMap][1].dialogues[6] = "A long, long time ago, a strong warrior\ncame to this island.";
+                            gp.npc[gp.currentMap][1].dialogues[7] = "He was from Midland, and he came\nto search for the legendary\ntreasure he had heard so much about.";
+                            gp.npc[gp.currentMap][1].dialogues[8] = "With sword and bow in tow, he begun\nhis adventure, filled with excitement,\ntreasure gleaming in his eyes.";
+                            gp.npc[gp.currentMap][1].dialogues[9] = "He headed for that town.\nBut when he got there, he noticed\nsomething strange...";
+                            gp.npc[gp.currentMap][1].dialogues[10] = "That's enough for now. Increase your\nstrength even more if you want to\nhear the rest.";
                         }
                         if (gp.player.level > 2) {
-                            gp.npc[1].dialogues[11] = "You seem stronger. I think you're ready\nto hear some more...";
-                            gp.npc[1].dialogues[12] = "After spending some more time in the town,\nthe warrior noticed that something\nwasn't right.";
-                            gp.npc[1].dialogues[13] = "The people were all really friendly,\nthe place was beautiful and the scenery\nwas out of this world.";
-                            gp.npc[1].dialogues[14] = "But one night, when he suddenly woke up,\nhe heard strange noises.";
-                            gp.npc[1].dialogues[15] = "It sounded like they were coming from\nthe town square. The following day he\ndecided to ask someone about it.";
-                            gp.npc[1].dialogues[16] = "However, when he mentioned it to\nany of the townsfolk, they started\nacting strange.";
-                            gp.npc[1].dialogues[17] = "It was like they were avoiding the subject.";
-                            gp.npc[1].dialogues[18] = "That town is not what it seems...";
-                            gp.npc[1].dialogues[19] = "But I suppose you have no other\nchoice than to go there and\nsee for yourself.";
-                            gp.npc[1].dialogues[20] = "Best of luck kiddo...\n";
-                            gp.npc[1].dialogues[21] = "Judging from the way you look,\nyou're gonna need it...";
+                            gp.npc[gp.currentMap][1].dialogues[11] = "You seem stronger. I think you're ready\nto hear some more...";
+                            gp.npc[gp.currentMap][1].dialogues[12] = "After spending some more time in the town,\nthe warrior noticed that something\nwasn't right.";
+                            gp.npc[gp.currentMap][1].dialogues[13] = "The people were all really friendly,\nthe place was beautiful and the scenery\nwas out of this world.";
+                            gp.npc[gp.currentMap][1].dialogues[14] = "But one night, when he suddenly woke up,\nhe heard strange noises.";
+                            gp.npc[gp.currentMap][1].dialogues[15] = "It sounded like they were coming from\nthe town square. The following day he\ndecided to ask someone about it.";
+                            gp.npc[gp.currentMap][1].dialogues[16] = "However, when he mentioned it to\nany of the townsfolk, they started\nacting strange.";
+                            gp.npc[gp.currentMap][1].dialogues[17] = "It was like they were avoiding the subject.";
+                            gp.npc[gp.currentMap][1].dialogues[18] = "That town is not what it seems...";
+                            gp.npc[gp.currentMap][1].dialogues[19] = "But I suppose you have no other\nchoice than to go there and\nsee for yourself.";
+                            gp.npc[gp.currentMap][1].dialogues[20] = "Best of luck kiddo...\n";
+                            gp.npc[gp.currentMap][1].dialogues[21] = "Judging from the way you look,\nyou're gonna need it...";
                         }
                     }
                 }
                 else if (gp.keyH.ePressed == true) {
                 gp.gameState = gp.dialogueState;
-                gp.npc[i].speak();
+                gp.npc[gp.currentMap][i].speak();
                 }
             gp.keyH.ePressed = false;
         }
@@ -469,9 +469,9 @@ public void getPlayerShootImage() {
     public void contactMonster(int i) {
 
         if (i != 999) {
-            if (invincible == false && gp.monster[i].dying == false) {
+            if (invincible == false && gp.monster[gp.currentMap][i].dying == false) {
                 gp.playSE(6);
-                int damage = gp.monster[i].attack - defense;
+                int damage = gp.monster[gp.currentMap][i].attack - defense;
                 if (damage <= 0) {
                     damage = 1;
                 }
@@ -484,37 +484,37 @@ public void getPlayerShootImage() {
     public void damageMonster(int i, int attack) {
 
         if (i != 999) {
-            if(gp.monster[i].invincible == false) {
+            if(gp.monster[gp.currentMap][i].invincible == false) {
                 gp.playSE(7);
-                int damage = attack - gp.monster[i].defense;
+                int damage = attack - gp.monster[gp.currentMap][i].defense;
                 if (damage < 0) {
                     damage = 0;
                 }
-                gp.monster[i].health -= damage;
-                gp.monster[i].invincible = true;
-                gp.monster[i].damageReaction();
+                gp.monster[gp.currentMap][i].health -= damage;
+                gp.monster[gp.currentMap][i].invincible = true;
+                gp.monster[gp.currentMap][i].damageReaction();
             }
-            if (gp.monster[i].health <= 0) {
-                gp.monster[i].health = 0;
-                gp.monster[i].dying = true;
+            if (gp.monster[gp.currentMap][i].health <= 0) {
+                gp.monster[gp.currentMap][i].health = 0;
+                gp.monster[gp.currentMap][i].dying = true;
             }
         }
     }
 
     public void damageInteractiveTile(int i) {
-        if (i != 999 && gp.iTile[i].destructible == true && gp.iTile[i].isCorrectItem(this) == true && gp.iTile[i].invincible == false) {
-            gp.iTile[i].health--;
-            gp.iTile[i].invincible = true;
+        if (i != 999 && gp.iTile[gp.currentMap][i].destructible == true && gp.iTile[gp.currentMap][i].isCorrectItem(this) == true && gp.iTile[gp.currentMap][i].invincible == false) {
+            gp.iTile[gp.currentMap][i].health--;
+            gp.iTile[gp.currentMap][i].invincible = true;
 
-            generateParticle(gp.iTile[i], gp.iTile[i]);
-            if (gp.iTile[i].name.equals("IT_SmallRock")) {
+            generateParticle(gp.iTile[gp.currentMap][i], gp.iTile[gp.currentMap][i]);
+            if (gp.iTile[gp.currentMap][i].name.equals("IT_SmallRock")) {
                 gp.playSE(15);
-                if (gp.iTile[i].health < 2) {
-                    gp.iTile[i].down1 = gp.iTile[i].down2;
+                if (gp.iTile[gp.currentMap][i].health < 2) {
+                    gp.iTile[gp.currentMap][i].down1 = gp.iTile[gp.currentMap][i].down2;
                 }
             }
-            if (gp.iTile[i].health <= 0) {
-                gp.iTile[i] = null;
+            if (gp.iTile[gp.currentMap][i].health <= 0) {
+                gp.iTile[gp.currentMap][i] = null;
             }
         }
     }
