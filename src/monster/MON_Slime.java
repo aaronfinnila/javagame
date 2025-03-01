@@ -111,11 +111,8 @@ public class MON_Slime extends Entity {
 
         int i = new Random().nextInt(100)+1;
 
-        if (i < 50) {
+        if (i < 2) {
             dropItem(new OBJ_Coin(gp));
-        }
-        if (i >= 50) {
-            dropItem(new OBJ_Arrow(gp));
         }
     }
 }

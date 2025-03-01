@@ -173,6 +173,7 @@ public class UI {
         }
 
         // GAME OVER STATE
+        
         if (gp.gameState == gp.gameOverState) {
             drawGameOverScreen();
         }
@@ -397,7 +398,7 @@ public void drawDialogueScreen() {
 
     // CONDITIONAL FONT SIZE
 
-    if (Arrays.asList(gp.npc[gp.currentMap][1].dialogues).contains(currentDialogue)) {
+    if (Arrays.asList(gp.npc[gp.currentMap][0].dialogues).contains(currentDialogue)) {
         textSize = 20;
     }
 

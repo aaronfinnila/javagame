@@ -330,7 +330,6 @@ public class Entity {
                     gp.playSE(8);
                     gp.ui.showExpMessage("You received " + exp + " exp!");
                     gp.ui.showGoldMessage("You received " + gold + " gold!");
-                    gp.player.exp += exp;
                     gp.player.gold += gold;
                 }
                 if (dyingCounter >= 10 && dyingCounter <= 15) {image = death2;}
@@ -339,6 +338,7 @@ public class Entity {
                 if (dyingCounter >= 25 && dyingCounter <= 30) {image = death5;}
                 if (dyingCounter >= 30) {
                     alive = false;
+                    gp.player.exp += exp;
                 };
                 screenX = worldX - gp.player.worldX + gp.player.screenX - gp.tileSize/2;
                 screenY = worldY - gp.player.worldY + gp.player.screenY - gp.tileSize/2;

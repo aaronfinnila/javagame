@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Random;
 
 import javax.imageio.ImageIO;
 import java.awt.Graphics2D;
@@ -43,7 +42,7 @@ public class TileManager {
         tile = new Tile[fileNames.size()];
         getTileImage();
 
-        is = getClass().getResourceAsStream("/res/maps/sample.txt");
+        is = getClass().getResourceAsStream("/res/maps/introisland.txt");
         br = new BufferedReader(new InputStreamReader(is));
 
         try {
@@ -52,13 +51,14 @@ public class TileManager {
 
             gp.maxWorldCol = maxTile.length;
             gp.maxWorldRow = maxTile.length;
-            mapTileNum = new int[gp.maxMap][gp.maxWorldCol] [gp.maxWorldRow]; 
+            mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow]; 
 
             br.close();
         } catch (IOException e) {
             System.out.println("Exception!");
         }
-        loadMap("/res/maps/sample.txt", 0);
+        loadMap("/res/maps/introisland.txt", 0);
+        loadMap("/res/maps/introisland.txt", 1);
     }
 
     public void getTileImage() {
@@ -69,6 +69,7 @@ public class TileManager {
             boolean collision;
 
             fileName = fileNames.get(i);
+
             if (collisionStatus.get(i).equals("true")) {
                 collision = true;
             } else {
@@ -95,7 +96,6 @@ public void loadMap(String filePath, int map) {
     try {
         InputStream is = getClass().getResourceAsStream(filePath);
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
-        Random random = new Random();
 
         int col = 0;
         int row = 0;
@@ -112,28 +112,6 @@ public void loadMap(String filePath, int map) {
 
                 mapTileNum[map][col][row] = num;
 
-                // RANDOMIZE TILES
-
-                if (num == 11) {
-                    int numb = random.nextInt(3);
-                    if (numb == 0) {
-                        mapTileNum[map][col][row] = 11;
-                    }
-                    if (numb == 1) {
-                        mapTileNum[map][col][row] = 12;
-                    }
-                    if (numb == 2) {
-                        mapTileNum[map][col][row] = 22;
-                    }
-                }
-                if (num == 13) {
-                    int numb = random.nextInt(10);
-                    if (numb == 0) {
-                        mapTileNum[map][col][row] = 13;
-                    } else {
-                        mapTileNum[map][col][row] = 58;
-                    }
-                }
                 col++;
             }
             if(col == gp.maxWorldCol) {

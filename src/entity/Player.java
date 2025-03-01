@@ -294,13 +294,11 @@ public void getPlayerShootImage() {
         }
 
         if (health <= 0) {
-            System.out.println(attacking);
             attacking = false;
             shooting = false;
             gp.gameState = gp.gameOverState;
             gp.playSE(16);
             gp.stopMusic();
-            System.out.println(attacking);
         }
     }
 
@@ -431,38 +429,16 @@ public void getPlayerShootImage() {
 
             if (i != 999) {
                 
-                if (i == 1) {
+                if (i == 0) {
                     if (gp.keyH.ePressed == true) {
                         gp.gameState = gp.dialogueState;
                         gp.npc[gp.currentMap][i].speak();
-                        if (gp.player.level > 1) {
-                            gp.npc[gp.currentMap][1].dialogues[5] = "You're stronger.\nI suppose you're ready to hear more.";
-                            gp.npc[gp.currentMap][1].dialogues[6] = "A long, long time ago, a strong warrior\ncame to this island.";
-                            gp.npc[gp.currentMap][1].dialogues[7] = "He was from Midland, and he came\nto search for the legendary\ntreasure he had heard so much about.";
-                            gp.npc[gp.currentMap][1].dialogues[8] = "With sword and bow in tow, he begun\nhis adventure, filled with excitement,\ntreasure gleaming in his eyes.";
-                            gp.npc[gp.currentMap][1].dialogues[9] = "He headed for that town.\nBut when he got there, he noticed\nsomething strange...";
-                            gp.npc[gp.currentMap][1].dialogues[10] = "That's enough for now. Increase your\nstrength even more if you want to\nhear the rest.";
-                        }
-                        if (gp.player.level > 2) {
-                            gp.npc[gp.currentMap][1].dialogues[11] = "You seem stronger. I think you're ready\nto hear some more...";
-                            gp.npc[gp.currentMap][1].dialogues[12] = "After spending some more time in the town,\nthe warrior noticed that something\nwasn't right.";
-                            gp.npc[gp.currentMap][1].dialogues[13] = "The people were all really friendly,\nthe place was beautiful and the scenery\nwas out of this world.";
-                            gp.npc[gp.currentMap][1].dialogues[14] = "But one night, when he suddenly woke up,\nhe heard strange noises.";
-                            gp.npc[gp.currentMap][1].dialogues[15] = "It sounded like they were coming from\nthe town square. The following day he\ndecided to ask someone about it.";
-                            gp.npc[gp.currentMap][1].dialogues[16] = "However, when he mentioned it to\nany of the townsfolk, they started\nacting strange.";
-                            gp.npc[gp.currentMap][1].dialogues[17] = "It was like they were avoiding the subject.";
-                            gp.npc[gp.currentMap][1].dialogues[18] = "That town is not what it seems...";
-                            gp.npc[gp.currentMap][1].dialogues[19] = "But I suppose you have no other\nchoice than to go there and\nsee for yourself.";
-                            gp.npc[gp.currentMap][1].dialogues[20] = "Best of luck kiddo...\n";
-                            gp.npc[gp.currentMap][1].dialogues[21] = "Judging from the way you look,\nyou're gonna need it...";
-                        }
                     }
                 }
                 else if (gp.keyH.ePressed == true) {
                 gp.gameState = gp.dialogueState;
                 gp.npc[gp.currentMap][i].speak();
                 }
-            gp.keyH.ePressed = false;
         }
     }
 
