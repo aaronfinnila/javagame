@@ -12,7 +12,7 @@ public class OBJ_Rowboat extends Entity {
         this.gp = gp;
         name = "Rowboat";
         type = 8;
-        down1 = setup("/res/objects/rowboat2", gp.tileSize*2, 74);
+        down1 = setup("/res/objects/rowboat", gp.tileSize*2, 74);
         collision = true;
         solidArea.height = 74;
         solidArea.width = gp.tileSize*2;

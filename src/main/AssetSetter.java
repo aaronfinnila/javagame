@@ -18,6 +18,11 @@ public class AssetSetter {
         gp.obj[mapNum][i] = new OBJ_Rowboat(gp);
         gp.obj[mapNum][i].worldX = 33*gp.tileSize;
         gp.obj[mapNum][i].worldY = 31*gp.tileSize;
+        i++;
+        mapNum++;
+        gp.obj[mapNum][i] = new OBJ_Rowboat(gp);
+        gp.obj[mapNum][i].worldX = 12*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 38*gp.tileSize;
         
 /*         gp.obj[mapNum][i] = new OBJ_Bow_Default(gp);
         gp.obj[mapNum][i].worldX = 24*gp.tileSize;

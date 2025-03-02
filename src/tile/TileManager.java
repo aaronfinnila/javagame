@@ -26,7 +26,7 @@ public class TileManager {
 
         InputStream is = getClass().getResourceAsStream("/res/maps/tiledata.txt");
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
-
+        
         String line;
 
         try {
@@ -48,7 +48,7 @@ public class TileManager {
         try {
             String line2 = br.readLine();
             String maxTile[] = line2.split(" ");
-
+            System.out.println(maxTile.length);
             gp.maxWorldCol = maxTile.length;
             gp.maxWorldRow = maxTile.length;
             mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow]; 
@@ -58,7 +58,7 @@ public class TileManager {
             System.out.println("Exception!");
         }
         loadMap("/res/maps/introisland.txt", 0);
-        loadMap("/res/maps/introisland.txt", 1);
+        loadMap("/res/maps/treasureisland.txt", 1);
     }
 
     public void getTileImage() {
@@ -75,7 +75,7 @@ public class TileManager {
             } else {
                 collision = false;
             }
-
+            
             setup(i, fileName, collision);
         }
     }
@@ -135,7 +135,7 @@ public void loadMap(String filePath, int map) {
         while (worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow) {
 
             int tileNum = mapTileNum[gp.currentMap][worldCol][worldRow];
-
+            
             int worldX = worldCol * gp.tileSize;
             int worldY = worldRow * gp.tileSize;
             int screenX = worldX - gp.player.worldX + gp.player.screenX;

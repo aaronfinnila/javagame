@@ -9,7 +9,7 @@ true
 bigrocktr.png
 true
 brickwall.png
-false
+true
 goddess1_bl.png
 true
 goddess1_br.png

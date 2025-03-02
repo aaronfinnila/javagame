@@ -47,7 +47,7 @@ public class EventHandler {
             canTouchEvent = true;
         }
         if (canTouchEvent == true) {
-            if (hit(0,31,31,"any") == true) {teleportPlayer(0, 31, 31);}
+            if (hit(0,31,31,"any") == true) {teleportPlayer(1, 14, 38);}
             /*             if (hit(0, 38, 10, "up") == true && gp.keyH.ePressed == true && eventRect[0][38][10].eventDone == false) {healingStatue(0, 38, 10, gp.dialogueState);} */
         }
     }
