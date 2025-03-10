@@ -104,3 +104,11 @@ window.png
 true
 woodwall.png
 true
+wgtopleft.png
+true
+wgtopright.png
+true
+window.png
+false
+woodwall.png
+false

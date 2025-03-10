@@ -17,4 +17,11 @@ public class OBJ_Rowboat extends Entity {
         solidArea.height = 74;
         solidArea.width = gp.tileSize*2;
     }
+
+    public void use(Entity entity) {
+        if (gp.currentMap == 0 && gp.keyH.ePressed == true) {
+            gp.eHandler.teleportPlayer(1, 14, 38);
+            gp.changeMusic(17);
+        }
+    }
 }

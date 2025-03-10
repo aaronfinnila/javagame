@@ -34,6 +34,7 @@ public class Sound {
         soundURL[14] = getClass().getResource("/res/sound/hammer.wav");
         soundURL[15] = getClass().getResource("/res/sound/itstone1.wav");
         soundURL[16] = getClass().getResource("/res/sound/gameover.wav");
+        soundURL[17] = getClass().getResource("/res/sound/firstvillage.wav");
     }
 
     public void setFile(int i) {

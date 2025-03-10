@@ -48,7 +48,6 @@ public class TileManager {
         try {
             String line2 = br.readLine();
             String maxTile[] = line2.split(" ");
-            System.out.println(maxTile.length);
             gp.maxWorldCol = maxTile.length;
             gp.maxWorldRow = maxTile.length;
             mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow]; 
