@@ -36,6 +36,7 @@ public class GamePanel extends JPanel implements Runnable{
     public int maxWorldCol;
     public int maxWorldRow;
     public final int maxMap = 10;
+    public final int maxMapSize = 100;
     public int currentMap = 0;
 
     // FOR FULLSCREEN
@@ -359,6 +360,8 @@ public class GamePanel extends JPanel implements Runnable{
                 g2.drawString("WorldY " + player.worldY, x, y); y += lineHeight;
                 g2.drawString("Col " + (player.worldX + player.solidArea.x)/tileSize, x, y); y += lineHeight;
                 g2.drawString("Row " + (player.worldY + player.solidArea.y)/tileSize, x, y); y += lineHeight;
+                g2.drawString("maxWorldCol " + maxWorldCol, x, y); y += lineHeight;
+                g2.drawString("currentmap " + currentMap, x, y); y += lineHeight;
             }
     }
     }

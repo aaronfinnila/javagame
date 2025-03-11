@@ -140,13 +140,6 @@ public class KeyHandler implements KeyListener{
                 showDebug = false;
             }
         }
-
-        if (code == KeyEvent.VK_Y) {
-            switch(gp.currentMap) {
-                case 0: gp.tileM.loadMap("/res/maps/worldmap02.txt", 0); break;
-                case 1: gp.tileM.loadMap("/res/maps/worldmap02.txt", 1); break;
-            }
-        }
     }
 
     public void pauseState(int code) {

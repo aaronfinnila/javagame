@@ -41,21 +41,8 @@ public class TileManager {
 
         tile = new Tile[fileNames.size()];
         getTileImage();
-
-        is = getClass().getResourceAsStream("/res/maps/introisland.txt");
-        br = new BufferedReader(new InputStreamReader(is));
-
-        try {
-            String line2 = br.readLine();
-            String maxTile[] = line2.split(" ");
-            gp.maxWorldCol = maxTile.length;
-            gp.maxWorldRow = maxTile.length;
-            mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow]; 
-
-            br.close();
-        } catch (IOException e) {
-            System.out.println("Exception!");
-        }
+        mapTileNum = new int[gp.maxMap][gp.maxMapSize][gp.maxMapSize]; 
+        
         loadMap("/res/maps/introisland.txt", 0);
         loadMap("/res/maps/treasureisland.txt", 1);
     }
@@ -92,15 +79,17 @@ public void setup(int index, String imageName, boolean collision){
 
 public void loadMap(String filePath, int map) {
 
+    checkMapSize();
+
     try {
         InputStream is = getClass().getResourceAsStream(filePath);
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
         int col = 0;
         int row = 0;
-
+        
         while (col < gp.maxWorldCol && row < gp.maxWorldRow) {
-
+            
             String line = br.readLine();
 
             while (col < gp.maxWorldCol) {
@@ -126,11 +115,24 @@ public void loadMap(String filePath, int map) {
     };
 }
 
+public void checkMapSize() {
+    if (gp.currentMap == 0) {
+        gp.maxWorldCol = 50;
+        gp.maxWorldRow = 50;
+    }
+     if (gp.currentMap == 1) {
+        gp.maxWorldCol = 100;
+        gp.maxWorldRow = 100;
+     }
+}
+
     public void draw(Graphics2D g2) {
 
         int worldCol = 0;
         int worldRow = 0;
 
+        checkMapSize();
+        
         while (worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow) {
 
             int tileNum = mapTileNum[gp.currentMap][worldCol][worldRow];

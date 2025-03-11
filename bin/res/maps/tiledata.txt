@@ -100,9 +100,9 @@ water1.png
 true
 water2.png
 true
-window.png
+wgbottomleft.png
 true
-woodwall.png
+wgbottomright.png
 true
 wgtopleft.png
 true
