@@ -109,6 +109,6 @@ true
 wgtopright.png
 true
 window.png
-false
+true
 woodwall.png
-false
+true

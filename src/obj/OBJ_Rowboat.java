@@ -22,6 +22,7 @@ public class OBJ_Rowboat extends Entity {
         if (gp.currentMap == 0 && gp.keyH.ePressed == true) {
             gp.eHandler.teleportPlayer(1, 14, 38);
             gp.changeMusic(17);
+            gp.tileM.loadMap("/res/maps/treasureisland.txt", 1);
         }
     }
 }

@@ -44,7 +44,6 @@ public class TileManager {
         mapTileNum = new int[gp.maxMap][gp.maxMapSize][gp.maxMapSize]; 
         
         loadMap("/res/maps/introisland.txt", 0);
-        loadMap("/res/maps/treasureisland.txt", 1);
     }
 
     public void getTileImage() {
@@ -131,10 +130,8 @@ public void checkMapSize() {
         int worldCol = 0;
         int worldRow = 0;
 
-        checkMapSize();
-        
         while (worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow) {
-
+            
             int tileNum = mapTileNum[gp.currentMap][worldCol][worldRow];
             
             int worldX = worldCol * gp.tileSize;
