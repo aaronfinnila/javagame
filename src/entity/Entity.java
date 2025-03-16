@@ -269,10 +269,10 @@ public class Entity {
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
 
-        if (worldX + gp.tileSize*2 > gp.player.worldX - gp.player.screenX &&
-            worldX - gp.tileSize*2 < gp.player.worldX + gp.player.screenX && 
-            worldY + gp.tileSize*2 > gp.player.worldY - gp.player.screenY && 
-            worldY - gp.tileSize*2 < gp.player.worldY + gp.player.screenY) {
+        if (worldX + gp.screenWidth > gp.player.worldX - gp.player.screenX &&
+            worldX - gp.screenWidth < gp.player.worldX + gp.player.screenX && 
+            worldY + gp.screenHeight > gp.player.worldY - gp.player.screenY && 
+            worldY - gp.screenHeight < gp.player.worldY + gp.player.screenY) {
 
                 switch(direction) {
                     case "up":

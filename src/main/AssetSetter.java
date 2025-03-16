@@ -1,6 +1,8 @@
 package main;
 
 import entity.NPC_Rock;
+import obj.OBJ_House1;
+import obj.OBJ_House2;
 import obj.OBJ_Rowboat;
 
 public class AssetSetter {
@@ -19,23 +21,20 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = 33*gp.tileSize;
         gp.obj[mapNum][i].worldY = 31*gp.tileSize;
         i++;
-        mapNum++;
+        mapNum += 1;
+
         gp.obj[mapNum][i] = new OBJ_Rowboat(gp);
         gp.obj[mapNum][i].worldX = 12*gp.tileSize;
         gp.obj[mapNum][i].worldY = 38*gp.tileSize;
-        
-/*         gp.obj[mapNum][i] = new OBJ_Bow_Default(gp);
-        gp.obj[mapNum][i].worldX = 24*gp.tileSize;
-        gp.obj[mapNum][i].worldY = 24*gp.tileSize;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Hammer(gp);
-        gp.obj[mapNum][i].worldX = 23*gp.tileSize;
-        gp.obj[mapNum][i].worldY = 24*gp.tileSize;
+        gp.obj[mapNum][i] = new OBJ_House1(gp);
+        gp.obj[mapNum][i].worldX = 40*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 26*gp.tileSize;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Longsword(gp);
-        gp.obj[mapNum][i].worldX = 22*gp.tileSize;
-        gp.obj[mapNum][i].worldY = 24*gp.tileSize; */
-
+        gp.obj[mapNum][i] = new OBJ_House2(gp);
+        gp.obj[mapNum][i].worldX = 46*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 26*gp.tileSize;
+        i++;
     }
 
     public void setNPC() {
