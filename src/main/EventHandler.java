@@ -11,12 +11,16 @@ public class EventHandler {
     public EventHandler(GamePanel gp) {
         this.gp = gp;
 
-        eventRect = new EventRect[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
+/*         HARDCODED. MAKE TILEMAP ARRAY ADJUSTABLE OR MAKE ALL MAPS SAME SIZE
+ *         TO MAKE NOT HARDCODED
+ */
+
+        eventRect = new EventRect[gp.maxMap][100][100];
 
         int map = 0;
         int col = 0;
         int row = 0;
-        while (map < gp.maxMap && col < gp.maxWorldCol && row < gp.maxWorldRow) {
+        while (map < gp.maxMap && col < 100 && row < 100) {
 
             eventRect[map][col][row] = new EventRect();
             eventRect[map][col][row].x = 23;
@@ -27,10 +31,10 @@ public class EventHandler {
             eventRect[map][col][row].eventRectDefaultY = eventRect[map][col][row].y;
 
             col++;
-            if (col == gp.maxWorldCol) {
+            if (col == 100) {
                 col = 0;
                 row++;
-                if (row == gp.maxWorldRow) {
+                if (row == 100) {
                     row = 0;
                     map++;
                 }
@@ -47,8 +51,15 @@ public class EventHandler {
             canTouchEvent = true;
         }
         if (canTouchEvent == true) {
-/*             if (hit(0,31,31,"any") == true) {teleportPlayer(1, 14, 38);} */
-            /*             if (hit(0, 38, 10, "up") == true && gp.keyH.ePressed == true && eventRect[0][38][10].eventDone == false) {healingStatue(0, 38, 10, gp.dialogueState);} */
+            if (hit(1,42,33,"up") == true && gp.keyH.ePressed == true) {
+                gp.tileM.loadMap(2);
+                teleportPlayer(2, 50, 55);
+            }
+            if (hit(2,50,55,"down") == true && gp.keyH.ePressed == true) {
+                gp.tileM.loadMap(1);
+                teleportPlayer(1, 42, 33);
+            }
+            
         }
     }
 
@@ -101,6 +112,5 @@ public class EventHandler {
         previousEventX = gp.player.worldX;
         previousEventY = gp.player.worldY;
         canTouchEvent = false;
-        eventRect[map][col][row].eventDone = true;
     }
 }

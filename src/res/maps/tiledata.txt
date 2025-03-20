@@ -111,4 +111,6 @@ true
 window.png
 true
 woodwall.png
+false
+wzblacktile.png
 true
