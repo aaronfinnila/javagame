@@ -11,16 +11,12 @@ public class EventHandler {
     public EventHandler(GamePanel gp) {
         this.gp = gp;
 
-/*         HARDCODED. MAKE TILEMAP ARRAY ADJUSTABLE OR MAKE ALL MAPS SAME SIZE
- *         TO MAKE NOT HARDCODED
- */
-
-        eventRect = new EventRect[gp.maxMap][100][100];
+        eventRect = new EventRect[gp.maxMap][gp.maxMapSize][gp.maxMapSize];
 
         int map = 0;
         int col = 0;
         int row = 0;
-        while (map < gp.maxMap && col < 100 && row < 100) {
+        while (map < gp.maxMap && col < gp.maxMapSize && row < gp.maxMapSize) {
 
             eventRect[map][col][row] = new EventRect();
             eventRect[map][col][row].x = 23;
@@ -31,10 +27,10 @@ public class EventHandler {
             eventRect[map][col][row].eventRectDefaultY = eventRect[map][col][row].y;
 
             col++;
-            if (col == 100) {
+            if (col == gp.maxMapSize) {
                 col = 0;
                 row++;
-                if (row == 100) {
+                if (row == gp.maxMapSize) {
                     row = 0;
                     map++;
                 }
@@ -53,13 +49,12 @@ public class EventHandler {
         if (canTouchEvent == true) {
             if (hit(1,42,33,"up") == true && gp.keyH.ePressed == true) {
                 gp.tileM.loadMap(2);
-                teleportPlayer(2, 50, 55);
+                teleportPlayer(2, 50, 56);
             }
-            if (hit(2,50,55,"down") == true && gp.keyH.ePressed == true) {
+            if (hit(2,50,56,"down") == true && gp.keyH.ePressed == true) {
                 gp.tileM.loadMap(1);
                 teleportPlayer(1, 42, 33);
             }
-            
         }
     }
 

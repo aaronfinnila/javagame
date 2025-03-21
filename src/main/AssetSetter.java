@@ -47,9 +47,14 @@ public class AssetSetter {
         gp.npc[mapNum][i].worldX = 24 * gp.tileSize;
         gp.npc[mapNum][i].worldY = 21 * gp.tileSize;
         i++;
+
+        mapNum++;
+
+        mapNum++;
+
         gp.npc[mapNum][i] = new NPC_Rubert(gp);
-        gp.npc[mapNum][i].worldX = 23 * gp.tileSize;
-        gp.npc[mapNum][i].worldY = 30 * gp.tileSize;
+        gp.npc[mapNum][i].worldX = 50 * gp.tileSize;
+        gp.npc[mapNum][i].worldY = 50 * gp.tileSize;
         i++;
     }
 
