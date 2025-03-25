@@ -84,6 +84,7 @@ public void loadMap(int map) {
     if (map == 0) {filePath = "/res/maps/introisland.txt"; musicNum = 0;}
     if (map == 1) {filePath = "/res/maps/treasureisland.txt"; musicNum = 17;}
     if (map == 2) {filePath = "/res/maps/house1.txt"; musicNum = 18;}
+    if (map == 3) {filePath = "/res/maps/house2.txt"; musicNum = 18;}
 
     checkMapSize();
     gp.changeMusic(musicNum);

@@ -1,5 +1,6 @@
 package main;
 
+import entity.NPC_Kalsu;
 import entity.NPC_Rock;
 import entity.NPC_Rubert;
 import obj.OBJ_House1;
@@ -49,13 +50,22 @@ public class AssetSetter {
         i++;
 
         mapNum++;
+        i = 0;
 
         mapNum++;
+        i=0;
 
         gp.npc[mapNum][i] = new NPC_Rubert(gp);
         gp.npc[mapNum][i].worldX = 50 * gp.tileSize;
         gp.npc[mapNum][i].worldY = 50 * gp.tileSize;
         i++;
+
+        mapNum++;
+        i=0;
+
+        gp.npc[mapNum][i] = new NPC_Kalsu(gp);
+        gp.npc[mapNum][i].worldX = 50 * gp.tileSize;
+        gp.npc[mapNum][i].worldY = 45 * gp.tileSize;
     }
 
     public void setMonster() {

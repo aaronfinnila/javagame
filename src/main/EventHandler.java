@@ -55,6 +55,14 @@ public class EventHandler {
                 gp.tileM.loadMap(1);
                 teleportPlayer(1, 42, 33);
             }
+            if (hit(1,48,33,"up") == true && gp.keyH.ePressed == true) {
+                gp.tileM.loadMap(3);
+                teleportPlayer(3, 50, 56);
+            }
+            if (hit(3,50,56,"down") == true && gp.keyH.ePressed == true) {
+                gp.tileM.loadMap(1);
+                teleportPlayer(1, 48, 33);
+            }
         }
     }
 
