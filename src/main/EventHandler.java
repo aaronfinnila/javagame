@@ -11,12 +11,12 @@ public class EventHandler {
     public EventHandler(GamePanel gp) {
         this.gp = gp;
 
-        eventRect = new EventRect[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
+        eventRect = new EventRect[gp.maxMap][gp.maxMapSize][gp.maxMapSize];
 
         int map = 0;
         int col = 0;
         int row = 0;
-        while (map < gp.maxMap && col < gp.maxWorldCol && row < gp.maxWorldRow) {
+        while (map < gp.maxMap && col < gp.maxMapSize && row < gp.maxMapSize) {
 
             eventRect[map][col][row] = new EventRect();
             eventRect[map][col][row].x = 23;
@@ -27,10 +27,10 @@ public class EventHandler {
             eventRect[map][col][row].eventRectDefaultY = eventRect[map][col][row].y;
 
             col++;
-            if (col == gp.maxWorldCol) {
+            if (col == gp.maxMapSize) {
                 col = 0;
                 row++;
-                if (row == gp.maxWorldRow) {
+                if (row == gp.maxMapSize) {
                     row = 0;
                     map++;
                 }
@@ -47,8 +47,22 @@ public class EventHandler {
             canTouchEvent = true;
         }
         if (canTouchEvent == true) {
-/*             if (hit(0,31,31,"any") == true) {teleportPlayer(1, 14, 38);} */
-            /*             if (hit(0, 38, 10, "up") == true && gp.keyH.ePressed == true && eventRect[0][38][10].eventDone == false) {healingStatue(0, 38, 10, gp.dialogueState);} */
+            if (hit(1,42,33,"up") == true && gp.keyH.ePressed == true) {
+                gp.tileM.loadMap(2);
+                teleportPlayer(2, 50, 56);
+            }
+            if (hit(2,50,56,"down") == true && gp.keyH.ePressed == true) {
+                gp.tileM.loadMap(1);
+                teleportPlayer(1, 42, 33);
+            }
+            if (hit(1,48,33,"up") == true && gp.keyH.ePressed == true) {
+                gp.tileM.loadMap(3);
+                teleportPlayer(3, 50, 56);
+            }
+            if (hit(3,50,56,"down") == true && gp.keyH.ePressed == true) {
+                gp.tileM.loadMap(1);
+                teleportPlayer(1, 48, 33);
+            }
         }
     }
 
@@ -101,6 +115,5 @@ public class EventHandler {
         previousEventX = gp.player.worldX;
         previousEventY = gp.player.worldY;
         canTouchEvent = false;
-        eventRect[map][col][row].eventDone = true;
     }
 }

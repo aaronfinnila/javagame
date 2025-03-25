@@ -1,6 +1,10 @@
 package main;
 
+import entity.NPC_Kalsu;
 import entity.NPC_Rock;
+import entity.NPC_Rubert;
+import obj.OBJ_House1;
+import obj.OBJ_House2;
 import obj.OBJ_Rowboat;
 
 public class AssetSetter {
@@ -19,33 +23,49 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = 33*gp.tileSize;
         gp.obj[mapNum][i].worldY = 31*gp.tileSize;
         i++;
-        mapNum++;
+        mapNum += 1;
+
         gp.obj[mapNum][i] = new OBJ_Rowboat(gp);
         gp.obj[mapNum][i].worldX = 12*gp.tileSize;
         gp.obj[mapNum][i].worldY = 38*gp.tileSize;
-        
-/*         gp.obj[mapNum][i] = new OBJ_Bow_Default(gp);
-        gp.obj[mapNum][i].worldX = 24*gp.tileSize;
-        gp.obj[mapNum][i].worldY = 24*gp.tileSize;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Hammer(gp);
-        gp.obj[mapNum][i].worldX = 23*gp.tileSize;
-        gp.obj[mapNum][i].worldY = 24*gp.tileSize;
+        gp.obj[mapNum][i] = new OBJ_House1(gp);
+        gp.obj[mapNum][i].worldX = 40*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 26*gp.tileSize - 20;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Longsword(gp);
-        gp.obj[mapNum][i].worldX = 22*gp.tileSize;
-        gp.obj[mapNum][i].worldY = 24*gp.tileSize; */
-
+        gp.obj[mapNum][i] = new OBJ_House2(gp);
+        gp.obj[mapNum][i].worldX = 46*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 26*gp.tileSize - 20;
+        i++;
     }
 
     public void setNPC() {
 
         int mapNum = 0;
+        int i = 0;
 
-        gp.npc[mapNum][0] = new NPC_Rock(gp);
-        gp.npc[mapNum][0].worldX = 24 * gp.tileSize;
-        gp.npc[mapNum][0].worldY = 21 * gp.tileSize;
+        gp.npc[mapNum][i] = new NPC_Rock(gp);
+        gp.npc[mapNum][i].worldX = 24 * gp.tileSize;
+        gp.npc[mapNum][i].worldY = 21 * gp.tileSize;
+        i++;
 
+        mapNum++;
+        i = 0;
+
+        mapNum++;
+        i=0;
+
+        gp.npc[mapNum][i] = new NPC_Rubert(gp);
+        gp.npc[mapNum][i].worldX = 50 * gp.tileSize;
+        gp.npc[mapNum][i].worldY = 50 * gp.tileSize;
+        i++;
+
+        mapNum++;
+        i=0;
+
+        gp.npc[mapNum][i] = new NPC_Kalsu(gp);
+        gp.npc[mapNum][i].worldX = 50 * gp.tileSize;
+        gp.npc[mapNum][i].worldY = 45 * gp.tileSize;
     }
 
     public void setMonster() {

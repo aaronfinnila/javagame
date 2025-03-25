@@ -398,7 +398,7 @@ public void drawDialogueScreen() {
 
     // CONDITIONAL FONT SIZE
 
-    if (Arrays.asList(gp.npc[gp.currentMap][0].dialogues).contains(currentDialogue)) {
+    if (Arrays.asList(gp.npc[0][0].dialogues).contains(currentDialogue)) {
         textSize = 20;
     }
 
@@ -413,6 +413,8 @@ public void drawDialogueScreen() {
     if (gp.ui.currentDialogue.equals("You drink the Red Potion!\nYour health has been\nreplenished by 4.")) {
         textSize = 30;
     }
+
+    // DIALOGUE 
 
     g2.setFont(g2.getFont().deriveFont(Font.PLAIN, textSize));
     x += gp.tileSize - 5;

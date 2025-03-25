@@ -43,8 +43,7 @@ public class TileManager {
         getTileImage();
         mapTileNum = new int[gp.maxMap][gp.maxMapSize][gp.maxMapSize]; 
         
-        loadMap("/res/maps/introisland.txt", 0);
-        loadMap("/res/maps/treasureisland.txt", 1);
+        loadMap(0);
     }
 
     public void getTileImage() {
@@ -77,9 +76,18 @@ public void setup(int index, String imageName, boolean collision){
     }
 }
 
-public void loadMap(String filePath, int map) {
+public void loadMap(int map) {
+
+    String filePath = "";
+    int musicNum = 0;
+
+    if (map == 0) {filePath = "/res/maps/introisland.txt"; musicNum = 0;}
+    if (map == 1) {filePath = "/res/maps/treasureisland.txt"; musicNum = 17;}
+    if (map == 2) {filePath = "/res/maps/house1.txt"; musicNum = 18;}
+    if (map == 3) {filePath = "/res/maps/house2.txt"; musicNum = 18;}
 
     checkMapSize();
+    gp.changeMusic(musicNum);
 
     try {
         InputStream is = getClass().getResourceAsStream(filePath);
@@ -131,10 +139,8 @@ public void checkMapSize() {
         int worldCol = 0;
         int worldRow = 0;
 
-        checkMapSize();
-        
         while (worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow) {
-
+            
             int tileNum = mapTileNum[gp.currentMap][worldCol][worldRow];
             
             int worldX = worldCol * gp.tileSize;
