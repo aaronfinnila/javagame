@@ -41,7 +41,9 @@ public void speak() {
         gp.obj[gp.currentMap][0].worldX = 50*gp.tileSize;
         gp.obj[gp.currentMap][0].worldY = 50*gp.tileSize;
         usedObject = true;
+        dialogues[2] = null;
     }
+     
 }
 
 @Override
