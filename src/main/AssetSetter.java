@@ -6,6 +6,7 @@ import entity.NPC_Rubert;
 import obj.OBJ_House1;
 import obj.OBJ_House2;
 import obj.OBJ_Rowboat;
+import obj.OBJ_Waterfountain1;
 
 public class AssetSetter {
 
@@ -36,6 +37,10 @@ public class AssetSetter {
         gp.obj[mapNum][i] = new OBJ_House2(gp);
         gp.obj[mapNum][i].worldX = 46*gp.tileSize;
         gp.obj[mapNum][i].worldY = 26*gp.tileSize - 20;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Waterfountain1(gp);
+        gp.obj[mapNum][i].worldX = 67*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 36*gp.tileSize;
         i++;
     }
 
