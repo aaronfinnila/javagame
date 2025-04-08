@@ -101,18 +101,18 @@ public class MON_Slime extends Entity {
             case "left":
                 direction = "right";
                 break;
-            case "right":
+                case "right":
                 direction = "left";
                 break;
+            }
+        }
+
+        public void checkDrop() {
+        
+            int i = new Random().nextInt(100)+1;
+    
+            if (i < 2) {
+                dropItem(new OBJ_Coin(gp));
+            }   
         }
     }
-
-    public void checkDrop() {
-
-        int i = new Random().nextInt(100)+1;
-
-        if (i < 2) {
-            dropItem(new OBJ_Coin(gp));
-        }
-    }
-}

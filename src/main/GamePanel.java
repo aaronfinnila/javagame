@@ -114,7 +114,7 @@ public class GamePanel extends JPanel implements Runnable{
             setFullscreen();
         }
     }
-
+    
     public void retry() {
 
         player.setDefaultPositions();
