@@ -241,6 +241,14 @@ public class GamePanel extends JPanel implements Runnable{
                     iTile[currentMap][i].update();
                 }
             }
+
+            // ANIMATED OBJECT
+
+            for (int i = 0; i < obj[1].length; i++) {
+                if (obj[currentMap][i] != null && obj[currentMap][i].type == 11) {
+                    obj[currentMap][i].update();
+                }
+            }
         }
     }
 

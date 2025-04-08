@@ -89,7 +89,7 @@ public class Entity {
     // TYPE
 
     public int type; /* 0 = player, 1 = npc, 2 = monster, 3 = sword, 4 = shield, 5 = shoot,
-    6 = consumable, 7 = pickup only, 8 = static object, 9 = hammer, 10 = interactive tile */
+    6 = consumable, 7 = pickup only, 8 = static object, 9 = hammer, 10 = interactive tile, 11 = animated object */
 
     public Entity(GamePanel gp) {
         this.gp = gp;

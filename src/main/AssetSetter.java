@@ -3,10 +3,12 @@ package main;
 import entity.NPC_Kalsu;
 import entity.NPC_Rock;
 import entity.NPC_Rubert;
+import obj.OBJ_Bench;
 import obj.OBJ_House1;
 import obj.OBJ_House2;
 import obj.OBJ_Rowboat;
-import obj.OBJ_Waterfountain1;
+import obj.OBJ_Store;
+import obj.OBJ_Waterfountain;
 
 public class AssetSetter {
 
@@ -38,9 +40,17 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = 46*gp.tileSize;
         gp.obj[mapNum][i].worldY = 26*gp.tileSize - 20;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Waterfountain1(gp);
+        gp.obj[mapNum][i] = new OBJ_Waterfountain(gp);
         gp.obj[mapNum][i].worldX = 67*gp.tileSize;
         gp.obj[mapNum][i].worldY = 36*gp.tileSize;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Bench(gp);
+        gp.obj[mapNum][i].worldX = 56*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 36*gp.tileSize-20;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Store(gp);
+        gp.obj[mapNum][i].worldX = 64*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 19*gp.tileSize;
         i++;
     }
 

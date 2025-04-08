@@ -408,6 +408,10 @@ public void getPlayerShootImage() {
                 gp.obj[gp.currentMap][i].use(this);
             }
 
+            else if (type == 11) {
+                
+            }
+
             // INVENTORY ITEMS
 
             else {

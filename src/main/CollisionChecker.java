@@ -89,6 +89,7 @@ public class CollisionChecker {
                     entity.solidArea.x += entity.speed;
                     break;
                 }
+
                 if (entity.solidArea.intersects(gp.obj[gp.currentMap][i].solidArea)) {
                     if (gp.obj[gp.currentMap][i].collision == true) {
                         entity.collisionOn = true;
@@ -97,6 +98,7 @@ public class CollisionChecker {
                         index = i;
                     }
                 }
+                
                 entity.solidArea.x = entity.solidAreaDefaultX;
                 entity.solidArea.y = entity.solidAreaDefaultY;
                 gp.obj[gp.currentMap][i].solidArea.x = gp.obj[gp.currentMap][i].solidAreaDefaultX;
