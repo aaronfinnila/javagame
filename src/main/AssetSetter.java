@@ -4,6 +4,7 @@ import entity.NPC_Kalsu;
 import entity.NPC_Rock;
 import entity.NPC_Rubert;
 import obj.OBJ_Bench;
+import obj.OBJ_Hitbox1;
 import obj.OBJ_House1;
 import obj.OBJ_House2;
 import obj.OBJ_Rowboat;
@@ -51,6 +52,22 @@ public class AssetSetter {
         gp.obj[mapNum][i] = new OBJ_Store(gp);
         gp.obj[mapNum][i].worldX = 64*gp.tileSize;
         gp.obj[mapNum][i].worldY = 19*gp.tileSize;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 68*gp.tileSize-10;
+        gp.obj[mapNum][i].worldY = 27*gp.tileSize;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 65*gp.tileSize-50;
+        gp.obj[mapNum][i].worldY = 27*gp.tileSize;
+        gp.obj[mapNum][i].solidArea.width = 20;
+        gp.obj[mapNum][i].solidArea.height = gp.tileSize*2+20;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 69*gp.tileSize-50;
+        gp.obj[mapNum][i].worldY = 27*gp.tileSize;
+        gp.obj[mapNum][i].solidArea.width = 20;
+        gp.obj[mapNum][i].solidArea.height = gp.tileSize*2+20;
         i++;
     }
 
