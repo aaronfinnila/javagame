@@ -6,7 +6,9 @@ import entity.NPC_Rubert;
 import obj.OBJ_Bench;
 import obj.OBJ_Hitbox1;
 import obj.OBJ_House1;
+import obj.OBJ_House1_Interior;
 import obj.OBJ_House2;
+import obj.OBJ_House2_Interior;
 import obj.OBJ_Rowboat;
 import obj.OBJ_Store;
 import obj.OBJ_Waterfountain;
@@ -68,6 +70,32 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldY = 27*gp.tileSize;
         gp.obj[mapNum][i].solidArea.width = 20;
         gp.obj[mapNum][i].solidArea.height = gp.tileSize*2+20;
+        i++;
+
+        mapNum += 1;
+
+        gp.obj[mapNum][i] = new OBJ_House1_Interior(gp);
+        gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
+        gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 47*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 45*gp.tileSize;
+        gp.obj[mapNum][i].solidArea.width = 20;
+        gp.obj[mapNum][i].solidArea.height = 20;
+        i++;
+
+        mapNum += 1;
+
+        gp.obj[mapNum][i] = new OBJ_House2_Interior(gp);
+        gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
+        gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 54*gp.tileSize+9;
+        gp.obj[mapNum][i].worldY = 44*gp.tileSize;
+        gp.obj[mapNum][i].solidArea.width = 40;
+        gp.obj[mapNum][i].solidArea.height = 70;
         i++;
     }
 
