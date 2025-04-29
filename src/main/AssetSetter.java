@@ -11,6 +11,7 @@ import obj.OBJ_House2;
 import obj.OBJ_House2_Interior;
 import obj.OBJ_Rowboat;
 import obj.OBJ_Store;
+import obj.OBJ_Table1;
 import obj.OBJ_Waterfountain;
 
 public class AssetSetter {
@@ -84,6 +85,10 @@ public class AssetSetter {
         gp.obj[mapNum][i].solidArea.width = 20;
         gp.obj[mapNum][i].solidArea.height = 20;
         i++;
+/*         gp.obj[mapNum][i] = new OBJ_Table1(gp);
+        gp.obj[mapNum][i].worldX = 53*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 44*gp.tileSize-15;
+        i++; */
 
         mapNum += 1;
 
@@ -118,6 +123,10 @@ public class AssetSetter {
         gp.npc[mapNum][i] = new NPC_Rubert(gp);
         gp.npc[mapNum][i].worldX = 50 * gp.tileSize;
         gp.npc[mapNum][i].worldY = 50 * gp.tileSize;
+        i++;
+        gp.npc[mapNum][i] = new OBJ_Table1(gp);
+        gp.npc[mapNum][i].worldX = 53*gp.tileSize;
+        gp.npc[mapNum][i].worldY = 44*gp.tileSize-15;
         i++;
 
         mapNum++;

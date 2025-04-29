@@ -414,7 +414,7 @@ public void getPlayerShootImage() {
 
             // INVENTORY ITEMS
 
-            else {
+            else if (type == 3 || type == 4 || type == 5 || type == 6 || type == 9) {
                 if (inventory.size() != inventorySize) {
                     if (objectName == "Creamor Key") {hasKey++;}
                     inventory.add(gp.obj[gp.currentMap][i]);
