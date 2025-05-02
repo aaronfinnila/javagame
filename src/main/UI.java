@@ -396,9 +396,16 @@ public void drawDialogueScreen() {
 
     drawSubWindow(x, y, width, height);
 
-    // CONDITIONAL FONT SIZE
+    // CONDITIONAL FONT SIZE, MAP NUMBER FIRST SECOND NUMBER NPC
 
     if (Arrays.asList(gp.npc[0][0].dialogues).contains(currentDialogue)) {
+        textSize = 20;
+    }
+
+    if (Arrays.asList(gp.npc[2][1].dialogues).contains(currentDialogue)) {
+        textSize = 20;
+    }
+    if (Arrays.asList(gp.npc[2][2].dialogues).contains(currentDialogue)) {
         textSize = 20;
     }
 
