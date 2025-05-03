@@ -385,7 +385,6 @@ public void drawPauseScreen() {
 
 public void drawDialogueScreen() {
 
-     
     // WINDOW
 
     int x = gp.tileSize * 2;
@@ -410,6 +409,9 @@ public void drawDialogueScreen() {
     }
 
     if (gp.ui.currentDialogue.equals("The goddess statue fills you with joy.\nYour health has been replenished.")) {
+        textSize = 20;
+    }
+    if (gp.ui.currentDialogue.equals("Oh, right! Because THIS one will be the one who gets\nit all! SURELY he won't end up like the rest, RIIGHT???")) {
         textSize = 20;
     }
 

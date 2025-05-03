@@ -11,6 +11,7 @@ import obj.OBJ_House2;
 import obj.OBJ_House2_Interior;
 import obj.OBJ_Rowboat;
 import obj.OBJ_Store;
+import obj.OBJ_Store_Interior;
 import obj.OBJ_Table1;
 import obj.OBJ_Table2;
 import obj.OBJ_Waterfountain;
@@ -46,7 +47,7 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldY = 26*gp.tileSize - 20;
         i++;
         gp.obj[mapNum][i] = new OBJ_Waterfountain(gp);
-        gp.obj[mapNum][i].worldX = 67*gp.tileSize;
+        gp.obj[mapNum][i].worldX = 65*gp.tileSize;
         gp.obj[mapNum][i].worldY = 36*gp.tileSize;
         i++;
         gp.obj[mapNum][i] = new OBJ_Bench(gp);
@@ -86,10 +87,6 @@ public class AssetSetter {
         gp.obj[mapNum][i].solidArea.width = 20;
         gp.obj[mapNum][i].solidArea.height = 20;
         i++;
-/*         gp.obj[mapNum][i] = new OBJ_Table1(gp);
-        gp.obj[mapNum][i].worldX = 53*gp.tileSize;
-        gp.obj[mapNum][i].worldY = 44*gp.tileSize-15;
-        i++; */
 
         mapNum += 1;
 
@@ -103,6 +100,14 @@ public class AssetSetter {
         gp.obj[mapNum][i].solidArea.width = 40;
         gp.obj[mapNum][i].solidArea.height = 70;
         i++;
+
+        mapNum += 1;
+
+        gp.obj[mapNum][i] = new OBJ_Store_Interior(gp);
+        gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
+        gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
+        i++;
+
     }
 
     public void setNPC() {
