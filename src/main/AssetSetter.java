@@ -107,7 +107,76 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
         gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
         i++;
-
+        // shelves
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 52*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 45*gp.tileSize;
+        gp.obj[mapNum][i].solidArea.width = 120*3;
+        gp.obj[mapNum][i].solidArea.height = 27;
+        i++;
+        // plant
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 57*gp.tileSize+30;
+        gp.obj[mapNum][i].worldY = 45*gp.tileSize;
+        gp.obj[mapNum][i].solidArea.width = 30*3;
+        gp.obj[mapNum][i].solidArea.height = 37*3;
+        i++;
+        // plant table
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 53*gp.tileSize+18;
+        gp.obj[mapNum][i].worldY = 49*gp.tileSize-40;
+        gp.obj[mapNum][i].solidArea.width = 172;
+        gp.obj[mapNum][i].solidArea.height = 100;
+        i++;
+        // meat table
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 53*gp.tileSize+18;
+        gp.obj[mapNum][i].worldY = 52*gp.tileSize-19;
+        gp.obj[mapNum][i].solidArea.width = 172;
+        gp.obj[mapNum][i].solidArea.height = 100;
+        i++;
+        // flour shelf
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 47*gp.tileSize+12;
+        gp.obj[mapNum][i].worldY = 52*gp.tileSize-19;
+        gp.obj[mapNum][i].solidArea.width = 172;
+        gp.obj[mapNum][i].solidArea.height = 100;
+        i++;
+        // flower shelf
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 47*gp.tileSize+12;
+        gp.obj[mapNum][i].worldY = 48*gp.tileSize+10;
+        gp.obj[mapNum][i].solidArea.width = 172;
+        gp.obj[mapNum][i].solidArea.height = 100;
+        i++;
+        // botright flower
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 58*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 54*gp.tileSize+16;
+        gp.obj[mapNum][i].solidArea.width = 16*3;
+        gp.obj[mapNum][i].solidArea.height = 37*3;
+        i++;
+        // botleft flower
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 45*gp.tileSize+16;
+        gp.obj[mapNum][i].worldY = 52*gp.tileSize+28;
+        gp.obj[mapNum][i].solidArea.width = 16*2;
+        gp.obj[mapNum][i].solidArea.height = 37*2;
+        i++;
+        // topleft flower
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 45*gp.tileSize+31;
+        gp.obj[mapNum][i].worldY = 48*gp.tileSize+16;
+        gp.obj[mapNum][i].solidArea.width = 32;
+        gp.obj[mapNum][i].solidArea.height = 74;
+        i++;
+        // desk
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 47*gp.tileSize-70;
+        gp.obj[mapNum][i].worldY = 45*gp.tileSize+25;
+        gp.obj[mapNum][i].solidArea.width = 305;
+        gp.obj[mapNum][i].solidArea.height = 49;
+        i++;
     }
 
     public void setNPC() {
