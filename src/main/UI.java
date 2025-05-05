@@ -36,6 +36,8 @@ public class UI {
     public int slotRow = 0;
     public int itemIndexOnSlot = 0;
     public int subState = 0;
+    int counter = 0;
+    public boolean darken = false;
 
     public UI(GamePanel gp) {
 
@@ -176,6 +178,12 @@ public class UI {
         
         if (gp.gameState == gp.gameOverState) {
             drawGameOverScreen();
+        }
+
+        // TRANSITION STATE
+
+        if (gp.gameState == gp.transitionState) {
+            drawTransition();
         }
     }
 
@@ -811,6 +819,32 @@ public void options_endGameConfirmation(int frameX, int frameY) {
         if (gp.keyH.spacePressed == true) {
             subState = 0;
             commandNumber = 4;
+        }
+    }
+}
+
+public void drawTransition() {
+
+    if (darken == false) {
+        counter++;
+    }
+    g2.setColor(new Color(0,0,0,counter*5));
+    g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+    
+    if (counter == 50) {
+        gp.player.worldX = gp.tileSize * gp.eHandler.tempCol;
+        gp.player.worldY = gp.tileSize * gp.eHandler.tempRow;
+        gp.currentMap = gp.eHandler.tempMap;
+        gp.tileM.loadMap(gp.eHandler.tempMap);
+        gp.eHandler.previousEventX = gp.player.worldX;
+        gp.eHandler.previousEventY = gp.player.worldY;
+        darken = true;
+    }
+    if (darken == true) {
+        counter--;
+        if (counter == 0) {
+            gp.gameState = gp.playState;
+            darken = false;
         }
     }
 }

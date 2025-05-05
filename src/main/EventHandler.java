@@ -7,6 +7,7 @@ public class EventHandler {
 
     int previousEventX, previousEventY;
     boolean canTouchEvent = false;
+    int tempMap, tempCol, tempRow;
 
     public EventHandler(GamePanel gp) {
         this.gp = gp;
@@ -48,27 +49,21 @@ public class EventHandler {
         }
         if (canTouchEvent == true) {
             if (hit(1,42,33,"up") == true && gp.keyH.ePressed == true) {
-                gp.tileM.loadMap(2);
                 teleportPlayer(2, 50, 56);
             }
             if (hit(2,50,56,"down") == true && gp.keyH.ePressed == true) {
-                gp.tileM.loadMap(1);
                 teleportPlayer(1, 42, 33);
             }
             if (hit(1,48,33,"up") == true && gp.keyH.ePressed == true) {
-                gp.tileM.loadMap(3);
                 teleportPlayer(3, 50, 56);
             }
             if (hit(3,50,56,"down") == true && gp.keyH.ePressed == true) {
-                gp.tileM.loadMap(1);
                 teleportPlayer(1, 48, 33);
             }
             if (hit(1,66,27,"up") == true && gp.keyH.ePressed == true) {
-                gp.tileM.loadMap(4);
                 teleportPlayer(4, 47, 56);
             }
             if (hit(4,47,56,"down") == true && gp.keyH.ePressed == true) {
-                gp.tileM.loadMap(1);
                 teleportPlayer(1, 66, 27);
             }
         }
@@ -117,11 +112,10 @@ public class EventHandler {
 
     public void teleportPlayer(int map, int col, int row) {
 
-        gp.currentMap = map;
-        gp.player.worldX = gp.tileSize * col;
-        gp.player.worldY = gp.tileSize * row;
-        previousEventX = gp.player.worldX;
-        previousEventY = gp.player.worldY;
+        gp.gameState = gp.transitionState;
+        tempMap = map;
+        tempCol = col;
+        tempRow = row;
         canTouchEvent = false;
     }
 }
