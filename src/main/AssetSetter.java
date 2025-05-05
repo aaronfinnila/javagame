@@ -1,6 +1,7 @@
 package main;
 
 import entity.NPC_Kalsu;
+import entity.NPC_Michael;
 import entity.NPC_Rock;
 import entity.NPC_Rubert;
 import obj.OBJ_Bench;
@@ -28,11 +29,15 @@ public class AssetSetter {
         int mapNum = 0;
         int i = 0;
 
+        // starter island
+
         gp.obj[mapNum][i] = new OBJ_Rowboat(gp);
         gp.obj[mapNum][i].worldX = 33*gp.tileSize;
         gp.obj[mapNum][i].worldY = 31*gp.tileSize;
         i++;
         mapNum += 1;
+
+        // treasure island
 
         gp.obj[mapNum][i] = new OBJ_Rowboat(gp);
         gp.obj[mapNum][i].worldX = 12*gp.tileSize;
@@ -77,6 +82,8 @@ public class AssetSetter {
 
         mapNum += 1;
 
+        // house1
+
         gp.obj[mapNum][i] = new OBJ_House1_Interior(gp);
         gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
         gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
@@ -90,6 +97,8 @@ public class AssetSetter {
 
         mapNum += 1;
 
+        // house2
+
         gp.obj[mapNum][i] = new OBJ_House2_Interior(gp);
         gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
         gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
@@ -102,6 +111,8 @@ public class AssetSetter {
         i++;
 
         mapNum += 1;
+
+        // store
 
         gp.obj[mapNum][i] = new OBJ_Store_Interior(gp);
         gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
@@ -184,6 +195,8 @@ public class AssetSetter {
         int mapNum = 0;
         int i = 0;
 
+        // starter island
+
         gp.npc[mapNum][i] = new NPC_Rock(gp);
         gp.npc[mapNum][i].worldX = 24 * gp.tileSize;
         gp.npc[mapNum][i].worldY = 21 * gp.tileSize;
@@ -192,8 +205,12 @@ public class AssetSetter {
         mapNum++;
         i = 0;
 
+        // treasure island
+
         mapNum++;
         i=0;
+
+        // house1
 
         gp.npc[mapNum][i] = new NPC_Rubert(gp);
         gp.npc[mapNum][i].worldX = 50 * gp.tileSize;
@@ -211,9 +228,22 @@ public class AssetSetter {
         mapNum++;
         i=0;
 
+        // house2
+
         gp.npc[mapNum][i] = new NPC_Kalsu(gp);
         gp.npc[mapNum][i].worldX = 50 * gp.tileSize;
         gp.npc[mapNum][i].worldY = 45 * gp.tileSize;
+
+        mapNum++;
+        i=0;
+
+        // store
+
+        gp.npc[mapNum][i] = new NPC_Michael(gp);
+        gp.npc[mapNum][i].worldX = 48 * gp.tileSize;
+        gp.npc[mapNum][i].worldY = 45 * gp.tileSize - 15;
+
+
     }
 
     public void setMonster() {

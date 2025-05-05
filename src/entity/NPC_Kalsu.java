@@ -15,7 +15,7 @@ public class NPC_Kalsu extends Entity {
         setDialogue();
     }
 
-    public void getImage() {
+public void getImage() {
     down1 = setup("/res/npc/kalsu", gp.tileSize, gp.tileSize);
 }
 
