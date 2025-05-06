@@ -14,9 +14,10 @@ public class OBJ_Potion_Red extends Entity {
         type = 6;
         name = "Red Potion";
         healingValue = 4;
+        price = 20;
         down1 = setup("/res/objects/redpotion", gp.tileSize, gp.tileSize);
         image = down1;
-        description = "Replenishes your health.";
+        description = name + "\n\nReplenishes your health.";
     }
 
     public void use(Entity entity) {

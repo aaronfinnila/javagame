@@ -158,7 +158,11 @@ public class KeyHandler implements KeyListener{
             if (gp.ui.currentDialogue.equals("You are now level " + gp.player.level + "!\nYou feel stronger than before!")) {
                 gp.playMusic(0);
             }
-            gp.gameState = gp.playState;
+            if (gp.ui.subState != 0) {
+                gp.gameState = gp.tradeState;
+            } else {
+                gp.gameState = gp.playState;
+            }
     }
 
     }
@@ -283,6 +287,18 @@ public class KeyHandler implements KeyListener{
             npcInventory(code);
             if (code == KeyEvent.VK_ESCAPE) {
                 gp.ui.subState = 0;
+                gp.ui.npc.speak();
+                gp.ui.npcSlotCol = 0;
+                gp.ui.npcSlotRow = 0;
+            }
+        }
+        if (gp.ui.subState == 2) {
+            playerInventory(code);
+            if (code == KeyEvent.VK_ESCAPE) {
+                gp.ui.subState = 0;
+                gp.ui.npc.speak();
+                gp.ui.playerSlotCol = 0;
+                gp.ui.playerSlotRow = 0;
             }
         }
     }

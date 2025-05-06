@@ -17,7 +17,9 @@ public class OBJ_Arrow extends Projectile {
         maxHealth = 80;
         health = maxHealth;
         attack = 1;
+        description = name + "\n\nA quiver of 5 arrows.";
         useCost = 1;
+        price = 15;
         type = 7;
         alive = false;
         up1 = setup("/res/projectile/arrow_up_1", gp.tileSize, gp.tileSize);

@@ -12,13 +12,14 @@ import java.util.Arrays;
 
 import entity.Entity;
 import obj.OBJ_Arrow;
+import obj.OBJ_Coin;
 import obj.OBJ_Heart;
 
 public class UI {
 
     GamePanel gp;
     Graphics2D g2;
-    BufferedImage heart_full, heart_half, heart_empty, arrow;
+    BufferedImage heart_full, heart_half, heart_empty, arrow, coin;
     Font arial_40, arial_80B, arial_50B, ocraext, consola;
     public boolean messageOn = false;
     public boolean goldMessageOn = false;
@@ -65,6 +66,8 @@ public class UI {
         heart_full = heart.image;
         Entity arrowEnt = new OBJ_Arrow(gp);
         arrow = arrowEnt.image;
+        Entity goldCoin = new OBJ_Coin(gp);
+        coin = goldCoin.down1;
     }
 
     public void showMessage(String text) {
@@ -510,6 +513,7 @@ public void drawCharacterScreen() {
     g2.drawString("Arrows", textX, textY);
     textY += lineHeight;
     g2.drawString("Gold", textX, textY);
+    g2.drawImage(coin,textX+gp.tileSize+14, textY-17, 20, 20, null);
     textY += lineHeight + 15;
     g2.drawString("Weapon:", textX, textY);
     textY += lineHeight + 15;
@@ -923,6 +927,7 @@ public void trade_select() {
         g2.drawString(">", x-24, y);
         if (gp.keyH.spacePressed == true) {
             subState = 1;
+            gp.keyH.spacePressed = false;
         }
     }
     y += gp.tileSize;
@@ -951,19 +956,113 @@ public void trade_buy() {
     drawInventory(gp.player, false);
     drawInventory(npc, true);
     
+    // DRAW BOTTOM RIGHT GOLD WINDOW
+
     int x = gp.tileSize*12;
     int y = gp.tileSize*7-10;
-    int height = gp.tileSize*4;
+    int height = (int)(gp.tileSize*1.5);
     int width = gp.tileSize*6-10;
     drawSubWindow(x, y, width, height);
     g2.setFont(consola.deriveFont(25F));
     String text = "Current gold: " + gp.player.gold;
-    int textX = getXforCenteredText(text)+(int)(gp.tileSize*4.5)+6;
+    int textX = getXforCenteredText(text)+(int)(gp.tileSize*4.5)+17;
     int textY = gp.tileSize*8-12;
     g2.drawString(text, textX, textY);
+
+    // DRAW PRICE WINDOW
+
+    int itemIndex = itemIndexOnSlot;
+    if (itemIndex < npc.inventory.size()) {
+
+        x = (int)(gp.tileSize*5.5-12);
+        y = (int)(gp.tileSize*6+12);
+        width = (int)(gp.tileSize*2.5);
+        height = gp.tileSize;
+        drawSubWindow(x, y, width, height);
+        g2.drawImage(coin, x+12, y+12, 25, 25, null);
+
+        int price = npc.inventory.get(itemIndex).price;
+        text = "" + price;
+        x = getXforAlignToRightText(text, gp.tileSize*8);
+        g2.drawString(text,x-26,y+32);
+
+        // BUY ITEM
+
+        if (gp.keyH.spacePressed == true) {
+            if (npc.inventory.get(itemIndex).price > gp.player.gold) {
+                subState = 1;
+                currentDialogue = "You need more gold!";
+                gp.gameState = gp.dialogueState;
+            }
+            else if (gp.player.inventory.size() == gp.player.maxInventorySize) {
+                subState = 1;
+                currentDialogue = "You cannot carry any more!";
+                gp.gameState = gp.dialogueState;
+            } else {
+                gp.player.gold -= npc.inventory.get(itemIndex).price;
+                gp.player.inventory.add(npc.inventory.get(itemIndex));
+                gp.playSE(1);
+                currentDialogue = "You bought the " + npc.inventory.get(itemIndex).name + "!";
+                gp.gameState = gp.dialogueState;
+                npc.inventory.remove(itemIndex);
+                subState = 1;
+            }
+        }
+    }
 }
 public void trade_sell() {
+    // DRAW PLAYER INVENTORY
+    drawInventory(gp.player, true);
 
+    int x = gp.tileSize*2;
+    int y = gp.tileSize*7-10;
+    int height = (int)(gp.tileSize*1.5);
+    int width = gp.tileSize*6-10;
+    drawSubWindow(x, y, width, height);
+    g2.setFont(consola.deriveFont(25F));
+    String text = "Current gold: " + gp.player.gold;
+    int textX = getXforCenteredText(text)-(int)(gp.tileSize*4.5)-30;
+    int textY = gp.tileSize*8-12;
+    g2.drawString(text, textX, textY);
+
+    // DRAW PRICE WINDOW
+
+    int itemIndex = itemIndexOnSlot;
+    if (itemIndex < gp.player.inventory.size()) {
+
+        x = (int)(gp.tileSize*15.5-12);
+        y = (int)(gp.tileSize*6+12);
+        width = (int)(gp.tileSize*2.5);
+        height = gp.tileSize;
+        drawSubWindow(x, y, width, height);
+        g2.drawImage(coin, x+12, y+12, 25, 25, null);
+
+        int price = gp.player.inventory.get(itemIndex).price;
+        text = "" + price;
+        x = getXforAlignToRightText(text, gp.tileSize*18);
+        g2.drawString(text,x-26,y+32);
+
+        // SELL ITEM
+
+        if (gp.keyH.spacePressed == true) {
+             if (gp.player.inventory.get(itemIndex) == gp.player.currentWeapon
+             || gp.player.inventory.get(itemIndex) == gp.player.currentShield 
+             || gp.player.inventory.get(itemIndex) == gp.player.currentShoot) {
+                commandNumber = 0;
+                subState = 2;
+                currentDialogue = "You cannot sell an equipped item!";
+                gp.gameState = gp.dialogueState;
+            } else {
+                gp.player.gold += price*0.5;
+                gp.playSE(1);
+                currentDialogue = "You sold the " + npc.inventory.get(itemIndex).name + "!";
+                gp.gameState = gp.dialogueState;
+                subState = 2; 
+                gp.player.inventory.remove(itemIndex);
+            }
+             
+        }
+    }
 }
 
 public int getXforCenteredText(String text) {

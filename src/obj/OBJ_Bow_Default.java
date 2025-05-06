@@ -13,6 +13,7 @@ public class OBJ_Bow_Default extends Entity {
         image = down1;
         attackValue = 1;
         type = 5;
+        price = 50;
         description = name + "\n\nSolid wooden bow made of\nacacia.";
     }
 }

@@ -58,7 +58,7 @@ public class Player extends Entity {
         dexterity = 1;
         exp = 0;
         nextLevelExp = 5;
-        gold = 0;
+        gold = 50;
         currentWeapon = new OBJ_Sword_Default(gp);
         currentShield = new OBJ_Shield_Default(gp);
         projectile = new OBJ_Arrow(gp);
@@ -412,7 +412,7 @@ public void getPlayerShootImage() {
             // INVENTORY ITEMS
 
             else if (type == 3 || type == 4 || type == 5 || type == 6 || type == 9) {
-                if (inventory.size() != inventorySize) {
+                if (inventory.size() != maxInventorySize) {
                     if (objectName == "Creamor Key") {hasKey++;}
                     inventory.add(gp.obj[gp.currentMap][i]);
                     gp.playSE(1);
