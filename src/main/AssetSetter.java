@@ -233,6 +233,7 @@ public class AssetSetter {
         gp.npc[mapNum][i] = new NPC_Kalsu(gp);
         gp.npc[mapNum][i].worldX = 50 * gp.tileSize;
         gp.npc[mapNum][i].worldY = 45 * gp.tileSize;
+        i++;
 
         mapNum++;
         i=0;
@@ -241,8 +242,10 @@ public class AssetSetter {
 
         gp.npc[mapNum][i] = new NPC_Michael(gp);
         gp.npc[mapNum][i].worldX = 48 * gp.tileSize;
-        gp.npc[mapNum][i].worldY = 45 * gp.tileSize - 15;
+        gp.npc[mapNum][i].worldY = 45 * gp.tileSize-15;
+        gp.npc[mapNum][i].solidArea.height = 90;
 
+        i++;
 
     }
 

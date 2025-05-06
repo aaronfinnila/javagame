@@ -79,36 +79,34 @@ public void setup(int index, String imageName, boolean collision){
 public void loadMap(int map) {
 
     String filePath = "";
-    int musicNum = 0;
 
-    if (map == 0) {filePath = "/res/maps/introisland.txt"; musicNum = 0;}
-    if (map == 1) {filePath = "/res/maps/treasureisland.txt"; musicNum = 17;}
-    if (map == 2) {filePath = "/res/maps/house1.txt"; musicNum = 18;}
-    if (map == 3) {filePath = "/res/maps/house2.txt"; musicNum = 19;}
-    if (map == 4) {filePath = "/res/maps/store.txt"; musicNum = 20;}
+    if (map == 0) {filePath = "/res/maps/introisland.txt";}
+    if (map == 1) {filePath = "/res/maps/treasureisland.txt";}
+    if (map == 2) {filePath = "/res/maps/house1.txt";}
+    if (map == 3) {filePath = "/res/maps/house2.txt";}
+    if (map == 4) {filePath = "/res/maps/store.txt";}
 
     checkMapSize();
-    gp.changeMusic(musicNum);
-
+    
     try {
         InputStream is = getClass().getResourceAsStream(filePath);
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
-
+        
         int col = 0;
         int row = 0;
         
         while (col < gp.maxWorldCol && row < gp.maxWorldRow) {
             
             String line = br.readLine();
-
+            
             while (col < gp.maxWorldCol) {
-
+                
                 String numbers[] = line.split(" ");
-
+                
                 int num = Integer.parseInt(numbers[col]);
-
+                
                 mapTileNum[map][col][row] = num;
-
+                
                 col++;
             }
             if(col == gp.maxWorldCol) {
@@ -116,7 +114,7 @@ public void loadMap(int map) {
                 row++;
             }
         }
-
+        
         br.close();
 
     } catch (Exception e){
