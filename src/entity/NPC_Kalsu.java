@@ -3,7 +3,6 @@ package entity;
 import java.awt.Graphics2D;
 
 import main.GamePanel;
-import obj.OBJ_Bow_Default;
 
 public class NPC_Kalsu extends Entity {
 
@@ -16,14 +15,19 @@ public class NPC_Kalsu extends Entity {
         setDialogue();
     }
 
-    public void getImage() {
+public void getImage() {
     down1 = setup("/res/npc/kalsu", gp.tileSize, gp.tileSize);
 }
 
 public void setDialogue() {
-    dialogues[0] = "Vihree kuula";
-    dialogues[1] = "Elos vaan kale";
-    dialogues[2] = "Ota tämmöne";
+    dialogues[0] = "Yes, my queen...";
+    dialogues[1] = "Oh yes, you shall have them all...";
+    dialogues[2] = "Oh, it seems we have a guest.";
+    dialogues[3] = "Who does he think he is, intruding\nupon our private space?";
+    dialogues[4] = "He looks like a foreigner, doesn't\nhe?";
+    dialogues[5] = "Another GRAND ADVENTURER, coming\nfor the LEGENDARY TREASURE, huh?";
+    dialogues[6] = "Oh, right! Because THIS one will be the one who gets\nit all! SURELY he won't end up like the rest, RIIGHT???";
+    dialogues[7] = "And then we will be waiting...\nwon't we, my queen? Oh yes, yes\nwe will...";
 }
 
 public void setAction() {}
@@ -35,15 +39,6 @@ public void speak() {
 
     gp.ui.currentDialogue = dialogues[dialogueIndex];
     dialogueIndex++;
-
-    if (dialogueIndex == 3 && usedObject == false) {
-        gp.obj[gp.currentMap][0] = new OBJ_Bow_Default(gp);
-        gp.obj[gp.currentMap][0].worldX = 50*gp.tileSize;
-        gp.obj[gp.currentMap][0].worldY = 50*gp.tileSize;
-        usedObject = true;
-        dialogues[2] = null;
-    }
-     
 }
 
 @Override

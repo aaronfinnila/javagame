@@ -15,6 +15,7 @@ public class OBJ_Hammer extends Entity {
         attackArea.width = 34;
         attackArea.height = 36;
         type = 9;
+        price = 60;
         description = name + "\n\nSolid hammer. Often used\nfor breaking rocks.";
     }
 }

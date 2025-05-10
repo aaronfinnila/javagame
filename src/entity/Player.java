@@ -3,7 +3,6 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 import main.GamePanel;
 import main.KeyHandler;
@@ -19,8 +18,6 @@ public class Player extends Entity {
 
     public final int screenX;
     public final int screenY;
-    public ArrayList<Entity> inventory = new ArrayList<>();
-    public final int inventorySize = 25;
 
     public Player(GamePanel gp, KeyHandler keyH, TileManager tileM) {
 
@@ -61,7 +58,7 @@ public class Player extends Entity {
         dexterity = 1;
         exp = 0;
         nextLevelExp = 5;
-        gold = 0;
+        gold = 50;
         currentWeapon = new OBJ_Sword_Default(gp);
         currentShield = new OBJ_Shield_Default(gp);
         projectile = new OBJ_Arrow(gp);
@@ -414,8 +411,8 @@ public void getPlayerShootImage() {
 
             // INVENTORY ITEMS
 
-            else {
-                if (inventory.size() != inventorySize) {
+            else if (type == 3 || type == 4 || type == 5 || type == 6 || type == 9) {
+                if (inventory.size() != maxInventorySize) {
                     if (objectName == "Creamor Key") {hasKey++;}
                     inventory.add(gp.obj[gp.currentMap][i]);
                     gp.playSE(1);

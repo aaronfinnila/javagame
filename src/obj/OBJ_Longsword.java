@@ -15,6 +15,7 @@ public class OBJ_Longsword extends Entity {
         attackArea.width = 46;
         attackArea.height = 46;
         type = 3;
+        price = 65;
         description = name + "\n\nMade of solid steel. Has\nincreased range compared\nto regular swords.";
     }
 }

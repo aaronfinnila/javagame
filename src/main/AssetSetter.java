@@ -1,6 +1,7 @@
 package main;
 
 import entity.NPC_Kalsu;
+import entity.NPC_Michael;
 import entity.NPC_Rock;
 import entity.NPC_Rubert;
 import obj.OBJ_Bench;
@@ -11,6 +12,9 @@ import obj.OBJ_House2;
 import obj.OBJ_House2_Interior;
 import obj.OBJ_Rowboat;
 import obj.OBJ_Store;
+import obj.OBJ_Store_Interior;
+import obj.OBJ_Table1;
+import obj.OBJ_Table2;
 import obj.OBJ_Waterfountain;
 
 public class AssetSetter {
@@ -25,11 +29,15 @@ public class AssetSetter {
         int mapNum = 0;
         int i = 0;
 
+        // starter island
+
         gp.obj[mapNum][i] = new OBJ_Rowboat(gp);
         gp.obj[mapNum][i].worldX = 33*gp.tileSize;
         gp.obj[mapNum][i].worldY = 31*gp.tileSize;
         i++;
         mapNum += 1;
+
+        // treasure island
 
         gp.obj[mapNum][i] = new OBJ_Rowboat(gp);
         gp.obj[mapNum][i].worldX = 12*gp.tileSize;
@@ -44,7 +52,7 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldY = 26*gp.tileSize - 20;
         i++;
         gp.obj[mapNum][i] = new OBJ_Waterfountain(gp);
-        gp.obj[mapNum][i].worldX = 67*gp.tileSize;
+        gp.obj[mapNum][i].worldX = 65*gp.tileSize;
         gp.obj[mapNum][i].worldY = 36*gp.tileSize;
         i++;
         gp.obj[mapNum][i] = new OBJ_Bench(gp);
@@ -74,6 +82,8 @@ public class AssetSetter {
 
         mapNum += 1;
 
+        // house1
+
         gp.obj[mapNum][i] = new OBJ_House1_Interior(gp);
         gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
         gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
@@ -87,6 +97,8 @@ public class AssetSetter {
 
         mapNum += 1;
 
+        // house2
+
         gp.obj[mapNum][i] = new OBJ_House2_Interior(gp);
         gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
         gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
@@ -97,12 +109,93 @@ public class AssetSetter {
         gp.obj[mapNum][i].solidArea.width = 40;
         gp.obj[mapNum][i].solidArea.height = 70;
         i++;
+
+        mapNum += 1;
+
+        // store
+
+        gp.obj[mapNum][i] = new OBJ_Store_Interior(gp);
+        gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
+        gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
+        i++;
+        // shelves
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 52*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 45*gp.tileSize;
+        gp.obj[mapNum][i].solidArea.width = 120*3;
+        gp.obj[mapNum][i].solidArea.height = 27;
+        i++;
+        // plant
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 57*gp.tileSize+30;
+        gp.obj[mapNum][i].worldY = 45*gp.tileSize;
+        gp.obj[mapNum][i].solidArea.width = 30*3;
+        gp.obj[mapNum][i].solidArea.height = 37*3;
+        i++;
+        // plant table
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 53*gp.tileSize+18;
+        gp.obj[mapNum][i].worldY = 49*gp.tileSize-40;
+        gp.obj[mapNum][i].solidArea.width = 172;
+        gp.obj[mapNum][i].solidArea.height = 100;
+        i++;
+        // meat table
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 53*gp.tileSize+18;
+        gp.obj[mapNum][i].worldY = 52*gp.tileSize-19;
+        gp.obj[mapNum][i].solidArea.width = 172;
+        gp.obj[mapNum][i].solidArea.height = 100;
+        i++;
+        // flour shelf
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 47*gp.tileSize+12;
+        gp.obj[mapNum][i].worldY = 52*gp.tileSize-19;
+        gp.obj[mapNum][i].solidArea.width = 172;
+        gp.obj[mapNum][i].solidArea.height = 100;
+        i++;
+        // flower shelf
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 47*gp.tileSize+12;
+        gp.obj[mapNum][i].worldY = 48*gp.tileSize+10;
+        gp.obj[mapNum][i].solidArea.width = 172;
+        gp.obj[mapNum][i].solidArea.height = 100;
+        i++;
+        // botright flower
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 58*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 54*gp.tileSize+16;
+        gp.obj[mapNum][i].solidArea.width = 16*3;
+        gp.obj[mapNum][i].solidArea.height = 37*3;
+        i++;
+        // botleft flower
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 45*gp.tileSize+16;
+        gp.obj[mapNum][i].worldY = 52*gp.tileSize+28;
+        gp.obj[mapNum][i].solidArea.width = 16*2;
+        gp.obj[mapNum][i].solidArea.height = 37*2;
+        i++;
+        // topleft flower
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 45*gp.tileSize+31;
+        gp.obj[mapNum][i].worldY = 48*gp.tileSize+16;
+        gp.obj[mapNum][i].solidArea.width = 32;
+        gp.obj[mapNum][i].solidArea.height = 74;
+        i++;
+        // desk
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 47*gp.tileSize-70;
+        gp.obj[mapNum][i].worldY = 45*gp.tileSize+25;
+        gp.obj[mapNum][i].solidArea.width = 305;
+        gp.obj[mapNum][i].solidArea.height = 49;
+        i++;
     }
 
     public void setNPC() {
 
         int mapNum = 0;
         int i = 0;
+
+        // starter island
 
         gp.npc[mapNum][i] = new NPC_Rock(gp);
         gp.npc[mapNum][i].worldX = 24 * gp.tileSize;
@@ -112,20 +205,48 @@ public class AssetSetter {
         mapNum++;
         i = 0;
 
+        // treasure island
+
         mapNum++;
         i=0;
+
+        // house1
 
         gp.npc[mapNum][i] = new NPC_Rubert(gp);
         gp.npc[mapNum][i].worldX = 50 * gp.tileSize;
         gp.npc[mapNum][i].worldY = 50 * gp.tileSize;
         i++;
+        gp.npc[mapNum][i] = new OBJ_Table1(gp);
+        gp.npc[mapNum][i].worldX = 53*gp.tileSize;
+        gp.npc[mapNum][i].worldY = 44*gp.tileSize-15;
+        i++;
+        gp.npc[mapNum][i] = new OBJ_Table2(gp);
+        gp.npc[mapNum][i].worldX = 47*gp.tileSize;
+        gp.npc[mapNum][i].worldY = 45*gp.tileSize;
+        i++;
 
         mapNum++;
         i=0;
 
+        // house2
+
         gp.npc[mapNum][i] = new NPC_Kalsu(gp);
         gp.npc[mapNum][i].worldX = 50 * gp.tileSize;
         gp.npc[mapNum][i].worldY = 45 * gp.tileSize;
+        i++;
+
+        mapNum++;
+        i=0;
+
+        // store
+
+        gp.npc[mapNum][i] = new NPC_Michael(gp);
+        gp.npc[mapNum][i].worldX = 48 * gp.tileSize;
+        gp.npc[mapNum][i].worldY = 45 * gp.tileSize-15;
+        gp.npc[mapNum][i].solidArea.height = 90;
+
+        i++;
+
     }
 
     public void setMonster() {
