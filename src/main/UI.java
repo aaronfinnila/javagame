@@ -858,7 +858,9 @@ public void drawTransition() {
 
     if (darken == false) {
         counter++;
-        gp.stopMusic();
+        if (counter > 1 && counter < 3) {
+            gp.stopMusic();
+        }
     }
     g2.setColor(new Color(0,0,0,counter*5));
     g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
@@ -879,10 +881,10 @@ public void drawTransition() {
             darken = false;
             switch (gp.eHandler.tempMap) {
                 case 0: gp.playMusic(0); break;
-                case 1: gp.playMusic(17); break;
-                case 2: gp.playMusic(18); break;
-                case 3: gp.playMusic(19); break;
-                case 4: gp.playMusic(20); break;
+                case 1: gp.playMusic(17);System.out.println("1"); break;
+                case 2: gp.playMusic(18); System.out.println("2"); break;
+                case 3: gp.playMusic(19); System.out.println("3"); break;
+                case 4: gp.playMusic(20); System.out.println("4"); break;
             }
         }
     }
@@ -936,6 +938,7 @@ public void trade_select() {
         g2.drawString(">", x-24, y);
         if (gp.keyH.spacePressed == true) {
             subState = 2;
+            gp.keyH.spacePressed = false;
         }
     }
     y += gp.tileSize;
@@ -1055,7 +1058,7 @@ public void trade_sell() {
             } else {
                 gp.player.gold += price*0.5;
                 gp.playSE(1);
-                currentDialogue = "You sold the " + npc.inventory.get(itemIndex).name + "!";
+                currentDialogue = "You sold the " + gp.player.inventory.get(itemIndex).name + "!";
                 gp.gameState = gp.dialogueState;
                 subState = 2; 
                 gp.player.inventory.remove(itemIndex);

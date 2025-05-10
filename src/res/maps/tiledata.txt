@@ -9,7 +9,7 @@ true
 004.png
 true
 005.png
-true
+false
 006.png
 true
 007.png
@@ -109,9 +109,9 @@ true
 054.png
 true
 055.png
-true
+false
 056.png
-true
+false
 057.png
 true
 058.png
@@ -171,12 +171,8 @@ false
 085.png
 false
 086.png
-<<<<<<< HEAD
-true
-=======
 true
 087.png
 false
 088.png
 false
->>>>>>> bb1adcfbf940d4f8da8afd454fcfb6d147ee744a

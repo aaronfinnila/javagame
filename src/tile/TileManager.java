@@ -66,9 +66,6 @@ public class TileManager {
     }
 
 public void setup(int index, String imageName, boolean collision){
-    System.out.println(index);
-    System.out.println(collision);
-    System.out.println(imageName);
     try {
         tile[index] = new Tile();
         tile[index].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/" + imageName));
