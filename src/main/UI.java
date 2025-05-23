@@ -881,10 +881,10 @@ public void drawTransition() {
             darken = false;
             switch (gp.eHandler.tempMap) {
                 case 0: gp.playMusic(0); break;
-                case 1: gp.playMusic(17);System.out.println("1"); break;
-                case 2: gp.playMusic(18); System.out.println("2"); break;
-                case 3: gp.playMusic(19); System.out.println("3"); break;
-                case 4: gp.playMusic(20); System.out.println("4"); break;
+                case 1: gp.playMusic(17); break;
+                case 2: gp.playMusic(18); break;
+                case 3: gp.playMusic(19); break;
+                case 4: gp.playMusic(20); break;
             }
         }
     }
