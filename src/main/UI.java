@@ -1061,6 +1061,7 @@ public void trade_sell() {
                 currentDialogue = "You sold the " + gp.player.inventory.get(itemIndex).name + "!";
                 gp.gameState = gp.dialogueState;
                 subState = 2; 
+                npc.inventory.add(gp.player.inventory.get(itemIndex));
                 gp.player.inventory.remove(itemIndex);
             }
              
