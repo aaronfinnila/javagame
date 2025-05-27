@@ -22,5 +22,8 @@ public class OBJ_Rowboat extends Entity {
         if (gp.currentMap == 0 && gp.keyH.ePressed == true) {
             gp.eHandler.teleportPlayer(1, 14, 38);
         }
+        if (gp.currentMap == 1 && gp.keyH.ePressed == true) {
+            gp.eHandler.teleportPlayer(0, 32, 31);
+        }
     }
 }
