@@ -83,7 +83,6 @@ public class PathFinder {
                 node[col][row].solid = true;
             }
 
-            
             // SET COST
             getCost(node[col][row]);
             

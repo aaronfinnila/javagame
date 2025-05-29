@@ -4,6 +4,7 @@ import entity.NPC_Kalsu;
 import entity.NPC_Michael;
 import entity.NPC_Rock;
 import entity.NPC_Rubert;
+import monster.MON_Slime;
 import obj.OBJ_Bench;
 import obj.OBJ_Hitbox1;
 import obj.OBJ_House1;
@@ -201,7 +202,11 @@ public class AssetSetter {
         gp.npc[mapNum][i].worldX = 24 * gp.tileSize;
         gp.npc[mapNum][i].worldY = 21 * gp.tileSize;
         i++;
-
+        gp.npc[mapNum][i] = new NPC_Rubert(gp);
+        gp.npc[mapNum][i].worldX = 30 * gp.tileSize;
+        gp.npc[mapNum][i].worldY = 24 * gp.tileSize;
+        i++;
+        
         mapNum++;
         i = 0;
 
@@ -251,7 +256,13 @@ public class AssetSetter {
 
     public void setMonster() {
 
-/*         int mapNum = 0; */
+        int mapNum = 0;
+        int i = 0;
+
+        gp.monster[mapNum][i] = new MON_Slime(gp);
+        gp.monster[mapNum][i].worldX = 33 * gp.tileSize;
+        gp.monster[mapNum][i].worldY = 22 * gp.tileSize;
+        i++;
     }
 
     public void setInteractiveTile() {

@@ -16,8 +16,8 @@ public class NPC_Rubert extends Entity {
 
         solidArea.x = 8;
         solidArea.y = 16;
-        solidArea.width = 32;
-        solidArea.height = 32;
+        solidArea.width = 30;
+        solidArea.height = 30;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
     }
@@ -45,8 +45,8 @@ public void setDialogue() {
 public void setAction() {
 
     if (onPath == true) {
-        int goalCol = 54;
-        int goalRow = 46;
+        int goalCol = (gp.player.worldX + gp.player.solidArea.x)/gp.tileSize;
+        int goalRow = (gp.player.worldY + gp.player.solidArea.y)/gp.tileSize;
         searchPath(goalCol, goalRow);
     } else {
         actionLockCounter++;
