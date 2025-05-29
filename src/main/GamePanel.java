@@ -395,7 +395,6 @@ public class GamePanel extends JPanel implements Runnable{
             music.loop();
             musicPlaying = true;
         }
-        System.out.println("musicplay " + i );
     }
 
     public void stopMusic() {
@@ -403,12 +402,10 @@ public class GamePanel extends JPanel implements Runnable{
             music.stop();
             musicPlaying = false;
         }
-        System.out.println("musicstop");
     }
     public void changeMusic(int i, int delay) {
         stopMusic();
         playMusic(i);
-        System.out.println("musicswitch");
     }
     public void playSE(int i) {
         se.setFile(i);

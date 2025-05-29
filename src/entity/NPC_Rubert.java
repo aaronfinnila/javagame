@@ -13,7 +13,15 @@ public class NPC_Rubert extends Entity {
         speed = 1;
         getImage();
         setDialogue();
+
+        solidArea.x = 8;
+        solidArea.y = 16;
+        solidArea.width = 32;
+        solidArea.height = 32;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
     }
+
     public void getImage() {
 
     up1 = setup("/res/npc/rubert_up_1", gp.tileSize, gp.tileSize);
@@ -37,8 +45,8 @@ public void setDialogue() {
 public void setAction() {
 
     if (onPath == true) {
-        int goalCol = 46;
-        int goalRow = 54;
+        int goalCol = 54;
+        int goalRow = 46;
         searchPath(goalCol, goalRow);
     } else {
         actionLockCounter++;
@@ -64,9 +72,11 @@ public void setAction() {
         }
     }
 }
+
 public void speak() {
     super.speak();
 
     onPath = true;
 }
+
 }

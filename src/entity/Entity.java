@@ -362,6 +362,13 @@ public class Entity {
 
         public void searchPath(int goalCol, int goalRow) {
 
+            solidArea.x = 8;
+            solidArea.y = 16;
+            solidArea.width = 30;
+            solidArea.height = 30;
+            solidAreaDefaultX = solidArea.x;
+            solidAreaDefaultY = solidArea.y;
+
             int startCol = (worldX + solidArea.x)/gp.tileSize;
             int startRow = (worldY + solidArea.y)/gp.tileSize;
 
@@ -379,13 +386,25 @@ public class Entity {
                 int enTopY = worldY + solidArea.y;
                 int enBottomY = worldY + solidArea.y + solidArea.height;
 
+                System.out.println(enLeftX + "lx");
+                System.out.println(enRightX + "rx");
+                System.out.println(enBottomY + "by");
+                System.out.println(enTopY + "ty");
+                System.out.println(nextX + "nx");
+                System.out.println(nextY + "ny");
+
+                System.out.println(direction);
+
                 if (enTopY > nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize) {
                     direction = "up";
+                    System.out.println("upnorm");
                 }
                 else if (enTopY < nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize) {
                     direction = "down";
+                    System.out.println("downnorm");
                 }
                 else if (enTopY >= nextY && enBottomY < nextY + gp.tileSize) {
+                    System.out.println("left or right");
                     // LEFT OR RIGHT
                     if (enLeftX > nextX) {
                         direction = "left";
@@ -396,15 +415,18 @@ public class Entity {
                 }
                 else if (enTopY > nextY && enLeftX > nextX) {
                     // UP OR LEFT
+                    System.out.println("else if up1");
                     direction = "up";
                     checkCollision();
                     if (collisionOn == true) {
+                        System.out.println("collision, go left");
                         direction = "left";
                     }
                 }
                 else if (enTopY > nextY && enLeftX < nextX) {
                     // UP OR RIGHT
                     direction = "up";
+                    System.out.println("else if up2");
                     checkCollision();
                     if (collisionOn == true) {
                         direction = "right";
@@ -413,6 +435,7 @@ public class Entity {
                 else if (enTopY < nextY && enLeftX > nextX) {
                     // DOWN OR LEFT
                     direction = "down";
+                    System.out.println("else if down1");
                     checkCollision();
                     if (collisionOn == true) {
                         direction = "left";
@@ -421,18 +444,25 @@ public class Entity {
                 else if (enTopY < nextY && enLeftX < nextX) {
                     // DOWN OR RIGHT
                     direction = "down";
+                    System.out.println("else if down2");
                     checkCollision();
                     if (collisionOn == true) {
                         direction = "right";
                     }
                 }
-            }
-
-            // IF GOAL IS REACHED, STOP SEARCH
-            int nextCol = gp.pFinder.pathList.get(0).col;
-            int nextRow = gp.pFinder.pathList.get(0).row;
-            if (nextCol == goalCol && nextRow == goalRow) {
-                onPath = false;
+                // IF GOAL IS REACHED, STOP SEARCH
+                int nextCol = gp.pFinder.pathList.get(0).col;
+                int nextRow = gp.pFinder.pathList.get(0).row;
+                if (nextCol == goalCol && nextRow == goalRow) {
+                    System.out.println("end");
+                    onPath = false;
+                    solidArea.x = 0;
+                    solidArea.y = 0;
+                    solidArea.width = 48;
+                    solidArea.height = 48;
+                    solidAreaDefaultX = solidArea.x;
+                    solidAreaDefaultY = solidArea.y;
+                }
             }
         }
     }

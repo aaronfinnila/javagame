@@ -26,12 +26,12 @@ public class PathFinder {
         int col = 0;
         int row = 0;
 
-        while (col < gp.maxWorldCol && row < gp.maxWorldRow) {
+        while (col < gp.maxMapSize && row < gp.maxMapSize) {
 
             node[col][row] = new Node(col, row);
             
             col++;
-            if (col == gp.maxWorldCol) {
+            if (col == gp.maxMapSize) {
                 col = 0;
                 row++;
             }
@@ -43,18 +43,14 @@ public class PathFinder {
         int col = 0;
         int row = 0;
 
-        while (col < gp.maxWorldCol && row < gp.maxWorldRow) {
-            // TODO fix this, trying to assign to null values because node array is initialized with 100 size
-            System.out.println(col);
-            System.out.println(row);
-            System.out.println(gp.maxWorldCol);
-            System.out.println(gp.maxWorldRow);
+        while (col < gp.maxMapSize && row < gp.maxMapSize) {
+
             node[col][row].open = false;
             node[col][row].checked = false;
             node[col][row].solid = false;
 
             col++;
-            if (col == gp.maxWorldCol) {
+            if (col == gp.maxMapSize) {
                 col = 0;
                 row++;
             }
@@ -79,7 +75,7 @@ public class PathFinder {
         int col = 0;
         int row = 0;
 
-        while (col < gp.maxWorldCol && row < gp.maxWorldRow) {
+        while (col < gp.maxMapSize && row < gp.maxMapSize) {
 
             // SET SOLID NODE AND CHECK TILES
             int tileNum = gp.tileM.mapTileNum[gp.currentMap][col][row];
@@ -92,13 +88,14 @@ public class PathFinder {
             getCost(node[col][row]);
             
             col++;
-            if (col == gp.maxWorldCol) {
+            if (col == gp.maxMapSize) {
                 col = 0;
                 row++;
             }
         }
+
         for (int i = 0; i < gp.iTile[1].length; i++) {
-            if (gp.iTile[gp.currentMap][i].destructible == true && gp.iTile[gp.currentMap][i] != null) {
+            if (gp.iTile[gp.currentMap][i] != null && gp.iTile[gp.currentMap][i].destructible == true) {
                 int itCol = gp.iTile[gp.currentMap][i].worldX/gp.tileSize;
                 int itRow = gp.iTile[gp.currentMap][i].worldY/gp.tileSize;
                 node[itCol][itRow].solid = true;
@@ -143,7 +140,7 @@ public class PathFinder {
             if (row + 1 < gp.maxWorldRow) {
                 openNode(node[col][row+1]);
             }
-            if (col + 1 < gp.maxWorldCol) {
+            if (col + 1 < gp.maxMapSize) {
                 openNode(node[col+1][row]);
             }
 
