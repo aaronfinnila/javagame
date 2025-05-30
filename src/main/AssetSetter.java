@@ -17,6 +17,7 @@ import obj.OBJ_Store_Interior;
 import obj.OBJ_Table1;
 import obj.OBJ_Table2;
 import obj.OBJ_Waterfountain;
+import tile_interactive.IT_SmallRock;
 
 public class AssetSetter {
 
@@ -267,7 +268,14 @@ public class AssetSetter {
 
     public void setInteractiveTile() {
 
-/*         int mapNum = 0;
-        int i = 0; */
+        int mapNum = 0;
+        int i = 0;
+
+        gp.iTile[mapNum][i] = new IT_SmallRock(gp, 17, 30);
+        i++;
+        gp.iTile[mapNum][i] = new IT_SmallRock(gp, 17, 29);
+        i++;
+        gp.iTile[mapNum][i] = new IT_SmallRock(gp, 17, 28);
+        i++;
     }
 }

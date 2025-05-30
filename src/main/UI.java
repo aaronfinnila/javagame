@@ -172,6 +172,8 @@ public class UI {
         if (gp.gameState == gp.characterState) {
             drawCharacterScreen();
             drawInventory(gp.player, true);
+            gp.player.attacking = false;
+            gp.player.attackCounter = 0;
         }
 
         // OPTIONS STATE
@@ -228,8 +230,6 @@ public void drawInventory(Entity entity, boolean cursor) {
     int slotX = slotXstart;
     int slotY = slotYstart;
     int slotXCount = 0;
-    @SuppressWarnings("unused")
-    int slotYCount = 0;
 
     for (Entity e : entity.inventory) {
         
@@ -243,7 +243,6 @@ public void drawInventory(Entity entity, boolean cursor) {
         if (slotXCount > 4) {
             slotY += gp.tileSize;
             slotX = slotXstart;
-            slotYCount++;
             slotXCount = 0;
         }
     }

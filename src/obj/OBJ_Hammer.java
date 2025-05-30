@@ -11,7 +11,7 @@ public class OBJ_Hammer extends Entity {
         name = "Hammer";
         down1 = setup("/res/objects/hammer",gp.tileSize,gp.tileSize);
         image = down1;
-        attackValue = 2;
+        attackValue = 1;
         attackArea.width = 34;
         attackArea.height = 36;
         type = 9;

@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 import main.GamePanel;
 import main.KeyHandler;
 import obj.OBJ_Arrow;
+import obj.OBJ_Bow_Default;
+import obj.OBJ_Hammer;
 import obj.OBJ_Shield_Default;
 import obj.OBJ_Sword_Default;
 import tile.TileManager;
@@ -50,7 +52,7 @@ public class Player extends Entity {
         speed = 4;
         maxHealth = 6;
         health = maxHealth;
-        arrows = 5;
+        arrows = 50;
         level = 1;
         strength = 1;
         dexterity = 1;
@@ -59,6 +61,7 @@ public class Player extends Entity {
         gold = 50;
         currentWeapon = new OBJ_Sword_Default(gp);
         currentShield = new OBJ_Shield_Default(gp);
+        currentShoot = new OBJ_Bow_Default(gp);
         projectile = new OBJ_Arrow(gp);
         attack = getAttack();
         defense = getDefense();
@@ -82,6 +85,8 @@ public class Player extends Entity {
         inventory.clear();
         inventory.add(currentWeapon);
         inventory.add(currentShield);
+        inventory.add(currentShoot);
+        inventory.add(new OBJ_Hammer(gp));
     }
 
     public int getAttack() {
@@ -313,7 +318,12 @@ public void getPlayerShootImage() {
         if (shootCounter > 25 && gp.keyH.shootKeyPressed == false) {
             shootNum = 4;
             projectile.set(worldX, worldY+5, direction, true, this);
-            gp.projectileList.add(projectile);
+            for (int j=0;j<gp.projectile[1].length;j++) {
+                if (gp.projectile[gp.currentMap][j] == null) {
+                    gp.projectile[gp.currentMap][j] = projectile;
+                    break;
+                }
+            }
             shotAvailableCounter = 0;
             gp.playSE(11);
             projectile.subtractResource(this);
@@ -327,6 +337,7 @@ public void getPlayerShootImage() {
 
     public void attacking() {
 
+        //TODO: attack cooldown counter to avoid spamming attack for deflect
         attackCounter++;
 
         if (attackCounter > 0 && attackCounter < 2) {
@@ -367,6 +378,9 @@ public void getPlayerShootImage() {
 
             int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
             damageInteractiveTile(iTileIndex);
+
+            int projectileIndex = gp.cChecker.checkEntity(this, gp.projectile);
+            damageProjectile(projectileIndex);
 
             // After checking collision, restore original values
     
@@ -491,6 +505,14 @@ public void getPlayerShootImage() {
             if (gp.iTile[gp.currentMap][i].health <= 0) {
                 gp.iTile[gp.currentMap][i] = null;
             }
+        }
+    }
+
+    public void damageProjectile(int i) {
+        if (i != 999 && currentWeapon.type == 3) {
+            Entity projectil = gp.projectile[gp.currentMap][i];
+            projectil.alive = false;
+            generateParticle(projectil, projectil);
         }
     }
 

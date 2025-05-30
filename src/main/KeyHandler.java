@@ -146,7 +146,7 @@ public class KeyHandler implements KeyListener{
     }
 
     public void pauseState(int code) {
-        if (code == KeyEvent.VK_P) {
+        if (code == KeyEvent.VK_P || code == KeyEvent.VK_ESCAPE) {
             gp.gameState = gp.playState;
             gp.playMusic(0);
             gp.musicPlaying = true;
@@ -167,7 +167,7 @@ public class KeyHandler implements KeyListener{
 
     }
     public void characterState(int code) {
-        if (code == KeyEvent.VK_C) {
+        if (code == KeyEvent.VK_C || code == KeyEvent.VK_ESCAPE) {
             gp.ui.playerSlotCol = 0;
             gp.ui.playerSlotRow = 0;
             gp.gameState = gp.playState;
