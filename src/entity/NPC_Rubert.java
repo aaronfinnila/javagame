@@ -11,6 +11,7 @@ public class NPC_Rubert extends Entity {
         super(gp);
         direction = "down";
         speed = 1;
+        type = type_npc;
         getImage();
         setDialogue();
 

@@ -18,7 +18,8 @@ public class MON_Slime extends Entity {
 
         type = 2;
         name = "Slime";
-        speed = 1;
+        defaultSpeed = 1;
+        speed = defaultSpeed;
         maxHealth = 4;
         health = maxHealth;
         attack = 3;

@@ -9,7 +9,7 @@ public class OBJ_Hitbox1 extends Entity {
         super(gp);
         name = "Hitbox1";
         collision = true;
-        type = 8;
+        type = type_static_object;
         solidArea.width = 5*gp.tileSize;
         solidArea.height = 2*gp.tileSize;
     }

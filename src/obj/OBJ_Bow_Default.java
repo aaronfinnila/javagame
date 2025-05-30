@@ -12,7 +12,8 @@ public class OBJ_Bow_Default extends Entity {
         down1 = setup("/res/objects/defaultbow",gp.tileSize,gp.tileSize);
         image = down1;
         attackValue = 1;
-        type = 5;
+        knockBackPower = 1;
+        type = type_shoot;
         price = 50;
         description = name + "\n\nSolid wooden bow made of\nacacia.";
     }

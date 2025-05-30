@@ -6,6 +6,7 @@ import entity.NPC_Rock;
 import entity.NPC_Rubert;
 import monster.MON_Slime;
 import obj.OBJ_Bench;
+import obj.OBJ_Bow_Default;
 import obj.OBJ_Hitbox1;
 import obj.OBJ_House1;
 import obj.OBJ_House1_Interior;
@@ -37,6 +38,11 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = 33*gp.tileSize;
         gp.obj[mapNum][i].worldY = 31*gp.tileSize;
         i++;
+        gp.obj[mapNum][i] = new OBJ_Bow_Default(gp);
+        gp.obj[mapNum][i].worldX = 30*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 31*gp.tileSize;
+        i++;
+
         mapNum += 1;
 
         // treasure island

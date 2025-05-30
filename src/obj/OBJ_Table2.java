@@ -11,6 +11,7 @@ public class OBJ_Table2 extends Entity {
         this.gp = gp;
         name = "Table2";
         speed = 0;
+        type = type_static_object;
         solidArea.height = 20;
         solidArea.width = 20;
         setDialogue();

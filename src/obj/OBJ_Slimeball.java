@@ -19,7 +19,7 @@ public class OBJ_Slimeball extends Projectile {
         maxHealth = 80;
         health = maxHealth;
         attack = 1;
-        type = 5;
+        type = type_projectile;
         alive = false;
         up1 = setup("/res/projectile/slimeball", 32, 28);
         up2 = setup("/res/projectile/slimeball", 32, 28);

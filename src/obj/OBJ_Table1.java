@@ -14,6 +14,7 @@ public class OBJ_Table1 extends Entity {
         down2 = setup("/res/objects/table1.2", 65*2, 55*2);
         collision = true;
         speed = 0;
+        type = type_animated_object;
         solidArea.height = 50*2;
         solidArea.width = 65*2;
         setDialogue();

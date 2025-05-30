@@ -11,10 +11,12 @@ public class OBJ_Sword_Default extends Entity {
         name = "Badgers Scimitar";
         down1 = setup("/res/objects/defaultsword",gp.tileSize,gp.tileSize);
         image = down1;
+        speed = 1;
+        knockBackPower = 2;
         attackArea.height = 36;
         attackArea.width = 36;
         attackValue = 1;
-        type = 3;
+        type = type_sword;
         description = name + "\n\nTrusty old scimitar.";
     }
 }

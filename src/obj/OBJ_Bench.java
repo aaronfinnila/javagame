@@ -11,7 +11,7 @@ public class OBJ_Bench extends Entity {
 
         this.gp = gp;
         name = "Bench";
-        type = 8;
+        type = type_static_object;
         down1 = setup("/res/objects/bench", 95, 79);
         collision = true;
         solidArea.height = 60;

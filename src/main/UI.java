@@ -1011,20 +1011,31 @@ public void trade_buy() {
             }
         }
     }
+
+    // DRAW ESC WINDOW
+
+        x = (int)(gp.tileSize*0.5-12);
+        y = (int)(gp.tileSize*0.5-16);
+        width = (int)(gp.tileSize*1.5);
+        height = gp.tileSize;
+        drawSubWindow(x, y, width, height);
+        text = "ESC";
+        g2.drawString(text, x+16, y+32);
 }
+
 public void trade_sell() {
     // DRAW PLAYER INVENTORY
     drawInventory(gp.player, true);
 
     int x = gp.tileSize*2;
-    int y = gp.tileSize*7-10;
+    int y = gp.tileSize*10-34;
     int height = (int)(gp.tileSize*1.5);
     int width = gp.tileSize*6-10;
     drawSubWindow(x, y, width, height);
     g2.setFont(consola.deriveFont(25F));
     String text = "Current gold: " + gp.player.gold;
     int textX = getXforCenteredText(text)-(int)(gp.tileSize*4.5)-30;
-    int textY = gp.tileSize*8-12;
+    int textY = gp.tileSize*11-36;
     g2.drawString(text, textX, textY);
 
     // DRAW PRICE WINDOW
@@ -1040,7 +1051,7 @@ public void trade_sell() {
         g2.drawImage(coin, x+12, y+12, 25, 25, null);
 
         int price = gp.player.inventory.get(itemIndex).price;
-        text = "" + price;
+        text = "" + Math.round(price*0.5);
         x = getXforAlignToRightText(text, gp.tileSize*18);
         g2.drawString(text,x-26,y+32);
 
@@ -1063,9 +1074,18 @@ public void trade_sell() {
                 npc.inventory.add(gp.player.inventory.get(itemIndex));
                 gp.player.inventory.remove(itemIndex);
             }
-             
         }
     }
+
+        // DRAW ESC WINDOW
+
+        x = (int)(gp.tileSize*0.5-12);
+        y = (int)(gp.tileSize*0.5-16);
+        width = (int)(gp.tileSize*1.5);
+        height = gp.tileSize;
+        drawSubWindow(x, y, width, height);
+        text = "ESC";
+        g2.drawString(text, x+16, y+32);
 }
 
 public int getXforCenteredText(String text) {

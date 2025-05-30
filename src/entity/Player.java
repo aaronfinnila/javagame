@@ -7,7 +7,6 @@ import java.awt.image.BufferedImage;
 import main.GamePanel;
 import main.KeyHandler;
 import obj.OBJ_Arrow;
-import obj.OBJ_Bow_Default;
 import obj.OBJ_Hammer;
 import obj.OBJ_Shield_Default;
 import obj.OBJ_Sword_Default;
@@ -49,19 +48,20 @@ public class Player extends Entity {
         worldY = 1150;
         direction = "down";
         
-        speed = 4;
+        defaultSpeed = 4;
+        speed = defaultSpeed;
         maxHealth = 6;
         health = maxHealth;
         arrows = 50;
         level = 1;
         strength = 1;
         dexterity = 1;
+        type = type_player;
         exp = 0;
         nextLevelExp = 5;
         gold = 50;
         currentWeapon = new OBJ_Sword_Default(gp);
         currentShield = new OBJ_Shield_Default(gp);
-        currentShoot = new OBJ_Bow_Default(gp);
         projectile = new OBJ_Arrow(gp);
         attack = getAttack();
         defense = getDefense();
@@ -85,7 +85,6 @@ public class Player extends Entity {
         inventory.clear();
         inventory.add(currentWeapon);
         inventory.add(currentShield);
-        inventory.add(currentShoot);
         inventory.add(new OBJ_Hammer(gp));
     }
 
@@ -174,7 +173,7 @@ public void getPlayerShootImage() {
 
     public void update() {
         
-        if (gp.keyH.attackKeyPressed == true && shooting != true) {
+        if (gp.keyH.attackKeyPressed == true && shooting != true && attackAvailableCounter >= 30) {
             attacking = true;
         }
 
@@ -289,6 +288,10 @@ public void getPlayerShootImage() {
             shotAvailableCounter++;
         }
 
+        if (attackAvailableCounter < 30) {
+            attackAvailableCounter = attackAvailableCounter + currentWeapon.speed;
+        }
+
         if (health > maxHealth) {
             health = maxHealth;
         }
@@ -337,7 +340,6 @@ public void getPlayerShootImage() {
 
     public void attacking() {
 
-        //TODO: attack cooldown counter to avoid spamming attack for deflect
         attackCounter++;
 
         if (attackCounter > 0 && attackCounter < 2) {
@@ -374,7 +376,7 @@ public void getPlayerShootImage() {
             // Check monster collision with the updated worldX, worldY and solidArea
 
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-            damageMonster(monsterIndex, attack);
+            damageMonster(monsterIndex, attack, currentWeapon.knockBackPower, direction);
 
             int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
             damageInteractiveTile(iTileIndex);
@@ -393,6 +395,7 @@ public void getPlayerShootImage() {
         if (attackCounter > 25) {
             attackNum = 1;
             attackCounter = 0;
+            attackAvailableCounter = 0;
             attacking = false;
         }
     }
@@ -441,16 +444,17 @@ public void getPlayerShootImage() {
         public void interactNPC(int i) {
 
             if (i != 999) {
-                
-                if (i == 0) {
-                    if (gp.keyH.ePressed == true) {
+                Entity npc = gp.npc[gp.currentMap][i];
+                if (gp.keyH.ePressed == true) {
+                if (npc.name == "Table1" && gp.currentMap == gp.house1Map) {
+                    if (worldX > gp.tileSize*54-24 && worldX < 2630) {
                         gp.gameState = gp.dialogueState;
-                        gp.npc[gp.currentMap][i].speak();
+                        npc.speak();
                     }
+                } else {
+                    gp.gameState = gp.dialogueState;
+                    npc.speak();
                 }
-                else if (gp.keyH.ePressed == true) {
-                gp.gameState = gp.dialogueState;
-                gp.npc[gp.currentMap][i].speak();
                 }
         }
     }
@@ -470,12 +474,15 @@ public void getPlayerShootImage() {
         }
     }
 
-    public void damageMonster(int i, int attack) {
+    public void damageMonster(int i, int attack, int knockBackPower, String direction) {
 
         if (i != 999) {
             if(gp.monster[gp.currentMap][i].invincible == false) {
                 gp.playSE(7);
                 int damage = attack - gp.monster[gp.currentMap][i].defense;
+                if (knockBackPower > 0) {
+                    knockBack(gp.monster[gp.currentMap][i], knockBackPower, direction);
+                }
                 if (damage < 0) {
                     damage = 0;
                 }
@@ -514,6 +521,12 @@ public void getPlayerShootImage() {
             projectil.alive = false;
             generateParticle(projectil, projectil);
         }
+    }
+
+    public void knockBack(Entity entity, int knockBackPower, String direction) {
+        entity.direction = direction;
+        entity.speed += knockBackPower;
+        entity.knockBack = true;
     }
 
     public void checkLevelUp() {

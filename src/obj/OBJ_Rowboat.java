@@ -11,7 +11,7 @@ public class OBJ_Rowboat extends Entity {
 
         this.gp = gp;
         name = "Rowboat";
-        type = 8;
+        type = type_static_object;
         down1 = setup("/res/objects/rowboat", gp.tileSize*2, 74);
         collision = true;
         solidArea.height = 74;

@@ -10,6 +10,7 @@ public class NPC_Kalsu extends Entity {
 
         super(gp);
         speed = 0;
+        type = type_npc;
         direction = "still";
         getImage();
         setDialogue();

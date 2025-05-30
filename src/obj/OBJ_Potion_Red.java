@@ -11,7 +11,7 @@ public class OBJ_Potion_Red extends Entity {
         super(gp);
 
         this.gp = gp;
-        type = 6;
+        type = type_consumable;
         name = "Red Potion";
         healingValue = 4;
         price = 20;

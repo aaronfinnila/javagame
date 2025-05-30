@@ -14,6 +14,7 @@ public class NPC_Rock extends Entity {
 
         super(gp);
         speed = 0;
+        type = type_npc;
         direction = "still";
         setDialogue();
         spawn1 = false;
@@ -45,17 +46,17 @@ public void speak() {
     if (gp.player.level == 3) {
         dialogues[11] = "You seem stronger. I think you're ready to hear some more...";
         dialogues[12] = "After spending some more time in the town, the warrior\nnoticed that something wasn't right.";
-        dialogues[13] = "The people were all really friendly, the place was\nbeautiful and the scenery was out of this world.";
+        dialogues[13] = "The people were all really friendly, and the place\nwas beautiful.";
         dialogues[14] = "But one night, when he suddenly woke up, he heard strange\nnoises.";
-        dialogues[15] = "It sounded like they were coming from the town square.\nThe following day he decided to ask someone about it.";
+        dialogues[15] = "It sounded like they were coming from the mines.\nThe following day he decided to ask someone about it.";
         dialogues[16] = "However, when he mentioned it to any of the townsfolk,\nthey started acting strange.";
         dialogues[17] = "It was like they were avoiding the subject.";
-        dialogues[18] = "That town is not what it seems...";
+        dialogues[18] = "That place is dangerous...";
         dialogues[19] = "But I suppose you have no other choice than to go there and\nsee for yourself.";
         dialogues[20] = "There should be a boat for you at the southeastern\ncorner of this island.";
         dialogues[21] = "You can use it to get to the other island.";
         dialogues[22] = "Best of luck kiddo...";
-        dialogues[23] = "Judging from the way you look, you're gonna need it...";
+        dialogues[23] = "You're gonna need it...";
     }
 
     if (dialogueIndex == 4 && spawn1 == false) {

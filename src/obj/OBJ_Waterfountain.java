@@ -11,7 +11,7 @@ public class OBJ_Waterfountain extends Entity {
 
         this.gp = gp;
         name = "Waterfountain";
-        type = 11;
+        type = type_animated_object;
         down1 = setup("/res/objects/waterfountain1", 96*3, 69*3);
         down2 = setup("/res/objects/waterfountain2", 96*3, 69*3);
         collision = true;

@@ -11,7 +11,7 @@ public class OBJ_House1 extends Entity {
 
         this.gp = gp;
         name = "House1";
-        type = 8;
+        type = type_static_object;
         down1 = setup("/res/objects/house1", 87*3, 124*3);
         collision = true;
         solidArea.height = 124*3;

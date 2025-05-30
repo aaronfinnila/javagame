@@ -11,7 +11,7 @@ public class OBJ_Store_Interior extends Entity {
 
         this.gp = gp;
         name = "Store_Interior";
-        type = 8;
+        type = type_static_object;
         down1 = setup("/res/objects/store_interior", 232*3, 240*3);
         collision = true;
     }

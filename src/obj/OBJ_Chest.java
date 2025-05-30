@@ -11,7 +11,7 @@ public class OBJ_Chest extends Entity {
 
         this.gp = gp;
         name = "Chest";
-        type = 8;
+        type = type_static_object;
         down1 = setup("/res/objects/chest", gp.tileSize, gp.tileSize);
         collision = true;
     }

@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import ai.PathFinder;
 import entity.Entity;
 import entity.Player;
+import environment.EnvironmentManager;
 import tile.TileManager;
 import tile_interactive.InteractiveTile;
 
@@ -29,8 +30,8 @@ public class GamePanel extends JPanel implements Runnable{
     public final int tileSize = originalTileSize * scale;
     public final int maxScreenCol = 20;
     public final int maxScreenRow = 12;
-    public final int screenWidth = tileSize * maxScreenCol;
-    public final int screenHeight = tileSize * maxScreenRow;
+    public final int screenWidth = tileSize * maxScreenCol; // 960
+    public final int screenHeight = tileSize * maxScreenRow; // 576
     
     // WORLD SETTINGS
     
@@ -39,6 +40,11 @@ public class GamePanel extends JPanel implements Runnable{
     public final int maxMap = 10;
     public final int maxMapSize = 100;
     public int currentMap = 0;
+    public final int introislandMap = 0;
+    public final int treasureislandMap = 1;
+    public final int house1Map = 2;
+    public final int houseMap = 3;
+    public final int storeMap = 4;
 
     // FOR FULLSCREEN
 
@@ -68,6 +74,7 @@ public class GamePanel extends JPanel implements Runnable{
     public UI ui = new UI(this);
     Config config = new Config(this);
     public PathFinder pFinder = new PathFinder(this);
+    EnvironmentManager eManager = new EnvironmentManager(this);
     Thread gameThread;
 
     // ENTITY AND OBJECT
@@ -109,6 +116,7 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setNPC();
         aSetter.setMonster();
         aSetter.setInteractiveTile();
+        eManager.setup();
         gameState = titleState;
 
         tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
@@ -353,6 +361,10 @@ public class GamePanel extends JPanel implements Runnable{
             // CLEAR ENTITY LIST
 
             entityList.clear();
+
+            // ENVIRONMENT 
+
+            eManager.draw(g2);
 
             // UI
             

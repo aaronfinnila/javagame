@@ -12,7 +12,7 @@ public class OBJ_Coin extends Entity {
 
         this.gp = gp;
         name = "Coin";
-        type = 7;
+        type = type_pickup_only;
         down1 = setup("/res/objects/coin", gp.tileSize - 25, gp.tileSize - 25);
         collision = true;
     }

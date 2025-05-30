@@ -41,6 +41,7 @@ public class Entity {
     public boolean alive = true;
     public boolean hpBarOn = false;
     public boolean onPath = false;
+    public boolean knockBack = false;
     
     // COUNTERS
     
@@ -58,9 +59,13 @@ public class Entity {
     public int dyingCounter = 0;
     public int hasKey = 0;
     public int hpBarCounter;
+    public int attackAvailableCounter = 0;
+    public int knockBackCounter = 0;
     
     // ATTRIBUTES
     
+    public int knockBackPower;
+    public int defaultSpeed;
     public int speed;
     public String name;
     public boolean collision = false;
@@ -94,7 +99,20 @@ public class Entity {
     // TYPE
 
     public int type; /* 0 = player, 1 = npc, 2 = monster, 3 = sword, 4 = shield, 5 = shoot,
-    6 = consumable, 7 = pickup only, 8 = static object, 9 = hammer, 10 = interactive tile, 11 = animated object */
+    6 = consumable, 7 = pickup only, 8 = static object, 9 = hammer, 10 = interactive tile, 11 = animated object, 12 = projectile */
+    public final int type_player = 0;
+    public final int type_npc = 1;
+    public final int type_monster = 2;
+    public final int type_sword = 3;
+    public final int type_shield = 4;
+    public final int type_shoot = 5;
+    public final int type_consumable = 6;
+    public final int type_pickup_only = 7;
+    public final int type_static_object = 8;
+    public final int type_hammer = 9;
+    public final int type_interactive_tile = 10;
+    public final int type_animated_object = 11;
+    public final int type_projectile = 12;
 
     public Entity(GamePanel gp) {
         this.gp = gp;
@@ -198,8 +216,42 @@ public class Entity {
     }
 
     public void update() {
-        checkCollision();
-        setAction();
+
+        if (knockBack == true) {
+
+            checkCollision();
+            if (collisionOn == true) {
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            } else if (collisionOn == false) {
+                switch(direction) {
+                    case "up": worldY -= speed; break;
+                    case "down": worldY += speed; break;
+                    case "left": worldX -= speed; break;
+                    case "right": worldX += speed; break;
+                }
+            }
+            knockBackCounter++;
+            if (knockBackCounter == 10) {
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            }
+        } else {
+            checkCollision();
+            setAction();
+
+            if (collisionOn == false) {
+                switch(direction) {
+                    case "up": worldY -= speed; break;
+                    case "down": worldY += speed; break;
+                    case "left": worldX -= speed; break;
+                    case "right": worldX += speed; break;
+                }
+             }
+            
+        }
 
         if (this.type == 1 && gp.gameState == gp.dialogueState) {
             if (gp.keyH.spacePressed == true) {
@@ -209,18 +261,6 @@ public class Entity {
 
         // IF COLLISION IS FALSE, NPC CAN MOVE
         
-        if (collisionOn == false) {
-            switch(direction) {
-                case "up": worldY -= speed;
-                    break;
-                case "down": worldY += speed;
-                    break;
-                case "left": worldX -= speed;
-                    break;
-                case "right": worldX += speed;
-                    break;
-            }
-         }
 
          moveCounter++;
          if (moveCounter > 12) {
@@ -240,6 +280,7 @@ public class Entity {
                 invincibleCounter = 0;
             }
         }
+
         if (shotAvailableCounter < 30) {
             shotAvailableCounter++;
         }
