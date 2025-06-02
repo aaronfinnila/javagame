@@ -17,6 +17,7 @@ public class Player extends Entity {
     KeyHandler keyH;
     TileManager tileM;
 
+    public boolean lightUpdated = false;
     public final int screenX;
     public final int screenY;
 
@@ -409,24 +410,24 @@ public void getPlayerShootImage() {
 
             // PICKUP ONLY ITEMS
 
-            if (type == 7) {
+            if (type == type_pickup_only) {
                 gp.obj[gp.currentMap][i].use(this);
                 gp.obj[gp.currentMap][i] = null;
             }
 
             // STATIC OBJECTS
 
-            else if (type == 8) {
+            else if (type == type_static_object) {
                 gp.obj[gp.currentMap][i].use(this);
             }
 
-            else if (type == 11) {
+            else if (type == type_animated_object) {
                 
             }
 
             // INVENTORY ITEMS
 
-            else if (type == 3 || type == 4 || type == 5 || type == 6 || type == 9) {
+            else if (type == type_sword || type == type_shield || type == type_shoot || type == type_consumable || type == type_hammer || type == type_light) {
                 if (inventory.size() != maxInventorySize) {
                     if (objectName == "Creamor Key") {hasKey++;}
                     inventory.add(gp.obj[gp.currentMap][i]);
@@ -554,22 +555,30 @@ public void getPlayerShootImage() {
 
         if (itemIndex < inventory.size()) {
             Entity selectedItem = inventory.get(itemIndex);
-            if (selectedItem.type == 3 || selectedItem.type == 9) {
+            if (selectedItem.type == type_sword || selectedItem.type == type_hammer) {
                 currentWeapon = selectedItem;
                 attack = getAttack();
                 getPlayerAttackImage();
             }
-            if (selectedItem.type == 4) {
+            if (selectedItem.type == type_shield) {
                 currentShield = selectedItem;
                 defense = getDefense();
             }
-            if (selectedItem.type == 5) {
+            if (selectedItem.type == type_shoot) {
                 currentShoot = selectedItem;
                 getPlayerShootImage();
             }
-            if (selectedItem.type == 6) {
+            if (selectedItem.type == type_consumable) {
                 selectedItem.use(this);
                 inventory.remove(itemIndex);
+            }
+            if (selectedItem.type == type_light) {
+                if (selectedItem == currentLight) {
+                    currentLight = null;
+                } else {
+                    currentLight = selectedItem;
+                }
+                lightUpdated = true;
             }
         }
     }

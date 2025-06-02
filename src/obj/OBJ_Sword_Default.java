@@ -15,6 +15,7 @@ public class OBJ_Sword_Default extends Entity {
         knockBackPower = 2;
         attackArea.height = 36;
         attackArea.width = 36;
+        price = 30;
         attackValue = 1;
         type = type_sword;
         description = name + "\n\nTrusty old scimitar.";

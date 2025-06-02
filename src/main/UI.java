@@ -233,7 +233,7 @@ public void drawInventory(Entity entity, boolean cursor) {
 
     for (Entity e : entity.inventory) {
         
-        if (e == entity.currentWeapon || e == entity.currentShield || e == entity.currentShoot) {
+        if (e == entity.currentWeapon || e == entity.currentShield || e == entity.currentShoot || e == entity.currentLight) {
             g2.setColor(new Color(240,190,90));
             g2.fillRoundRect(slotX,slotY,gp.tileSize,gp.tileSize,10,10);
         }

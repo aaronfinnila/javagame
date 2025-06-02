@@ -85,6 +85,7 @@ public class Entity {
     public Entity currentWeapon;
     public Entity currentShield;
     public Entity currentShoot;
+    public Entity currentLight;
     public Projectile projectile;
     
     // ITEM ATTRIBUTES
@@ -95,11 +96,11 @@ public class Entity {
     public int defenseValue;
     public String description = "";
     public int price;
+    public int lightRadius;
     
     // TYPE
 
-    public int type; /* 0 = player, 1 = npc, 2 = monster, 3 = sword, 4 = shield, 5 = shoot,
-    6 = consumable, 7 = pickup only, 8 = static object, 9 = hammer, 10 = interactive tile, 11 = animated object, 12 = projectile */
+    public int type;
     public final int type_player = 0;
     public final int type_npc = 1;
     public final int type_monster = 2;
@@ -113,6 +114,7 @@ public class Entity {
     public final int type_interactive_tile = 10;
     public final int type_animated_object = 11;
     public final int type_projectile = 12;
+    public final int type_light = 13;
 
     public Entity(GamePanel gp) {
         this.gp = gp;

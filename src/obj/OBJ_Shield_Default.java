@@ -13,7 +13,7 @@ public class OBJ_Shield_Default extends Entity {
         image = down1;
         defenseValue = 1;
         type = type_shield;
-        price = 0;
+        price = 30;
         description = name + "\n\nWeary old wooden shield.\nHas a slight rotten scent\nto it.";
     }
 }

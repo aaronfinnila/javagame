@@ -14,9 +14,12 @@ public class EnvironmentManager {
     }
 
     public void setup() {
-        lighting = new Lighting(gp, 576);
+        lighting = new Lighting(gp); // 576 max circleSize
     }
 
+    public void update() {
+        lighting.update();
+    }
     public void draw(Graphics2D g2) {
         lighting.draw(g2);
     }

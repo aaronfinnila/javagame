@@ -263,7 +263,11 @@ public class GamePanel extends JPanel implements Runnable{
                 }
             }
         }
-    }
+        if (player.lightUpdated == true) {
+            eManager.update();
+            player.lightUpdated = false;
+        }
+        }
 
     public void drawToTempScreen() {
 
@@ -416,7 +420,7 @@ public class GamePanel extends JPanel implements Runnable{
             musicPlaying = false;
         }
     }
-    public void changeMusic(int i, int delay) {
+    public void changeMusic(int i) {
         stopMusic();
         playMusic(i);
     }
