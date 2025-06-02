@@ -227,6 +227,7 @@ public void drawInventory(Entity entity, boolean cursor) {
     drawSubWindow(frameX, frameY, frameWidth, frameHeight);
     final int slotXstart = frameX + 20;
     final int slotYstart = frameY + 20;
+    boolean moveLantern = false;
     int slotX = slotXstart;
     int slotY = slotYstart;
     int slotXCount = 0;
@@ -236,6 +237,17 @@ public void drawInventory(Entity entity, boolean cursor) {
         if (e == entity.currentWeapon || e == entity.currentShield || e == entity.currentShoot || e == entity.currentLight) {
             g2.setColor(new Color(240,190,90));
             g2.fillRoundRect(slotX,slotY,gp.tileSize,gp.tileSize,10,10);
+        }
+        if (e.name == "Lantern") {
+            slotX += 6;
+            slotY += 3;
+            moveLantern = true;
+        } else {
+            if (moveLantern == true) {
+                slotX -= 6;
+                slotY -= 3;
+                moveLantern = false;
+            }
         }
         g2.drawImage(e.image, slotX, slotY, null);
         slotX += gp.tileSize;

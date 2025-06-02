@@ -66,7 +66,7 @@ public class KeyHandler implements KeyListener{
         if (code == KeyEvent.VK_SPACE) {
             if (gp.ui.commandNumber == 0) {
                 gp.gameState = gp.playState;
-                gp.playMusic(21);
+                gp.playMusic(0);
             }
             if (gp.ui.commandNumber == 2) {
                 System.exit(0);

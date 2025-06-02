@@ -12,7 +12,8 @@ import obj.OBJ_House1;
 import obj.OBJ_House1_Interior;
 import obj.OBJ_House2;
 import obj.OBJ_House2_Interior;
-import obj.OBJ_Lantern;
+import obj.OBJ_Lantern_Ground;
+import obj.OBJ_Lantern_Inv;
 import obj.OBJ_Rowboat;
 import obj.OBJ_Store;
 import obj.OBJ_Store_Interior;
@@ -43,9 +44,13 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = 30*gp.tileSize;
         gp.obj[mapNum][i].worldY = 31*gp.tileSize;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Lantern(gp);
+        gp.obj[mapNum][i] = new OBJ_Lantern_Inv(gp);
         gp.obj[mapNum][i].worldX = 30*gp.tileSize;
         gp.obj[mapNum][i].worldY = 32*gp.tileSize;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Lantern_Ground(gp);
+        gp.obj[mapNum][i].worldX = 30*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 33*gp.tileSize;
         i++;
 
         mapNum += 1;
