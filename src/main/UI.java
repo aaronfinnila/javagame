@@ -877,6 +877,7 @@ public void drawTransition() {
     g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
     
     if (counter == 50) {
+        gp.player.lightUpdated = true;
         gp.player.worldX = gp.tileSize * gp.eHandler.tempCol;
         gp.player.worldY = gp.tileSize * gp.eHandler.tempRow;
         gp.currentMap = gp.eHandler.tempMap;

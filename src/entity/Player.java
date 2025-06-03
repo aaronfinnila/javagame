@@ -575,10 +575,11 @@ public void getPlayerShootImage() {
             if (selectedItem.type == type_light) {
                 if (selectedItem == currentLight) {
                     currentLight = null;
+                    lightUpdated = true;
                 } else {
                     currentLight = selectedItem;
+                    lightUpdated = true;
                 }
-                lightUpdated = true;
             }
         }
     }

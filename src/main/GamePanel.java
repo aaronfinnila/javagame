@@ -35,8 +35,8 @@ public class GamePanel extends JPanel implements Runnable{
     
     // WORLD SETTINGS
     
-    public int maxWorldCol;
-    public int maxWorldRow;
+    public final int maxWorldCol = 100;
+    public final int maxWorldRow = 100;
     public final int maxMap = 10;
     public final int maxMapSize = 100;
     public int currentMap = 0;
@@ -262,12 +262,11 @@ public class GamePanel extends JPanel implements Runnable{
                     obj[currentMap][i].update();
                 }
             }
-        }
-        if (player.lightUpdated == true) {
+            
             eManager.update();
-            player.lightUpdated = false;
         }
-        }
+/*         checkGroundLight(); */
+    }
 
     public void drawToTempScreen() {
 
@@ -402,6 +401,17 @@ public class GamePanel extends JPanel implements Runnable{
         g.dispose();
     }
 
+    public void checkGroundLight() {
+        int xDistance = Math.abs(player.worldX - obj[currentMap][3].worldX);
+        int yDistance = Math.abs(player.worldY - obj[currentMap][3].worldY);
+        int distance = Math.max(xDistance, yDistance);
+        if (distance == 8*tileSize) {
+            eManager.update();
+        } else {
+            
+        }
+    }
+
         // MUSIC METHODS
 
     public void playMusic(int i) {
@@ -420,14 +430,17 @@ public class GamePanel extends JPanel implements Runnable{
             musicPlaying = false;
         }
     }
+
     public void changeMusic(int i) {
         stopMusic();
         playMusic(i);
     }
+
     public void playSE(int i) {
         se.setFile(i);
         se.play();
     }
+
     public void stopSE() {
         if (soundeffectActive == true) {
             se.stop();

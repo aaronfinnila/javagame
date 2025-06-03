@@ -87,8 +87,6 @@ public void loadMap(int map) {
     if (map == 2) {filePath = "/res/maps/house1.txt";}
     if (map == 3) {filePath = "/res/maps/house2.txt";}
     if (map == 4) {filePath = "/res/maps/store.txt";}
-
-    checkMapSize();
     
     try {
         InputStream is = getClass().getResourceAsStream(filePath);
@@ -122,17 +120,6 @@ public void loadMap(int map) {
     } catch (Exception e){
 
     };
-}
-
-public void checkMapSize() {
-    if (gp.currentMap == 0) {
-        gp.maxWorldCol = 50;
-        gp.maxWorldRow = 50;
-    }
-     if (gp.currentMap == 1) {
-        gp.maxWorldCol = 100;
-        gp.maxWorldRow = 100;
-     }
 }
 
     public void draw(Graphics2D g2) {
