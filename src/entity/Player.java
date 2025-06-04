@@ -339,68 +339,6 @@ public void getPlayerShootImage() {
         }
     }
 
-    public void attacking() {
-
-        attackCounter++;
-
-        if (attackCounter > 0 && attackCounter < 2) {
-            if (currentWeapon.type == 3) {gp.playSE(5);}
-            if (currentWeapon.type == 9) {gp.playSE(14);}
-        }
-        if (attackCounter <= 5) {
-            attackNum = 1;
-        }
-        if (attackCounter > 5 && attackCounter <= 25) {
-            attackNum = 2;
-
-            // Save current worldX, worldY, solidArea
-
-            int currentWorldX = worldX;
-            int currentWorldY = worldY;
-            int solidAreaWidth = solidArea.width;
-            int solidAreaHeight = solidArea.height;
-
-            // Adjust player's worldX and worldY for attackArea
-
-            switch(direction) {
-                case "up": worldY -= attackArea.height; break;
-                case "down": worldY += attackArea.height; break;
-                case "left": worldX -= attackArea.width; break;
-                case "right": worldX += attackArea.width; break;
-            }
-
-            // solidArea becomes attackArea
-
-            solidArea.width = attackArea.width;
-            solidArea.height = attackArea.height;
-
-            // Check monster collision with the updated worldX, worldY and solidArea
-
-            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-            damageMonster(monsterIndex, attack, currentWeapon.knockBackPower, direction);
-
-            int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
-            damageInteractiveTile(iTileIndex);
-
-            int projectileIndex = gp.cChecker.checkEntity(this, gp.projectile);
-            damageProjectile(projectileIndex);
-
-            // After checking collision, restore original values
-    
-            worldX = currentWorldX;
-            worldY = currentWorldY;
-            solidArea.height = solidAreaHeight;
-            solidArea.width = solidAreaWidth;
-
-        }
-        if (attackCounter > 25) {
-            attackNum = 1;
-            attackCounter = 0;
-            attackAvailableCounter = 0;
-            attacking = false;
-        }
-    }
-
     public void pickUpObject(int i) {
         
         if (i != 999) {

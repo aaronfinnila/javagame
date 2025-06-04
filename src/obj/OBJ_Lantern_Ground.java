@@ -18,8 +18,6 @@ public class OBJ_Lantern_Ground extends Entity {
         solidArea.height = 18*2;
         collision = true;
         lightRadius = 250;
-
-        //TODO: implement this (multiple light sources)
     }
 
     public void update() {

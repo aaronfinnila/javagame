@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -123,11 +124,129 @@ public class Entity {
 
     public void damageReaction() {}
 
+    public int getXdistance(Entity target) {
+        int xDistance = Math.abs(worldX - target.worldX);
+        return xDistance;
+    }
+
+    public int getYdistance(Entity target) {
+        int yDistance = Math.abs(worldY - target.worldY);
+        return yDistance;
+    }
+
+    public int getTileDistance(Entity target) {
+        int tileDistance = (getXdistance(target) + getYdistance(target))/gp.tileSize;
+        return tileDistance;
+    }
+
+    public int getGoalCol(Entity target) {
+        int goalCol = (target.worldX+16 + target.solidArea.x)/gp.tileSize;
+        return goalCol;
+    }
+    public int getGoalRow(Entity target) {
+        int goalRow = (target.worldY + target.solidArea.y)/gp.tileSize;
+        return goalRow;
+    }
+
     public void setAction() {}
 
     public void use(Entity entity) {}
 
     public void checkDrop() {}
+
+    public void checkStopChasingOrNot(Entity target, int distance, int rate) {
+
+        if (getTileDistance(target) > distance) {
+            System.out.println(getTileDistance(target));
+            int i = new Random().nextInt(rate);
+            if (i == 0) {
+                onPath = false;
+            }
+        }
+    }
+
+    public void checkStartChasingOrNot(Entity target, int distance, int rate) {
+
+        if (getTileDistance(target) < distance) {
+            int i = new Random().nextInt(rate);
+            if (i == 0) {
+                onPath = true;
+            }
+        }
+    }
+
+    public void checkShootOrNot(int rate, int shotInterval) {
+
+        int i = new Random().nextInt(rate);
+        if (i == 0 && projectile.alive == false && shotAvailableCounter == shotInterval) {
+            projectile.set(worldX+12, worldY+20, direction, true, this);
+            for (int j=0;j<gp.projectile[1].length;j++) {
+                if (gp.projectile[gp.currentMap][j] == null) {
+                    gp.projectile[gp.currentMap][j] = projectile;
+                    break;
+                }
+            }
+            shotAvailableCounter = 0;
+        }
+    }
+
+    public void checkAttackOrNot(int rate, int straight, int horizontal) {
+
+        boolean targetInRange = false;
+        int xDis = getXdistance(gp.player);
+        int yDis = getYdistance(gp.player);
+
+        switch (direction) {
+            case "up":
+            if (gp.player.worldY < worldY && yDis < straight && xDis < horizontal) {
+                targetInRange = true;
+            }
+            break;
+            case "down":
+            if (gp.player.worldY > worldY && yDis < straight && xDis < horizontal) {
+                targetInRange = true;
+            }
+            break;
+            case "left":
+            if (gp.player.worldX < worldX && xDis < straight && yDis < horizontal) {
+                targetInRange = true;
+            }
+            break;
+            case "right":
+            if (gp.player.worldX > worldX && xDis < straight && yDis < horizontal) {
+                targetInRange = true;
+            }
+            break;
+        }
+
+        if (targetInRange == true) {
+            int i = new Random().nextInt(rate);
+            if (i == 0) {
+                attacking = true;
+                spriteNum = 1;
+                attackCounter = 0;
+                shotAvailableCounter = 0;
+            }
+        }
+    }
+
+    public void getRandomDirection() {
+
+        actionLockCounter++;
+
+        if (actionLockCounter == 120) {
+
+        Random random = new Random();
+        int i = random.nextInt(100) + 1;
+        
+        if (i <= 25) {direction = "up";}
+        if (i > 25 && i <= 50) {direction = "down";}
+        if (i > 50 && i <= 75) {direction = "left";}
+        if (i > 75 && i <= 100) {direction = "right";}
+
+        actionLockCounter = 0;
+        }
+    }
 
     public Color getParticleColor() {
         Color color = null;
@@ -240,6 +359,9 @@ public class Entity {
                 knockBack = false;
                 speed = defaultSpeed;
             }
+            else if (attacking == true) {
+                attacking();
+            }
         } else {
             checkCollision();
             setAction();
@@ -252,17 +374,16 @@ public class Entity {
                     case "right": worldX += speed; break;
                 }
              }
-            
         }
 
+        
         if (this.type == 1 && gp.gameState == gp.dialogueState) {
             if (gp.keyH.spacePressed == true) {
                 dialogueIndex++;
             }
         }
-
-        // IF COLLISION IS FALSE, NPC CAN MOVE
         
+        // IF COLLISION IS FALSE, NPC CAN MOVE
 
          moveCounter++;
          if (moveCounter > 12) {
@@ -288,19 +409,92 @@ public class Entity {
         }
     }
 
-        public void damagePlayer(int attack) {
-            if (gp.player.invincible == false) {
-                int damage = attack - gp.player.defense;
-                if (damage <= 0) {
-                    damage = 1;
-                }
-                gp.player.health -= damage;
-                gp.playSE(6);
-                gp.player.invincible = true;
-            }
-        }
+    public void attacking() {
+        
+        attackCounter++;
 
-        public BufferedImage setup(String imagePath, int width, int height) {
+        if (attackCounter > 0 && attackCounter < 2) {
+            if (currentWeapon.type == 3) {gp.playSE(5);}
+            if (currentWeapon.type == 9) {gp.playSE(14);}
+        }
+        if (attackCounter <= 5) {
+            attackNum = 1;
+        }
+        if (attackCounter > 5 && attackCounter <= 25) {
+            attackNum = 2;
+
+            // Save current worldX, worldY, solidArea
+
+            int currentWorldX = worldX;
+            int currentWorldY = worldY;
+            int solidAreaWidth = solidArea.width;
+            int solidAreaHeight = solidArea.height;
+
+            // Adjust player's worldX and worldY for attackArea
+
+            switch(direction) {
+                case "up": worldY -= attackArea.height; break;
+                case "down": worldY += attackArea.height; break;
+                case "left": worldX -= attackArea.width; break;
+                case "right": worldX += attackArea.width; break;
+            }
+
+            // solidArea becomes attackArea
+
+            solidArea.width = attackArea.width;
+            solidArea.height = attackArea.height;
+
+            
+            
+            if (type == type_monster) {
+                if (gp.cChecker.checkPlayer(this) == true) {
+                    damagePlayer(attack);
+                }
+            } else {
+                
+                // PLAYER STUFF
+
+                // Check monster collision with the updated worldX, worldY and solidArea
+
+                int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+                gp.player.damageMonster(monsterIndex, attack, currentWeapon.knockBackPower, direction);
+    
+                int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
+                gp.player.damageInteractiveTile(iTileIndex);
+    
+                int projectileIndex = gp.cChecker.checkEntity(this, gp.projectile);
+                gp.player.damageProjectile(projectileIndex);
+            }
+
+            // After checking collision, restore original values
+    
+            worldX = currentWorldX;
+            worldY = currentWorldY;
+            solidArea.height = solidAreaHeight;
+            solidArea.width = solidAreaWidth;
+
+        }
+        if (attackCounter > 25) {
+            attackNum = 1;
+            attackCounter = 0;
+            attackAvailableCounter = 0;
+            attacking = false;
+        }
+    }
+
+    public void damagePlayer(int attack) {
+        if (gp.player.invincible == false) {
+            int damage = attack - gp.player.defense;
+            if (damage <= 0) {
+                damage = 1;
+            }
+            gp.player.health -= damage;
+            gp.playSE(6);
+            gp.player.invincible = true;
+        }
+    }
+
+    public BufferedImage setup(String imagePath, int width, int height) {
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
 
