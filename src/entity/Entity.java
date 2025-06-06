@@ -157,7 +157,6 @@ public class Entity {
     public void checkStopChasingOrNot(Entity target, int distance, int rate) {
 
         if (getTileDistance(target) > distance) {
-            System.out.println(getTileDistance(target));
             int i = new Random().nextInt(rate);
             if (i == 0) {
                 onPath = false;
@@ -225,7 +224,6 @@ public class Entity {
                 attacking = true;
                 spriteNum = 1;
                 attackCounter = 0;
-                shotAvailableCounter = 0;
             }
         }
     }
@@ -331,7 +329,7 @@ public class Entity {
         gp.cChecker.checkEntity(this, gp.iTile);
         boolean contactPlayer = gp.cChecker.checkPlayer(this);
 
-        if (this.type == 2 && contactPlayer == true) {
+        if (this.type == type_monster && contactPlayer == true) {
             damagePlayer(attack);
         }
     }
@@ -359,10 +357,9 @@ public class Entity {
                 knockBack = false;
                 speed = defaultSpeed;
             }
-            else if (attacking == true) {
+        } else if (attacking == true) {
                 attacking();
-            }
-        } else {
+            } else {
             checkCollision();
             setAction();
 
@@ -414,8 +411,8 @@ public class Entity {
         attackCounter++;
 
         if (attackCounter > 0 && attackCounter < 2) {
-            if (currentWeapon.type == 3) {gp.playSE(5);}
-            if (currentWeapon.type == 9) {gp.playSE(14);}
+            if (currentWeapon.type == type_sword) {gp.playSE(5);}
+            if (currentWeapon.type == type_hammer) {gp.playSE(14);}
         }
         if (attackCounter <= 5) {
             attackNum = 1;
@@ -430,7 +427,7 @@ public class Entity {
             int solidAreaWidth = solidArea.width;
             int solidAreaHeight = solidArea.height;
 
-            // Adjust player's worldX and worldY for attackArea
+            // Adjust entity's worldX and worldY for attackArea
 
             switch(direction) {
                 case "up": worldY -= attackArea.height; break;
@@ -443,8 +440,6 @@ public class Entity {
 
             solidArea.width = attackArea.width;
             solidArea.height = attackArea.height;
-
-            
             
             if (type == type_monster) {
                 if (gp.cChecker.checkPlayer(this) == true) {
@@ -518,27 +513,86 @@ public class Entity {
             worldY + gp.screenHeight > gp.player.worldY - gp.player.screenY && 
             worldY - gp.screenHeight < gp.player.worldY + gp.player.screenY) {
 
-                switch(direction) {
-                    case "up":
-                        if(spriteNum == 1) {image = up1;}
-                        if (spriteNum == 2) {image = up2;}
-                        break;
-                    case "down":
-                        if(spriteNum == 1) {image = down1;}
-                        if (spriteNum == 2) {image = down2;}
-                        break;
-                    case "left": 
-                        if (spriteNum == 1) {image = left1;}
-                        if (spriteNum == 2) {image = left2;}
-                        break;
-                    case "right":
-                        if (spriteNum == 1) {image = right1;}
-                        if (spriteNum == 2) {image = right2;}
-                        break;
-                }
-            }
+            int tempScreenX = screenX;
+            int tempScreenY = screenY;
 
-            // Monster HP bar
+            switch(direction) {
+                case "up":
+                    if (attacking == false && shooting == false) {
+                        if(spriteNum == 1) {image = up1;}
+                        if(spriteNum == 2) {image = up2;}
+                    }
+                    if (attacking == true && shooting == false) {
+                        tempScreenY = screenY - gp.tileSize;
+                        if(attackNum == 1) {image = attackUp1;}
+                        if (attackNum == 2) {image = attackUp2;}
+                    }
+                    if (shooting == true && attacking == false) {
+                        if(shootNum == 1) {image = shootUp1;}
+                        if(shootNum == 2) {image = shootUp2;}
+                        if(shootNum == 3) {image = shootUp3;}
+                        if(shootNum == 4) {image = shootUp4;}
+                    }
+                    break;
+                case "down":
+                    if (attacking == false && shooting == false) {
+                        if(spriteNum == 1) {image = down1;}
+                        if(spriteNum == 2) {image = down2;}
+                    }
+                    if (attacking == true && shooting == false) {
+                        if(attackNum == 1) {
+                            image = attackDown1;
+                            if (currentWeapon.name.equals("Hammer")) {
+                                tempScreenY -= gp.tileSize;
+                            }
+                        }
+                        if(attackNum == 2) {
+                            image = attackDown2;
+                        }
+                    }
+                    if (shooting == true && attacking == false) {
+                        if(shootNum == 1) {image = shootDown1;}
+                        if(shootNum == 2) {image = shootDown2;}
+                        if(shootNum == 3) {image = shootDown3;}
+                        if(shootNum == 4) {image = shootDown4;}
+                    }
+                    break;
+                case "left":
+                    if (attacking == false && shooting == false) {
+                        if(spriteNum == 1) {image = left1;}
+                        if(spriteNum == 2) {image = left2;}
+                    }
+                    if (attacking == true && shooting == false) {
+                        tempScreenX = tempScreenX - gp.tileSize;
+                        if(attackNum == 1) {image = attackLeft1;}
+                        if(attackNum == 2) {image = attackLeft2;}
+                    }
+                    if (shooting == true && attacking == false) {
+                        if(shootNum == 1) {image = shootLeft1;}
+                        if(shootNum == 2) {image = shootLeft2;}
+                        if(shootNum == 3) {image = shootLeft3;}
+                        if(shootNum == 4) {image = shootLeft4;}
+                    }
+                    break;
+                case "right":
+                    if (attacking == false && shooting == false) {
+                        if(spriteNum == 1) {image = right1;}
+                        if(spriteNum == 2) {image = right2;}
+                    }
+                    if (attacking == true && shooting == false) {
+                        if(attackNum == 1) {image = attackRight1;}
+                        if(attackNum == 2) {image = attackRight2;}
+                    }
+                    if (shooting == true && attacking == false) {
+                        if(shootNum == 1) {image = shootRight1;}
+                        if(shootNum == 2) {image = shootRight2;}
+                        if(shootNum == 3) {image = shootRight3;}
+                        if(shootNum == 4) {image = shootRight4;}
+                    }
+                    break;
+        }
+        
+        // Monster HP bar
 
             if (type == 2 && hpBarOn == true) {
 
@@ -547,17 +601,19 @@ public class Entity {
 
                 g2.setColor(new Color(35, 35, 35));
                 g2.fillRect(screenX-1, screenY-16, gp.tileSize+2, 12);
-
+                
                 g2.setColor(new Color(255,0,30));
                 g2.fillRect(screenX, screenY - 15, (int)hpBarValue, 10);
-
+                
                 hpBarCounter++;
-
+                
                 if (hpBarCounter > 600) {
                     hpBarCounter = 0;
                     hpBarOn = false;
                 }
             }
+
+            // Invincible
 
             if (invincible == true) {
                 hpBarOn = true;
@@ -565,6 +621,8 @@ public class Entity {
                 changeAlpha(g2, 0.3f);
             }
 
+            // Dying
+            
             if (dying == true) {
                 changeAlpha(g2, 1f);
                 dyingCounter++;
@@ -584,13 +642,14 @@ public class Entity {
                     alive = false;
                     gp.player.exp += exp;
                 };
-                screenX = worldX - gp.player.worldX + gp.player.screenX - gp.tileSize/2;
-                screenY = worldY - gp.player.worldY + gp.player.screenY - gp.tileSize/2;
+                tempScreenX = worldX - gp.player.worldX + gp.player.screenX - gp.tileSize/2;
+                tempScreenY = worldY - gp.player.worldY + gp.player.screenY - gp.tileSize/2;
             }
-
-            g2.drawImage(image, screenX, screenY, null);
-
+            
+            g2.drawImage(image, tempScreenX, tempScreenY, null);
+            
             changeAlpha(g2, 1f);
+            }
         }
         
         public void changeAlpha(Graphics2D g2, float alpha) {
@@ -613,15 +672,15 @@ public class Entity {
 
                 // PATHFINDING
 
-                if (nextX > worldX + 1&& direction == "right" || nextY > worldY + 1 && direction == "down"
-                || nextY < worldY + 1 && direction == "up" || nextX < worldX && direction == "left") {
+                if (nextX > worldX + speed && direction == "right" || nextY > worldY + speed && direction == "down"
+                || nextY < worldY + speed && direction == "up" || nextX < worldX && direction == "left") {
                         // direction stays the same
                     }
                     
-                else if (nextY > worldY + 1) {
+                else if (nextY > worldY + speed) {
                     direction = "down";
                 }
-                else if (nextY < worldY + 1){
+                else if (nextY < worldY + speed){
                     direction = "up";
                 }
                 else if (nextX < worldX) {

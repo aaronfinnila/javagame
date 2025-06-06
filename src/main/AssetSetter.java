@@ -14,6 +14,8 @@ import obj.OBJ_House2;
 import obj.OBJ_House2_Interior;
 import obj.OBJ_Lantern_Ground;
 import obj.OBJ_Lantern_Inv;
+import obj.OBJ_Longsword;
+import obj.OBJ_Nightingale;
 import obj.OBJ_Rowboat;
 import obj.OBJ_Store;
 import obj.OBJ_Store_Interior;
@@ -51,6 +53,14 @@ public class AssetSetter {
         gp.obj[mapNum][i] = new OBJ_Lantern_Ground(gp);
         gp.obj[mapNum][i].worldX = 30*gp.tileSize;
         gp.obj[mapNum][i].worldY = 25*gp.tileSize;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Nightingale(gp);
+        gp.obj[mapNum][i].worldX = 30*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 24*gp.tileSize;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Longsword(gp);
+        gp.obj[mapNum][i].worldX = 31*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 24*gp.tileSize;
         i++;
 
         mapNum += 1;
@@ -280,6 +290,15 @@ public class AssetSetter {
         gp.monster[mapNum][i].worldX = 33 * gp.tileSize;
         gp.monster[mapNum][i].worldY = 22 * gp.tileSize;
         i++;
+
+        mapNum++;
+        i = 0;
+        
+        mapNum++;
+        i = 0;
+
+        mapNum++;
+        i = 0;
     }
 
     public void setInteractiveTile() {

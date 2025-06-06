@@ -91,9 +91,9 @@ public class MON_Slime extends Entity {
 
     public void checkDrop() {
         
-        int i = new Random().nextInt(101);
+        int i = new Random().nextInt(100);
     
-        if (i < 2) {
+        if (i == 0) {
             dropItem(new OBJ_Coin(gp));
         }
     }

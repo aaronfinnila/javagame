@@ -871,8 +871,10 @@ public void drawTransition() {
         counter++;
         if (counter > 1 && counter < 3) {
             gp.stopMusic();
+            gp.player.lightUpdated = true;
         }
     }
+
     g2.setColor(new Color(0,0,0,counter*5));
     g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
     
@@ -885,12 +887,23 @@ public void drawTransition() {
         gp.eHandler.previousEventY = gp.player.worldY;
         darken = true;
     }
+
     if (darken == true) {
         counter--;
-        if (counter == 0) {
+        if (counter == 0 && gp.eManager.lighting.filterAlpha < 0.4f) {
             gp.gameState = gp.playState;
-            gp.player.lightUpdated = true;
             darken = false;
+            switch (gp.eHandler.tempMap) {
+                case 0: gp.playMusic(0); break;
+                case 1: gp.playMusic(17); break;
+                case 2: gp.playMusic(18); break;
+                case 3: gp.playMusic(19); break;
+                case 4: gp.playMusic(20); break;
+            }
+        } else if (counter == 49 && gp.eManager.lighting.filterAlpha > 0.4f) {
+            gp.gameState = gp.playState;
+            darken = false;
+            counter = 0;
             switch (gp.eHandler.tempMap) {
                 case 0: gp.playMusic(0); break;
                 case 1: gp.playMusic(17); break;
@@ -900,7 +913,7 @@ public void drawTransition() {
             }
         }
     }
-}
+    }
 
 public void drawSubWindow(int x, int y, int width, int height) {
 

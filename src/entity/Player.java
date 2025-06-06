@@ -49,6 +49,7 @@ public class Player extends Entity {
         worldY = 1150;
         direction = "down";
         
+        name = "Player";
         defaultSpeed = 4;
         speed = defaultSpeed;
         maxHealth = 6;
@@ -111,9 +112,10 @@ public void getPlayerImage() {
 
 public void getPlayerAttackImage() {
 
+    attackArea.height = currentWeapon.attackArea.height;
+    attackArea.width = currentWeapon.attackArea.width;
+
     if (currentWeapon.name == "Badgers Scimitar") {
-        attackArea.height = currentWeapon.attackArea.height;
-        attackArea.width = currentWeapon.attackArea.width;
         attackUp1 = setup("/res/player/boy_scimitar_up1", gp.tileSize, gp.tileSize*2);
         attackUp2 = setup("/res/player/boy_scimitar_up2", gp.tileSize, gp.tileSize*2);
         attackLeft1 = setup("/res/player/boy_scimitar_left1", gp.tileSize*2, gp.tileSize);
@@ -124,8 +126,6 @@ public void getPlayerAttackImage() {
         attackRight2 = setup("/res/player/boy_scimitar_right2", gp.tileSize*2, gp.tileSize);
     }
     if (currentWeapon.name == "Longsword") {
-        attackArea.height = currentWeapon.attackArea.height;
-        attackArea.width = currentWeapon.attackArea.width;
         attackUp1 = setup("/res/player/boy_scimitar_up1", gp.tileSize, gp.tileSize*2);
         attackUp2 = setup("/res/player/boy_longsword_up", gp.tileSize, gp.tileSize*2);
         attackLeft1 = setup("/res/player/boy_scimitar_left1", gp.tileSize*2, gp.tileSize);
@@ -137,8 +137,6 @@ public void getPlayerAttackImage() {
     }
 
     if (currentWeapon.name == "Hammer") {
-        attackArea.height = currentWeapon.attackArea.height;
-        attackArea.width = currentWeapon.attackArea.width;
         attackUp1 = setup("/res/player/boy_hammer_up1", gp.tileSize, gp.tileSize*2);
         attackUp2 = setup("/res/player/boy_hammer_up2", gp.tileSize, gp.tileSize*2);
         attackLeft1 = setup("/res/player/boy_hammer_left1", gp.tileSize*2, gp.tileSize);
@@ -177,7 +175,6 @@ public void getPlayerShootImage() {
         if (gp.keyH.attackKeyPressed == true && shooting != true && attackAvailableCounter >= 30) {
             attacking = true;
         }
-
         if (attacking == true) {
             attacking();
         }
@@ -523,11 +520,7 @@ public void getPlayerShootImage() {
     }
     
     public void draw(Graphics2D g2) {
-
-        BufferedImage image = null;
-        int tempScreenX = screenX;
-        int tempScreenY = screenY;
-
+        
         // DEBUG attackArea
 
 /* 		tempScreenX = screenX + solidArea.x;
@@ -546,6 +539,11 @@ public void getPlayerShootImage() {
         tempScreenX = screenX;
         tempScreenY = screenY;
  */
+
+        BufferedImage image = null;
+        int tempScreenX = screenX;
+        int tempScreenY = screenY;
+
         switch(direction) {
             case "up":
                 if (attacking == false && shooting == false) {
