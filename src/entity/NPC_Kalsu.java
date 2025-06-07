@@ -81,8 +81,9 @@ public void setAction() {
         searchPath(getGoalCol(gp.player), getGoalRow(gp.player));
         
         if (attacking == false) {
-            checkAttackOrNot(30, gp.tileSize*4, gp.tileSize);
+            checkAttackOrNot(60, gp.tileSize*4, gp.tileSize);
         }
+
 } else {
 
 }

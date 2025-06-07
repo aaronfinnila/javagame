@@ -14,8 +14,10 @@ public class Sound {
     FloatControl fc;
     int volumeScale = 3;
     float volume;
+    GamePanel gp;
 
-    public Sound() {
+    public Sound(GamePanel gp) {
+        this.gp = gp;
 
         soundURL[0] = getClass().getResource("/res/sound/themesong.wav");
         soundURL[1] = getClass().getResource("/res/sound/coin.wav");
@@ -39,6 +41,7 @@ public class Sound {
         soundURL[19] = getClass().getResource("/res/sound/house2.wav");
         soundURL[20] = getClass().getResource("/res/sound/store.wav");
         soundURL[21] = getClass().getResource("/res/sound/mysterious.wav");
+        soundURL[22] = getClass().getResource("/res/sound/nightingale.wav");
     }
 
     public void setFile(int i) {
@@ -80,6 +83,74 @@ public class Sound {
             case 4: volume = 1f; break;
             case 5: volume = 6f; break;
         }
+
         fc.setValue(volume);
+    }
+
+    public void fadeMusic(int musicNum, String inOrOut) {
+        if (inOrOut.equals("in")) {
+            int originalVolume = volumeScale;
+            int counter = 0;
+            volumeScale = 0;
+            gp.changeMusic(musicNum);
+            while (true) {
+                counter++;
+                if (counter == 400) {
+                    volumeScale = 0;
+                    checkVolume();
+                } else if (counter == 800) {
+                    volumeScale = 1;
+                    checkVolume();
+                } else if (counter == 1200) {
+                    volumeScale = 2;
+                    checkVolume();
+                } else if (counter == 1600) {
+                    volumeScale = 3;
+                    checkVolume();
+                } else if (counter == 2000) {
+                    volumeScale = 4;
+                    checkVolume();
+                } else if (counter == 2400) {
+                    volumeScale = 5;
+                    checkVolume();
+                }
+
+                if (volumeScale == originalVolume && counter > 45) {
+                    System.out.println("inned ready");
+                    break;
+                }
+            }
+        } else if (inOrOut.equals("out")) {
+            int originalVolume = volumeScale;
+            int counter = 0;
+            while (true) {
+                counter++;
+                if (counter == 400) {
+                    volumeScale = 5;
+                } else if (counter == 800) {
+                    volumeScale = 4;
+                    checkVolume();
+                } else if (counter == 1200) {
+                    volumeScale = 3;
+                    checkVolume();
+                } else if (counter == 1600) {
+                    volumeScale = 2;
+                    checkVolume();
+                } else if (counter == 2000) {
+                    volumeScale = 1;
+                    checkVolume();
+                } else if (counter == 2400) {
+                    gp.stopMusic();
+                    volumeScale = originalVolume;
+                    checkVolume();
+                    System.out.println("outed ready");
+                    break;
+                }
+
+                if (volumeScale > originalVolume) {
+                    volumeScale = originalVolume;
+                }
+            }
+        }
     }
 }

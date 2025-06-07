@@ -106,6 +106,7 @@ public class Lighting {
             if (dayCounter > 600) {
                 dayState = dusk;
                 dayCounter = 0;
+                gp.stopMusic();
             }
         }
         
@@ -115,6 +116,7 @@ public class Lighting {
             if (filterAlpha > 1f) {
                 filterAlpha = 1f;
                 dayState = night;
+                gp.changeMusic(21);
             }
         }
 
@@ -124,6 +126,7 @@ public class Lighting {
             if (dayCounter > 600) {
                 dayState = dawn;
                 dayCounter = 0;
+                gp.stopMusic();
             }
         }
 
@@ -133,6 +136,11 @@ public class Lighting {
             if (filterAlpha < 0f) {
                 filterAlpha = 0;
                 dayState = day;
+                if (gp.currentMap == gp.treasureislandMap) {
+                    gp.changeMusic(17);
+                } else {
+                    gp.changeMusic(0);
+                }
             }
         }
     }

@@ -411,8 +411,10 @@ public class Entity {
         attackCounter++;
 
         if (attackCounter > 0 && attackCounter < 2) {
-            if (currentWeapon.type == type_sword) {gp.playSE(5);}
-            if (currentWeapon.type == type_hammer) {gp.playSE(14);}
+            if (currentWeapon.name == "Badgers Scimitar") {gp.playSE(5);}
+            if (currentWeapon.name == "Longsword") {gp.playSE(5);}
+            if (currentWeapon.name == "Nightingale") {gp.playSE(22);}
+            if (currentWeapon.name == "Hammer") {gp.playSE(14);}
         }
         if (attackCounter <= 5) {
             attackNum = 1;

@@ -67,8 +67,8 @@ public class GamePanel extends JPanel implements Runnable{
     public TileManager tileM = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
     public EventHandler eHandler = new EventHandler(this);
-    Sound music = new Sound();
-    Sound se = new Sound();
+    Sound music = new Sound(this);
+    Sound se = new Sound(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
@@ -434,6 +434,10 @@ public class GamePanel extends JPanel implements Runnable{
     public void changeMusic(int i) {
         stopMusic();
         playMusic(i);
+    }
+
+    public void fadeMusic(int musicNum, String inOrOut) {
+        music.fadeMusic(musicNum, inOrOut);
     }
 
     public void playSE(int i) {

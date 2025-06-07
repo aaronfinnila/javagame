@@ -894,8 +894,14 @@ public void drawTransition() {
             gp.gameState = gp.playState;
             darken = false;
             switch (gp.eHandler.tempMap) {
-                case 0: gp.playMusic(0); break;
-                case 1: gp.playMusic(17); break;
+                case 0: 
+                if (gp.eManager.lighting.dayState == gp.eManager.lighting.night) {gp.playMusic(21);
+                } else if (gp.eManager.lighting.dayState == gp.eManager.lighting.night) {gp.playMusic(0);}
+                break;
+                case 1:
+                if (gp.eManager.lighting.dayState == gp.eManager.lighting.night) {gp.playMusic(21);}
+                else if (gp.eManager.lighting.dayState == gp.eManager.lighting.night) {gp.playMusic(0);}
+                break;
                 case 2: gp.playMusic(18); break;
                 case 3: gp.playMusic(19); break;
                 case 4: gp.playMusic(20); break;
@@ -905,14 +911,22 @@ public void drawTransition() {
             darken = false;
             counter = 0;
             switch (gp.eHandler.tempMap) {
-                case 0: gp.playMusic(0); break;
-                case 1: gp.playMusic(17); break;
+                case 0: 
+                if (gp.eManager.lighting.dayState == gp.eManager.lighting.night) {gp.playMusic(21);
+                } else {gp.playMusic(0);}
+                break;
+                case 1:
+                if (gp.eManager.lighting.dayState == gp.eManager.lighting.night) {gp.playMusic(21);}
+                else {gp.playMusic(17);}
+                break;
                 case 2: gp.playMusic(18); break;
                 case 3: gp.playMusic(19); break;
                 case 4: gp.playMusic(20); break;
             }
+            }
+            gp.player.attacking = false;
+            gp.player.shooting = false;
         }
-    }
     }
 
 public void drawSubWindow(int x, int y, int width, int height) {

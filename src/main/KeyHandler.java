@@ -149,7 +149,6 @@ public class KeyHandler implements KeyListener{
         if (code == KeyEvent.VK_P || code == KeyEvent.VK_ESCAPE) {
             gp.gameState = gp.playState;
             gp.playMusic(0);
-            gp.musicPlaying = true;
         }
     }
 
