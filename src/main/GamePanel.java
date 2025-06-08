@@ -15,6 +15,7 @@ import java.util.Comparator;
 import javax.swing.JPanel;
 
 import ai.PathFinder;
+import data.SaveLoad;
 import entity.Entity;
 import entity.Player;
 import environment.EnvironmentManager;
@@ -43,7 +44,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int introislandMap = 0;
     public final int treasureislandMap = 1;
     public final int house1Map = 2;
-    public final int houseMap = 3;
+    public final int house2Map = 3;
     public final int storeMap = 4;
 
     // FOR FULLSCREEN
@@ -73,6 +74,7 @@ public class GamePanel extends JPanel implements Runnable{
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
     Config config = new Config(this);
+    SaveLoad saveLoad = new SaveLoad(this);
     public PathFinder pFinder = new PathFinder(this);
     EnvironmentManager eManager = new EnvironmentManager(this);
     Thread gameThread;
@@ -126,24 +128,20 @@ public class GamePanel extends JPanel implements Runnable{
             setFullscreen();
         }
     }
-    
-    public void retry() {
+
+    public void resetGame(boolean restart) {
 
         player.setDefaultPositions();
-        player.restoreHealth();
+        player.restoreStatus();
         aSetter.setNPC();
         aSetter.setMonster();
-        playMusic(0);
-    }
-
-    public void restart() {
-
-        player.setDefaultValues();
-        player.setItems();
-        aSetter.setObject();
-        aSetter.setNPC();
-        aSetter.setMonster();
-        aSetter.setInteractiveTile();
+        
+        if (restart == true) {
+            player.setDefaultValues();
+            aSetter.setObject();
+            aSetter.setInteractiveTile();
+            eManager.lighting.resetDay();
+        }
     }
 
     public void setFullscreen() {
@@ -383,6 +381,7 @@ public class GamePanel extends JPanel implements Runnable{
                 int lineHeight = 20;
                 g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 25F));
                 g2.setColor(Color.white);
+                g2.drawString("exp " + player.exp, x, y); y += lineHeight;
                 g2.drawString("Draw Time: " + passed, x, y); y += lineHeight;
                 g2.drawString("WorldX " + player.worldX, x, y); y += lineHeight;
                 g2.drawString("WorldY " + player.worldY, x, y); y += lineHeight;
@@ -438,6 +437,16 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void fadeMusic(int musicNum, String inOrOut) {
         music.fadeMusic(musicNum, inOrOut);
+    }
+
+    public String dayState() {
+        switch (eManager.lighting.dayState) {
+            case 0: return "day";
+            case 1: return "dusk";
+            case 2: return "night";
+            case 3: return "dawn";
+        }
+        return null;
     }
 
     public void playSE(int i) {

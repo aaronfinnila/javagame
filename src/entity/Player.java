@@ -38,9 +38,6 @@ public class Player extends Entity {
         attackArea.width = 36;
 
         setDefaultValues();
-        getPlayerImage();
-        getPlayerAttackImage();
-        setItems();
     }
 
     public void setDefaultValues() {
@@ -64,9 +61,13 @@ public class Player extends Entity {
         gold = 50;
         currentWeapon = new OBJ_Sword_Default(gp);
         currentShield = new OBJ_Shield_Default(gp);
+        currentLight = null;
         projectile = new OBJ_Arrow(gp);
         attack = getAttack();
         defense = getDefense();
+        getPlayerImage();
+        getPlayerAttackImage();
+        setItems();
     }
 
     public void setDefaultPositions() {
@@ -76,10 +77,14 @@ public class Player extends Entity {
         direction = "down";
     }
 
-    public void restoreHealth() {
+    public void restoreStatus() {
 
         health = maxHealth;
         invincible = false;
+        attacking = false;
+        knockBack = false;
+        lightUpdated = true;
+        speed = defaultSpeed;
     }
 
     public void setItems() {
@@ -145,6 +150,17 @@ public void getPlayerAttackImage() {
         attackDown2 = setup("/res/player/boy_hammer_down2", gp.tileSize, gp.tileSize*2);
         attackRight1 = setup("/res/player/boy_hammer_right1", gp.tileSize*2, gp.tileSize);
         attackRight2 = setup("/res/player/boy_hammer_right2", gp.tileSize*2, gp.tileSize);
+    }
+
+    if (currentWeapon.name == "Nightingale") {
+        attackUp1 = setup("/res/player/boy_scimitar_up1", gp.tileSize, gp.tileSize*2);
+        attackUp2 = setup("/res/player/boy_nightingale_up", gp.tileSize, gp.tileSize*2);
+        attackLeft1 = setup("/res/player/boy_scimitar_left1", gp.tileSize*2, gp.tileSize);
+        attackLeft2 = setup("/res/player/boy_nightingale_left", gp.tileSize*2, gp.tileSize);
+        attackDown1 = setup("/res/player/boy_scimitar_down1", gp.tileSize, gp.tileSize*2);
+        attackDown2 = setup("/res/player/boy_nightingale_down", gp.tileSize, 120);
+        attackRight1 = setup("/res/player/boy_scimitar_right1", gp.tileSize*2, gp.tileSize);
+        attackRight2 = setup("/res/player/boy_nightingale_right", gp.tileSize*2, gp.tileSize);
     }
 }
 

@@ -457,9 +457,10 @@ public void drawDialogueScreen() {
         textSize = 20;
     }
 
-    if (gp.ui.currentDialogue.equals("The goddess statue fills you with joy.\nYour health has been replenished.")) {
-        textSize = 20;
+    if (gp.ui.currentDialogue.equals("The goddess statue fills you with joy.\nYour health has been replenished.\n(Progress has been saved)")) {
+        textSize = 25;
     }
+
     if (gp.ui.currentDialogue.equals("Oh, right! Because THIS one will be the one who gets\nit all! SURELY he won't end up like the rest, RIIGHT???")) {
         textSize = 20;
     }
@@ -847,6 +848,7 @@ public void options_endGameConfirmation(int frameX, int frameY) {
             subState = 0;
             gp.gameState = gp.titleState;
             gp.music.stop();
+            gp.resetGame(true);
         }
     }
 
@@ -895,12 +897,10 @@ public void drawTransition() {
             darken = false;
             switch (gp.eHandler.tempMap) {
                 case 0: 
-                if (gp.eManager.lighting.dayState == gp.eManager.lighting.night) {gp.playMusic(21);
-                } else if (gp.eManager.lighting.dayState == gp.eManager.lighting.night) {gp.playMusic(0);}
+                if (gp.dayState().equals("day")) {gp.playMusic(0);}
                 break;
                 case 1:
-                if (gp.eManager.lighting.dayState == gp.eManager.lighting.night) {gp.playMusic(21);}
-                else if (gp.eManager.lighting.dayState == gp.eManager.lighting.night) {gp.playMusic(0);}
+                if (gp.dayState().equals("day")) {gp.playMusic(17);}
                 break;
                 case 2: gp.playMusic(18); break;
                 case 3: gp.playMusic(19); break;
@@ -912,12 +912,10 @@ public void drawTransition() {
             counter = 0;
             switch (gp.eHandler.tempMap) {
                 case 0: 
-                if (gp.eManager.lighting.dayState == gp.eManager.lighting.night) {gp.playMusic(21);
-                } else {gp.playMusic(0);}
+                if (gp.dayState().equals("night")) {gp.playMusic(21);}
                 break;
                 case 1:
-                if (gp.eManager.lighting.dayState == gp.eManager.lighting.night) {gp.playMusic(21);}
-                else {gp.playMusic(17);}
+                if (gp.dayState().equals("night")) {gp.playMusic(21);}
                 break;
                 case 2: gp.playMusic(18); break;
                 case 3: gp.playMusic(19); break;

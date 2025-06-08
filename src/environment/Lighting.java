@@ -93,6 +93,11 @@ public class Lighting {
         }
     }
 
+    public void resetDay() {
+        dayState = day;
+        filterAlpha = 0f;
+    }
+
     public void update() {
 
         if (gp.player.lightUpdated == true) {
@@ -106,7 +111,9 @@ public class Lighting {
             if (dayCounter > 600) {
                 dayState = dusk;
                 dayCounter = 0;
-                gp.stopMusic();
+                if (gp.currentMap == gp.introislandMap || gp.currentMap == gp.treasureislandMap) {
+                    gp.stopMusic();
+                }
             }
         }
         
@@ -116,7 +123,9 @@ public class Lighting {
             if (filterAlpha > 1f) {
                 filterAlpha = 1f;
                 dayState = night;
-                gp.changeMusic(21);
+                if (gp.currentMap == gp.introislandMap || gp.currentMap == gp.treasureislandMap) {
+                    gp.changeMusic(21);
+                }
             }
         }
 
@@ -126,7 +135,9 @@ public class Lighting {
             if (dayCounter > 600) {
                 dayState = dawn;
                 dayCounter = 0;
-                gp.stopMusic();
+                if (gp.currentMap == gp.treasureislandMap || gp.currentMap == gp.introislandMap) {
+                    gp.stopMusic();
+                }
             }
         }
 
@@ -138,11 +149,11 @@ public class Lighting {
                 dayState = day;
                 if (gp.currentMap == gp.treasureislandMap) {
                     gp.changeMusic(17);
-                } else {
+                } else if (gp.currentMap == gp.introislandMap) {
                     gp.changeMusic(0);
-                }
-            }
+                } else {}
         }
+    }
     }
 
     public void draw(Graphics2D g2) {
@@ -151,7 +162,9 @@ public class Lighting {
         g2.drawImage(darknessFilter, 0, 0, null);
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 
-        String state = "";
+        // DAYSTATE DEBUG
+        
+/*         String state = "";
 
         switch (dayState) {
             case day: {state = "Day"; break;}
@@ -163,6 +176,6 @@ public class Lighting {
         g2.setFont(g2.getFont().deriveFont(50f));
         g2.drawString(state, gp.screenWidth-gp.tileSize*3, gp.screenHeight-gp.tileSize*3);
         String filt = Float.toString(filterAlpha);
-        g2.drawString(filt, gp.screenWidth-gp.tileSize*3, gp.screenHeight-gp.tileSize*2);
+        g2.drawString(filt, gp.screenWidth-gp.tileSize*3, gp.screenHeight-gp.tileSize*2); */
     }
 }

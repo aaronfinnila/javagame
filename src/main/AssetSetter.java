@@ -12,7 +12,6 @@ import obj.OBJ_House1;
 import obj.OBJ_House1_Interior;
 import obj.OBJ_House2;
 import obj.OBJ_House2_Interior;
-import obj.OBJ_Lantern_Ground;
 import obj.OBJ_Lantern_Inv;
 import obj.OBJ_Longsword;
 import obj.OBJ_Nightingale;
@@ -49,10 +48,6 @@ public class AssetSetter {
         gp.obj[mapNum][i] = new OBJ_Lantern_Inv(gp);
         gp.obj[mapNum][i].worldX = 30*gp.tileSize;
         gp.obj[mapNum][i].worldY = 32*gp.tileSize;
-        i++;
-        gp.obj[mapNum][i] = new OBJ_Lantern_Ground(gp);
-        gp.obj[mapNum][i].worldX = 30*gp.tileSize;
-        gp.obj[mapNum][i].worldY = 25*gp.tileSize;
         i++;
         gp.obj[mapNum][i] = new OBJ_Nightingale(gp);
         gp.obj[mapNum][i].worldX = 30*gp.tileSize;
@@ -228,10 +223,6 @@ public class AssetSetter {
         gp.npc[mapNum][i] = new NPC_Rock(gp);
         gp.npc[mapNum][i].worldX = 24 * gp.tileSize;
         gp.npc[mapNum][i].worldY = 21 * gp.tileSize;
-        i++;
-        gp.npc[mapNum][i] = new NPC_Rubert(gp);
-        gp.npc[mapNum][i].worldX = 30 * gp.tileSize;
-        gp.npc[mapNum][i].worldY = 24 * gp.tileSize;
         i++;
         
         mapNum++;

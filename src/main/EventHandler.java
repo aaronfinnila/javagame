@@ -66,6 +66,9 @@ public class EventHandler {
             if (hit(4,47,56,"down") == true && gp.keyH.ePressed == true) {
                 teleportPlayer(1, 66, 27);
             }
+            if(hit(0,17, 26, "up") == true && gp.keyH.ePressed == true) {
+                healingStatue(gp.dialogueState);
+            }
         }
     }
 
@@ -101,13 +104,14 @@ public class EventHandler {
         eventRect[map][col][row].eventDone = true;
         }
 
-    public void healingStatue(int map, int col, int row, int gameState) {
+    public void healingStatue(int gameState) {
+        System.out.println("healstatue");
         gp.gameState = gameState;
-        gp.ui.currentDialogue = "The goddess statue fills you with joy.\nYour health has been replenished.";
+        gp.ui.currentDialogue = "The goddess statue fills you with joy.\nYour health has been replenished.\n(Progress has been saved)";
 
         gp.player.health = gp.player.maxHealth;
         gp.aSetter.setMonster();
-        eventRect[map][col][row].eventDone = true;
+        gp.saveLoad.save();
     }
 
     public void teleportPlayer(int map, int col, int row) {

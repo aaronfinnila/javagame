@@ -68,6 +68,17 @@ public class KeyHandler implements KeyListener{
                 gp.gameState = gp.playState;
                 gp.playMusic(0);
             }
+            if (gp.ui.commandNumber == 1) {
+                gp.saveLoad.load();
+                gp.gameState = gp.playState;
+                switch (gp.currentMap) {
+                    case 0: gp.playMusic(0); break;
+                    case 1: gp.playMusic(17); break;
+                    case 2: gp.playMusic(18); break;
+                    case 3: gp.playMusic(19); break;
+                    case 4: gp.playMusic(20); break;
+                }
+            }
             if (gp.ui.commandNumber == 2) {
                 System.exit(0);
             }
@@ -155,7 +166,25 @@ public class KeyHandler implements KeyListener{
     public void dialogueState(int code) {
         if (code == KeyEvent.VK_SPACE) {
             if (gp.ui.currentDialogue.equals("You are now level " + gp.player.level + "!\nYou feel stronger than before!")) {
-                gp.playMusic(0);
+                if (gp.currentMap == gp.introislandMap) {
+                    if (gp.dayState().equals("day")) {gp.changeMusic(0);}
+                    else if (gp.dayState().equals("night")) {gp.changeMusic(21);}
+                    else {}
+                }
+                else if (gp.currentMap == gp.treasureislandMap) {
+                    if (gp.dayState().equals("day")) {gp.changeMusic(17);}
+                    else if (gp.dayState().equals("night")) {gp.changeMusic(21);}
+                    else {}
+                }
+                else if (gp.currentMap == gp.house1Map) {
+                    gp.changeMusic(18);
+                }
+                else if (gp.currentMap == gp.house2Map) {
+                    gp.changeMusic(19);
+                }
+                else if (gp.currentMap == gp.storeMap) {
+                    gp.changeMusic(20);
+                }
             }
             if (gp.ui.subState != 0) {
                 gp.gameState = gp.tradeState;
@@ -252,11 +281,11 @@ public class KeyHandler implements KeyListener{
         if (code == KeyEvent.VK_SPACE) {
             if (gp.ui.commandNumber == 0) {
                 gp.gameState = gp.playState;
-                gp.retry();
+                gp.resetGame(false);
             }
             else if (gp.ui.commandNumber == 1) {
                 gp.gameState = gp.titleState;
-                gp.restart();
+                gp.resetGame(true);
             }
         }
     }
