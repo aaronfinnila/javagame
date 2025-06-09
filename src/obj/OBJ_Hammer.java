@@ -5,10 +5,12 @@ import main.GamePanel;
 
 public class OBJ_Hammer extends Entity {
 
+    public final static String objName = "Hammer";
+
     public OBJ_Hammer(GamePanel gp) {
         super(gp);
 
-        name = "Hammer";
+        name = objName;
         down1 = setup("/res/objects/hammer",gp.tileSize,gp.tileSize);
         image = down1;
         speed = 1;

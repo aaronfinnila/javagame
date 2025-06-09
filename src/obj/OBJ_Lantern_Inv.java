@@ -6,11 +6,12 @@ import main.GamePanel;
 public class OBJ_Lantern_Inv extends Entity {
     GamePanel gp;
 
+    public final static String objName = "Lantern";
     public OBJ_Lantern_Inv(GamePanel gp) {
         super(gp);
         this.gp = gp;
         type = type_light;
-        name = "Lantern";
+        name = objName;
         attackValue = 10;
         down1 = setup("/res/objects/lantern1", 12*2, 18*2);
         image = setup("/res/objects/lantern1", gp.tileSize-10, gp.tileSize-5);

@@ -105,7 +105,6 @@ public class EventHandler {
         }
 
     public void healingStatue(int gameState) {
-        System.out.println("healstatue");
         gp.gameState = gameState;
         gp.ui.currentDialogue = "The goddess statue fills you with joy.\nYour health has been replenished.\n(Progress has been saved)";
 

@@ -148,6 +148,12 @@ public class Entity {
         return goalRow;
     }
 
+    public void getAttackImage() {}
+
+    public void getShootImage() {}
+
+    public void getImage() {}
+
     public void setAction() {}
 
     public void use(Entity entity) {}

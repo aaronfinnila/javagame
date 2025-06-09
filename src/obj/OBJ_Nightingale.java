@@ -5,10 +5,11 @@ import main.GamePanel;
 
 public class OBJ_Nightingale extends Entity {
 
+    public final static String objName = "Nightingale";
     public OBJ_Nightingale(GamePanel gp) {
         super(gp);
 
-        name = "Nightingale";
+        name = objName;
         down1 = setup("/res/objects/nightingale",gp.tileSize,gp.tileSize);
         image = down1;
         attackValue = 5;

@@ -5,10 +5,11 @@ import main.GamePanel;
 
 public class OBJ_Sword_Default extends Entity {
 
+    public final static String objName = "Badgers Scimitar";
     public OBJ_Sword_Default(GamePanel gp) {
         super(gp);
 
-        name = "Badgers Scimitar";
+        name = objName;
         down1 = setup("/res/objects/defaultsword",gp.tileSize,gp.tileSize);
         image = down1;
         speed = 1;

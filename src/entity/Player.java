@@ -65,8 +65,8 @@ public class Player extends Entity {
         projectile = new OBJ_Arrow(gp);
         attack = getAttack();
         defense = getDefense();
-        getPlayerImage();
-        getPlayerAttackImage();
+        getImage();
+        getAttackImage();
         setItems();
     }
 
@@ -99,11 +99,51 @@ public class Player extends Entity {
         return attack = strength * currentWeapon.attackValue;
     }
 
+    public int getCurrentWeaponSlot() {
+        int currentWeaponSlot = 0;
+        for (int i=0;i<inventory.size();i++) {
+            if (inventory.get(i) == currentWeapon) {
+                currentWeaponSlot = i;
+            }
+        }
+        return currentWeaponSlot;
+    }
+
+    public int getCurrentShieldSlot() {
+        int currentShieldSlot = 0;
+        for (int i=0;i<inventory.size();i++) {
+            if (inventory.get(i) == currentShield) {
+                currentShieldSlot = i;
+            }
+        }
+        return currentShieldSlot;
+    }
+
+    public int getCurrentShootSlot() {
+        int currentShootSlot = 0;
+        for (int i=0;i<inventory.size();i++) {
+            if (inventory.get(i) == currentShoot) {
+                currentShootSlot = i;
+            }
+        }
+        return currentShootSlot;
+    }
+
+    public int getCurrentLightSlot() {
+        int currentLightSlot = 0;
+        for (int i=0;i<inventory.size();i++) {
+            if (inventory.get(i) == currentLight) {
+                currentLightSlot = i;
+            }
+        }
+        return currentLightSlot;
+    }
+
     public int getDefense() {
         return defense = dexterity * currentShield.defenseValue;
     }
 
-public void getPlayerImage() {
+public void getImage() {
 
     up1 = setup("/res/player/boy_up_1", gp.tileSize, gp.tileSize);
     up2 = setup("/res/player/boy_up_2", gp.tileSize, gp.tileSize);
@@ -115,7 +155,7 @@ public void getPlayerImage() {
     right2 = setup("/res/player/boy_right_2", gp.tileSize, gp.tileSize);
 }
 
-public void getPlayerAttackImage() {
+public void getAttackImage() {
 
     attackArea.height = currentWeapon.attackArea.height;
     attackArea.width = currentWeapon.attackArea.width;
@@ -164,7 +204,7 @@ public void getPlayerAttackImage() {
     }
 }
 
-public void getPlayerShootImage() {
+public void getShootImage() {
 
     if (currentShoot.name == "Wooden Bow") {
         shootDown1 = setup("/res/player/boy_bow_down1", gp.tileSize, gp.tileSize);
@@ -509,7 +549,7 @@ public void getPlayerShootImage() {
             if (selectedItem.type == type_sword || selectedItem.type == type_hammer) {
                 currentWeapon = selectedItem;
                 attack = getAttack();
-                getPlayerAttackImage();
+                getAttackImage();
             }
             if (selectedItem.type == type_shield) {
                 currentShield = selectedItem;
@@ -517,7 +557,7 @@ public void getPlayerShootImage() {
             }
             if (selectedItem.type == type_shoot) {
                 currentShoot = selectedItem;
-                getPlayerShootImage();
+                getShootImage();
             }
             if (selectedItem.type == type_consumable) {
                 selectedItem.use(this);

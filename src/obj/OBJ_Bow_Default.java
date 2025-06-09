@@ -5,10 +5,12 @@ import main.GamePanel;
 
 public class OBJ_Bow_Default extends Entity {
 
+    public final static String objName = "Wooden Bow";
+
     public OBJ_Bow_Default(GamePanel gp) {
         super(gp);
 
-        name = "Wooden Bow";
+        name = objName;
         down1 = setup("/res/objects/defaultbow",gp.tileSize,gp.tileSize);
         image = down1;
         attackValue = 1;

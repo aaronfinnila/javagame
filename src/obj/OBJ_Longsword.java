@@ -5,10 +5,11 @@ import main.GamePanel;
 
 public class OBJ_Longsword extends Entity {
 
+    public final static String objName = "Longsword";
     public OBJ_Longsword(GamePanel gp) {
         super(gp);
 
-        name = "Longsword";
+        name = objName;
         down1 = setup("/res/objects/longsword",gp.tileSize,gp.tileSize);
         image = down1;
         attackValue = 2;

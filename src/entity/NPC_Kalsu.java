@@ -31,7 +31,7 @@ public class NPC_Kalsu extends Entity {
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         getImage();
-        getKalsuAttackImage();
+        getAttackImage();
         setDialogue();
     }
 
@@ -46,7 +46,7 @@ public void getImage() {
     right2 = setup("/res/npc/kalsu_right_2", gp.tileSize, gp.tileSize);
 }
 
-public void getKalsuAttackImage() {
+public void getAttackImage() {
 
     attackArea.height = currentWeapon.attackArea.height;
     attackArea.width = currentWeapon.attackArea.width;
