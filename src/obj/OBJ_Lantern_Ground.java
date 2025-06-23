@@ -4,13 +4,16 @@ import entity.Entity;
 import main.GamePanel;
 
 public class OBJ_Lantern_Ground extends Entity {
+
+    public final static String objName = "Lantern_Ground";
+
     GamePanel gp;
 
     public OBJ_Lantern_Ground(GamePanel gp) {
         super(gp);
         this.gp = gp;
         type = type_animated_object;
-        name = "Lantern_Ground";
+        name = objName;
         attackValue = 10;
         down1 = setup("/res/objects/lantern1", 12*2, 18*2);
         down2 = setup("/res/objects/lantern2", 12*2, 18*2);

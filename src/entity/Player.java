@@ -100,7 +100,7 @@ public class Player extends Entity {
     }
 
     public int getCurrentWeaponSlot() {
-        int currentWeaponSlot = 0;
+        int currentWeaponSlot = 999;
         for (int i=0;i<inventory.size();i++) {
             if (inventory.get(i) == currentWeapon) {
                 currentWeaponSlot = i;
@@ -110,7 +110,7 @@ public class Player extends Entity {
     }
 
     public int getCurrentShieldSlot() {
-        int currentShieldSlot = 0;
+        int currentShieldSlot = 999;
         for (int i=0;i<inventory.size();i++) {
             if (inventory.get(i) == currentShield) {
                 currentShieldSlot = i;
@@ -120,20 +120,24 @@ public class Player extends Entity {
     }
 
     public int getCurrentShootSlot() {
-        int currentShootSlot = 0;
-        for (int i=0;i<inventory.size();i++) {
-            if (inventory.get(i) == currentShoot) {
-                currentShootSlot = i;
+        int currentShootSlot = 999;
+        if (currentShoot != null) {
+            for (int i=0;i<inventory.size();i++) {
+                if (inventory.get(i) == currentShoot) {
+                    currentShootSlot = i;
+                }
             }
         }
         return currentShootSlot;
     }
 
     public int getCurrentLightSlot() {
-        int currentLightSlot = 0;
-        for (int i=0;i<inventory.size();i++) {
-            if (inventory.get(i) == currentLight) {
-                currentLightSlot = i;
+        int currentLightSlot = 999;
+        if (currentLight != null) {
+            for (int i=0;i<inventory.size();i++) {
+                if (inventory.get(i) == currentLight) {
+                    currentLightSlot = i;
+                }
             }
         }
         return currentLightSlot;

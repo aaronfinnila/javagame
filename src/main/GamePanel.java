@@ -65,6 +65,7 @@ public class GamePanel extends JPanel implements Runnable{
     public boolean actionActive;
     public boolean soundeffectActive;
     public boolean musicPlaying;
+    public boolean saveExists = false;
     public TileManager tileM = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
     public EventHandler eHandler = new EventHandler(this);
@@ -137,6 +138,7 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setMonster();
         
         if (restart == true) {
+            player.setItems();
             player.setDefaultValues();
             aSetter.setObject();
             aSetter.setInteractiveTile();

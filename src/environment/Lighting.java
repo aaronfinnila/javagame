@@ -76,8 +76,7 @@ public class Lighting {
             g2.dispose();
         } else {
             if (gp.player.currentLight != null) {
-            
-                RadialGradientPaint gPaint = new RadialGradientPaint(centerX, centerY, (gp.player.currentLight.lightRadius/2), 
+                RadialGradientPaint gPaint = new RadialGradientPaint(centerX, centerY, gp.player.currentLight.lightRadius/2, 
                 fraction, color);
             
                 g2.setPaint(gPaint);

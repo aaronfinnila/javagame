@@ -4,9 +4,11 @@ import entity.Entity;
 import main.GamePanel;
 
 public class OBJ_Lantern_Inv extends Entity {
+    
     GamePanel gp;
 
     public final static String objName = "Lantern";
+
     public OBJ_Lantern_Inv(GamePanel gp) {
         super(gp);
         this.gp = gp;

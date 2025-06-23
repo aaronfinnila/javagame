@@ -5,12 +5,15 @@ import main.GamePanel;
 
 public class OBJ_Chest extends Entity {
 
+    public final static String objName = "Chest";
+
     GamePanel gp;
+
     public OBJ_Chest(GamePanel gp) {
         super(gp);
 
         this.gp = gp;
-        name = "Chest";
+        name = objName;
         type = type_static_object;
         down1 = setup("/res/objects/chest", gp.tileSize, gp.tileSize);
         collision = true;

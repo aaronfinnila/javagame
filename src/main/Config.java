@@ -37,6 +37,11 @@ public class Config {
             bw.write(String.valueOf(gp.se.volumeScale));
             bw.newLine();
 
+            // Save existance
+
+            bw.write(String.valueOf(gp.saveExists));
+            bw.newLine();
+
             bw.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -50,21 +55,39 @@ public class Config {
 
             String s = br.readLine();
 
-            if (s.equals("On")) {
-                gp.fullScreenOn = true;
-            } else {
-                gp.fullScreenOn = false;
+            if (s != null) {
+                if (s.equals("On")) {
+                    gp.fullScreenOn = true;
+                } else {
+                    gp.fullScreenOn = false;
+                }
             }
 
             // Music volume
 
             s = br.readLine();
-            gp.music.volumeScale = Integer.parseInt(s);
+            if (s != null) {
+                gp.music.volumeScale = Integer.parseInt(s);
+            }
 
             // SE volume
 
             s = br.readLine();
-            gp.se.volumeScale = Integer.parseInt(s);
+
+            if (s != null) {
+                gp.se.volumeScale = Integer.parseInt(s);
+            }
+
+            // Save existance
+
+            s = br.readLine();
+            if (s != null) {
+                if (s.equals("false")) {
+                    gp.saveExists = false;
+                } else {
+                gp.saveExists = true;
+                }
+            }
 
             br.close();
         } catch (Exception e) {

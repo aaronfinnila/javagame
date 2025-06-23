@@ -17,14 +17,16 @@ public class DataStorage implements Serializable {
     int nextLevelExp;
     int gold;
     int defaultSpeed;
+    int worldX;
+    int worldY;
 
     // ITEMS
 
     ArrayList<String> itemNames = new ArrayList<>();
     int currentWeaponSlot;
     int currentShieldSlot;
-    int currentShootSlot;
-    int currentLightSlot;
+    int currentShootSlot = 999;
+    int currentLightSlot = 999;
 
     // OBJECTS
 

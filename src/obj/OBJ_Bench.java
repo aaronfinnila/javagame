@@ -5,12 +5,15 @@ import main.GamePanel;
 
 public class OBJ_Bench extends Entity {
 
+    public final static String objName = "Bench";
+
     GamePanel gp;
+    
     public OBJ_Bench(GamePanel gp) {
         super(gp);
 
         this.gp = gp;
-        name = "Bench";
+        name = objName;
         type = type_static_object;
         down1 = setup("/res/objects/bench", 95, 79);
         collision = true;

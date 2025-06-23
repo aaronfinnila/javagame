@@ -4,12 +4,15 @@ import main.GamePanel;
 
 public class OBJ_Table2 extends Entity {
 
+    public final static String objName = "Table2";
+
     GamePanel gp;
+
     public OBJ_Table2(GamePanel gp) {
         super(gp);
 
         this.gp = gp;
-        name = "Table2";
+        name = objName;
         speed = 0;
         type = type_static_object;
         solidArea.height = 20;

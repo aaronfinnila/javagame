@@ -6,13 +6,15 @@ import main.GamePanel;
 
 public class OBJ_Arrow extends Projectile {
 
+    public final static String objName = "Arrow";
+
     GamePanel gp;
 
     public OBJ_Arrow(GamePanel gp) {
         super(gp);
         this.gp = gp;
 
-        name = "Arrow";
+        name = objName;
         speed = 8;
         maxHealth = 80;
         health = maxHealth;

@@ -4,12 +4,15 @@ import main.GamePanel;
 
 public class OBJ_Table1 extends Entity {
 
+    public final static String objName = "Table1";
+
     GamePanel gp;
+
     public OBJ_Table1(GamePanel gp) {
         super(gp);
 
         this.gp = gp;
-        name = "Table1";
+        name = objName;
         down1 = setup("/res/objects/table1", 65*2, 55*2);
         down2 = setup("/res/objects/table1.2", 65*2, 55*2);
         collision = true;

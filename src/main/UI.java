@@ -98,8 +98,8 @@ public class UI {
 
         // TITLE STATE
 
-        if(gp.gameState == gp.titleState) {
-            drawTitleScreen();
+        if (gp.gameState == gp.titleState) {
+            drawMainTitleScreen();
         }
 
         // PLAY STATE
@@ -194,6 +194,8 @@ public class UI {
             drawTransition();
         }
 
+        // TRADE STATE
+
         if (gp.gameState == gp.tradeState) {
             drawTradeScreen();
         }
@@ -233,31 +235,33 @@ public void drawInventory(Entity entity, boolean cursor) {
     int slotXCount = 0;
 
     for (Entity e : entity.inventory) {
-        
-        if (e == entity.currentWeapon || e == entity.currentShield || e == entity.currentShoot || e == entity.currentLight) {
-            g2.setColor(new Color(240,190,90));
-            g2.fillRoundRect(slotX,slotY,gp.tileSize,gp.tileSize,10,10);
-        }
-        if (e.name == "Lantern") {
-            slotX += 6;
-            slotY += 3;
-            moveLantern = true;
-        } else {
+
+        if (e != null) {
             if (moveLantern == true) {
                 slotX -= 6;
                 slotY -= 3;
                 moveLantern = false;
             }
-        }
-        g2.drawImage(e.image, slotX, slotY, null);
-        slotX += gp.tileSize;
-        slotXCount++;
-        if (slotXCount > 4) {
-            slotY += gp.tileSize;
-            slotX = slotXstart;
-            slotXCount = 0;
+            if (e == entity.currentWeapon || e == entity.currentShield || e == entity.currentShoot || e == entity.currentLight) {
+                g2.setColor(new Color(240,190,90));
+                g2.fillRoundRect(slotX,slotY,gp.tileSize,gp.tileSize,10,10);
+            }
+            if (e.name == "Lantern") {
+                slotX += 6;
+                slotY += 3;
+                moveLantern = true;
+            }
+            g2.drawImage(e.image, slotX, slotY, null);
+            slotX += gp.tileSize;
+            slotXCount++;
+            if (slotXCount > 4) {
+                slotY += gp.tileSize;
+                slotX = slotXstart;
+                slotXCount = 0;
+            }
         }
     }
+
     if (cursor == true) {
         int cursorX = slotXstart + (gp.tileSize * slotCol);
         int cursorY = slotYstart + (gp.tileSize * slotRow);
@@ -351,6 +355,13 @@ public void drawPlayerAmmo() {
         g2.drawString("x" + gp.player.arrows, x+3, y+48);
 }
 
+public void drawMainTitleScreen() {
+    switch (subState) {
+    case 0: drawTitleScreen(); break;
+    case 1: title_newGameConfirmation(gp.tileSize*6, gp.tileSize); break;
+    }
+}
+
 public void drawTitleScreen() {
 
     // BACKGROUND
@@ -394,6 +405,14 @@ public void drawTitleScreen() {
     g2.drawString(text, x, y);
     if (commandNumber == 0) {
         g2.drawString(">", x-gp.tileSize, y);
+        if (gp.keyH.spacePressed == true && gp.saveExists == true) {
+            subState = 1;
+            gp.keyH.spacePressed = false;
+        } else if (gp.keyH.spacePressed == true && gp.saveExists == false) {
+            gp.gameState = gp.playState;
+            gp.playMusic(0);
+            gp.resetGame(false);
+        }
     }
 
     g2.setFont(g2.getFont().deriveFont(Font.BOLD, 36F));
@@ -408,7 +427,6 @@ public void drawTitleScreen() {
         g2.drawString(">", x-gp.tileSize, y);
     }
 
-
     g2.setFont(g2.getFont().deriveFont(Font.BOLD, 36F));
     text = "QUIT";
     x = gp.screenWidth / 2 - (gp.tileSize*2) - 15;
@@ -420,8 +438,8 @@ public void drawTitleScreen() {
     if (commandNumber == 2) {
         g2.drawString(">", x-gp.tileSize, y);
     }
-    }
-    
+}
+
 public void drawPauseScreen() {
 
     g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 60F));
@@ -829,7 +847,7 @@ public void options_endGameConfirmation(int frameX, int frameY) {
     int textX = frameX + gp.tileSize - 15;
     int textY = frameY + gp.tileSize*3;
 
-    currentDialogue = "Quit the game and\nreturn to title screen?";
+    currentDialogue = "Quit the game and\nreturn to title screen?\n(unsaved progress will\nbe lost)";
 
     for (String line : currentDialogue.split("\n")) {
         g2.drawString(line, textX, textY);
@@ -840,7 +858,7 @@ public void options_endGameConfirmation(int frameX, int frameY) {
 
     String text = "Yes";
     textX = getXforCenteredText(text);
-    textY += gp.tileSize*3;
+    textY += gp.tileSize*2;
     g2.drawString(text, textX, textY);
     if (commandNumber == 1) {
         g2.drawString(">", textX-25, textY);
@@ -863,6 +881,54 @@ public void options_endGameConfirmation(int frameX, int frameY) {
         if (gp.keyH.spacePressed == true) {
             subState = 0;
             commandNumber = 4;
+        }
+    }
+}
+
+public void title_newGameConfirmation(int frameX, int frameY) {
+
+    // BACKGROUND
+
+    g2.setColor(new Color(40, 100, 40));
+    g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+    int textX = gp.tileSize*3;
+    int textY = gp.tileSize*4;
+
+    g2.setColor(new Color(255, 255, 255));
+    g2.setFont(g2.getFont().deriveFont(24f));
+    g2.drawString("Start new game? Saved progress will be lost!", textX, textY);
+
+    // YES
+
+    // fix new longsword sound
+    // fix same items respawning
+    // 
+    String text = "Yes";
+    textX = getXforCenteredText(text);
+    textY += gp.tileSize*4;
+    g2.drawString(text, textX, textY);
+    if (commandNumber == 1) {
+        g2.drawString(">", textX-25, textY);
+        if (gp.keyH.spacePressed == true) {
+            gp.gameState = gp.playState;
+            gp.playMusic(0);
+            gp.resetGame(true);
+            subState = 0;
+        }
+    }
+
+    // NO
+
+    text = "No";
+    textX = getXforCenteredText(text);
+    textY += gp.tileSize;
+    g2.drawString(text, textX, textY);
+    if (commandNumber == 0) {
+        g2.drawString(">", textX-25, textY);
+        if (gp.keyH.spacePressed == true || gp.keyH.escPressed == true) {
+            subState = 0;
+            gp.keyH.spacePressed = false;
         }
     }
 }

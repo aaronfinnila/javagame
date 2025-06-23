@@ -32,6 +32,8 @@ public class AssetSetter {
     }
 
     public void setObject() {
+        System.out.println("assetSetter setobject");
+
         int mapNum = 0;
         int i = 0;
 

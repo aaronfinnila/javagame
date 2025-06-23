@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener{
 
     GamePanel gp;
-    public boolean upPressed, downPressed, leftPressed, rightPressed, ePressed, spacePressed, shootKeyPressed, attackKeyPressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, ePressed, spacePressed, shootKeyPressed, attackKeyPressed, escPressed;
     boolean showDebug = false;
 
     public KeyHandler(GamePanel gp) {
@@ -51,24 +51,33 @@ public class KeyHandler implements KeyListener{
     public void titleState(int code) {
         if (code == KeyEvent.VK_S) {
             gp.ui.commandNumber++;
-            if (gp.ui.commandNumber > 2) {
-                gp.ui.commandNumber = 0;
+            if (gp.ui.subState == 0) {
+                if (gp.ui.commandNumber > 2) {
+                    gp.ui.commandNumber = 0;
+                }
+            } else {
+                if (gp.ui.commandNumber > 1) {
+                    gp.ui.commandNumber = 0;
+                }
             }
         }
 
         if (code == KeyEvent.VK_W) {
             gp.ui.commandNumber--;
-            if (gp.ui.commandNumber < 0) {
-                gp.ui.commandNumber = 2;
+            if (gp.ui.subState == 0) {
+                if (gp.ui.commandNumber < 0) {
+                    gp.ui.commandNumber = 2;
+                }
+            } else {
+                if (gp.ui.commandNumber < 0) {
+                    gp.ui.commandNumber = 1;
+                }
             }
         }
 
         if (code == KeyEvent.VK_SPACE) {
-            if (gp.ui.commandNumber == 0) {
-                gp.gameState = gp.playState;
-                gp.playMusic(0);
-            }
-            if (gp.ui.commandNumber == 1) {
+            spacePressed = true;
+            if (gp.ui.commandNumber == 1 && gp.ui.subState == 0) {
                 gp.saveLoad.load();
                 gp.gameState = gp.playState;
                 switch (gp.currentMap) {
@@ -82,6 +91,10 @@ public class KeyHandler implements KeyListener{
             if (gp.ui.commandNumber == 2) {
                 System.exit(0);
             }
+        }
+
+        if (code == KeyEvent.VK_ESCAPE) {
+            escPressed = true;
         }
     }
 
@@ -419,6 +432,10 @@ public class KeyHandler implements KeyListener{
 
             if (code == KeyEvent.VK_R) {
                 shootKeyPressed = false;
+            }
+
+            if (code == KeyEvent.VK_ESCAPE) {
+                escPressed = false;
             }
     }
 }

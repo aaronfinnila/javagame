@@ -6,7 +6,9 @@ import main.GamePanel;
 public class OBJ_Shield_Default extends Entity {
 
     public final static String objName = "Wooden Shield";
+
     public OBJ_Shield_Default(GamePanel gp) {
+        
         super(gp);
 
         name = objName;

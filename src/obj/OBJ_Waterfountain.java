@@ -5,12 +5,15 @@ import main.GamePanel;
 
 public class OBJ_Waterfountain extends Entity {
 
+    public final static String objName = "Waterfountain";
+
     GamePanel gp;
+
     public OBJ_Waterfountain(GamePanel gp) {
         super(gp);
 
         this.gp = gp;
-        name = "Waterfountain";
+        name = objName;
         type = type_animated_object;
         down1 = setup("/res/objects/waterfountain1", 96*3, 69*3);
         down2 = setup("/res/objects/waterfountain2", 96*3, 69*3);

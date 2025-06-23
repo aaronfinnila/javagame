@@ -8,13 +8,16 @@ import main.GamePanel;
 
 public class OBJ_Slimeball extends Projectile {
 
+    public final static String objName = "Slimeball";
+
     GamePanel gp;
 
     public OBJ_Slimeball(GamePanel gp) {
+
         super(gp);
         this.gp = gp;
 
-        name = "slimeball";
+        name = objName;
         speed = 6;
         maxHealth = 80;
         health = maxHealth;

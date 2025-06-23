@@ -5,12 +5,14 @@ import main.GamePanel;
 
 public class OBJ_Rowboat extends Entity {
 
+    public final static String objName = "Rowboat";
+
     GamePanel gp;
     public OBJ_Rowboat(GamePanel gp) {
         super(gp);
 
         this.gp = gp;
-        name = "Rowboat";
+        name = objName;
         type = type_static_object;
         down1 = setup("/res/objects/rowboat", gp.tileSize*2, 74);
         collision = true;
