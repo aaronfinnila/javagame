@@ -37,10 +37,19 @@ public void speak() {
     if (dialogues[dialogueIndex] == null) {
         dialogueIndex = 0;
     }
+    if (dialogueIndex >= 3) {
+        gp.gameState = gp.dialogueState;
+    } else {
+        gp.gameState = gp.tradeState;
+    }
 
+    if (dialogueIndex == 6) {
+        gp.ui.storeDiscount = 5;
+    }
+
+    
     gp.ui.currentDialogue = dialogues[dialogueIndex];
     dialogueIndex++;
-    gp.gameState = gp.tradeState;
     gp.ui.npc = this;
 }
 

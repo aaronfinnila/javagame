@@ -72,7 +72,7 @@ public void speak() {
         gp.monster[0][2].worldX = 24*gp.tileSize;
         gp.monster[0][2].worldY = 32*gp.tileSize;
         
-        spawn1= true;
+        spawn1 = true;
     }
     if (dialogueIndex == 10 && spawn2 == false) {
         gp.monster[0][0] = new MON_Slime(gp);

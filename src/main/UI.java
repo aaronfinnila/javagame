@@ -26,6 +26,7 @@ public class UI {
     public boolean expMessageOn = false;
     public boolean damagePitDraw = false;
     public boolean darken = false;
+    public boolean interactShop = false;
     public String expMessage = "";
     public String goldMessage = "";
     public String message = "";
@@ -40,6 +41,7 @@ public class UI {
     public int npcSlotRow = 0;
     public int itemIndexOnSlot = 0;
     public int subState = 0;
+    public int storeDiscount = 0;
     int counter = 0;
     public Entity npc;
 
@@ -462,21 +464,27 @@ public void drawDialogueScreen() {
 
     drawSubWindow(x, y, width, height);
 
-    // CONDITIONAL FONT SIZE, MAP NUMBER FIRST SECOND NUMBER NPC
+    // CONDITIONAL FONT SIZE, FIRST NUMBER MAP SECOND NUMBER NPC
 
     if (Arrays.asList(gp.npc[0][0].dialogues).contains(currentDialogue)) {
         textSize = 20;
     }
-
+    if (Arrays.asList(gp.npc[2][0].dialogues).contains(currentDialogue)) {
+        textSize = 20;
+    }
     if (Arrays.asList(gp.npc[2][1].dialogues).contains(currentDialogue)) {
         textSize = 20;
     }
     if (Arrays.asList(gp.npc[2][2].dialogues).contains(currentDialogue)) {
         textSize = 20;
     }
+    if (Arrays.asList(gp.npc[4][0].dialogues).contains(currentDialogue)) {
+        textSize = 28;
+    }
 
-    if (gp.ui.currentDialogue.equals("The goddess statue fills you with joy.\nYour health has been replenished.\n(Progress has been saved)")) {
+    if (gp.ui.currentDialogue.equals("    The goddess statue fills you with joy.\n    Your health has been replenished.\n    (Progress has been saved)")) {
         textSize = 25;
+        y -= 2;
     }
 
     if (gp.ui.currentDialogue.equals("Oh, right! Because THIS one will be the one who gets\nit all! SURELY he won't end up like the rest, RIIGHT???")) {
@@ -487,7 +495,7 @@ public void drawDialogueScreen() {
         textSize = 28;
     }
 
-    if (gp.ui.currentDialogue.equals("You drink the Red Potion!\nYour health has been\nreplenished by 4.")) {
+    if (gp.ui.currentDialogue.equals(" You drink the Red Potion!\n Your health has been replenished by 4.")) {
         textSize = 30;
     }
 
@@ -892,26 +900,41 @@ public void title_newGameConfirmation(int frameX, int frameY) {
     g2.setColor(new Color(40, 100, 40));
     g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
-    int textX = gp.tileSize*3;
+    int textX = gp.tileSize*2;
     int textY = gp.tileSize*4;
+    String text = "Start new game? Saved progress will be lost!";
+    
+    // SHADOW
+    
+    g2.setColor(Color.black);
+    g2.setFont(g2.getFont().deriveFont(30f));
+    g2.drawString(text, textX+3, textY+3);
 
-    g2.setColor(new Color(255, 255, 255));
-    g2.setFont(g2.getFont().deriveFont(24f));
-    g2.drawString("Start new game? Saved progress will be lost!", textX, textY);
+
+    // MAIN TEXT
+
+    g2.setColor(Color.white);
+    g2.drawString(text, textX, textY);
 
     // YES
 
-    // fix new longsword sound
-    // fix same items respawning
-    // 
-    String text = "Yes";
+    text = "Yes";
     textX = getXforCenteredText(text);
     textY += gp.tileSize*4;
+
+    // SHADOW
+    g2.setColor(Color.black);
+    g2.drawString(text, textX+3, textY+3);
+
+    // MAIN TEXT
+
+    g2.setColor(Color.white);
     g2.drawString(text, textX, textY);
     if (commandNumber == 1) {
         g2.drawString(">", textX-25, textY);
         if (gp.keyH.spacePressed == true) {
             gp.gameState = gp.playState;
+            gp.currentMap = gp.introislandMap;
             gp.playMusic(0);
             gp.resetGame(true);
             subState = 0;
@@ -923,6 +946,15 @@ public void title_newGameConfirmation(int frameX, int frameY) {
     text = "No";
     textX = getXforCenteredText(text);
     textY += gp.tileSize;
+
+    // SHADOW
+
+    g2.setColor(Color.black);
+    g2.drawString(text, textX+3, textY+3);
+
+    // MAIN TEXT
+
+    g2.setColor(Color.white);
     g2.drawString(text, textX, textY);
     if (commandNumber == 0) {
         g2.drawString(">", textX-25, textY);
@@ -1022,6 +1054,10 @@ public void trade_select() {
     int y = gp.tileSize * 4;
     int width = gp.tileSize * 3;
     int height = (int) (gp.tileSize * 3.5);
+    if (interactShop == true) {
+        height += gp.tileSize;
+        width += gp.tileSize;
+    }
     drawSubWindow(x, y, width, height);
     g2.setFont(consola.deriveFont(25F));
 
@@ -1055,6 +1091,26 @@ public void trade_select() {
         }
     }
     y += gp.tileSize;
+    if (interactShop == true) {
+        g2.drawString("Claire", x, y);
+        if (commandNumber == 3) {
+            g2.drawString(">", x-24, y);
+            if (gp.keyH.spacePressed == true) {
+                npc.dialogueIndex = 3;
+                npc.dialogues[3] = "Oh, Claire sent you? I see...\nI will have to thank her for that!\nHehe";
+                npc.dialogues[4] = "Did... did she talk about me?\nI mean, about the shop, did she\nmention the shop?";
+                npc.dialogues[5] = "(well, since you're here, I suppose she\ndid...) Anyway, I suppose I should give\nyou a bit of a discount...";
+                npc.dialogues[6] = "Everything will cost 5 gold less for you.\nJust because you're a friend of Claire's.";
+                npc.speak();
+                commandNumber = 0;
+            }
+        }
+    }
+    if (gp.keyH.escPressed) {
+        commandNumber = 0;
+        gp.gameState = gp.dialogueState;
+        currentDialogue = "Thank you, please come again!";
+    }
 
 }
 
@@ -1087,7 +1143,8 @@ public void trade_buy() {
         drawSubWindow(x, y, width, height);
         g2.drawImage(coin, x+12, y+12, 25, 25, null);
 
-        int price = npc.inventory.get(itemIndex).price;
+        int price = (npc.inventory.get(itemIndex).price)-storeDiscount;
+        System.out.println(price);
         text = "" + price;
         x = getXforAlignToRightText(text, gp.tileSize*8);
         g2.drawString(text,x-26,y+32);
@@ -1095,7 +1152,7 @@ public void trade_buy() {
         // BUY ITEM
 
         if (gp.keyH.spacePressed == true) {
-            if (npc.inventory.get(itemIndex).price > gp.player.gold) {
+            if ((npc.inventory.get(itemIndex).price)-storeDiscount > gp.player.gold) {
                 subState = 1;
                 currentDialogue = "You need more gold!";
                 gp.gameState = gp.dialogueState;
@@ -1105,7 +1162,7 @@ public void trade_buy() {
                 currentDialogue = "You cannot carry any more!";
                 gp.gameState = gp.dialogueState;
             } else {
-                gp.player.gold -= npc.inventory.get(itemIndex).price;
+                gp.player.gold -= (npc.inventory.get(itemIndex).price)-price;
                 gp.player.inventory.add(npc.inventory.get(itemIndex));
                 gp.playSE(1);
                 currentDialogue = "You bought the " + npc.inventory.get(itemIndex).name + "!";
@@ -1164,7 +1221,8 @@ public void trade_sell() {
         if (gp.keyH.spacePressed == true) {
              if (gp.player.inventory.get(itemIndex) == gp.player.currentWeapon
              || gp.player.inventory.get(itemIndex) == gp.player.currentShield 
-             || gp.player.inventory.get(itemIndex) == gp.player.currentShoot) {
+             || gp.player.inventory.get(itemIndex) == gp.player.currentShoot
+             || gp.player.inventory.get(itemIndex) == gp.player.currentLight) {
                 commandNumber = 0;
                 subState = 2;
                 currentDialogue = "You cannot sell an equipped item!";

@@ -109,6 +109,7 @@ public class SaveLoad {
                 ds.defaultSpeed = gp.player.defaultSpeed;
                 ds.worldX = gp.player.worldX;
                 ds.worldY = gp.player.worldY;
+                ds.currentMap = gp.currentMap;
 
                 // Save player inventory
 
@@ -128,6 +129,8 @@ public class SaveLoad {
                 ds.mapObjectNames = new String[gp.maxMap][gp.obj[1].length];
                 ds.mapObjectWorldX = new int[gp.maxMap][gp.obj[1].length];
                 ds.mapObjectWorldY = new int[gp.maxMap][gp.obj[1].length];
+                ds.mapObjectSolidAreaHeight = new int[gp.maxMap][gp.obj[1].length];
+                ds.mapObjectSolidAreaWidth = new int[gp.maxMap][gp.obj[1].length];
 
                 for (int mapNum=0;mapNum<gp.maxMap;mapNum++) {
                     for (int i=0;i<gp.obj[1].length;i++) {
@@ -137,7 +140,8 @@ public class SaveLoad {
                             ds.mapObjectNames[mapNum][i] = gp.obj[mapNum][i].name;
                             ds.mapObjectWorldX[mapNum][i] = gp.obj[mapNum][i].worldX;
                             ds.mapObjectWorldY[mapNum][i] = gp.obj[mapNum][i].worldY;
-                            System.out.println(gp.obj[mapNum][i].name);
+                            ds.mapObjectSolidAreaHeight[mapNum][i] = gp.obj[mapNum][i].solidArea.height;
+                            ds.mapObjectSolidAreaWidth[mapNum][i] = gp.obj[mapNum][i].solidArea.width;
                         }
                     }
                 }
@@ -176,6 +180,7 @@ public class SaveLoad {
                 gp.player.defaultSpeed = ds.defaultSpeed;
                 gp.player.worldX = ds.worldX;
                 gp.player.worldY = ds.worldY;
+                gp.currentMap = ds.currentMap;
                 
                 // Load player inventory
                 
@@ -184,7 +189,6 @@ public class SaveLoad {
                 for (int i=0;i<ds.itemNames.size();i++) {
                     gp.player.inventory.add(getObject(ds.itemNames.get(i)));
                 }
-                System.out.println("loaded player inv");
                 
                 // Load player equipment status
                 
@@ -198,20 +202,19 @@ public class SaveLoad {
                 if (gp.player.currentShoot != null) {
                     gp.player.getShootImage();
                 }
-                System.out.println("laoded images n shit");
                 
                 // Load status of objects on map
                 
                 for (int mapNum=0;mapNum<gp.maxMap;mapNum++) {
                     for (int i=0;i<gp.obj[1].length;i++) {
                         if (ds.mapObjectNames[mapNum][i].equals("NA")) {
-                            System.out.println("object nullified");
                             gp.obj[mapNum][i] = null;
                         } else {
-                            System.out.println(gp.obj[mapNum][i].name + " loaded");
                             gp.obj[mapNum][i] = getObject(ds.mapObjectNames[mapNum][i]);
                             gp.obj[mapNum][i].worldX = ds.mapObjectWorldX[mapNum][i];
                             gp.obj[mapNum][i].worldY = ds.mapObjectWorldY[mapNum][i];
+                            gp.obj[mapNum][i].solidArea.height = ds.mapObjectSolidAreaHeight[mapNum][i];
+                            gp.obj[mapNum][i].solidArea.width = ds.mapObjectSolidAreaWidth[mapNum][i];
                         }
                     }
                 }

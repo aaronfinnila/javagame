@@ -66,19 +66,22 @@ public class Lighting {
         fraction[10] = 0.95f;
         fraction[11] = 1f;
 
-        if (gp.currentMap == 10) {
+        if (gp.currentMap == 5) {
             if (gp.player.currentLight == null) {
                 g2.setColor(new Color(0, 0, 0, 1f));
-                g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-                g2.dispose();
+            } else {
+                RadialGradientPaint gPaint = new RadialGradientPaint(centerX, centerY, gp.player.currentLight.lightRadius/2, 
+                fraction, color);
+                g2.setPaint(gPaint);
             }
+            g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+            g2.dispose();
         } else if (gp.currentMap != 0 && gp.currentMap != 1) {
             g2.dispose();
         } else {
             if (gp.player.currentLight != null) {
                 RadialGradientPaint gPaint = new RadialGradientPaint(centerX, centerY, gp.player.currentLight.lightRadius/2, 
                 fraction, color);
-            
                 g2.setPaint(gPaint);
             } else {
             

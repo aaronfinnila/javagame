@@ -25,7 +25,7 @@ public class OBJ_Potion_Red extends Entity {
     public void use(Entity entity) {
         
         gp.gameState = gp.dialogueState;
-        gp.ui.currentDialogue = "You drink the " + name + "!\nYour health has been\nreplenished by " + healingValue + ".";
+        gp.ui.currentDialogue = " You drink the " + name + "!\n Your health has been replenished by " + healingValue + ".";
         entity.health += healingValue;
         gp.playSE(2);
     }

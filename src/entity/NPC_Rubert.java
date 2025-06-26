@@ -9,6 +9,7 @@ public class NPC_Rubert extends Entity {
     public NPC_Rubert(GamePanel gp) {
 
         super(gp);
+        name = "Rubert";
         direction = "down";
         speed = 1;
         type = type_npc;

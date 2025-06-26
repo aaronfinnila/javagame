@@ -14,8 +14,9 @@ public class OBJ_Store extends Entity {
 
         this.gp = gp;
         name = objName;
-        type = type_static_object;
-        down1 = setup("/res/objects/store", 141*3, 170*3);
+        type = type_animated_object;
+        down1 = setup("/res/objects/store1", 141*3, 170*3);
+        down2 = setup("/res/objects/store2", 141*3, 170*3);
         collision = true;
         direction = "down";
         solidArea.height = 125*3;
@@ -23,5 +24,13 @@ public class OBJ_Store extends Entity {
     }
 
     public void use(Entity entity) {
+    }
+
+    public void update() {
+        if (gp.dayState().equals("night")) {
+            spriteNum = 2;
+        } else {
+            spriteNum = 1;
+        }
     }
 }

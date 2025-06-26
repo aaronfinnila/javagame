@@ -19,6 +19,7 @@ public class DataStorage implements Serializable {
     int defaultSpeed;
     int worldX;
     int worldY;
+    int currentMap;
 
     // ITEMS
 
@@ -33,4 +34,6 @@ public class DataStorage implements Serializable {
     String mapObjectNames[][];
     int mapObjectWorldX[][];
     int mapObjectWorldY[][];
+    int mapObjectSolidAreaHeight[][];
+    int mapObjectSolidAreaWidth[][];
 }

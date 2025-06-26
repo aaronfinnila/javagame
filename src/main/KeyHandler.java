@@ -172,7 +172,13 @@ public class KeyHandler implements KeyListener{
     public void pauseState(int code) {
         if (code == KeyEvent.VK_P || code == KeyEvent.VK_ESCAPE) {
             gp.gameState = gp.playState;
-            gp.playMusic(0);
+            switch (gp.currentMap) {
+                case 0: gp.playMusic(0); break;
+                case 1: gp.playMusic(17); break;
+                case 2: gp.playMusic(18); break;
+                case 3: gp.playMusic(19); break;
+                case 4: gp.playMusic(20); break;
+            }
         }
     }
 
@@ -204,6 +210,10 @@ public class KeyHandler implements KeyListener{
             } else {
                 gp.gameState = gp.playState;
             }
+    }
+
+    if (code == KeyEvent.VK_ESCAPE) {
+        gp.gameState = gp.playState;
     }
 
     }
@@ -309,19 +319,32 @@ public class KeyHandler implements KeyListener{
         }
 
         if (gp.ui.subState == 0) {
+            int max;
+
+            // CHECK FOR INTERACT SHOP EVENT
+
+            if (gp.ui.interactShop == true) {
+                max = 3;
+            } else {
+                max = 2;
+            }
+
             if (code == KeyEvent.VK_W) {
                 gp.ui.commandNumber--;
                 if (gp.ui.commandNumber < 0) {
-                    gp.ui.commandNumber = 2;
+                    gp.ui.commandNumber = max;
                 }
                 gp.playSE(10);
             }
             if (code == KeyEvent.VK_S) {
                 gp.ui.commandNumber++;
-                if (gp.ui.commandNumber > 2) {
+                if (gp.ui.commandNumber > max) {
                     gp.ui.commandNumber = 0;
                 }
                 gp.playSE(10);
+            }
+            if (code == KeyEvent.VK_ESCAPE) {
+                escPressed = true;
             }
         }
         if (gp.ui.subState == 1) {
