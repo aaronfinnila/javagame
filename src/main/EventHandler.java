@@ -85,6 +85,9 @@ public class EventHandler {
             if (hit(gp.storeMapSecret,47,56,"down") == true && gp.keyH.ePressed == true) {
                 teleportPlayer(gp.storeMapNight, 45, 45);
             }
+            if (hit(gp.introislandMap,16, 26, "up") == true && gp.keyH.ePressed == true) {
+                healingStatue(gp.dialogueState);
+            }
             if (hit(gp.introislandMap,17, 26, "up") == true && gp.keyH.ePressed == true) {
                 healingStatue(gp.dialogueState);
             }
@@ -121,7 +124,7 @@ public class EventHandler {
         gp.ui.currentDialogue = "You fall into a pit!";
         gp.player.health--;
         eventRect[map][col][row].eventDone = true;
-        }
+    }
 
     public void healingStatue(int gameState) {
         gp.gameState = gameState;

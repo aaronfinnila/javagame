@@ -45,6 +45,7 @@ public void speak() {
 
     if (dialogueIndex == 6) {
         gp.ui.storeDiscount = 5;
+        dialogues[3] = null;
     }
 
     

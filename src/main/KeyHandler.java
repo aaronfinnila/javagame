@@ -302,10 +302,29 @@ public class KeyHandler implements KeyListener{
             gp.playSE(10);
         }
         if (code == KeyEvent.VK_SPACE) {
+
+            // RETRY
+
             if (gp.ui.commandNumber == 0) {
-                gp.gameState = gp.playState;
-                gp.resetGame(false);
+                if (gp.saveExists == true) {
+                    gp.saveLoad.load();
+                    gp.gameState = gp.playState;
+                    switch (gp.currentMap) {
+                        case 0: gp.playMusic(0); break;
+                        case 1: gp.playMusic(17); break;
+                        case 2: gp.playMusic(18); break;
+                        case 3: gp.playMusic(19); break;
+                        case 4: gp.playMusic(20); break;
+                    }
+                } else {
+                    gp.currentMap = gp.introislandMap;
+                    gp.player.worldX = 1150;
+                    gp.player.worldY = 1150;
+                }
             }
+
+            // QUIT
+
             else if (gp.ui.commandNumber == 1) {
                 gp.gameState = gp.titleState;
                 gp.resetGame(true);

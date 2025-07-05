@@ -28,7 +28,7 @@ public class Entity {
     public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX, solidAreaDefaultY;
-    public String dialogues[] = new String[30];
+    public String dialogues[][] = new String[30][30];
     
     // STATE
     
@@ -57,6 +57,7 @@ public class Entity {
     public int shootNum = 1;
     public int spriteNum = 1;
     public int dialogueIndex = 0;
+    public int dialogueSet = 1;
     public int dyingCounter = 0;
     public int hasKey = 0;
     public int hpBarCounter;
@@ -302,14 +303,12 @@ public class Entity {
     }
 
     public void speak() {
-
-        if (dialogues[dialogueIndex] == null) {
-            dialogueIndex = 0;
-        }
-
-        gp.ui.currentDialogue = dialogues[dialogueIndex];
-        dialogueIndex++;
     
+        
+    }
+
+    public void facePlayer() {
+
         switch(gp.player.direction) {
             case "up": 
                 direction = "down";
@@ -324,6 +323,13 @@ public class Entity {
                 direction = "left";
                 break;
         }
+    }
+
+    public void startDialogue(Entity entity, int setNum) {
+
+        gp.gameState = gp.dialogueState;
+        gp.ui.npc = entity;
+        dialogueSet = setNum;
     }
 
     public void checkCollision() {

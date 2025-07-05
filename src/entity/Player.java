@@ -59,7 +59,7 @@ public class Player extends Entity {
         exp = 0;
         nextLevelExp = 5;
         gold = 50;
-        hasKey = 1;
+        hasKey = 0;
         currentWeapon = new OBJ_Sword_Default(gp);
         currentShield = new OBJ_Shield_Default(gp);
         currentLight = null;
@@ -86,6 +86,26 @@ public class Player extends Entity {
         knockBack = false;
         lightUpdated = true;
         speed = defaultSpeed;
+    }
+
+    public void resetCounter() {
+
+        actionLockCounter = 0;
+        moveCounter = 0;
+        standCounter = 0;
+        attackCounter = 0;
+        shootCounter = 0;
+        invincibleCounter = 0;
+        shotAvailableCounter = 0;
+        attackNum = 1;
+        shootNum = 1;
+        spriteNum = 1;
+        dialogueIndex = 0;
+        dyingCounter = 0;
+        hasKey = 0;
+        hpBarCounter =
+        attackAvailableCounter = 0;
+        knockBackCounter = 0;
     }
 
     public void setItems() {
@@ -449,7 +469,6 @@ public void getShootImage() {
                         npc.speak();
                     }
                 } else {
-                    gp.gameState = gp.dialogueState;
                     npc.speak();
                 }
                 }

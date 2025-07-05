@@ -16,7 +16,7 @@ public class NPC_Kalsu extends Entity {
         currentWeapon = new OBJ_Nightingale(gp);
         solidArea.x = 8;
         solidArea.y = 16;
-        defaultSpeed = 3;
+        defaultSpeed = 2;
         image = down1;
         speed = defaultSpeed;
         maxHealth = 10;

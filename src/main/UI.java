@@ -466,18 +466,38 @@ public void drawDialogueScreen() {
 
     // CONDITIONAL FONT SIZE, FIRST NUMBER MAP SECOND NUMBER NPC
 
+    // introisland map
+
+    // rock
+
     if (Arrays.asList(gp.npc[0][0].dialogues).contains(currentDialogue)) {
         textSize = 20;
     }
+    
+    // house1 map
+
+    // claire
+
     if (Arrays.asList(gp.npc[2][0].dialogues).contains(currentDialogue)) {
-        textSize = 20;
+        textSize = 25;
     }
+
+    // rubert
+
     if (Arrays.asList(gp.npc[2][1].dialogues).contains(currentDialogue)) {
         textSize = 20;
     }
+
+    // table1
+
     if (Arrays.asList(gp.npc[2][2].dialogues).contains(currentDialogue)) {
         textSize = 20;
     }
+
+    // store map
+
+    // michael
+
     if (Arrays.asList(gp.npc[4][0].dialogues).contains(currentDialogue)) {
         textSize = 28;
     }
@@ -908,7 +928,7 @@ public void title_newGameConfirmation(int frameX, int frameY) {
     
     g2.setColor(Color.black);
     g2.setFont(g2.getFont().deriveFont(30f));
-    g2.drawString(text, textX+3, textY+3);
+    g2.drawString(text, textX+2, textY+2);
 
 
     // MAIN TEXT
@@ -924,7 +944,7 @@ public void title_newGameConfirmation(int frameX, int frameY) {
 
     // SHADOW
     g2.setColor(Color.black);
-    g2.drawString(text, textX+3, textY+3);
+    g2.drawString(text, textX+2, textY+2);
 
     // MAIN TEXT
 
@@ -950,7 +970,7 @@ public void title_newGameConfirmation(int frameX, int frameY) {
     // SHADOW
 
     g2.setColor(Color.black);
-    g2.drawString(text, textX+3, textY+3);
+    g2.drawString(text, textX+2, textY+2);
 
     // MAIN TEXT
 
@@ -1099,7 +1119,7 @@ public void trade_select() {
                 npc.dialogueIndex = 3;
                 npc.dialogues[3] = "Oh, Claire sent you? I see...\nI will have to thank her for that!\nHehe";
                 npc.dialogues[4] = "Did... did she talk about me?\nI mean, about the shop, did she\nmention the shop?";
-                npc.dialogues[5] = "(well, since you're here, I suppose she\ndid...) Anyway, I suppose I should give\nyou a bit of a discount...";
+                npc.dialogues[5] = "(well, since you're here, I suppose she\ndid...) Anyway, I guess I should give\nyou a bit of a discount...";
                 npc.dialogues[6] = "Everything will cost 5 gold less for you.\nJust because you're a friend of Claire's.";
                 npc.speak();
                 commandNumber = 0;
@@ -1144,7 +1164,6 @@ public void trade_buy() {
         g2.drawImage(coin, x+12, y+12, 25, 25, null);
 
         int price = (npc.inventory.get(itemIndex).price)-storeDiscount;
-        System.out.println(price);
         text = "" + price;
         x = getXforAlignToRightText(text, gp.tileSize*8);
         g2.drawString(text,x-26,y+32);
@@ -1162,7 +1181,7 @@ public void trade_buy() {
                 currentDialogue = "You cannot carry any more!";
                 gp.gameState = gp.dialogueState;
             } else {
-                gp.player.gold -= (npc.inventory.get(itemIndex).price)-price;
+                gp.player.gold -= price;
                 gp.player.inventory.add(npc.inventory.get(itemIndex));
                 gp.playSE(1);
                 currentDialogue = "You bought the " + npc.inventory.get(itemIndex).name + "!";
