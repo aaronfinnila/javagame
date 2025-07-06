@@ -1,5 +1,7 @@
 package main;
 
+import entity.Entity;
+
 public class EventHandler {
 
     GamePanel gp;
@@ -8,9 +10,12 @@ public class EventHandler {
     int previousEventX, previousEventY;
     boolean canTouchEvent = false;
     int tempMap, tempCol, tempRow;
+    Entity eventMaster;
 
     public EventHandler(GamePanel gp) {
         this.gp = gp;
+        eventMaster = new Entity(gp);
+        eventMaster.name = "eventMaster";
 
         eventRect = new EventRect[gp.maxMap][gp.maxMapSize][gp.maxMapSize];
 
@@ -37,6 +42,15 @@ public class EventHandler {
                 }
             }
         }
+
+        setDialogue();
+    }
+
+    public void setDialogue() {
+
+        eventMaster.dialogues[0][0] = "You fall into a pit!";
+        eventMaster.dialogues[1][0] = "    The goddess statue fills you with joy.\n    Your health has been replenished.\n    (Progress has been saved)";
+
     }
 
     public void checkEvent(){
@@ -121,15 +135,15 @@ public class EventHandler {
 
     public void damagePit(int map, int col, int row, int gameState) {
         gp.gameState = gameState;
-        gp.ui.currentDialogue = "You fall into a pit!";
+        eventMaster.startDialogue(eventMaster, 0);
         gp.player.health--;
         eventRect[map][col][row].eventDone = true;
     }
 
     public void healingStatue(int gameState) {
         gp.gameState = gameState;
-        gp.ui.currentDialogue = "    The goddess statue fills you with joy.\n    Your health has been replenished.\n    (Progress has been saved)";
 
+        eventMaster.startDialogue(eventMaster, 1);
         gp.player.health = gp.player.maxHealth;
         gp.aSetter.setMonster();
         gp.saveLoad.save();

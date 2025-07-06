@@ -37,23 +37,21 @@ public class OBJ_Table1 extends Entity {
     }
 
     public void speak() {
-        if (dialogues[dialogueIndex] == null) {
-            dialogueIndex = 0;
-        }
-        gp.ui.currentDialogue = dialogues[dialogueIndex];
-        dialogueIndex++;
+        super.speak();
+        startDialogue(this, 0);
     }
 
     public void setAction() {}
 
     public void setDialogue() {
-        dialogues[0] = "25th of July, 2025\nMonday\n10:30pm";
-        dialogues[1] = "Dear diary, today was an interesting day.";
-        dialogues[2] = "While I was out for a walk near the water fountain, I\noverheard someone talk of a secret room at\nthe local store.";
-        dialogues[3] = "They said that the shopkeeper stored secret items and\npossessions there, those that he didn't want others\nto find.";
-        dialogues[4] = "Personally, I think that's complete rubbish. I mean, I've\nknown Michael since forever, and he never seemed like\nthe type to hide things.";
-        dialogues[5] = "I mean, we were best friends for goodness sake!\nIf there's someone he would have told about some cool stuff\nhe's found, it's me.";
-        dialogues[6] = "Though, we haven't really been close like that in a while..\nnot after the incident...";
-        dialogues[7] = "Poor Michael, he's really been through a lot...";
+
+        dialogues[0][0] = "25th of July, 2025\nMonday\n10:30pm";
+        dialogues[0][1] = "Dear diary, today was an interesting day.";
+        dialogues[0][2] = "While I was out for a walk near the water fountain, I\noverheard someone talk of a secret room at the local\nstore.";
+        dialogues[0][3] = "They said that the shopkeeper stored secret items and\npossessions there, those that he didn't want others to find.";
+        dialogues[0][4] = "Personally, I think that's complete rubbish. I mean, I've\nknown Michael since forever, and he never seemed like the\ntype to hide things.";
+        dialogues[0][5] = "I mean, we were best friends for goodness sake!\nIf there's someone he would have told about some cool stuff\nhe's found, it's me.";
+        dialogues[0][6] = "Though, we haven't really been close like that for a while..\nNot after the incident...";
+        dialogues[0][7] = "Poor Michael, he's really been through a lot...";
     }
 }

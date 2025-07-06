@@ -555,7 +555,8 @@ public void getShootImage() {
             dexterity++;
             attack = getAttack();
             defense = getDefense();
-            gp.ui.currentDialogue = "You are now level " + level + "!\nYou feel stronger than before!";
+            dialogues[0][0] = "You are now level " + level + "!\nYou feel stronger!";
+            startDialogue(this,0);
             gp.gameState = gp.dialogueState;
             gp.stopMusic();
             gp.playSE(9);

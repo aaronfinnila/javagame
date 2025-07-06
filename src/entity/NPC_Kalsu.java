@@ -62,14 +62,15 @@ public void getAttackImage() {
 }
 
 public void setDialogue() {
-    dialogues[0] = "Yes, my queen...";
-    dialogues[1] = "Oh yes, you shall have them all...";
-    dialogues[2] = "Oh, it seems we have a guest.";
-    dialogues[3] = "Who does he think he is, intruding\nupon our private space?";
-    dialogues[4] = "He looks like a foreigner, doesn't\nhe?";
-    dialogues[5] = "Another GRAND ADVENTURER, coming\nfor the LEGENDARY TREASURE, huh?";
-    dialogues[6] = "Oh, right! Because THIS one will be the one who gets\nit all! SURELY he won't end up like the rest, RIIGHT???";
-    dialogues[7] = "And then we will be waiting...\nwon't we, my queen? Oh yes, yes\nwe will...";
+
+    dialogues[0][0] = "Yes, my queen...";
+    dialogues[0][1] = "Oh yes, you shall have them all...";
+    dialogues[0][2] = "Oh, it seems we have a guest.";
+    dialogues[0][3] = "Who does he think he is, intruding\nupon our private space?";
+    dialogues[0][4] = "He looks like a foreigner, doesn't\nhe?";
+    dialogues[0][5] = "Another GRAND ADVENTURER, coming\nfor the LEGENDARY TREASURE, huh?";
+    dialogues[0][6] = "Oh, right! Because THIS one will be the one who gets\nit all! SURELY he won't end up like the rest, RIIGHT???";
+    dialogues[0][7] = "And then we will be waiting...\nwon't we, my queen? Oh yes, yes\nwe will...";
 }
 
 public void setAction() {
@@ -99,7 +100,7 @@ public void checkDrop() {
 
 public void speak() {
     super.speak();
-
+    startDialogue(this, 0);
     
     Entity newmon = new NPC_Kalsu(gp);
     gp.monster[gp.currentMap][0] = newmon;

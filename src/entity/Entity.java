@@ -57,7 +57,7 @@ public class Entity {
     public int shootNum = 1;
     public int spriteNum = 1;
     public int dialogueIndex = 0;
-    public int dialogueSet = 1;
+    public int dialogueSet = -1;
     public int dyingCounter = 0;
     public int hasKey = 0;
     public int hpBarCounter;
@@ -303,8 +303,12 @@ public class Entity {
     }
 
     public void speak() {
-    
-        
+
+        dialogueSet++;
+
+        if (dialogues[dialogueSet][dialogueIndex] == null) {
+            dialogueSet = 0;
+        }
     }
 
     public void facePlayer() {
@@ -327,9 +331,9 @@ public class Entity {
 
     public void startDialogue(Entity entity, int setNum) {
 
-        gp.gameState = gp.dialogueState;
-        gp.ui.npc = entity;
         dialogueSet = setNum;
+        gp.ui.npc = entity;
+        gp.gameState = gp.dialogueState;
     }
 
     public void checkCollision() {
@@ -383,13 +387,6 @@ public class Entity {
                     case "right": worldX += speed; break;
                 }
              }
-        }
-
-        
-        if (this.type == 1 && gp.gameState == gp.dialogueState) {
-            if (gp.keyH.spacePressed == true) {
-                dialogueIndex++;
-            }
         }
         
         // IF COLLISION IS FALSE, NPC CAN MOVE

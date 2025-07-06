@@ -21,16 +21,14 @@ public class OBJ_Table2 extends Entity {
     }
 
     public void speak() {
-        if (dialogues[dialogueIndex] == null) {
-            dialogueIndex = 0;
-        }
-        gp.ui.currentDialogue = dialogues[dialogueIndex];
-        dialogueIndex++;
+        super.speak();
+        startDialogue(this, 0);
     }
 
     public void setAction() {}
 
     public void setDialogue() {
-        dialogues[0] = "Bhi Her\nThe Art of Bar";
+
+        dialogues[0][0] = "Bhi Her\nThe Art of Bar";
     }
 }

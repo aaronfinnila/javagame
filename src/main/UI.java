@@ -8,7 +8,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 
 import entity.Entity;
 import obj.OBJ_Arrow;
@@ -464,42 +463,18 @@ public void drawDialogueScreen() {
 
     drawSubWindow(x, y, width, height);
 
-    // CONDITIONAL FONT SIZE, FIRST NUMBER MAP SECOND NUMBER NPC
-
-    // introisland map
-
-    // rock
-
-    if (Arrays.asList(gp.npc[0][0].dialogues).contains(currentDialogue)) {
-        textSize = 20;
-    }
-    
-    // house1 map
-
-    // claire
-
-    if (Arrays.asList(gp.npc[2][0].dialogues).contains(currentDialogue)) {
-        textSize = 25;
+    if (npc == null) {
+        npc = gp.npc[0][0];
     }
 
-    // rubert
+    // CONDITIONAL FONT SIZE
 
-    if (Arrays.asList(gp.npc[2][1].dialogues).contains(currentDialogue)) {
-        textSize = 20;
-    }
-
-    // table1
-
-    if (Arrays.asList(gp.npc[2][2].dialogues).contains(currentDialogue)) {
-        textSize = 20;
-    }
-
-    // store map
-
-    // michael
-
-    if (Arrays.asList(gp.npc[4][0].dialogues).contains(currentDialogue)) {
-        textSize = 28;
+    switch (npc.name) {
+        case "Rock": textSize = 20; break;
+        case "Claire": textSize = 25; break;
+        case "Rubert": textSize = 40; break;
+        case "Table1": textSize = 20; break;
+        case "Michael": textSize = 28; break;
     }
 
     if (gp.ui.currentDialogue.equals("    The goddess statue fills you with joy.\n    Your health has been replenished.\n    (Progress has been saved)")) {
@@ -524,6 +499,25 @@ public void drawDialogueScreen() {
     g2.setFont(g2.getFont().deriveFont(Font.PLAIN, textSize));
     x += gp.tileSize - 5;
     y += gp.tileSize;
+
+    if (npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null) {
+        
+        currentDialogue = npc.dialogues[npc.dialogueSet][npc.dialogueIndex];
+        
+        if (gp.keyH.spacePressed == true) {
+
+            if (gp.gameState == gp.dialogueState) {
+                npc.dialogueIndex++;
+                gp.keyH.spacePressed = false;
+            }
+        }
+    } else {
+        npc.dialogueIndex = 0;
+
+        if (gp.gameState == gp.dialogueState) {
+            gp.gameState = gp.playState;
+        }
+    }
 
     for (String line : currentDialogue.split("\n")) {
         g2.drawString(line, x, y);
@@ -1106,8 +1100,7 @@ public void trade_select() {
         g2.drawString(">", x-24, y);
         if (gp.keyH.spacePressed == true) {
             commandNumber = 0;
-            gp.gameState = gp.dialogueState;
-            currentDialogue = "Thank you, please come again!";
+            npc.startDialogue(npc, 2);
         }
     }
     y += gp.tileSize;
@@ -1116,20 +1109,14 @@ public void trade_select() {
         if (commandNumber == 3) {
             g2.drawString(">", x-24, y);
             if (gp.keyH.spacePressed == true) {
-                npc.dialogueIndex = 3;
-                npc.dialogues[3] = "Oh, Claire sent you? I see...\nI will have to thank her for that!\nHehe";
-                npc.dialogues[4] = "Did... did she talk about me?\nI mean, about the shop, did she\nmention the shop?";
-                npc.dialogues[5] = "(well, since you're here, I suppose she\ndid...) Anyway, I guess I should give\nyou a bit of a discount...";
-                npc.dialogues[6] = "Everything will cost 5 gold less for you.\nJust because you're a friend of Claire's.";
-                npc.speak();
+                npc.startDialogue(npc, 1);
                 commandNumber = 0;
             }
         }
     }
     if (gp.keyH.escPressed) {
         commandNumber = 0;
-        gp.gameState = gp.dialogueState;
-        currentDialogue = "Thank you, please come again!";
+        npc.startDialogue(npc, 2);
     }
 
 }
@@ -1173,19 +1160,17 @@ public void trade_buy() {
         if (gp.keyH.spacePressed == true) {
             if ((npc.inventory.get(itemIndex).price)-storeDiscount > gp.player.gold) {
                 subState = 1;
-                currentDialogue = "You need more gold!";
-                gp.gameState = gp.dialogueState;
+                npc.startDialogue(npc, 3);
             }
             else if (gp.player.inventory.size() == gp.player.maxInventorySize) {
                 subState = 1;
-                currentDialogue = "You cannot carry any more!";
-                gp.gameState = gp.dialogueState;
+                npc.startDialogue(npc, 4);
             } else {
                 gp.player.gold -= price;
                 gp.player.inventory.add(npc.inventory.get(itemIndex));
                 gp.playSE(1);
-                currentDialogue = "You bought the " + npc.inventory.get(itemIndex).name + "!";
-                gp.gameState = gp.dialogueState;
+                npc.dialogues[5][0] = "You bought the " + npc.inventory.get(gp.ui.itemIndexOnSlot).name + "!";
+                npc.startDialogue(npc, 5);
                 npc.inventory.remove(itemIndex);
                 subState = 1;
             }
@@ -1244,13 +1229,12 @@ public void trade_sell() {
              || gp.player.inventory.get(itemIndex) == gp.player.currentLight) {
                 commandNumber = 0;
                 subState = 2;
-                currentDialogue = "You cannot sell an equipped item!";
-                gp.gameState = gp.dialogueState;
+                npc.startDialogue(npc, 6);
             } else {
                 gp.player.gold += price*0.5;
                 gp.playSE(1);
-                currentDialogue = "You sold the " + gp.player.inventory.get(itemIndex).name + "!";
-                gp.gameState = gp.dialogueState;
+                npc.dialogues[7][0] = "You sold the " + gp.player.inventory.get(gp.ui.itemIndexOnSlot).name + "!";
+                npc.startDialogue(npc, 7);
                 subState = 2; 
                 npc.inventory.add(gp.player.inventory.get(itemIndex));
                 gp.player.inventory.remove(itemIndex);

@@ -2,6 +2,7 @@ package main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 
 public class KeyHandler implements KeyListener{
 
@@ -184,6 +185,7 @@ public class KeyHandler implements KeyListener{
 
     public void dialogueState(int code) {
         if (code == KeyEvent.VK_SPACE) {
+            spacePressed = true;
             if (gp.ui.currentDialogue.equals("You are now level " + gp.player.level + "!\nYou feel stronger than before!")) {
                 if (gp.currentMap == gp.introislandMap) {
                     if (gp.dayState().equals("day")) {gp.changeMusic(0);}
@@ -207,8 +209,6 @@ public class KeyHandler implements KeyListener{
             }
             if (gp.ui.subState != 0) {
                 gp.gameState = gp.tradeState;
-            } else {
-                gp.gameState = gp.playState;
             }
     }
 
@@ -379,7 +379,14 @@ public class KeyHandler implements KeyListener{
             playerInventory(code);
             if (code == KeyEvent.VK_ESCAPE) {
                 gp.ui.subState = 0;
-                gp.ui.npc.speak();
+                Random random = new Random();
+                int dialogueNumber = random.nextInt(3);
+                switch (dialogueNumber) {
+                    case 0: dialogueNumber = 0; break;
+                    case 1: dialogueNumber = 8; break;
+                    case 2: dialogueNumber = 9; break;
+                }
+                gp.ui.npc.startDialogue(gp.ui.npc, dialogueNumber);
                 gp.ui.playerSlotCol = 0;
                 gp.ui.playerSlotRow = 0;
             }

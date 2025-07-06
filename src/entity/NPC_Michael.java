@@ -15,6 +15,7 @@ public class NPC_Michael extends Entity {
         super(gp);
         speed = 0;
         type = type_npc;
+        name = "Michael";
         direction = "still";
         getImage();
         setDialogue();
@@ -26,32 +27,38 @@ public void getImage() {
 }
 
 public void setDialogue() {
-    dialogues[0] = "Hello there! Welcome to my store!";
-    dialogues[1] = "What would you like today?";
-    dialogues[2] = "Got some nice offers for you!";
+
+    dialogues[0][0] = "Hello there! Welcome to my store!";
+
+    dialogues[1][0] = "Oh, Claire sent you? I see...\nI will have to thank her for that!\nHehe";
+    dialogues[1][1] = "Did... did she talk about me?\nI mean, about the shop, did she\nmention the shop?";
+    dialogues[1][2] = "(well, since you're here, I suppose she\ndid...) Anyway, I guess I should give\nyou a bit of a discount...";
+    dialogues[1][3] = "Everything will cost 5 gold less for you.\nJust because you're a friend of Claire's.";
+    
+    dialogues[2][0] = "Thank you, please come again!";
+    
+    dialogues[3][0] = "You need more gold!";
+    
+    dialogues[4][0] = "You cannot carry any more!";
+    
+    dialogues[5][0] = "";
+    
+    dialogues[6][0] = "You cannot sell an equipped item!";
+    
+    dialogues[7][0] = "";
+
+    dialogues[8][0] = "What would you like today?";
+
+    dialogues[9][0] = "Got some nice offers for you!";
 }
 
 public void setAction() {}
 
 public void speak() {
-    if (dialogues[dialogueIndex] == null) {
-        dialogueIndex = 0;
-    }
-    if (dialogueIndex >= 3) {
-        gp.gameState = gp.dialogueState;
-    } else {
-        gp.gameState = gp.tradeState;
-    }
-
-    if (dialogueIndex == 6) {
-        gp.ui.storeDiscount = 5;
-        dialogues[3] = null;
-    }
-
-    
-    gp.ui.currentDialogue = dialogues[dialogueIndex];
-    dialogueIndex++;
+    dialogueSet = 0;
+    gp.gameState = gp.tradeState;
     gp.ui.npc = this;
+
 }
 
 public void setItems() {

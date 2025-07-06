@@ -38,14 +38,15 @@ public class NPC_Claire extends Entity {
     left2 = setup("/res/npc/claire_left_2", gp.tileSize, gp.tileSize);
     right1 = setup("/res/npc/claire_right_1", gp.tileSize, gp.tileSize);
     right2 = setup("/res/npc/claire_right_2", gp.tileSize, gp.tileSize);
-}
+    }
 
 public void setDialogue() {
-    dialogues[0] = "Oh, hello! You must be\nanother traveler!";
-    dialogues[1] = "I hope you're not headed for those mines!\nBut then again, I suppose there\naren't many other reasons-";
-    dialogues[2] = "you'd be here...\nwell, if that is where you're going,\nmake sure you stock up at the-";
-    dialogues[3] = "local store before heading out.\nBeing well prepared never hurt!";
-    dialogues[4] = "Make sure to tell the shopkeeper I sent\nyou. Claire, that is.\nwell, good luck!";
+
+    dialogues[0][0] = "Oh, hello! You must be another traveler!";
+    dialogues[0][1] = "I hope you're not headed for those mines!\nBut then again, I suppose there aren't that\nmany other reasons";
+    dialogues[0][2] = "why you'd be here...\nWell, if that is where you're headed, make\nsure you stock up at the local store before";
+    dialogues[0][3] = "heading out. Being well prepared never hurt!";
+    dialogues[0][4] = "Make sure to tell the shopkeeper I sent you.\nClaire, that is. Well, good luck!";
 }
 
 public void setAction() {
@@ -81,10 +82,11 @@ public void setAction() {
 
 public void speak() {
     super.speak();
+    facePlayer();
+    startDialogue(this, 0);
 
-    if (dialogueIndex == 4 && shopInteraction == false) {
+    if (dialogueSet == 0 && shopInteraction == false) {
         gp.ui.interactShop = true;
     }
 }
-
 }

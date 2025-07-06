@@ -37,11 +37,12 @@ public class NPC_Rubert extends Entity {
 }
 
 public void setDialogue() {
-    dialogues[0] = "Hello";
-    dialogues[1] = "Are you here for the \nlegendary treasure?";
-    dialogues[2] = "I'm just a dog!";
-    dialogues[3] = "What are you looking at?";
-    dialogues[4] = "That shirt looks hideous";
+
+    dialogues[0][0] = "hello";
+    dialogues[0][1] = "are you here for the \nlegendary treasure";
+    dialogues[0][2] = "im just a dog";
+    dialogues[0][3] = "what are you looking at";
+    dialogues[0][4] = "that shirt looks hideous";
 }
 
 public void setAction() {
@@ -77,7 +78,8 @@ public void setAction() {
 
 public void speak() {
     super.speak();
-
+    facePlayer();
+    startDialogue(this, 0);
     onPath = true;
 }
 
