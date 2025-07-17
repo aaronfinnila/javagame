@@ -209,6 +209,7 @@ public class KeyHandler implements KeyListener{
             }
             if (gp.ui.subState != 0) {
                 gp.gameState = gp.tradeState;
+                spacePressed = false;
             }
     }
 
@@ -333,6 +334,7 @@ public class KeyHandler implements KeyListener{
     }
 
     public void tradeState(int code) {
+
         if (code == KeyEvent.VK_SPACE) {
             spacePressed = true;
         }
@@ -366,19 +368,23 @@ public class KeyHandler implements KeyListener{
                 escPressed = true;
             }
         }
+
         if (gp.ui.subState == 1) {
             npcInventory(code);
             if (code == KeyEvent.VK_ESCAPE) {
                 gp.ui.subState = 0;
-                gp.ui.npc.speak();
+/*                 spacePressed = false; */
+                gp.ui.npc.startDialogue(null, code);
                 gp.ui.npcSlotCol = 0;
                 gp.ui.npcSlotRow = 0;
             }
         }
+
         if (gp.ui.subState == 2) {
             playerInventory(code);
             if (code == KeyEvent.VK_ESCAPE) {
                 gp.ui.subState = 0;
+  /*               spacePressed = false; */
                 Random random = new Random();
                 int dialogueNumber = random.nextInt(3);
                 switch (dialogueNumber) {

@@ -500,6 +500,9 @@ public void drawDialogueScreen() {
     x += gp.tileSize - 5;
     y += gp.tileSize;
 
+    System.out.println(npc.dialogueSet + " dialogueSet");
+    System.out.println(npc.dialogueIndex);
+    
     if (npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null) {
         
         currentDialogue = npc.dialogues[npc.dialogueSet][npc.dialogueIndex];
@@ -1101,6 +1104,7 @@ public void trade_select() {
         if (gp.keyH.spacePressed == true) {
             commandNumber = 0;
             npc.startDialogue(npc, 2);
+            gp.keyH.spacePressed = false;
         }
     }
     y += gp.tileSize;
@@ -1111,6 +1115,7 @@ public void trade_select() {
             if (gp.keyH.spacePressed == true) {
                 npc.startDialogue(npc, 1);
                 commandNumber = 0;
+                gp.keyH.spacePressed = false;
             }
         }
     }
@@ -1174,6 +1179,7 @@ public void trade_buy() {
                 npc.inventory.remove(itemIndex);
                 subState = 1;
             }
+            gp.keyH.spacePressed = false;
         }
     }
 
@@ -1239,6 +1245,7 @@ public void trade_sell() {
                 npc.inventory.add(gp.player.inventory.get(itemIndex));
                 gp.player.inventory.remove(itemIndex);
             }
+            gp.keyH.spacePressed = false;
         }
     }
 

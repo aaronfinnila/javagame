@@ -27,7 +27,6 @@ public void getImage() {
 }
 
 public void setDialogue() {
-
     dialogues[0][0] = "Hello there! Welcome to my store!";
 
     dialogues[1][0] = "Oh, Claire sent you? I see...\nI will have to thank her for that!\nHehe";
