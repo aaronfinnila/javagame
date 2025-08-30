@@ -650,8 +650,10 @@ public class Entity {
                 if (dyingCounter >= 20 && dyingCounter <= 25) {image = death4;}
                 if (dyingCounter >= 25 && dyingCounter <= 30) {image = death5;}
                 if (dyingCounter >= 30) {
+                    if (alive == true) {
+                        gp.player.exp += exp;
+                    }
                     alive = false;
-                    gp.player.exp += exp;
                 };
                 tempScreenX = worldX - gp.player.worldX + gp.player.screenX - gp.tileSize/2;
                 tempScreenY = worldY - gp.player.worldY + gp.player.screenY - gp.tileSize/2;

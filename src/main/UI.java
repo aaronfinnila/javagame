@@ -238,11 +238,6 @@ public void drawInventory(Entity entity, boolean cursor) {
     for (Entity e : entity.inventory) {
 
         if (e != null) {
-            if (moveLantern == true) {
-                slotX -= 6;
-                slotY -= 3;
-                moveLantern = false;
-            }
             if (e == entity.currentWeapon || e == entity.currentShield || e == entity.currentShoot || e == entity.currentLight) {
                 g2.setColor(new Color(240,190,90));
                 g2.fillRoundRect(slotX,slotY,gp.tileSize,gp.tileSize,10,10);
@@ -253,6 +248,11 @@ public void drawInventory(Entity entity, boolean cursor) {
                 moveLantern = true;
             }
             g2.drawImage(e.image, slotX, slotY, null);
+            if (moveLantern == true) {
+                slotX -= 6;
+                slotY -= 3;
+                moveLantern = false;
+            }
             slotX += gp.tileSize;
             slotXCount++;
             if (slotXCount > 4) {
@@ -1148,7 +1148,7 @@ public void trade_buy() {
     int itemIndex = itemIndexOnSlot;
 
     // BUGGED: Exception in thread "Thread-0" java.lang.NullPointerException: Cannot read field "inventory" because "this.npc" is null
-    
+
     if (itemIndex < npc.inventory.size()) {
 
         x = (int)(gp.tileSize*5.5-12);
