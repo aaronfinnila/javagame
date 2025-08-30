@@ -1146,6 +1146,9 @@ public void trade_buy() {
     // DRAW PRICE WINDOW
 
     int itemIndex = itemIndexOnSlot;
+
+    // BUGGED: Exception in thread "Thread-0" java.lang.NullPointerException: Cannot read field "inventory" because "this.npc" is null
+    
     if (itemIndex < npc.inventory.size()) {
 
         x = (int)(gp.tileSize*5.5-12);
