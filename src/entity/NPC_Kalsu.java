@@ -71,6 +71,10 @@ public void setDialogue() {
     dialogues[0][5] = "Another GRAND ADVENTURER, coming\nfor the LEGENDARY TREASURE, huh?";
     dialogues[0][6] = "Oh, right! Because THIS one will be the one who gets\nit all! SURELY he won't end up like the rest, RIIGHT???";
     dialogues[0][7] = "And then we will be waiting...\nwon't we, my queen? Oh yes, yes\nwe will...";
+
+    dialogues[1][0] = "Oh, that's a nice sword you got there...";
+    dialogues[1][1] = "It would be a real shame if...";
+    dialogues[1][2] = "SOMEONE STOLE IT!!!";
 }
 
 public void setAction() {
@@ -101,15 +105,26 @@ public void checkDrop() {
 public void speak() {
     super.speak();
     startDialogue(this, 0);
-    
-    Entity newmon = new NPC_Kalsu(gp);
-    gp.monster[gp.currentMap][0] = newmon;
-    newmon.worldX = worldX;
-    newmon.worldY = worldY;
-    newmon.onPath = true;
-    newmon.type = type_monster;
-    alive = false;
-    gp.npc[gp.currentMap][0] = null;
+    int tempIndex = 0;
+    for (Entity e : gp.player.inventory) {
+        if (e.name.equals("Nightingale")) {
+            startDialogue(this, 1);
+            tempIndex = gp.player.inventory.indexOf(e);            
+
+/*             Entity newmon = new NPC_Kalsu(gp);
+            gp.monster[gp.currentMap][0] = newmon;
+            newmon.worldX = worldX;
+            newmon.worldY = worldY;
+            newmon.onPath = true;
+            newmon.type = type_monster;
+            alive = false;
+            gp.npc[gp.currentMap][0] = null; */
+        }
+    }
+    if (tempIndex != 0) {
+        gp.player.inventory.remove(tempIndex);
+        tempIndex = 0;
+    }
 }
 
 @Override

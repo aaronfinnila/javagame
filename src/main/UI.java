@@ -500,8 +500,8 @@ public void drawDialogueScreen() {
     x += gp.tileSize - 5;
     y += gp.tileSize;
 
-    System.out.println(npc.dialogueSet + " dialogueSet");
-    System.out.println(npc.dialogueIndex);
+/*     System.out.println(npc.dialogueSet + " dialogueSet");
+    System.out.println(npc.dialogueIndex); */
     
     if (npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null) {
         
