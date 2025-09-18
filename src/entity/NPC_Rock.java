@@ -20,6 +20,7 @@ public class NPC_Rock extends Entity {
         setDialogue();
         spawn1 = false;
         spawn2 = false;
+        soundNum = 25;
     }
 
     public void getImage() {}

@@ -42,6 +42,8 @@ public class UI {
     public int subState = 0;
     public int storeDiscount = 0;
     int counter = 0;
+    int charIndex = 0;
+    String combinedText = "";
     public Entity npc;
 
     public UI(GamePanel gp) {
@@ -500,14 +502,33 @@ public void drawDialogueScreen() {
     x += gp.tileSize - 5;
     y += gp.tileSize;
 
-/*     System.out.println(npc.dialogueSet + " dialogueSet");
-    System.out.println(npc.dialogueIndex); */
+    System.out.println(npc.dialogueSet + " dialogueSet");
+    System.out.println(npc.dialogueIndex + " dialogueIndex");
     
     if (npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null) {
         
-        currentDialogue = npc.dialogues[npc.dialogueSet][npc.dialogueIndex];
+/*         currentDialogue = npc.dialogues[npc.dialogueSet][npc.dialogueIndex]; */
+
+        char characters[] = npc.dialogues[npc.dialogueSet][npc.dialogueIndex].toCharArray();
+
+        if (charIndex < characters.length) {
+            String s = String.valueOf(characters[charIndex]);
+            combinedText = combinedText + s;
+            currentDialogue = combinedText;
+            charIndex++;
+            if (charIndex % 2 == 0) {
+                if (npc.soundNum == 0) {
+                    gp.playSE(24);
+                } else {
+                    gp.playSE(npc.soundNum);
+                }
+            }
+        }
         
-        if (gp.keyH.spacePressed == true) {
+        if (gp.keyH.spacePressed == true || gp.keyH.escPressed == true) {
+
+            charIndex = 0;
+            combinedText = "";
 
             if (gp.gameState == gp.dialogueState) {
                 npc.dialogueIndex++;
@@ -1174,13 +1195,13 @@ public void trade_buy() {
                 subState = 1;
                 npc.startDialogue(npc, 4);
             } else {
+                subState = 1;
                 gp.player.gold -= price;
                 gp.player.inventory.add(npc.inventory.get(itemIndex));
                 gp.playSE(1);
                 npc.dialogues[5][0] = "You bought the " + npc.inventory.get(gp.ui.itemIndexOnSlot).name + "!";
                 npc.startDialogue(npc, 5);
                 npc.inventory.remove(itemIndex);
-                subState = 1;
             }
             gp.keyH.spacePressed = false;
         }

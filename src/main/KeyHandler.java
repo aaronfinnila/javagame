@@ -339,6 +339,10 @@ public class KeyHandler implements KeyListener{
             spacePressed = true;
         }
 
+        if (code == KeyEvent.VK_ESCAPE) {
+            escPressed = true;
+        }
+
         if (gp.ui.subState == 0) {
             int max;
 
@@ -364,17 +368,14 @@ public class KeyHandler implements KeyListener{
                 }
                 gp.playSE(10);
             }
-            if (code == KeyEvent.VK_ESCAPE) {
-                escPressed = true;
-            }
         }
 
         if (gp.ui.subState == 1) {
             npcInventory(code);
-            if (code == KeyEvent.VK_ESCAPE) {
+            if (escPressed) {
                 gp.ui.subState = 0;
 /*                 spacePressed = false; */
-                gp.ui.npc.startDialogue(null, code);
+                gp.ui.npc.startDialogue(gp.ui.npc, code);
                 gp.ui.npcSlotCol = 0;
                 gp.ui.npcSlotRow = 0;
             }
@@ -382,7 +383,7 @@ public class KeyHandler implements KeyListener{
 
         if (gp.ui.subState == 2) {
             playerInventory(code);
-            if (code == KeyEvent.VK_ESCAPE) {
+            if (escPressed) {
                 gp.ui.subState = 0;
   /*               spacePressed = false; */
                 Random random = new Random();

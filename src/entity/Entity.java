@@ -63,6 +63,7 @@ public class Entity {
     public int hpBarCounter;
     public int attackAvailableCounter = 0;
     public int knockBackCounter = 0;
+    public int soundNum = 0;
     
     // ATTRIBUTES
     

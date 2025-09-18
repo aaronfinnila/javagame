@@ -45,8 +45,7 @@ public void setDialogue() {
     dialogues[0][0] = "Oh, hello! You must be another traveler!";
     dialogues[0][1] = "I hope you're not headed for those mines!\nBut then again, I suppose there aren't that\nmany other reasons why you'd be here...";
     dialogues[0][2] = "Well, if that is where you're headed, make\nsure you stock up at the local store before\nheading out. Being well prepared never hurt!";
-    dialogues[0][3] = "heading out. Being well prepared never hurt!";
-    dialogues[0][4] = "Make sure to tell the shopkeeper I sent you.\nClaire, that is. Well, good luck!";
+    dialogues[0][3] = "Make sure to tell the shopkeeper I sent you.\nClaire, that is. Well, good luck!";
 }
 
 public void setAction() {
