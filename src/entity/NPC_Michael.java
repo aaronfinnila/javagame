@@ -57,7 +57,6 @@ public void speak() {
     dialogueSet = 0;
     gp.gameState = gp.tradeState;
     gp.ui.npc = this;
-
 }
 
 public void setItems() {
