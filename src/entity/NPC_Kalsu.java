@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.util.Random;
 
 import main.GamePanel;
+import obj.OBJ_Key;
 import obj.OBJ_Nightingale;
 public class NPC_Kalsu extends Entity {
 
@@ -33,6 +34,7 @@ public class NPC_Kalsu extends Entity {
         getImage();
         getAttackImage();
         setDialogue();
+        setItems();
     }
 
 public void getImage() {
@@ -73,8 +75,19 @@ public void setDialogue() {
     dialogues[0][7] = "And then we will be waiting...\nwon't we, my queen? Oh yes, yes\nwe will...";
 
     dialogues[1][0] = "Oh, that's a nice sword you got...";
-    dialogues[1][1] = "It would be a real shame if...";
-    dialogues[1][2] = "Something happened to it...";
+    dialogues[1][1] = "Oh yes, very shiny...";
+    dialogues[1][2] = "It would be a real shame if it\nended up in the wrong hands...";
+    dialogues[1][3] = "We would really like to have it,\nwouldn't we? He he he...";
+    dialogues[1][4] = "What do you say, adventurer?\nI could give you something very,\nvery valuable in return...";
+    dialogues[1][5] = "";
+
+    dialogues[2][0] = "Ah well, your loss.\nMy item could have opened up\nmany doors for you. Thehehe...";
+
+    dialogues[3][0] = "Pleasure doing business with you..\nWasn't it, my love? Thehehe...";
+}
+
+public void setItems() {
+    inventory.add(new OBJ_Key(gp));
 }
 
 public void setAction() {
@@ -107,15 +120,11 @@ public void speak() {
     startDialogue(this, 0);
     int tempIndex = 0;
     for (Entity e : gp.player.inventory) {
-        if (e.type == type_sword && e.name != "Badgers Scimitar") {
-            if (gp.player.currentWeapon == e) {
-                gp.player.currentWeapon = gp.player.inventory.get(0);
-            }
-            System.out.println("added to inv?");
+        if (e.name == "Longsword") {
             startDialogue(this, 1);
-            tempIndex = gp.player.inventory.indexOf(e);            
-            
-            Entity newmon = new NPC_Kalsu(gp);
+            tempIndex = gp.player.inventory.indexOf(e);
+            gp.ui.playerItemIndex = tempIndex;
+/*             Entity newmon = new NPC_Kalsu(gp);
             gp.monster[gp.currentMap][0] = newmon;
             newmon.worldX = worldX;
             newmon.worldY = worldY;
@@ -123,12 +132,8 @@ public void speak() {
             newmon.type = type_monster;
             alive = false;
             gp.npc[gp.currentMap][0] = null;
-            newmon.inventory.add(e);
+            newmon.inventory.add(e); */
         }
-    }
-    if (tempIndex != 0) {
-        gp.player.inventory.remove(tempIndex);
-        tempIndex = 0;
     }
 }
 

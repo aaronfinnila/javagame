@@ -332,12 +332,15 @@ public class Entity {
 
     public void startDialogue(Entity entity, int setNum) {
 
+        dialogueIndex = 0;
+        gp.ui.charIndex = 0;
         dialogueSet = setNum;
         gp.ui.npc = entity;
         gp.gameState = gp.dialogueState;
     }
 
     public void checkCollision() {
+
         collisionOn = false;
         gp.cChecker.checkTile(this);
         gp.cChecker.checkObject(this, false);
@@ -490,6 +493,7 @@ public class Entity {
     }
 
     public void damagePlayer(int attack) {
+
         if (gp.player.invincible == false) {
             int damage = attack - gp.player.defense;
             if (damage <= 0) {
@@ -502,6 +506,7 @@ public class Entity {
     }
 
     public BufferedImage setup(String imagePath, int width, int height) {
+
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
 

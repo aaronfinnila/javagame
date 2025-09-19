@@ -8,6 +8,7 @@ import main.GamePanel;
 import main.KeyHandler;
 import obj.OBJ_Arrow;
 import obj.OBJ_Hammer;
+import obj.OBJ_Potion_Red;
 import obj.OBJ_Shield_Default;
 import obj.OBJ_Sword_Default;
 import tile.TileManager;
@@ -114,6 +115,7 @@ public class Player extends Entity {
         inventory.add(currentWeapon);
         inventory.add(currentShield);
         inventory.add(new OBJ_Hammer(gp));
+        inventory.add(new OBJ_Potion_Red(gp));
     }
 
     public int getAttack() {

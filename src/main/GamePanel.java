@@ -105,6 +105,14 @@ public class GamePanel extends JPanel implements Runnable{
     public final int gameOverState = 6;
     public final int transitionState = 7;
     public final int tradeState = 8;
+    public final int interactState = 9;
+
+    // AREA
+
+    public int currentArea;
+    public final int outside = 50;
+    public final int inside = 51;
+    public final int dungeon = 52;
 
     public GamePanel() {
 
@@ -438,6 +446,20 @@ public class GamePanel extends JPanel implements Runnable{
     public void changeMusic(int i) {
         stopMusic();
         playMusic(i);
+    }
+
+    public void playTransitionSE() {
+        int nextMap = eHandler.tempMap;
+        switch (currentMap) {
+            case storeMap: playSE(26); break;
+            case storeMapNight: playSE(26); break;
+            case storeMapSecret: playSE(26); break;
+            case house1Map: playSE(26); break;
+            case house2Map: playSE(26); break;
+            case treasureislandMap: if (nextMap == storeMap || nextMap == house1Map || nextMap == house2Map || nextMap == storeMapNight || nextMap == storeMapSecret) {
+                playSE(26);
+            }; break;
+        }
     }
 
     public void fadeMusic(int musicNum, String inOrOut) {

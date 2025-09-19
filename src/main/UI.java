@@ -41,8 +41,11 @@ public class UI {
     public int itemIndexOnSlot = 0;
     public int subState = 0;
     public int storeDiscount = 0;
+    public int interactCol = 0;
+    public int interactChoice = 0;
+    public int playerItemIndex = 0;
     int counter = 0;
-    int charIndex = 0;
+    public int charIndex = 0;
     String combinedText = "";
     public Entity npc;
 
@@ -201,6 +204,10 @@ public class UI {
 
         if (gp.gameState == gp.tradeState) {
             drawTradeScreen();
+        }
+
+        if (gp.gameState == gp.interactState) {
+            drawInteractState();
         }
     }
 
@@ -477,33 +484,21 @@ public void drawDialogueScreen() {
         case "Rubert": textSize = 40; break;
         case "Table1": textSize = 20; break;
         case "Michael": textSize = 28; break;
-    }
-
-    if (gp.ui.currentDialogue.equals("    The goddess statue fills you with joy.\n    Your health has been replenished.\n    (Progress has been saved)")) {
-        textSize = 25;
-        y -= 2;
+        case "eventMaster": textSize = 25; y -= 2; break;
+        case "Red Potion": textSize = 30; break;
     }
 
     if (gp.ui.currentDialogue.equals("Oh, right! Because THIS one will be the one who gets\nit all! SURELY he won't end up like the rest, RIIGHT???")) {
         textSize = 20;
     }
-
-    if (gp.ui.currentDialogue.equals("You are now level " + gp.player.level + "!\nYou feel stronger than before!")) {
-        textSize = 28;
-    }
-
-    if (gp.ui.currentDialogue.equals(" You drink the Red Potion!\n Your health has been replenished by 4.")) {
-        textSize = 30;
-    }
-
+    
     // DIALOGUE 
 
     g2.setFont(g2.getFont().deriveFont(Font.PLAIN, textSize));
     x += gp.tileSize - 5;
     y += gp.tileSize;
 
-    System.out.println(npc.dialogueSet + " dialogueSet");
-    System.out.println(npc.dialogueIndex + " dialogueIndex");
+    checkInteractState();
     
     if (npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null) {
         
@@ -1008,6 +1003,7 @@ public void drawTransition() {
     if (darken == false) {
         counter++;
         if (counter > 1 && counter < 3) {
+            gp.playTransitionSE();
             gp.stopMusic();
             gp.player.lightUpdated = true;
         }
@@ -1282,6 +1278,56 @@ public void trade_sell() {
         drawSubWindow(x, y, width, height);
         text = "ESC";
         g2.drawString(text, x+16, y+32);
+}
+
+public void drawInteractState() {
+
+    int x = gp.tileSize * 3;
+    int y = (gp.tileSize * 2) + 10;
+    int width = gp.screenWidth - (gp.tileSize*5);
+    int height = gp.screenHeight - (gp.tileSize*4);
+    
+    drawSubWindow(x, y, width, height);
+    
+    g2.setFont(consola.deriveFont(25F));
+    String text = "Trade Longsword for Unknown Item?";
+    g2.drawString(text,(x+gp.tileSize*3)-15, y+gp.tileSize*3);
+    text = "YES";
+    g2.drawString(text,x+gp.tileSize*4, y+gp.tileSize*6);
+    text = "NO";
+    g2.drawString(text,x+gp.tileSize*8, y+gp.tileSize*6);
+
+    if (interactCol == 0) {
+        g2.drawString("___", (x+gp.tileSize*4), y+gp.tileSize*6);
+    } else {
+        g2.drawString("___", (x+gp.tileSize*8)-7, y+gp.tileSize*6);
+    }
+
+    if (interactChoice == 1) {
+        if (gp.player.currentWeapon == gp.player.inventory.get(playerItemIndex)) {
+            gp.player.currentWeapon = gp.player.inventory.get(0);
+        }
+        npc.inventory.add(gp.player.inventory.get(playerItemIndex));
+        gp.player.inventory.add(npc.inventory.getFirst());
+        gp.player.hasKey++;
+        gp.player.inventory.remove(playerItemIndex);
+        npc.inventory.remove(npc.inventory.getFirst());
+        gp.keyH.spacePressed = false;
+        npc.startDialogue(npc, 3);
+    } else if (interactChoice == 2) {
+        gp.keyH.spacePressed = false;
+        npc.startDialogue(npc, 2);
+    }
+}
+
+public void checkInteractState() {
+    switch (npc.name) {
+        case "Kalsu":
+        if (npc.dialogueSet == 1 && npc.dialogueIndex == 5) {
+            gp.keyH.spacePressed = false;
+            gp.gameState = gp.interactState;
+        }
+    }
 }
 
 public int getXforCenteredText(String text) {

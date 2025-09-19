@@ -10,12 +10,14 @@ public class EventHandler {
     int previousEventX, previousEventY;
     boolean canTouchEvent = false;
     int tempMap, tempCol, tempRow;
-    Entity eventMaster;
+    public Entity eventMaster;
 
     public EventHandler(GamePanel gp) {
         this.gp = gp;
         eventMaster = new Entity(gp);
         eventMaster.name = "eventMaster";
+/*         eventMaster.dialogueSet = 0; */
+
 
         eventRect = new EventRect[gp.maxMap][gp.maxMapSize][gp.maxMapSize];
 
@@ -47,10 +49,9 @@ public class EventHandler {
     }
 
     public void setDialogue() {
-
+        
         eventMaster.dialogues[0][0] = "You fall into a pit!";
         eventMaster.dialogues[1][0] = "    The goddess statue fills you with joy.\n    Your health has been replenished.\n    (Progress has been saved)";
-
     }
 
     public void checkEvent(){
@@ -63,41 +64,40 @@ public class EventHandler {
         }
         if (canTouchEvent == true) {
             if (hit(gp.treasureislandMap,42,33,"up") == true && gp.keyH.ePressed == true) {
-                teleportPlayer(gp.house1Map, 50, 56);
+                teleportPlayer(gp.house1Map, 50, 56, gp.inside);
             }
             if (hit(gp.house1Map,50,56,"down") == true && gp.keyH.ePressed == true) {
-                teleportPlayer(gp.treasureislandMap, 42, 33);
+                teleportPlayer(gp.treasureislandMap, 42, 33, gp.outside);
             }
             if (hit(gp.treasureislandMap,48,33,"up") == true && gp.keyH.ePressed == true) {
-                teleportPlayer(gp.house2Map, 50, 56);
+                teleportPlayer(gp.house2Map, 50, 56, gp.inside);
             }
             if (hit(gp.house2Map,50,56,"down") == true && gp.keyH.ePressed == true) {
-                teleportPlayer(gp.treasureislandMap, 48, 33);
+                teleportPlayer(gp.treasureislandMap, 48, 33, gp.outside);
             }
             if (hit(gp.treasureislandMap,66,27,"up") == true && gp.keyH.ePressed == true) {
                     if (gp.dayState().equals("night")) {
                         if (gp.player.hasKey > 0) {
-                            gp.player.hasKey--;
                             gp.player.lightUpdated = true;
-                            teleportPlayer(gp.storeMapNight, 47, 56);
+                            teleportPlayer(gp.storeMapNight, 47, 56, gp.dungeon);
                         } else {
                             gp.playSE(23);
                         }
                     } else {
-                        teleportPlayer(gp.storeMap, 47, 56);
+                        teleportPlayer(gp.storeMap, 47, 56, gp.inside);
                     }
             }
             if (hit(gp.storeMap,47,56,"down") == true && gp.keyH.ePressed == true) {
-                teleportPlayer(gp.treasureislandMap, 66, 27);
+                teleportPlayer(gp.treasureislandMap, 66, 27, gp.outside);
             }
             if (hit(gp.storeMapNight,47,56,"down") == true && gp.keyH.ePressed == true) {
-                teleportPlayer(gp.treasureislandMap, 66, 27);
+                teleportPlayer(gp.treasureislandMap, 66, 27, gp.outside);
             }
             if (hit(gp.storeMapNight,46,45,"up") == true && gp.keyH.ePressed == true) {
-                teleportPlayer(gp.storeMapSecret, 47, 56);
+                teleportPlayer(gp.storeMapSecret, 47, 56, gp.dungeon);
             }
             if (hit(gp.storeMapSecret,47,56,"down") == true && gp.keyH.ePressed == true) {
-                teleportPlayer(gp.storeMapNight, 45, 45);
+                teleportPlayer(gp.storeMapNight, 45, 45, gp.dungeon);
             }
             if (hit(gp.introislandMap,16, 26, "up") == true && gp.keyH.ePressed == true) {
                 healingStatue(gp.dialogueState);
@@ -149,8 +149,9 @@ public class EventHandler {
         gp.saveLoad.save();
     }
 
-    public void teleportPlayer(int map, int col, int row) {
+    public void teleportPlayer(int map, int col, int row, int area) {
 
+        gp.currentArea = area;
         gp.gameState = gp.transitionState;
         tempMap = map;
         tempCol = col;

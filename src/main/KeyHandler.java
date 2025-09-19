@@ -47,6 +47,9 @@ public class KeyHandler implements KeyListener{
         else if (gp.gameState == gp.tradeState) {
             tradeState(code);
         }
+        else if (gp.gameState == gp.interactState) {
+            interactState(code);
+        }
     }
 
     public void titleState(int code) {
@@ -451,6 +454,31 @@ public class KeyHandler implements KeyListener{
                 gp.ui.npcSlotCol++;
                 gp.playSE(10);
             }
+        }
+    }
+
+    public void interactState(int code) {
+        if (code == KeyEvent.VK_A) {
+            if (gp.ui.interactCol != 0) {
+                gp.ui.interactCol--;
+                gp.playSE(10);
+            }
+        }
+        if (code == KeyEvent.VK_D) {
+            if (gp.ui.interactCol != 1) {
+                gp.ui.interactCol++;
+                gp.playSE(10);
+            }
+        }
+        if (code == KeyEvent.VK_SPACE) {
+            spacePressed = true;
+        }
+        if (spacePressed) {
+            if(gp.ui.interactCol == 0) {
+                gp.ui.interactChoice = 1;
+            } else {
+                gp.ui.interactChoice = 2;
+            }    
         }
     }
 

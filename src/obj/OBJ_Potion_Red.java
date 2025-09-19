@@ -24,10 +24,11 @@ public class OBJ_Potion_Red extends Entity {
 
     public void use(Entity entity) {
         
-        gp.gameState = gp.dialogueState;
-        gp.ui.currentDialogue = " You drink the " + name + "!\n Your health has been replenished by " + healingValue + ".";
-        entity.health += healingValue;
+        dialogues[0][0] = " You drink the " + name + "!\n Your health has been replenished by " + healingValue + ".";
+        gp.keyH.spacePressed = false;
         gp.playSE(2);
+        entity.health += healingValue;
+        startDialogue(this, 0);
     }
 
 }

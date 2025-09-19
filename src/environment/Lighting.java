@@ -66,7 +66,7 @@ public class Lighting {
         fraction[10] = 0.95f;
         fraction[11] = 1f;
 
-        if (gp.currentMap == 5) {
+        if (gp.currentMap == gp.storeMapNight || gp.currentMap == gp.storeMapSecret) {
             if (gp.player.currentLight == null) {
                 g2.setColor(new Color(0, 0, 0, 1f));
             } else {
@@ -160,8 +160,12 @@ public class Lighting {
 
     public void draw(Graphics2D g2) {
 
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, filterAlpha));
-        g2.drawImage(darknessFilter, 0, 0, null);
+        if (gp.currentArea == gp.outside) {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, filterAlpha));
+        }
+        if (gp.currentArea == gp.outside || gp.currentArea == gp.dungeon) {
+            g2.drawImage(darknessFilter, 0, 0, null);
+        }
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 
         // DAYSTATE DEBUG

@@ -31,7 +31,7 @@ public void setDialogue() {
     dialogues[0][1] = "I've seen plenty youngins just like you, greener than\nthe grass of Midland.";
     dialogues[0][2] = "Most of their stories don't end too well...";
     dialogues[0][3] = "That place is beautiful on the surface, but underneath...";
-    dialogues[0][4] = "I can tell you more when you're ready. Start with defeating\nthose slimes south of here.";
+    dialogues[0][4] = "I can tell you more when you're ready. Start by defeating\nthose slimes south of here.";
 
     dialogues[1][0] = "You're stronger. I suppose you're ready to hear more.";
     dialogues[1][1] = "A long, long time ago, a strong warrior came to this island.";
