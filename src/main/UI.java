@@ -46,7 +46,7 @@ public class UI {
     public int playerItemIndex = 0;
     int counter = 0;
     public int charIndex = 0;
-    String combinedText = "";
+    public String combinedText = "";
     public Entity npc;
 
     public UI(GamePanel gp) {
@@ -486,11 +486,14 @@ public void drawDialogueScreen() {
         case "Michael": textSize = 28; break;
         case "eventMaster": textSize = 25; y -= 2; break;
         case "Red Potion": textSize = 30; break;
+        case "Kalsu": if (npc.dialogueSet == 0 && npc.dialogueIndex == 6) {
+            textSize = 20;
+        } break;
     }
 
-    if (gp.ui.currentDialogue.equals("Oh, right! Because THIS one will be the one who gets\nit all! SURELY he won't end up like the rest, RIIGHT???")) {
+/*     if (gp.ui.currentDialogue.equals("Oh, right! Because THIS one will be the one who gets\nit all! SURELY he won't end up like the rest, RIIGHT???")) {
         textSize = 20;
-    }
+    } */
     
     // DIALOGUE 
 
@@ -1138,6 +1141,7 @@ public void trade_select() {
     }
     if (gp.keyH.escPressed) {
         commandNumber = 0;
+        gp.keyH.escPressed = false;
         npc.startDialogue(npc, 2);
     }
 
@@ -1265,7 +1269,9 @@ public void trade_sell() {
                 npc.inventory.add(gp.player.inventory.get(itemIndex));
                 gp.player.inventory.remove(itemIndex);
             }
+            charIndex = 0;
             gp.keyH.spacePressed = false;
+            gp.keyH.escPressed = false;
         }
     }
 
@@ -1284,40 +1290,26 @@ public void drawInteractState() {
 
     int x = gp.tileSize * 3;
     int y = (gp.tileSize * 2) + 10;
-    int width = gp.screenWidth - (gp.tileSize*5);
+    int width = gp.screenWidth - (gp.tileSize*6);
     int height = gp.screenHeight - (gp.tileSize*4);
     
     drawSubWindow(x, y, width, height);
     
     g2.setFont(consola.deriveFont(25F));
-    String text = "Trade Longsword for Unknown Item?";
-    g2.drawString(text,(x+gp.tileSize*3)-15, y+gp.tileSize*3);
+    String text = npc.getInteractText();
+    g2.drawString(text,(x+gp.tileSize*2)-15, y+gp.tileSize*3);
     text = "YES";
     g2.drawString(text,x+gp.tileSize*4, y+gp.tileSize*6);
     text = "NO";
-    g2.drawString(text,x+gp.tileSize*8, y+gp.tileSize*6);
+    g2.drawString(text,x+gp.tileSize*10, y+gp.tileSize*6);
 
     if (interactCol == 0) {
         g2.drawString("___", (x+gp.tileSize*4), y+gp.tileSize*6);
     } else {
-        g2.drawString("___", (x+gp.tileSize*8)-7, y+gp.tileSize*6);
+        g2.drawString("___", (x+gp.tileSize*10)-7, y+gp.tileSize*6);
     }
 
-    if (interactChoice == 1) {
-        if (gp.player.currentWeapon == gp.player.inventory.get(playerItemIndex)) {
-            gp.player.currentWeapon = gp.player.inventory.get(0);
-        }
-        npc.inventory.add(gp.player.inventory.get(playerItemIndex));
-        gp.player.inventory.add(npc.inventory.getFirst());
-        gp.player.hasKey++;
-        gp.player.inventory.remove(playerItemIndex);
-        npc.inventory.remove(npc.inventory.getFirst());
-        gp.keyH.spacePressed = false;
-        npc.startDialogue(npc, 3);
-    } else if (interactChoice == 2) {
-        gp.keyH.spacePressed = false;
-        npc.startDialogue(npc, 2);
-    }
+    npc.getInteractChoices();
 }
 
 public void checkInteractState() {
@@ -1326,6 +1318,7 @@ public void checkInteractState() {
         if (npc.dialogueSet == 1 && npc.dialogueIndex == 5) {
             gp.keyH.spacePressed = false;
             gp.gameState = gp.interactState;
+            interactCol = 1;
         }
     }
 }

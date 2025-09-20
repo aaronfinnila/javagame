@@ -8,6 +8,7 @@ import entity.NPC_Rubert;
 import monster.MON_Slime;
 import obj.OBJ_Bench;
 import obj.OBJ_Bow_Default;
+import obj.OBJ_Cave_Entrance;
 import obj.OBJ_Hitbox1;
 import obj.OBJ_House1;
 import obj.OBJ_House1_Interior;
@@ -104,6 +105,11 @@ public class AssetSetter {
         gp.obj[mapNum][i].solidArea.width = 20;
         gp.obj[mapNum][i].solidArea.height = gp.tileSize*2+20;
         i++;
+        gp.obj[mapNum][i] = new OBJ_Cave_Entrance(gp);
+        gp.obj[mapNum][i].worldX = 66*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 2;
+        i++;
+
 
         mapNum += 1;
 
@@ -216,7 +222,7 @@ public class AssetSetter {
 
         mapNum += 1;
 
-        // storemap2
+        // storemapNight
 
         gp.obj[mapNum][i] = new OBJ_Store_Interior(gp);
         gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
@@ -289,7 +295,7 @@ public class AssetSetter {
         gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
         gp.obj[mapNum][i].worldX = 47*gp.tileSize-50;
         gp.obj[mapNum][i].worldY = 45*gp.tileSize+35;
-        gp.obj[mapNum][i].solidArea.width = 257;
+        gp.obj[mapNum][i].solidArea.width = 280;
         gp.obj[mapNum][i].solidArea.height = 45;
         i++;
     }

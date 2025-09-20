@@ -14,6 +14,7 @@ public class NPC_Michael extends Entity {
 
         super(gp);
         speed = 0;
+        soundNum = 27;
         type = type_npc;
         name = "Michael";
         direction = "still";
@@ -28,6 +29,8 @@ public void getImage() {
 
 public void setDialogue() {
     dialogues[0][0] = "Hello there! Welcome to my store!";
+    dialogues[0][1] = "What would you like today?";
+    dialogues[0][2] = "Got some nice offers for you!";
 
     dialogues[1][0] = "Oh, Claire sent you? I see...\nI will have to thank her for that!\nHehe";
     dialogues[1][1] = "Did... did she talk about me?\nI mean, about the shop, did she\nmention the shop?";
@@ -45,10 +48,6 @@ public void setDialogue() {
     dialogues[6][0] = "You cannot sell an equipped item!";
     
     dialogues[7][0] = "";
-
-    dialogues[8][0] = "What would you like today?";
-
-    dialogues[9][0] = "Got some nice offers for you!";
 }
 
 public void setAction() {}

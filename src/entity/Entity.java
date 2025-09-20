@@ -152,6 +152,10 @@ public class Entity {
 
     public void getAttackImage() {}
 
+    public String getInteractText() {return "";}
+
+    public void getInteractChoices() {}
+
     public void getShootImage() {}
 
     public void getImage() {}
@@ -334,9 +338,18 @@ public class Entity {
 
         dialogueIndex = 0;
         gp.ui.charIndex = 0;
+        gp.ui.combinedText = "";
         dialogueSet = setNum;
         gp.ui.npc = entity;
         gp.gameState = gp.dialogueState;
+    }
+
+    public void resetDialogue() {
+        
+        gp.ui.npc.dialogueSet = 0;
+        gp.ui.npc.dialogueIndex++;
+        gp.ui.combinedText = "";
+        gp.ui.charIndex = 0;
     }
 
     public void checkCollision() {

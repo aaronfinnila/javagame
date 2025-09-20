@@ -20,6 +20,7 @@ public class NPC_Kalsu extends Entity {
         defaultSpeed = 2;
         image = down1;
         speed = defaultSpeed;
+        soundNum = 30;
         maxHealth = 10;
         health = maxHealth;
         attack = 3;
@@ -109,10 +110,38 @@ public void setAction() {
 
 public void damageReaction() {
     actionLockCounter = 0;
-    }
+}
 
 public void checkDrop() {
     dropItem(currentWeapon);
+}
+
+public void getInteractChoices() {
+
+    if (gp.ui.interactChoice == 1) {
+        if (gp.player.currentWeapon == gp.player.inventory.get(gp.ui.playerItemIndex)) {
+            gp.player.currentWeapon = gp.player.inventory.get(0);
+        }
+        inventory.add(gp.player.inventory.get(gp.ui.playerItemIndex));
+        gp.player.inventory.add(inventory.getFirst());
+        gp.player.hasKey++;
+        gp.player.inventory.remove(gp.ui.playerItemIndex);
+        inventory.remove(inventory.getFirst());
+        gp.keyH.spacePressed = false;
+        gp.playSE(1);
+        startDialogue(this, 3);
+        gp.ui.interactChoice = 0;
+    } else if (gp.ui.interactChoice == 2) {
+        System.out.println(gp.keyH.spacePressed);
+        gp.keyH.spacePressed = false;
+        startDialogue(this, 2);
+        gp.ui.interactChoice = 0;
+    }
+}
+
+public String getInteractText() {
+    String text = "Trade Longsword for Unknown Item?";
+    return text;
 }
 
 public void speak() {

@@ -12,6 +12,7 @@ public class NPC_Rubert extends Entity {
         name = "Rubert";
         direction = "down";
         speed = 1;
+        soundNum = 28;
         type = type_npc;
         getImage();
         setDialogue();

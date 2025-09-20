@@ -218,6 +218,7 @@ public class KeyHandler implements KeyListener{
 
     if (code == KeyEvent.VK_ESCAPE) {
         gp.gameState = gp.playState;
+        gp.ui.npc.resetDialogue();
     }
 
     }
@@ -377,28 +378,31 @@ public class KeyHandler implements KeyListener{
             npcInventory(code);
             if (escPressed) {
                 gp.ui.subState = 0;
-/*                 spacePressed = false; */
-                gp.ui.npc.startDialogue(gp.ui.npc, code);
+                gp.ui.npc.dialogueSet = 0;
+                Random random = new Random();
+                int dialogueNum = random.nextInt(3);
+                gp.ui.npc.dialogueIndex = dialogueNum;
+                gp.ui.combinedText = "";
+                gp.ui.charIndex = 0;
                 gp.ui.npcSlotCol = 0;
                 gp.ui.npcSlotRow = 0;
+                escPressed = false;
             }
         }
-
+        
         if (gp.ui.subState == 2) {
             playerInventory(code);
             if (escPressed) {
                 gp.ui.subState = 0;
-  /*               spacePressed = false; */
+                gp.ui.npc.dialogueSet = 0;
                 Random random = new Random();
-                int dialogueNumber = random.nextInt(3);
-                switch (dialogueNumber) {
-                    case 0: dialogueNumber = 0; break;
-                    case 1: dialogueNumber = 8; break;
-                    case 2: dialogueNumber = 9; break;
-                }
-                gp.ui.npc.startDialogue(gp.ui.npc, dialogueNumber);
+                int dialogueNum = random.nextInt(3);
+                gp.ui.npc.dialogueIndex = dialogueNum;
+                gp.ui.combinedText = "";
+                gp.ui.charIndex = 0;
                 gp.ui.playerSlotCol = 0;
                 gp.ui.playerSlotRow = 0;
+                escPressed = false;
             }
         }
     }

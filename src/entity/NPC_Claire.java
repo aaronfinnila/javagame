@@ -15,6 +15,7 @@ public class NPC_Claire extends Entity {
         name = "Claire";
         direction = "right";
         speed = 1;
+        soundNum = 29;
         type = type_npc;
         getImage();
         setDialogue();
