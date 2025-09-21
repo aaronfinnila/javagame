@@ -1297,7 +1297,7 @@ public void drawInteractState() {
     
     g2.setFont(consola.deriveFont(25F));
     String text = npc.getInteractText();
-    g2.drawString(text,(x+gp.tileSize*2)-15, y+gp.tileSize*3);
+    g2.drawString(text,getXforCenteredText(text), y+gp.tileSize*3);
     text = "YES";
     g2.drawString(text,x+gp.tileSize*4, y+gp.tileSize*6);
     text = "NO";
@@ -1316,6 +1316,13 @@ public void checkInteractState() {
     switch (npc.name) {
         case "Kalsu":
         if (npc.dialogueSet == 1 && npc.dialogueIndex == 5) {
+            gp.keyH.spacePressed = false;
+            gp.gameState = gp.interactState;
+            interactCol = 1;
+        }
+        break;
+        case "Claire":
+        if (npc.dialogueSet == 0 && npc.dialogueIndex == 4) {
             gp.keyH.spacePressed = false;
             gp.gameState = gp.interactState;
             interactCol = 1;

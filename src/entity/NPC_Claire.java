@@ -47,6 +47,28 @@ public void setDialogue() {
     dialogues[0][1] = "I hope you're not headed for those mines!\nBut then again, I suppose there aren't that\nmany other reasons why you'd be here...";
     dialogues[0][2] = "Well, if that is where you're headed, make\nsure you stock up at the local store before\nheading out. Being well prepared never hurt!";
     dialogues[0][3] = "Make sure to tell the shopkeeper I sent you.\nClaire, that is. Well, good luck!";
+
+    dialogues[1][0] = "Oh, you won't? That's a shame...";
+    
+    dialogues[2][0] = "Oh, you will? That's awesome!";
+}
+
+public void getInteractChoices() {
+
+    if (gp.ui.interactChoice == 1) {
+        gp.keyH.spacePressed = false;
+        startDialogue(this, 2);
+        gp.ui.interactChoice = 0;
+    } else if (gp.ui.interactChoice == 2) {
+        gp.keyH.spacePressed = false;
+        startDialogue(this, 1);
+        gp.ui.interactChoice = 0;
+    }
+}
+
+public String getInteractText() {
+    String text = "Will you go to the store?";
+    return text;
 }
 
 public void setAction() {

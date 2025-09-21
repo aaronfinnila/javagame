@@ -336,6 +336,7 @@ public class Entity {
 
     public void startDialogue(Entity entity, int setNum) {
 
+        gp.keyH.spacePressed = false;
         dialogueIndex = 0;
         gp.ui.charIndex = 0;
         gp.ui.combinedText = "";
