@@ -90,6 +90,7 @@ public class KeyHandler implements KeyListener{
                     case 2: gp.playMusic(18); break;
                     case 3: gp.playMusic(19); break;
                     case 4: gp.playMusic(20); break;
+                    case 7: gp.playMusic(31); break;
                 }
             }
             if (gp.ui.commandNumber == 2) {
@@ -182,6 +183,9 @@ public class KeyHandler implements KeyListener{
                 case 2: gp.playMusic(18); break;
                 case 3: gp.playMusic(19); break;
                 case 4: gp.playMusic(20); break;
+                case 5: gp.playMusic(20); break;
+                case 6: gp.playMusic(20); break;
+                case 7: gp.playMusic(31); break;
             }
         }
     }
@@ -208,6 +212,9 @@ public class KeyHandler implements KeyListener{
                 }
                 else if (gp.currentMap == gp.storeMap) {
                     gp.changeMusic(20);
+                }
+                else if (gp.currentMap == gp.dungeonMap) {
+                    gp.changeMusic(31);
                 }
             }
             if (gp.ui.subState != 0) {

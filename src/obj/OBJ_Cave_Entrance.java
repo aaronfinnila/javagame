@@ -21,5 +21,9 @@ public class OBJ_Cave_Entrance extends Entity {
     }
 
     public void use(Entity entity) {
+        if (gp.keyH.ePressed == true) {
+            gp.eHandler.teleportPlayer(gp.dungeonMap, 47, 56, gp.dungeon);
+        }
+
     }
 }

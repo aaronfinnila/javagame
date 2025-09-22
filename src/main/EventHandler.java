@@ -63,47 +63,74 @@ public class EventHandler {
             canTouchEvent = true;
         }
         if (canTouchEvent == true) {
+            
+            // INTRO ISLAND
+            
+            if (hit(gp.introislandMap,16, 26, "up") == true && gp.keyH.ePressed == true) {
+                healingStatue(gp.dialogueState);
+            }
+            if (hit(gp.introislandMap,17, 26, "up") == true && gp.keyH.ePressed == true) {
+                healingStatue(gp.dialogueState);
+            }
+
+            // TREASURE ISLAND
+
             if (hit(gp.treasureislandMap,42,33,"up") == true && gp.keyH.ePressed == true) {
                 teleportPlayer(gp.house1Map, 50, 56, gp.inside);
-            }
-            if (hit(gp.house1Map,50,56,"down") == true && gp.keyH.ePressed == true) {
-                teleportPlayer(gp.treasureislandMap, 42, 33, gp.outside);
             }
             if (hit(gp.treasureislandMap,48,33,"up") == true && gp.keyH.ePressed == true) {
                 teleportPlayer(gp.house2Map, 50, 56, gp.inside);
             }
+            if (hit(gp.treasureislandMap,66,27,"up") == true && gp.keyH.ePressed == true) {
+                if (gp.dayState().equals("night")) {
+                    if (gp.player.hasKey > 0) {
+                        gp.player.lightUpdated = true;
+                        teleportPlayer(gp.storeMapNight, 47, 56, gp.dungeon);
+                    } else {
+                        gp.playSE(23);
+                    }
+                } else {
+                    teleportPlayer(gp.storeMap, 47, 56, gp.inside);
+                }
+            }
+            
+            // DUNGEON
+            
+            if (hit(gp.dungeonMap,47,56,"down") == true && gp.keyH.ePressed == true) {
+                teleportPlayer(gp.treasureislandMap, 74, 7, gp.dungeon);
+            }
+
+            // HOUSE 1
+
+            if (hit(gp.house1Map,50,56,"down") == true && gp.keyH.ePressed == true) {
+                teleportPlayer(gp.treasureislandMap, 42, 33, gp.outside);
+            }
+
+            // HOUSE2
+
             if (hit(gp.house2Map,50,56,"down") == true && gp.keyH.ePressed == true) {
                 teleportPlayer(gp.treasureislandMap, 48, 33, gp.outside);
             }
-            if (hit(gp.treasureislandMap,66,27,"up") == true && gp.keyH.ePressed == true) {
-                    if (gp.dayState().equals("night")) {
-                        if (gp.player.hasKey > 0) {
-                            gp.player.lightUpdated = true;
-                            teleportPlayer(gp.storeMapNight, 47, 56, gp.dungeon);
-                        } else {
-                            gp.playSE(23);
-                        }
-                    } else {
-                        teleportPlayer(gp.storeMap, 47, 56, gp.inside);
-                    }
-            }
+
+            // STORE
+
             if (hit(gp.storeMap,47,56,"down") == true && gp.keyH.ePressed == true) {
                 teleportPlayer(gp.treasureislandMap, 66, 27, gp.outside);
             }
+
+            // STORE NIGHT
+
             if (hit(gp.storeMapNight,47,56,"down") == true && gp.keyH.ePressed == true) {
                 teleportPlayer(gp.treasureislandMap, 66, 27, gp.outside);
             }
             if (hit(gp.storeMapNight,46,45,"up") == true && gp.keyH.ePressed == true) {
                 teleportPlayer(gp.storeMapSecret, 47, 56, gp.dungeon);
             }
+
+            // STORE SECRET
+
             if (hit(gp.storeMapSecret,47,56,"down") == true && gp.keyH.ePressed == true) {
                 teleportPlayer(gp.storeMapNight, 45, 45, gp.dungeon);
-            }
-            if (hit(gp.introislandMap,16, 26, "up") == true && gp.keyH.ePressed == true) {
-                healingStatue(gp.dialogueState);
-            }
-            if (hit(gp.introislandMap,17, 26, "up") == true && gp.keyH.ePressed == true) {
-                healingStatue(gp.dialogueState);
             }
         }
     }
@@ -134,6 +161,7 @@ public class EventHandler {
     }
 
     public void damagePit(int map, int col, int row, int gameState) {
+
         gp.gameState = gameState;
         eventMaster.startDialogue(eventMaster, 0);
         gp.player.health--;
@@ -141,6 +169,7 @@ public class EventHandler {
     }
 
     public void healingStatue(int gameState) {
+
         gp.gameState = gameState;
 
         eventMaster.startDialogue(eventMaster, 1);
@@ -151,11 +180,12 @@ public class EventHandler {
 
     public void teleportPlayer(int map, int col, int row, int area) {
 
-        gp.currentArea = area;
+        gp.nextArea = area;
         gp.gameState = gp.transitionState;
         tempMap = map;
         tempCol = col;
         tempRow = row;
+        gp.player.lightUpdated = true;
         canTouchEvent = false;
     }
 }

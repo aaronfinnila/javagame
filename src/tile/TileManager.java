@@ -89,6 +89,7 @@ public void loadMap(int map) {
     if (map == 4) {filePath = "/res/maps/store.txt";}
     if (map == 5) {filePath = "/res/maps/store.txt";}
     if (map == 6) {filePath = "/res/maps/store.txt";}
+    if (map == 7) {filePath = "/res/maps/dungeon.txt";}
     
     try {
         InputStream is = getClass().getResourceAsStream(filePath);

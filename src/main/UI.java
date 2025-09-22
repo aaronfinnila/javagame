@@ -1055,6 +1055,7 @@ public void drawTransition() {
                 case 2: gp.playMusic(18); break;
                 case 3: gp.playMusic(19); break;
                 case 4: gp.playMusic(20); break;
+                case 7: gp.playMusic(31); break;
             }
             }
             gp.player.attacking = false;

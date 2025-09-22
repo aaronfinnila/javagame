@@ -48,6 +48,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int storeMap = 4;
     public final int storeMapNight = 5;
     public final int storeMapSecret = 6;
+    public final int dungeonMap = 7;
 
     // FOR FULLSCREEN
 
@@ -109,7 +110,8 @@ public class GamePanel extends JPanel implements Runnable{
 
     // AREA
 
-    public int currentArea;
+    public int currentArea = 50;
+    public int nextArea;
     public final int outside = 50;
     public final int inside = 51;
     public final int dungeon = 52;
@@ -414,6 +416,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void checkGroundLight() {
+
         int xDistance = Math.abs(player.worldX - obj[currentMap][3].worldX);
         int yDistance = Math.abs(player.worldY - obj[currentMap][3].worldY);
         int distance = Math.max(xDistance, yDistance);
@@ -424,7 +427,15 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
 
-        // MUSIC METHODS
+    public void changeArea() {
+
+
+        
+
+        currentArea = nextArea;
+    }
+
+    // MUSIC METHODS
 
     public void playMusic(int i) {
 
@@ -456,7 +467,7 @@ public class GamePanel extends JPanel implements Runnable{
             case storeMapSecret: playSE(26); break;
             case house1Map: playSE(26); break;
             case house2Map: playSE(26); break;
-            case treasureislandMap: if (nextMap == storeMap || nextMap == house1Map || nextMap == house2Map || nextMap == storeMapNight || nextMap == storeMapSecret) {
+            case treasureislandMap: if (nextMap == storeMap || nextMap == house1Map || nextMap == house2Map || nextMap == storeMapNight) {
                 playSE(26);
             }; break;
         }

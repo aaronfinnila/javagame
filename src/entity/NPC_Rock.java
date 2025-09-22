@@ -28,7 +28,7 @@ public class NPC_Rock extends Entity {
 public void setDialogue() {
 
     dialogues[0][0] = "What brings you to this place? I hope it's not that \ntreasure...";
-    dialogues[0][1] = "I've seen plenty youngins just like you, greener than\nthe grass of Midland.";
+    dialogues[0][1] = "I've seen plenty youngins just like you, greener as\nthe grass of Midland.";
     dialogues[0][2] = "Most of their stories don't end too well...";
     dialogues[0][3] = "That place is beautiful on the surface, but underneath...";
     dialogues[0][4] = "I can tell you more when you're ready. Start by defeating\nthose slimes south of here.";
