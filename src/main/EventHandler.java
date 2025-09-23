@@ -180,7 +180,7 @@ public class EventHandler {
 
     public void teleportPlayer(int map, int col, int row, int area) {
 
-        gp.nextArea = area;
+        gp.currentArea = area;
         gp.gameState = gp.transitionState;
         tempMap = map;
         tempCol = col;

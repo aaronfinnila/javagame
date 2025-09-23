@@ -427,14 +427,6 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
 
-    public void changeArea() {
-
-
-        
-
-        currentArea = nextArea;
-    }
-
     // MUSIC METHODS
 
     public void playMusic(int i) {

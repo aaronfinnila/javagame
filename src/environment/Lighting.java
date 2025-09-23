@@ -148,6 +148,7 @@ public class Lighting {
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, filterAlpha));
         }
         if (gp.currentArea == gp.outside || gp.currentArea == gp.dungeon) {
+            System.out.println(gp.currentArea);
             g2.drawImage(darknessFilter, 0, 0, null);
         }
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
