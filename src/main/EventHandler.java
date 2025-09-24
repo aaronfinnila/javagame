@@ -97,7 +97,7 @@ public class EventHandler {
             // DUNGEON
             
             if (hit(gp.dungeonMap,47,56,"down") == true && gp.keyH.ePressed == true) {
-                teleportPlayer(gp.treasureislandMap, 74, 7, gp.dungeon);
+                teleportPlayer(gp.treasureislandMap, 74, 7, gp.outside);
             }
 
             // HOUSE 1
@@ -180,7 +180,7 @@ public class EventHandler {
 
     public void teleportPlayer(int map, int col, int row, int area) {
 
-        gp.currentArea = area;
+        gp.nextArea = area;
         gp.gameState = gp.transitionState;
         tempMap = map;
         tempCol = col;

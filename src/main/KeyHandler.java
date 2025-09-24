@@ -178,8 +178,16 @@ public class KeyHandler implements KeyListener{
         if (code == KeyEvent.VK_P || code == KeyEvent.VK_ESCAPE) {
             gp.gameState = gp.playState;
             switch (gp.currentMap) {
-                case 0: gp.playMusic(0); break;
-                case 1: gp.playMusic(17); break;
+                case 0: if (gp.dayState().equals("night")) {
+                    gp.changeMusic(21);
+                } else if (gp.dayState().equals("day")) {
+                    gp.playMusic(0);
+                } break;
+                case 1: if (gp.dayState().equals("night")) {
+                    gp.changeMusic(21);
+                } else if (gp.dayState().equals("day")) {
+                    gp.playMusic(17);
+                } break;
                 case 2: gp.playMusic(18); break;
                 case 3: gp.playMusic(19); break;
                 case 4: gp.playMusic(20); break;
