@@ -1,6 +1,7 @@
 package main;
 
 import entity.NPC_Claire;
+import entity.NPC_Fear;
 import entity.NPC_Kalsu;
 import entity.NPC_Michael;
 import entity.NPC_Rock;
@@ -361,6 +362,24 @@ public class AssetSetter {
 
         i++;
 
+        mapNum++;
+        i=0;
+
+        // storeMapNight
+
+        mapNum++;
+        i=0;
+        
+        // storeMapSecret
+
+        mapNum++;
+        i=0;
+
+        // dungeon
+
+        gp.npc[mapNum][i] = new NPC_Fear(gp);
+        gp.npc[mapNum][i].worldX = 55 * gp.tileSize;
+        gp.npc[mapNum][i].worldY = 30 * gp.tileSize;
     }
 
     public void setMonster() {

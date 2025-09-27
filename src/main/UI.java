@@ -1330,6 +1330,13 @@ public void checkInteractState() {
             gp.gameState = gp.interactState;
             interactCol = 1;
         }
+        case "Fear":
+        if (npc.dialogueSet == 0 && npc.dialogueIndex == 4 && npc.interactionHappened == false) {
+            gp.keyH.spacePressed = false;
+            gp.gameState = gp.interactState;
+            interactCol = 1;
+            npc.interactionHappened = true;
+        }
     }
 }
 

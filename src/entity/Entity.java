@@ -43,6 +43,7 @@ public class Entity {
     public boolean hpBarOn = false;
     public boolean onPath = false;
     public boolean knockBack = false;
+    public boolean interactionHappened = false;
     
     // COUNTERS
     
@@ -165,6 +166,8 @@ public class Entity {
     public void use(Entity entity) {}
 
     public void checkDrop() {}
+
+    public void startStalking(Entity target, int distance) {}
 
     public void checkStopChasingOrNot(Entity target, int distance, int rate) {
 
