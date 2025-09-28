@@ -17,7 +17,7 @@ public class NPC_Fear extends Entity {
         direction = "still";
         solidArea.x = 8;
         solidArea.y = 16;
-        defaultSpeed = 4;
+        defaultSpeed = 6;
         image = down1;
         speed = defaultSpeed;
         soundNum = 30;
