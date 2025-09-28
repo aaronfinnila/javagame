@@ -15,6 +15,8 @@ import obj.OBJ_House1;
 import obj.OBJ_House1_Interior;
 import obj.OBJ_House2;
 import obj.OBJ_House2_Interior;
+import obj.OBJ_House3;
+import obj.OBJ_House3_Interior;
 import obj.OBJ_Lantern_Inv;
 import obj.OBJ_Longsword;
 import obj.OBJ_Nightingale;
@@ -39,7 +41,7 @@ public class AssetSetter {
         int mapNum = 0;
         int i = 0;
 
-        // intro island
+        // INTRO ISLAND
 
         gp.obj[mapNum][i] = new OBJ_Rowboat(gp);
         gp.obj[mapNum][i].worldX = 33*gp.tileSize;
@@ -64,7 +66,7 @@ public class AssetSetter {
 
         mapNum += 1;
 
-        // treasure island
+        // TREASURE ISLAND
 
         gp.obj[mapNum][i] = new OBJ_Rowboat(gp);
         gp.obj[mapNum][i].worldX = 12*gp.tileSize;
@@ -110,26 +112,42 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = 66*gp.tileSize;
         gp.obj[mapNum][i].worldY = 2;
         i++;
+        gp.obj[mapNum][i] = new OBJ_House3(gp);
+        gp.obj[mapNum][i].worldX = 38*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 2*gp.tileSize - 20;
+        i++;
 
 
         mapNum += 1;
 
-        // house1
+        // HOUSE1
 
         gp.obj[mapNum][i] = new OBJ_House1_Interior(gp);
         gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
         gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
         i++;
         gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
-        gp.obj[mapNum][i].worldX = 47*gp.tileSize;
-        gp.obj[mapNum][i].worldY = 45*gp.tileSize;
-        gp.obj[mapNum][i].solidArea.width = 20;
-        gp.obj[mapNum][i].solidArea.height = 20;
+        gp.obj[mapNum][i].worldX = 47*gp.tileSize-95;
+        gp.obj[mapNum][i].worldY = 45*gp.tileSize-32;
+        gp.obj[mapNum][i].solidArea.width = 40;
+        gp.obj[mapNum][i].solidArea.height = gp.tileSize+20;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 47*gp.tileSize-55;
+        gp.obj[mapNum][i].worldY = 45*gp.tileSize-32;
+        gp.obj[mapNum][i].solidArea.width = 40;
+        gp.obj[mapNum][i].solidArea.height = 10+gp.tileSize*2;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 48*gp.tileSize-32;
+        gp.obj[mapNum][i].worldY = 45*gp.tileSize-32;
+        gp.obj[mapNum][i].solidArea.width = 15;
+        gp.obj[mapNum][i].solidArea.height = gp.tileSize;
         i++;
 
         mapNum += 1;
 
-        // house2
+        // STORE
 
         gp.obj[mapNum][i] = new OBJ_House2_Interior(gp);
         gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
@@ -143,9 +161,9 @@ public class AssetSetter {
         i++;
 
         mapNum += 1;
-
-        // store
-
+        
+        // STORE
+        
         gp.obj[mapNum][i] = new OBJ_Store_Interior(gp);
         gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
         gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
@@ -220,11 +238,11 @@ public class AssetSetter {
         gp.obj[mapNum][i].solidArea.width = 305;
         gp.obj[mapNum][i].solidArea.height = 49;
         i++;
-
+        
         mapNum += 1;
-
-        // storemapNight
-
+        
+        // STOREMAPNIGHT
+        
         gp.obj[mapNum][i] = new OBJ_Store_Interior(gp);
         gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
         gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
@@ -299,13 +317,50 @@ public class AssetSetter {
         gp.obj[mapNum][i].solidArea.width = 280;
         gp.obj[mapNum][i].solidArea.height = 45;
         i++;
+
+        mapNum += 1;
+
+        // STOREMAPSECRET
+
+        mapNum += 1;
+
+        // DUNGEON
+
+        mapNum += 1;
+        
+        // HOUSE3;
+
+        gp.obj[mapNum][i] = new OBJ_House3_Interior(gp);
+        gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
+        gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 47*gp.tileSize-95;
+        gp.obj[mapNum][i].worldY = 45*gp.tileSize-32;
+        gp.obj[mapNum][i].solidArea.width = 40;
+        gp.obj[mapNum][i].solidArea.height = gp.tileSize+20;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 47*gp.tileSize-55;
+        gp.obj[mapNum][i].worldY = 45*gp.tileSize-32;
+        gp.obj[mapNum][i].solidArea.width = 40;
+        gp.obj[mapNum][i].solidArea.height = 10+gp.tileSize*2;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 48*gp.tileSize-32;
+        gp.obj[mapNum][i].worldY = 45*gp.tileSize-32;
+        gp.obj[mapNum][i].solidArea.width = 15;
+        gp.obj[mapNum][i].solidArea.height = gp.tileSize;
+        i++;
+    
+        mapNum += 1;
     }
-
+    
     public void setNPC() {
-
+        
         int mapNum = 0;
         int i = 0;
-
+        
         // intro island
 
         gp.npc[mapNum][i] = new NPC_Rock(gp);

@@ -81,6 +81,9 @@ public class EventHandler {
             if (hit(gp.treasureislandMap,48,33,"up") == true && gp.keyH.ePressed == true) {
                 teleportPlayer(gp.house2Map, 50, 56, gp.inside);
             }
+            if (hit(gp.treasureislandMap,40,9,"up") == true && gp.keyH.ePressed == true) {
+                teleportPlayer(gp.house3Map, 50, 56, gp.inside);
+            }
             if (hit(gp.treasureislandMap,66,27,"up") == true && gp.keyH.ePressed == true) {
                 if (gp.dayState().equals("night")) {
                     if (gp.player.hasKey > 0) {
@@ -110,6 +113,12 @@ public class EventHandler {
 
             if (hit(gp.house2Map,50,56,"down") == true && gp.keyH.ePressed == true) {
                 teleportPlayer(gp.treasureislandMap, 48, 33, gp.outside);
+            }
+
+            // HOUSE3
+
+            if (hit(gp.house3Map,50,56,"down") == true && gp.keyH.ePressed == true) {
+                teleportPlayer(gp.treasureislandMap, 40, 10, gp.outside);
             }
 
             // STORE

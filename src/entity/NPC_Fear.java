@@ -20,7 +20,7 @@ public class NPC_Fear extends Entity {
         defaultSpeed = 6;
         image = down1;
         speed = defaultSpeed;
-        soundNum = 30;
+        soundNum = 32;
         maxHealth = 10;
         health = maxHealth;
         onPath = true;

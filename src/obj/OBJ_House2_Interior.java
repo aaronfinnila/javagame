@@ -15,8 +15,8 @@ public class OBJ_House2_Interior extends Entity {
         this.gp = gp;
         name = objName;
         type = type_static_object;
-        down1 = setup("/res/objects/house2_interior", 184*3, 240*3);
         collision = false;
+        down1 = setup("/res/objects/house2_interior", 184*3, 240*3);
     }
 
     public void use(Entity entity) {

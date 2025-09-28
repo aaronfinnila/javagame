@@ -24,6 +24,11 @@ public class OBJ_Arrow extends Projectile {
         price = 15;
         type = type_projectile;
         alive = false;
+        getImage();
+    }
+    
+    public void getImage() {
+
         up1 = setup("/res/projectile/arrow_up_1", gp.tileSize, gp.tileSize);
         up2 = setup("/res/projectile/arrow_up_2", gp.tileSize, gp.tileSize);
         down1 = setup("/res/projectile/arrow_down_1", gp.tileSize, gp.tileSize);
