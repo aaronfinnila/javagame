@@ -41,6 +41,7 @@ public class OBJ_Arrow extends Projectile {
     }
 
     public boolean haveResource(Entity user) {
+
         boolean haveResource = false;
         if (user.arrows >= useCost) {
             haveResource = true;
@@ -49,10 +50,12 @@ public class OBJ_Arrow extends Projectile {
     }
 
     public void subtractResource(Entity user) {
+
         user.arrows -= useCost;
     }
 
     public void use(Entity entity) {
+        
         gp.player.arrows++;
         gp.ui.showMessage("You found Arrows!");
         gp.ui.showGoldMessage("You received 1 Arrow!");

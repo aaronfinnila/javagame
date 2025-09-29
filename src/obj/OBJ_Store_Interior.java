@@ -25,6 +25,7 @@ public class OBJ_Store_Interior extends Entity {
     }
 
     public void update() {
+        
         if (gp.currentMap == gp.storeMapNight) {
             spriteNum = 2;
         } else {

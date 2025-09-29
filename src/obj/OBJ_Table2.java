@@ -21,6 +21,7 @@ public class OBJ_Table2 extends Entity {
     }
 
     public void speak() {
+
         super.speak();
         startDialogue(this, 0);
     }

@@ -20,6 +20,7 @@ public class OBJ_Chest extends Entity {
     }
 
     public void use(Entity entity) {
+        
             if (gp.player.hasKey != 0 && gp.keyH.ePressed == true && this.usedObject == false) {
                 gp.playSE(12);
                 gp.ui.showMessage("You found an item!");

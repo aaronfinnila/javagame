@@ -19,6 +19,7 @@ public class OBJ_Coin extends Entity {
         collision = true;
     }
     public void use(Entity entity) {
+        
         entity.gold += 5;
         gp.ui.showMessage("You found a Coin!");
         gp.ui.showGoldMessage("You received 5 gold!");

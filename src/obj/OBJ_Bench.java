@@ -20,6 +20,4 @@ public class OBJ_Bench extends Entity {
         solidArea.height = 60;
         solidArea.width = 100;
     }
-
-    public void use(Entity entity) {}
 }

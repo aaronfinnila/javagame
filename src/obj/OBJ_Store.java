@@ -27,6 +27,7 @@ public class OBJ_Store extends Entity {
     }
 
     public void update() {
+        
         if (gp.dayState().equals("night")) {
             spriteNum = 2;
         } else {

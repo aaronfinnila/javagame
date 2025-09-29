@@ -28,6 +28,7 @@ public class OBJ_Waterfountain extends Entity {
     }
 
     public void update() {
+        
         moveCounter++;
         if (moveCounter <= 60) {
             spriteNum = 1;

@@ -24,6 +24,7 @@ public class OBJ_Table1 extends Entity {
     }
 
     public void update() {
+        
         moveCounter++;
         if (moveCounter <= 60) {
             spriteNum = 1;
@@ -37,6 +38,7 @@ public class OBJ_Table1 extends Entity {
     }
 
     public void speak() {
+
         super.speak();
         startDialogue(this, 0);
     }

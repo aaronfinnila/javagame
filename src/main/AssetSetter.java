@@ -8,6 +8,7 @@ import entity.NPC_Rock;
 import entity.NPC_Rubert;
 import monster.MON_Slime;
 import obj.OBJ_Bench;
+import obj.OBJ_Bookshelf;
 import obj.OBJ_Bow_Default;
 import obj.OBJ_Cave_Entrance;
 import obj.OBJ_Hitbox1;
@@ -64,7 +65,7 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldY = 24*gp.tileSize;
         i++;
 
-        mapNum += 1;
+        mapNum ++;
 
         // TREASURE ISLAND
 
@@ -118,7 +119,7 @@ public class AssetSetter {
         i++;
 
 
-        mapNum += 1;
+        mapNum ++;
 
         // HOUSE1
 
@@ -145,9 +146,9 @@ public class AssetSetter {
         gp.obj[mapNum][i].solidArea.height = gp.tileSize;
         i++;
 
-        mapNum += 1;
+        mapNum ++;
 
-        // STORE
+        // HOUSE2
 
         gp.obj[mapNum][i] = new OBJ_House2_Interior(gp);
         gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
@@ -160,7 +161,7 @@ public class AssetSetter {
         gp.obj[mapNum][i].solidArea.height = 70;
         i++;
 
-        mapNum += 1;
+        mapNum ++;
         
         // STORE
         
@@ -239,7 +240,7 @@ public class AssetSetter {
         gp.obj[mapNum][i].solidArea.height = 49;
         i++;
         
-        mapNum += 1;
+        mapNum ++;
         
         // STOREMAPNIGHT
         
@@ -318,15 +319,15 @@ public class AssetSetter {
         gp.obj[mapNum][i].solidArea.height = 45;
         i++;
 
-        mapNum += 1;
+        mapNum ++;
 
         // STOREMAPSECRET
 
-        mapNum += 1;
+        mapNum ++;
 
         // DUNGEON
 
-        mapNum += 1;
+        mapNum ++;
         
         // HOUSE3;
 
@@ -352,7 +353,7 @@ public class AssetSetter {
         gp.obj[mapNum][i].solidArea.width = 15;
         gp.obj[mapNum][i].solidArea.height = gp.tileSize;
         i++;
-    
+        
         mapNum += 1;
     }
     
@@ -361,7 +362,7 @@ public class AssetSetter {
         int mapNum = 0;
         int i = 0;
         
-        // intro island
+        // INTRO ISLAND
 
         gp.npc[mapNum][i] = new NPC_Rock(gp);
         gp.npc[mapNum][i].worldX = 24 * gp.tileSize;
@@ -371,12 +372,12 @@ public class AssetSetter {
         mapNum++;
         i = 0;
 
-        // treasure island
+        // TREASURE ISLAND
 
         mapNum++;
         i=0;
 
-        // house1
+        // HOUSE1
 
         gp.npc[mapNum][i] = new NPC_Claire(gp);
         gp.npc[mapNum][i].worldX = 47 * gp.tileSize;
@@ -398,7 +399,7 @@ public class AssetSetter {
         mapNum++;
         i=0;
 
-        // house2
+        // HOUSE2
 
         gp.npc[mapNum][i] = new NPC_Kalsu(gp);
         gp.npc[mapNum][i].worldX = 50 * gp.tileSize;
@@ -408,33 +409,43 @@ public class AssetSetter {
         mapNum++;
         i=0;
 
-        // store
+        // STORE
 
         gp.npc[mapNum][i] = new NPC_Michael(gp);
         gp.npc[mapNum][i].worldX = 48 * gp.tileSize;
         gp.npc[mapNum][i].worldY = 45 * gp.tileSize-15;
         gp.npc[mapNum][i].solidArea.height = 90;
-
         i++;
 
         mapNum++;
         i=0;
 
-        // storeMapNight
+        // STOREMAPNIGHT
 
         mapNum++;
         i=0;
         
-        // storeMapSecret
+        // STOREMAPSECRET
 
         mapNum++;
         i=0;
 
-        // dungeon
-
+        
+        // DUNGEON
+        
         gp.npc[mapNum][i] = new NPC_Fear(gp);
         gp.npc[mapNum][i].worldX = 55 * gp.tileSize;
         gp.npc[mapNum][i].worldY = 30 * gp.tileSize;
+        
+        mapNum++;
+        i=0;
+        
+        // house3
+        System.out.println("house3num: " + mapNum);
+        gp.npc[mapNum][i] = new OBJ_Bookshelf(gp);
+        gp.npc[mapNum][i].worldX = 53*gp.tileSize-30;
+        gp.npc[mapNum][i].worldY = 42*gp.tileSize+25;
+        i++;      
     }
 
     public void setMonster() {
