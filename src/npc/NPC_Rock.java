@@ -1,5 +1,6 @@
-package entity;
+package npc;
 
+import entity.Entity;
 import main.GamePanel;
 import monster.MON_Slime;
 import obj.OBJ_Rowboat;
@@ -10,9 +11,12 @@ public class NPC_Rock extends Entity {
     boolean spawn1;
     boolean spawn2;
 
+    GamePanel gp;
+
     public NPC_Rock(GamePanel gp) {
 
         super(gp);
+        this.gp = gp;
         speed = 0;
         type = type_npc;
         name = "Rock";

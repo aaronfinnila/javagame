@@ -5,7 +5,7 @@ import main.GamePanel;
 
 public class OBJ_Cave_Entrance extends Entity {
 
-    public final static String objName = "House1";
+    public final static String objName = "Cave_Entrance";
 
     GamePanel gp;
     public OBJ_Cave_Entrance(GamePanel gp) {

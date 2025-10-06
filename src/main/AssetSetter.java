@@ -1,12 +1,14 @@
 package main;
 
-import entity.NPC_Claire;
-import entity.NPC_Fear;
-import entity.NPC_Kalsu;
-import entity.NPC_Michael;
-import entity.NPC_Rock;
-import entity.NPC_Rubert;
 import monster.MON_Slime;
+import npc.NPC_Claire;
+import npc.NPC_DialogueHolder;
+import npc.NPC_Fear;
+import npc.NPC_Kalsu;
+import npc.NPC_Michael;
+import npc.NPC_Percival;
+import npc.NPC_Rock;
+import npc.NPC_Rubert;
 import obj.OBJ_Bench;
 import obj.OBJ_Bookshelf;
 import obj.OBJ_Bow_Default;
@@ -25,7 +27,6 @@ import obj.OBJ_Rowboat;
 import obj.OBJ_Store;
 import obj.OBJ_Store_Interior;
 import obj.OBJ_Table1;
-import obj.OBJ_Table2;
 import obj.OBJ_Waterfountain;
 import tile_interactive.IT_SmallRock;
 
@@ -353,6 +354,18 @@ public class AssetSetter {
         gp.obj[mapNum][i].solidArea.width = 15;
         gp.obj[mapNum][i].solidArea.height = gp.tileSize;
         i++;
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
+        gp.obj[mapNum][i].worldY = 52*gp.tileSize+15;
+        gp.obj[mapNum][i].solidArea.width = 45;
+        gp.obj[mapNum][i].solidArea.height = 60;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i].worldX = 54*gp.tileSize+28;
+        gp.obj[mapNum][i].worldY = 54*gp.tileSize+30;
+        gp.obj[mapNum][i].solidArea.width = 60;
+        gp.obj[mapNum][i].solidArea.height = 60;
+        i++;
         
         mapNum += 1;
     }
@@ -391,9 +404,10 @@ public class AssetSetter {
         gp.npc[mapNum][i].worldX = 53*gp.tileSize;
         gp.npc[mapNum][i].worldY = 44*gp.tileSize-15;
         i++;
-        gp.npc[mapNum][i] = new OBJ_Table2(gp);
+        gp.npc[mapNum][i] = new NPC_DialogueHolder(gp);
         gp.npc[mapNum][i].worldX = 47*gp.tileSize;
         gp.npc[mapNum][i].worldY = 45*gp.tileSize;
+        gp.npc[mapNum][i].dialogueSet = 0;
         i++;
 
         mapNum++;
@@ -441,11 +455,27 @@ public class AssetSetter {
         i=0;
         
         // house3
-        System.out.println("house3num: " + mapNum);
+
         gp.npc[mapNum][i] = new OBJ_Bookshelf(gp);
         gp.npc[mapNum][i].worldX = 53*gp.tileSize-30;
         gp.npc[mapNum][i].worldY = 42*gp.tileSize+25;
-        i++;      
+        i++;
+
+        gp.npc[mapNum][i] = new OBJ_Bookshelf(gp);
+        gp.npc[mapNum][i].worldX = 53*gp.tileSize-30;
+        gp.npc[mapNum][i].worldY = 42*gp.tileSize+25;
+        i++;
+        
+        gp.npc[mapNum][i] = new NPC_DialogueHolder(gp);
+        gp.npc[mapNum][i].worldX = 47*gp.tileSize;
+        gp.npc[mapNum][i].worldY = 45*gp.tileSize;
+        gp.npc[mapNum][i].dialogueSet = 1;
+        i++;
+
+        gp.npc[mapNum][i] = new NPC_Percival(gp);
+        gp.npc[mapNum][i].worldX = 50*gp.tileSize;
+        gp.npc[mapNum][i].worldY = 45*gp.tileSize;
+        i++;
     }
 
     public void setMonster() {

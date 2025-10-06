@@ -1,14 +1,18 @@
-package entity;
+package npc;
 
 import java.util.Random;
 
+import entity.Entity;
 import main.GamePanel;
 
 public class NPC_Rubert extends Entity {
 
+    GamePanel gp;
+
     public NPC_Rubert(GamePanel gp) {
 
         super(gp);
+        this.gp = gp;
         name = "Rubert";
         direction = "down";
         speed = 1;

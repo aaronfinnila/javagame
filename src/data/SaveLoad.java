@@ -12,8 +12,10 @@ import java.io.FileInputStream;
 import main.GamePanel;
 import obj.OBJ_Arrow;
 import obj.OBJ_Bench;
+import obj.OBJ_Bookshelf;
 import obj.OBJ_Boots;
 import obj.OBJ_Bow_Default;
+import obj.OBJ_Cave_Entrance;
 import obj.OBJ_Chest;
 import obj.OBJ_Coin;
 import obj.OBJ_Hammer;
@@ -38,8 +40,9 @@ import obj.OBJ_Store;
 import obj.OBJ_Store_Interior;
 import obj.OBJ_Sword_Default;
 import obj.OBJ_Table1;
-import obj.OBJ_Table2;
 import obj.OBJ_Waterfountain;
+import obj.OBJ_House3;
+import obj.OBJ_House3_Interior;
 
 public class SaveLoad {
 
@@ -82,8 +85,11 @@ public class SaveLoad {
             case OBJ_Store_Interior.objName: obj = new OBJ_Store_Interior(gp); break;
             case OBJ_Store.objName: obj = new OBJ_Store(gp); break;
             case OBJ_Table1.objName: obj = new OBJ_Table1(gp); break;
-            case OBJ_Table2.objName: obj = new OBJ_Table2(gp); break;
             case OBJ_Waterfountain.objName: obj = new OBJ_Waterfountain(gp); break;
+            case OBJ_Bookshelf.objName: obj = new OBJ_Bookshelf(gp); break;
+            case OBJ_House3.objName: obj = new OBJ_House3(gp); break;
+            case OBJ_House3_Interior.objName: obj = new OBJ_House3_Interior(gp); break;
+            case OBJ_Cave_Entrance.objName: obj = new OBJ_Cave_Entrance(gp); break;
         }
 
         return obj;

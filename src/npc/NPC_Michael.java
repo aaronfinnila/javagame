@@ -1,7 +1,8 @@
-package entity;
+package npc;
 
 import java.awt.Graphics2D;
 
+import entity.Entity;
 import main.GamePanel;
 import obj.OBJ_Bow_Default;
 import obj.OBJ_Hammer;
@@ -10,9 +11,12 @@ import obj.OBJ_Potion_Red;
 
 public class NPC_Michael extends Entity {
 
+    GamePanel gp;
+
     public NPC_Michael(GamePanel gp) {
 
         super(gp);
+        this.gp = gp;
         speed = 0;
         soundNum = 27;
         type = type_npc;
@@ -24,10 +28,12 @@ public class NPC_Michael extends Entity {
     }
 
 public void getImage() {
+
     down1 = setup("/res/npc/michael", gp.tileSize, gp.tileSize);
 }
 
 public void setDialogue() {
+
     dialogues[0][0] = "Hello there! Welcome to my store!";
     dialogues[0][1] = "What would you like today?";
     dialogues[0][2] = "Got some nice offers for you!";
@@ -53,6 +59,7 @@ public void setDialogue() {
 public void setAction() {}
 
 public void speak() {
+
     super.speak();
     dialogueSet = 0;
     gp.gameState = gp.tradeState;
@@ -60,6 +67,7 @@ public void speak() {
 }
 
 public void setItems() {
+    
     inventory.add(new OBJ_Potion_Red(gp));
     inventory.add(new OBJ_Potion_Red(gp));
     inventory.add(new OBJ_Bow_Default(gp));

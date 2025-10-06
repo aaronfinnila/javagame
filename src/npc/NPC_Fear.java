@@ -1,23 +1,27 @@
-package entity;
+package npc;
 
 import java.awt.Graphics2D;
 import java.util.Random;
 
+import entity.Entity;
 import main.GamePanel;
 public class NPC_Fear extends Entity {
 
     int escapePath;
     Random random;
 
+    GamePanel gp;
+
     public NPC_Fear(GamePanel gp) {
 
         super(gp);
+        this.gp = gp;
         type = type_npc;
         name = "Fear";
         direction = "still";
         solidArea.x = 8;
         solidArea.y = 16;
-        defaultSpeed = 6;
+        defaultSpeed = 4;
         image = down1;
         speed = defaultSpeed;
         soundNum = 32;

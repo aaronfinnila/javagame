@@ -1,17 +1,20 @@
-package entity;
+package npc;
 
 import java.util.Random;
 
+import entity.Entity;
 import main.GamePanel;
 
 public class NPC_Claire extends Entity {
 
     boolean shopInteraction;
 
+    GamePanel gp;
+
     public NPC_Claire(GamePanel gp) {
         
-        
         super(gp);
+        this.gp = gp;
         name = "Claire";
         direction = "right";
         speed = 1;

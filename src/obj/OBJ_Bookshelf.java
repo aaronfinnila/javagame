@@ -15,6 +15,7 @@ public class OBJ_Bookshelf extends Entity {
         this.gp = gp;
         name = objName;
         type = type_static_object;
+        direction = "down";
         down1 = setup("/res/objects/bookshelf", gp.tileSize*3, gp.tileSize*3);
         collision = true;
         solidArea.height = gp.tileSize*3;
@@ -27,6 +28,10 @@ public class OBJ_Bookshelf extends Entity {
 
         super.speak();
         startDialogue(this, 0);
+    }
+
+    public void update() {
+        
     }
 
     public void setAction() {}

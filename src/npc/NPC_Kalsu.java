@@ -1,16 +1,20 @@
-package entity;
+package npc;
 
 import java.awt.Graphics2D;
 import java.util.Random;
 
+import entity.Entity;
 import main.GamePanel;
 import obj.OBJ_Key;
 import obj.OBJ_Nightingale;
 public class NPC_Kalsu extends Entity {
 
+    GamePanel gp;
+
     public NPC_Kalsu(GamePanel gp) {
 
         super(gp);
+        this.gp = gp;
         type = type_npc;
         name = "Kalsu";
         direction = "still";
