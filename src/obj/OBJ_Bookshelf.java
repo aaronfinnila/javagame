@@ -24,7 +24,6 @@ public class OBJ_Bookshelf extends Entity {
     }
 
     public void speak() {
-        System.out.println("bookshelfspeak");
 
         super.speak();
         startDialogue(this, 0);

@@ -460,11 +460,6 @@ public class AssetSetter {
         gp.npc[mapNum][i].worldX = 53*gp.tileSize-30;
         gp.npc[mapNum][i].worldY = 42*gp.tileSize+25;
         i++;
-
-        gp.npc[mapNum][i] = new OBJ_Bookshelf(gp);
-        gp.npc[mapNum][i].worldX = 53*gp.tileSize-30;
-        gp.npc[mapNum][i].worldY = 42*gp.tileSize+25;
-        i++;
         
         gp.npc[mapNum][i] = new NPC_DialogueHolder(gp);
         gp.npc[mapNum][i].worldX = 47*gp.tileSize;
@@ -475,6 +470,14 @@ public class AssetSetter {
         gp.npc[mapNum][i] = new NPC_Percival(gp);
         gp.npc[mapNum][i].worldX = 50*gp.tileSize;
         gp.npc[mapNum][i].worldY = 45*gp.tileSize;
+        i++;
+
+        gp.npc[mapNum][i] = new OBJ_Table1(gp);
+        gp.npc[mapNum][i].worldX = 48*gp.tileSize;
+        gp.npc[mapNum][i].worldY = 44*gp.tileSize-15;
+        gp.npc[mapNum][i].direction = "up";
+        gp.npc[mapNum][i].dialogueSet = 1;
+
         i++;
     }
 

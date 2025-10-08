@@ -15,7 +15,7 @@ public class NPC_Percival extends Entity {
         soundNum = 0;
         type = type_npc;
         name = "Percival";
-        direction = "still";
+        direction = "down";
         getImage();
         setDialogue();
     }
@@ -42,5 +42,10 @@ public void speak() {
 
     super.speak();
     startDialogue(this, dialogueSet);
+}
+
+
+public void update() {
+
 }
 }

@@ -7,20 +7,28 @@ public class OBJ_Table1 extends Entity {
     public final static String objName = "Table1";
 
     GamePanel gp;
+    int images = 0;
 
     public OBJ_Table1(GamePanel gp) {
-        super(gp);
 
+        super(gp);
         this.gp = gp;
         name = objName;
-        down1 = setup("/res/objects/table1", 65*2, 55*2);
-        down2 = setup("/res/objects/table1.2", 65*2, 55*2);
         collision = true;
         speed = 0;
         type = type_animated_object;
         solidArea.height = 50*2;
         solidArea.width = 65*2;
         setDialogue();
+        getImage();
+    }
+    
+    public void getImage() {
+        
+        down1 = setup("/res/objects/table1.1", 65*2, 55*2);
+        down2 = setup("/res/objects/table1.2", 65*2, 55*2);
+        up1 = setup("/res/objects/table1.3", 65*2, 55*2);
+        up2 = setup("/res/objects/table1.4", 65*2, 55*2);
     }
 
     public void update() {
@@ -55,5 +63,7 @@ public class OBJ_Table1 extends Entity {
         dialogues[0][5] = "I mean, we were best friends for goodness sake!\nIf there's someone he would have told about some cool stuff\nhe's found, it's me.";
         dialogues[0][6] = "Though, we haven't really been close like that for a while..\nNot after the incident...";
         dialogues[0][7] = "Poor Michael, he's really been through a lot...";
+
+        dialogues[1][0] = "Michael Jameson\nThe forgotten history of Treasure Island";
     }
 }
