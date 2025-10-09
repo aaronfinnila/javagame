@@ -10,6 +10,7 @@ public class OBJ_Waterfountain extends Entity {
     GamePanel gp;
 
     public OBJ_Waterfountain(GamePanel gp) {
+        
         super(gp);
 
         this.gp = gp;

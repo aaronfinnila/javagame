@@ -469,12 +469,13 @@ public class AssetSetter {
 
         gp.npc[mapNum][i] = new NPC_Percival(gp);
         gp.npc[mapNum][i].worldX = 50*gp.tileSize;
-        gp.npc[mapNum][i].worldY = 45*gp.tileSize;
+        gp.npc[mapNum][i].worldY = 46*gp.tileSize;
         i++;
 
         gp.npc[mapNum][i] = new OBJ_Table1(gp);
-        gp.npc[mapNum][i].worldX = 48*gp.tileSize;
+        gp.npc[mapNum][i].worldX = 49*gp.tileSize;
         gp.npc[mapNum][i].worldY = 44*gp.tileSize-15;
+        // Set other table variant by changing direction
         gp.npc[mapNum][i].direction = "up";
         gp.npc[mapNum][i].dialogueSet = 1;
 

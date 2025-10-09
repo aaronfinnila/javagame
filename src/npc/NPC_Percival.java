@@ -6,6 +6,7 @@ import main.GamePanel;
 public class NPC_Percival extends Entity {
 
     GamePanel gp;
+    boolean destinationReached = false;
 
     public NPC_Percival(GamePanel gp) {
 
@@ -36,7 +37,16 @@ public void setDialogue() {
     dialogues[1][3] = "What do you want?";
 }
 
-public void setAction() {}
+public void setAction() {
+
+    if (destinationReached == false) {
+        searchPath(getGoalCol(this)+4, getGoalRow(this));
+        destinationReached = true;
+    } else {
+        searchPath(getGoalCol(this)-4, getGoalRow(this));
+        destinationReached = false;
+    }
+}
 
 public void speak() {
 
