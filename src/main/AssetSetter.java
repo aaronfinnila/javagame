@@ -468,7 +468,7 @@ public class AssetSetter {
         i++;
 
         gp.npc[mapNum][i] = new NPC_Percival(gp);
-        gp.npc[mapNum][i].worldX = 50*gp.tileSize;
+        gp.npc[mapNum][i].worldX = 47*gp.tileSize;
         gp.npc[mapNum][i].worldY = 46*gp.tileSize;
         i++;
 

@@ -43,6 +43,7 @@ public class NPC_Kalsu extends Entity {
     }
 
 public void getImage() {
+    
     down1 = setup("/res/npc/kalsu_down_1", gp.tileSize, gp.tileSize);
     down2 = setup("/res/npc/kalsu_down_2", gp.tileSize, gp.tileSize);
     up1 = setup("/res/npc/kalsu_up_1", gp.tileSize, gp.tileSize);

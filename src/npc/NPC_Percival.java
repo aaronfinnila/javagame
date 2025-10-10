@@ -6,24 +6,37 @@ import main.GamePanel;
 public class NPC_Percival extends Entity {
 
     GamePanel gp;
-    boolean destinationReached = false;
 
     public NPC_Percival(GamePanel gp) {
 
         super(gp);
         this.gp = gp;
-        speed = 0;
-        soundNum = 0;
+        speed = 1;
+        soundNum = 33;
         type = type_npc;
         name = "Percival";
         direction = "down";
         getImage();
         setDialogue();
+
+        solidArea.x = 8;
+        solidArea.y = 16;
+        solidArea.width = 30;
+        solidArea.height = 30;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
     }
 
 public void getImage() {
 
     down1 = setup("/res/npc/percival_down1", gp.tileSize, gp.tileSize);
+    down2 = setup("/res/npc/percival_down1", gp.tileSize, gp.tileSize);
+    up1 = setup("/res/npc/percival_down1", gp.tileSize, gp.tileSize);
+    up2 = setup("/res/npc/percival_down1", gp.tileSize, gp.tileSize);
+    left1 = setup("/res/npc/percival_down1", gp.tileSize, gp.tileSize);
+    left2 = setup("/res/npc/percival_down1", gp.tileSize, gp.tileSize);
+    right1 = setup("/res/npc/percival_down1", gp.tileSize, gp.tileSize);
+    right2 = setup("/res/npc/percival_down1", gp.tileSize, gp.tileSize);
 }
 
 public void setDialogue() {
@@ -39,12 +52,10 @@ public void setDialogue() {
 
 public void setAction() {
 
-    if (destinationReached == false) {
-        searchPath(getGoalCol(this)+4, getGoalRow(this));
-        destinationReached = true;
-    } else {
-        searchPath(getGoalCol(this)-4, getGoalRow(this));
-        destinationReached = false;
+    if (getGoalCol(this) == 55) {
+        searchPath(47, 46);
+    } else if (getGoalCol(this) == 47) {
+        searchPath(55, 46);
     }
 }
 
@@ -54,8 +65,4 @@ public void speak() {
     startDialogue(this, dialogueSet);
 }
 
-
-public void update() {
-
-}
 }
