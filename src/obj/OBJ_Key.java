@@ -8,6 +8,7 @@ public class OBJ_Key extends Entity {
     public final static String objName = "Creamor Key";
 
     public OBJ_Key(GamePanel gp) {
+        
         super(gp);
 
         name = objName;

@@ -10,6 +10,7 @@ public class OBJ_Store extends Entity {
     GamePanel gp;
 
     public OBJ_Store(GamePanel gp) {
+        
         super(gp);
 
         this.gp = gp;
@@ -21,9 +22,6 @@ public class OBJ_Store extends Entity {
         direction = "down";
         solidArea.height = 125*3;
         solidArea.width = 141*3;
-    }
-
-    public void use(Entity entity) {
     }
 
     public void update() {

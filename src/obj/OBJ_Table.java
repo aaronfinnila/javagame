@@ -2,14 +2,14 @@ package obj;
 import entity.Entity;
 import main.GamePanel;
 
-public class OBJ_Table1 extends Entity {
+public class OBJ_Table extends Entity {
 
-    public final static String objName = "Table1";
+    public final static String objName = "Table";
 
     GamePanel gp;
     int images = 0;
 
-    public OBJ_Table1(GamePanel gp) {
+    public OBJ_Table(GamePanel gp) {
 
         super(gp);
         this.gp = gp;
@@ -25,10 +25,10 @@ public class OBJ_Table1 extends Entity {
     
     public void getImage() {
         
-        down1 = setup("/res/objects/table1.1", 65*2, 55*2);
-        down2 = setup("/res/objects/table1.2", 65*2, 55*2);
-        up1 = setup("/res/objects/table1.3", 65*2, 55*2);
-        up2 = setup("/res/objects/table1.4", 65*2, 55*2);
+        down1 = setup("/res/objects/table1", 65*2, 55*2);
+        down2 = setup("/res/objects/table2", 65*2, 55*2);
+        up1 = setup("/res/objects/table3", 65*2, 55*2);
+        up2 = setup("/res/objects/table4", 65*2, 55*2);
     }
 
     public void update() {

@@ -8,6 +8,7 @@ public class OBJ_Questionmark extends Entity {
     public final static String objName = "Questionmark";
 
     public OBJ_Questionmark(GamePanel gp) {
+        
         super(gp);
 
         name = objName;

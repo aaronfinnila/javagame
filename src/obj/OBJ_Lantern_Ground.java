@@ -10,6 +10,7 @@ public class OBJ_Lantern_Ground extends Entity {
     GamePanel gp;
 
     public OBJ_Lantern_Ground(GamePanel gp) {
+        
         super(gp);
         this.gp = gp;
         type = type_animated_object;

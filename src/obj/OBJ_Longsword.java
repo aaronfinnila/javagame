@@ -6,7 +6,9 @@ import main.GamePanel;
 public class OBJ_Longsword extends Entity {
 
     public final static String objName = "Longsword";
+    
     public OBJ_Longsword(GamePanel gp) {
+
         super(gp);
 
         name = objName;

@@ -6,7 +6,9 @@ import main.GamePanel;
 public class OBJ_Nightingale extends Entity {
 
     public final static String objName = "Nightingale";
+    
     public OBJ_Nightingale(GamePanel gp) {
+
         super(gp);
 
         name = objName;

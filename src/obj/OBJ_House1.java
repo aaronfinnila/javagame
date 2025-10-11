@@ -8,7 +8,9 @@ public class OBJ_House1 extends Entity {
     public final static String objName = "House1";
 
     GamePanel gp;
+    
     public OBJ_House1(GamePanel gp) {
+
         super(gp);
 
         this.gp = gp;

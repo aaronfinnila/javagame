@@ -10,6 +10,7 @@ public class OBJ_Coin extends Entity {
     GamePanel gp;
 
     public OBJ_Coin(GamePanel gp) {
+        
         super(gp);
 
         this.gp = gp;

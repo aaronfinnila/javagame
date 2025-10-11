@@ -12,8 +12,9 @@ import npc.NPC_Rubert;
 import obj.OBJ_Bench;
 import obj.OBJ_Bookshelf;
 import obj.OBJ_Bow_Default;
+import obj.OBJ_Casino;
 import obj.OBJ_Cave_Entrance;
-import obj.OBJ_Hitbox1;
+import obj.OBJ_Hitbox;
 import obj.OBJ_House1;
 import obj.OBJ_House1_Interior;
 import obj.OBJ_House2;
@@ -26,7 +27,7 @@ import obj.OBJ_Nightingale;
 import obj.OBJ_Rowboat;
 import obj.OBJ_Store;
 import obj.OBJ_Store_Interior;
-import obj.OBJ_Table1;
+import obj.OBJ_Table;
 import obj.OBJ_Waterfountain;
 import tile_interactive.IT_SmallRock;
 
@@ -66,7 +67,8 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldY = 24*gp.tileSize;
         i++;
 
-        mapNum ++;
+        mapNum++;
+        i = 0;
 
         // TREASURE ISLAND
 
@@ -94,17 +96,18 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = 64*gp.tileSize;
         gp.obj[mapNum][i].worldY = 19*gp.tileSize;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        // hitboxes for store
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 68*gp.tileSize-10;
         gp.obj[mapNum][i].worldY = 27*gp.tileSize;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 65*gp.tileSize-50;
         gp.obj[mapNum][i].worldY = 27*gp.tileSize;
         gp.obj[mapNum][i].solidArea.width = 20;
         gp.obj[mapNum][i].solidArea.height = gp.tileSize*2+20;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 69*gp.tileSize-50;
         gp.obj[mapNum][i].worldY = 27*gp.tileSize;
         gp.obj[mapNum][i].solidArea.width = 20;
@@ -118,9 +121,31 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = 38*gp.tileSize;
         gp.obj[mapNum][i].worldY = 2*gp.tileSize - 20;
         i++;
+        gp.obj[mapNum][i] = new OBJ_Casino(gp);
+        gp.obj[mapNum][i].worldX = 33*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 44*gp.tileSize;
+        i++;
+        // hitboxes for casino
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
+        gp.obj[mapNum][i].worldX = 37*gp.tileSize-10;
+        gp.obj[mapNum][i].worldY = 52*gp.tileSize;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
+        gp.obj[mapNum][i].worldX = 34*gp.tileSize-50;
+        gp.obj[mapNum][i].worldY = 52*gp.tileSize;
+        gp.obj[mapNum][i].solidArea.width = 20;
+        gp.obj[mapNum][i].solidArea.height = gp.tileSize*2+20;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
+        gp.obj[mapNum][i].worldX = 38*gp.tileSize-50;
+        gp.obj[mapNum][i].worldY = 52*gp.tileSize;
+        gp.obj[mapNum][i].solidArea.width = 20;
+        gp.obj[mapNum][i].solidArea.height = gp.tileSize*2+20;
+        i++;
 
 
-        mapNum ++;
+        mapNum++;
+        i = 0;
 
         // HOUSE1
 
@@ -128,26 +153,27 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
         gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 47*gp.tileSize-95;
         gp.obj[mapNum][i].worldY = 45*gp.tileSize-32;
         gp.obj[mapNum][i].solidArea.width = 40;
         gp.obj[mapNum][i].solidArea.height = gp.tileSize+20;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 47*gp.tileSize-55;
         gp.obj[mapNum][i].worldY = 45*gp.tileSize-32;
         gp.obj[mapNum][i].solidArea.width = 40;
         gp.obj[mapNum][i].solidArea.height = 10+gp.tileSize*2;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 48*gp.tileSize-32;
         gp.obj[mapNum][i].worldY = 45*gp.tileSize-32;
         gp.obj[mapNum][i].solidArea.width = 15;
         gp.obj[mapNum][i].solidArea.height = gp.tileSize;
         i++;
 
-        mapNum ++;
+        mapNum++;
+        i = 0;
 
         // HOUSE2
 
@@ -155,14 +181,15 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
         gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 54*gp.tileSize+9;
         gp.obj[mapNum][i].worldY = 44*gp.tileSize;
         gp.obj[mapNum][i].solidArea.width = 40;
         gp.obj[mapNum][i].solidArea.height = 70;
         i++;
 
-        mapNum ++;
+        mapNum++;
+        i = 0;
         
         // STORE
         
@@ -171,77 +198,78 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
         i++;
         // shelves
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 52*gp.tileSize;
         gp.obj[mapNum][i].worldY = 45*gp.tileSize;
         gp.obj[mapNum][i].solidArea.width = 120*3;
         gp.obj[mapNum][i].solidArea.height = 27;
         i++;
         // plant
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 57*gp.tileSize+30;
         gp.obj[mapNum][i].worldY = 45*gp.tileSize;
         gp.obj[mapNum][i].solidArea.width = 30*3;
         gp.obj[mapNum][i].solidArea.height = 37*3;
         i++;
         // plant table
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 53*gp.tileSize+18;
         gp.obj[mapNum][i].worldY = 49*gp.tileSize-40;
         gp.obj[mapNum][i].solidArea.width = 172;
         gp.obj[mapNum][i].solidArea.height = 100;
         i++;
         // meat table
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 53*gp.tileSize+18;
         gp.obj[mapNum][i].worldY = 52*gp.tileSize-19;
         gp.obj[mapNum][i].solidArea.width = 172;
         gp.obj[mapNum][i].solidArea.height = 100;
         i++;
         // flour shelf
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 47*gp.tileSize+12;
         gp.obj[mapNum][i].worldY = 52*gp.tileSize-19;
         gp.obj[mapNum][i].solidArea.width = 172;
         gp.obj[mapNum][i].solidArea.height = 100;
         i++;
         // flower shelf
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 47*gp.tileSize+12;
         gp.obj[mapNum][i].worldY = 48*gp.tileSize+10;
         gp.obj[mapNum][i].solidArea.width = 172;
         gp.obj[mapNum][i].solidArea.height = 100;
         i++;
         // botright flower
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 58*gp.tileSize;
         gp.obj[mapNum][i].worldY = 54*gp.tileSize+16;
         gp.obj[mapNum][i].solidArea.width = 16*3;
         gp.obj[mapNum][i].solidArea.height = 37*3;
         i++;
         // botleft flower
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 45*gp.tileSize+16;
         gp.obj[mapNum][i].worldY = 52*gp.tileSize+28;
         gp.obj[mapNum][i].solidArea.width = 16*2;
         gp.obj[mapNum][i].solidArea.height = 37*2;
         i++;
         // topleft flower
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 45*gp.tileSize+31;
         gp.obj[mapNum][i].worldY = 48*gp.tileSize+16;
         gp.obj[mapNum][i].solidArea.width = 32;
         gp.obj[mapNum][i].solidArea.height = 74;
         i++;
         // desk
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 47*gp.tileSize-70;
         gp.obj[mapNum][i].worldY = 45*gp.tileSize+25;
         gp.obj[mapNum][i].solidArea.width = 305;
         gp.obj[mapNum][i].solidArea.height = 49;
         i++;
         
-        mapNum ++;
+        mapNum++;
+        i = 0;
         
         // STOREMAPNIGHT
         
@@ -250,85 +278,88 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
         i++;
         // shelves
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 51*gp.tileSize;
         gp.obj[mapNum][i].worldY = 45*gp.tileSize;
         gp.obj[mapNum][i].solidArea.width = 150*3;
         gp.obj[mapNum][i].solidArea.height = 27;
         i++;
         // plant
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 57*gp.tileSize+30;
         gp.obj[mapNum][i].worldY = 45*gp.tileSize;
         gp.obj[mapNum][i].solidArea.width = 30*3;
         gp.obj[mapNum][i].solidArea.height = 37*3;
         i++;
         // plant table
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 53*gp.tileSize+18;
         gp.obj[mapNum][i].worldY = 49*gp.tileSize-40;
         gp.obj[mapNum][i].solidArea.width = 172;
         gp.obj[mapNum][i].solidArea.height = 100;
         i++;
         // meat table
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 53*gp.tileSize+18;
         gp.obj[mapNum][i].worldY = 52*gp.tileSize-19;
         gp.obj[mapNum][i].solidArea.width = 172;
         gp.obj[mapNum][i].solidArea.height = 100;
         i++;
         // flour shelf
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 47*gp.tileSize+12;
         gp.obj[mapNum][i].worldY = 52*gp.tileSize-19;
         gp.obj[mapNum][i].solidArea.width = 172;
         gp.obj[mapNum][i].solidArea.height = 100;
         i++;
         // flower shelf
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 47*gp.tileSize+12;
         gp.obj[mapNum][i].worldY = 48*gp.tileSize+10;
         gp.obj[mapNum][i].solidArea.width = 172;
         gp.obj[mapNum][i].solidArea.height = 100;
         i++;
         // botright flower
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 58*gp.tileSize;
         gp.obj[mapNum][i].worldY = 54*gp.tileSize+16;
         gp.obj[mapNum][i].solidArea.width = 16*3;
         gp.obj[mapNum][i].solidArea.height = 37*3;
         i++;
         // botleft flower
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 45*gp.tileSize+16;
         gp.obj[mapNum][i].worldY = 52*gp.tileSize+28;
         gp.obj[mapNum][i].solidArea.width = 16*2;
         gp.obj[mapNum][i].solidArea.height = 37*2;
         i++;
         // topleft flower
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 45*gp.tileSize+31;
         gp.obj[mapNum][i].worldY = 48*gp.tileSize+16;
         gp.obj[mapNum][i].solidArea.width = 32;
         gp.obj[mapNum][i].solidArea.height = 74;
         i++;
         // desk
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 47*gp.tileSize-50;
         gp.obj[mapNum][i].worldY = 45*gp.tileSize+35;
         gp.obj[mapNum][i].solidArea.width = 280;
         gp.obj[mapNum][i].solidArea.height = 45;
         i++;
 
-        mapNum ++;
+        mapNum++;
+        i = 0;
 
         // STOREMAPSECRET
 
-        mapNum ++;
+        mapNum++;
+        i = 0;
 
         // DUNGEON
 
-        mapNum ++;
+        mapNum++;
+        i = 0;
         
         // HOUSE3;
 
@@ -336,38 +367,39 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
         gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 47*gp.tileSize-95;
         gp.obj[mapNum][i].worldY = 45*gp.tileSize-32;
         gp.obj[mapNum][i].solidArea.width = 40;
         gp.obj[mapNum][i].solidArea.height = gp.tileSize+20;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 47*gp.tileSize-55;
         gp.obj[mapNum][i].worldY = 45*gp.tileSize-32;
         gp.obj[mapNum][i].solidArea.width = 40;
         gp.obj[mapNum][i].solidArea.height = 10+gp.tileSize*2;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 48*gp.tileSize-32;
         gp.obj[mapNum][i].worldY = 45*gp.tileSize-32;
         gp.obj[mapNum][i].solidArea.width = 15;
         gp.obj[mapNum][i].solidArea.height = gp.tileSize;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
         gp.obj[mapNum][i].worldY = 52*gp.tileSize+15;
         gp.obj[mapNum][i].solidArea.width = 45;
         gp.obj[mapNum][i].solidArea.height = 60;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Hitbox1(gp);
+        gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 54*gp.tileSize+28;
         gp.obj[mapNum][i].worldY = 54*gp.tileSize+30;
         gp.obj[mapNum][i].solidArea.width = 60;
         gp.obj[mapNum][i].solidArea.height = 60;
         i++;
         
-        mapNum += 1;
+        mapNum++;
+        i = 0;
     }
     
     public void setNPC() {
@@ -400,7 +432,7 @@ public class AssetSetter {
         gp.npc[mapNum][i].worldX = 50 * gp.tileSize;
         gp.npc[mapNum][i].worldY = 50 * gp.tileSize;
         i++;
-        gp.npc[mapNum][i] = new OBJ_Table1(gp);
+        gp.npc[mapNum][i] = new OBJ_Table(gp);
         gp.npc[mapNum][i].worldX = 53*gp.tileSize;
         gp.npc[mapNum][i].worldY = 44*gp.tileSize-15;
         i++;
@@ -472,10 +504,10 @@ public class AssetSetter {
         gp.npc[mapNum][i].worldY = 46*gp.tileSize;
         i++;
 
-        gp.npc[mapNum][i] = new OBJ_Table1(gp);
+        gp.npc[mapNum][i] = new OBJ_Table(gp);
         gp.npc[mapNum][i].worldX = 49*gp.tileSize;
         gp.npc[mapNum][i].worldY = 44*gp.tileSize-15;
-        // Set other table variant by changing direction
+        // set other table variant by changing direction
         gp.npc[mapNum][i].direction = "up";
         gp.npc[mapNum][i].dialogueSet = 1;
 

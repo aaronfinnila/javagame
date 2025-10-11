@@ -8,6 +8,7 @@ public class OBJ_Bow_Default extends Entity {
     public final static String objName = "Wooden Bow";
 
     public OBJ_Bow_Default(GamePanel gp) {
+        
         super(gp);
 
         name = objName;

@@ -321,6 +321,8 @@ public class Entity {
 
     public void facePlayer() {
 
+        gp.ui.tempDirection = direction;
+
         switch(gp.player.direction) {
             case "up": 
                 direction = "down";

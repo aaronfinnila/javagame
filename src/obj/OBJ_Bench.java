@@ -10,6 +10,7 @@ public class OBJ_Bench extends Entity {
     GamePanel gp;
     
     public OBJ_Bench(GamePanel gp) {
+        
         super(gp);
 
         this.gp = gp;

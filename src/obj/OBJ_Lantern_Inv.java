@@ -10,6 +10,7 @@ public class OBJ_Lantern_Inv extends Entity {
     public final static String objName = "Lantern";
 
     public OBJ_Lantern_Inv(GamePanel gp) {
+        
         super(gp);
         this.gp = gp;
         type = type_light;

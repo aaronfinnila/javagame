@@ -10,6 +10,7 @@ public class OBJ_House3 extends Entity {
     GamePanel gp;
 
     public OBJ_House3(GamePanel gp) {
+        
         super(gp);
 
         this.gp = gp;

@@ -11,6 +11,7 @@ public class OBJ_Arrow extends Projectile {
     GamePanel gp;
 
     public OBJ_Arrow(GamePanel gp) {
+        
         super(gp);
         this.gp = gp;
 

@@ -47,6 +47,7 @@ public class UI {
     int counter = 0;
     public int charIndex = 0;
     public String combinedText = "";
+    public String tempDirection = "";
     public Entity npc;
 
     public UI(GamePanel gp) {
@@ -538,6 +539,8 @@ public void drawDialogueScreen() {
 
         if (gp.gameState == gp.dialogueState) {
             gp.gameState = gp.playState;
+            npc.direction = tempDirection;
+            tempDirection = "";
         }
     }
 
@@ -1137,6 +1140,7 @@ public void trade_select() {
             g2.drawString(">", x-24, y);
             if (gp.keyH.spacePressed == true) {
                 npc.startDialogue(npc, 1);
+                storeDiscount = 5;
                 commandNumber = 0;
                 gp.keyH.spacePressed = false;
             }
@@ -1170,8 +1174,6 @@ public void trade_buy() {
     // DRAW PRICE WINDOW
 
     int itemIndex = itemIndexOnSlot;
-
-    // BUGGED: Exception in thread "Thread-0" java.lang.NullPointerException: Cannot read field "inventory" because "this.npc" is null
 
     if (itemIndex < npc.inventory.size()) {
 

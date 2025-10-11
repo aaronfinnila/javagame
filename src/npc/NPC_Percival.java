@@ -30,13 +30,13 @@ public class NPC_Percival extends Entity {
 public void getImage() {
 
     down1 = setup("/res/npc/percival_down1", gp.tileSize, gp.tileSize);
-    down2 = setup("/res/npc/percival_down1", gp.tileSize, gp.tileSize);
-    up1 = setup("/res/npc/percival_down1", gp.tileSize, gp.tileSize);
-    up2 = setup("/res/npc/percival_down1", gp.tileSize, gp.tileSize);
-    left1 = setup("/res/npc/percival_down1", gp.tileSize, gp.tileSize);
-    left2 = setup("/res/npc/percival_down1", gp.tileSize, gp.tileSize);
-    right1 = setup("/res/npc/percival_down1", gp.tileSize, gp.tileSize);
-    right2 = setup("/res/npc/percival_down1", gp.tileSize, gp.tileSize);
+    down2 = setup("/res/npc/percival_down2", gp.tileSize, gp.tileSize);
+    up1 = setup("/res/npc/percival_up1", gp.tileSize, gp.tileSize);
+    up2 = setup("/res/npc/percival_up2", gp.tileSize, gp.tileSize);
+    left1 = setup("/res/npc/percival_left1", gp.tileSize, gp.tileSize);
+    left2 = setup("/res/npc/percival_left2", gp.tileSize, gp.tileSize);
+    right1 = setup("/res/npc/percival_right1", gp.tileSize, gp.tileSize);
+    right2 = setup("/res/npc/percival_right2", gp.tileSize, gp.tileSize);
 }
 
 public void setDialogue() {
@@ -62,6 +62,7 @@ public void setAction() {
 public void speak() {
 
     super.speak();
+    facePlayer();
     startDialogue(this, dialogueSet);
 }
 

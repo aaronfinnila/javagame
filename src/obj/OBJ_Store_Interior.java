@@ -10,6 +10,7 @@ public class OBJ_Store_Interior extends Entity {
     GamePanel gp;
 
     public OBJ_Store_Interior(GamePanel gp) {
+        
         super(gp);
 
         this.gp = gp;

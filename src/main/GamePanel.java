@@ -50,6 +50,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int storeMapSecret = 6;
     public final int dungeonMap = 7;
     public final int house3Map = 8;
+    public final int casinoMap = 9;
 
     // FOR FULLSCREEN
 

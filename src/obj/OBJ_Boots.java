@@ -10,6 +10,7 @@ public class OBJ_Boots extends Entity {
     GamePanel gp;
 
     public OBJ_Boots(GamePanel gp) {
+        
         super(gp);
 
         type = type_pickup_only;

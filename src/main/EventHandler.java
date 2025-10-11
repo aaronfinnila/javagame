@@ -96,6 +96,9 @@ public class EventHandler {
                     teleportPlayer(gp.storeMap, 47, 56, gp.inside);
                 }
             }
+            if (hit(gp.treasureislandMap,35,52,"up") == true && gp.keyH.ePressed == true) {
+                teleportPlayer(gp.casinoMap, 47, 56, gp.inside);
+            }
             
             // DUNGEON
             
@@ -126,20 +129,26 @@ public class EventHandler {
             if (hit(gp.storeMap,47,56,"down") == true && gp.keyH.ePressed == true) {
                 teleportPlayer(gp.treasureislandMap, 66, 27, gp.outside);
             }
-
+            
             // STORE NIGHT
-
+            
             if (hit(gp.storeMapNight,47,56,"down") == true && gp.keyH.ePressed == true) {
                 teleportPlayer(gp.treasureislandMap, 66, 27, gp.outside);
             }
             if (hit(gp.storeMapNight,46,45,"up") == true && gp.keyH.ePressed == true) {
                 teleportPlayer(gp.storeMapSecret, 47, 56, gp.dungeon);
             }
-
+            
             // STORE SECRET
-
+            
             if (hit(gp.storeMapSecret,47,56,"down") == true && gp.keyH.ePressed == true) {
                 teleportPlayer(gp.storeMapNight, 45, 45, gp.dungeon);
+            }
+
+            // CASINO
+
+            if (hit(gp.casinoMap,47,56,"down") == true && gp.keyH.ePressed == true) {
+                teleportPlayer(gp.treasureislandMap, 35, 52, gp.outside);
             }
         }
     }

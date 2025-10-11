@@ -8,6 +8,7 @@ public class OBJ_Hammer extends Entity {
     public final static String objName = "Hammer";
 
     public OBJ_Hammer(GamePanel gp) {
+        
         super(gp);
 
         name = objName;
