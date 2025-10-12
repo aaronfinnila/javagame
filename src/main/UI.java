@@ -483,7 +483,7 @@ public void drawDialogueScreen() {
         case "Rock": textSize = 20; break;
         case "Claire": textSize = 25; break;
         case "Rubert": textSize = 40; break;
-        case "Table1": textSize = 20; break;
+        case "Table": textSize = 20; break;
         case "Michael": textSize = 28; break;
         case "eventMaster": textSize = 25; y -= 2; break;
         case "Red Potion": textSize = 30; break;

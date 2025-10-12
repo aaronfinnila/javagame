@@ -3,6 +3,7 @@ package main;
 import monster.MON_Slime;
 import npc.NPC_Claire;
 import npc.NPC_DialogueHolder;
+import npc.NPC_Edward;
 import npc.NPC_Fear;
 import npc.NPC_Kalsu;
 import npc.NPC_Michael;
@@ -475,7 +476,6 @@ public class AssetSetter {
 
         mapNum++;
         i=0;
-
         
         // DUNGEON
         
@@ -486,7 +486,7 @@ public class AssetSetter {
         mapNum++;
         i=0;
         
-        // house3
+        // HOUSE3
 
         gp.npc[mapNum][i] = new OBJ_Bookshelf(gp);
         gp.npc[mapNum][i].worldX = 53*gp.tileSize-30;
@@ -510,7 +510,16 @@ public class AssetSetter {
         // set other table variant by changing direction
         gp.npc[mapNum][i].direction = "up";
         gp.npc[mapNum][i].dialogueSet = 1;
+        i++;
 
+        mapNum++;
+        i = 0;
+
+        // CASINO
+
+        gp.npc[mapNum][i] = new NPC_Edward(gp);
+        gp.npc[mapNum][i].worldX = 51*gp.tileSize;
+        gp.npc[mapNum][i].worldY = 46*gp.tileSize;
         i++;
     }
 

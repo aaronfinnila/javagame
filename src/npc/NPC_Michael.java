@@ -83,5 +83,5 @@ public void draw(Graphics2D g2) {
     int screenY = worldY - gp.player.worldY + gp.player.screenY;
 
     g2.drawImage(image, screenX, screenY, null);
-    }
+}
 }

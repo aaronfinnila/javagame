@@ -148,7 +148,7 @@ public class EventHandler {
             // CASINO
 
             if (hit(gp.casinoMap,47,56,"down") == true && gp.keyH.ePressed == true) {
-                teleportPlayer(gp.treasureislandMap, 35, 52, gp.outside);
+                teleportPlayer(gp.treasureislandMap, 35, 52 , gp.outside);
             }
         }
     }
