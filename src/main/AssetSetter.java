@@ -518,7 +518,7 @@ public class AssetSetter {
         // CASINO
 
         gp.npc[mapNum][i] = new NPC_Edward(gp);
-        gp.npc[mapNum][i].worldX = 51*gp.tileSize;
+        gp.npc[mapNum][i].worldX = 52*gp.tileSize;
         gp.npc[mapNum][i].worldY = 46*gp.tileSize;
         i++;
     }

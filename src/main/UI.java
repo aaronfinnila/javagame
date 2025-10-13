@@ -1320,25 +1320,30 @@ public void drawInteractState() {
 public void checkInteractState() {
     switch (npc.name) {
         case "Kalsu":
-        if (npc.dialogueSet == 1 && npc.dialogueIndex == 5) {
-            gp.keyH.spacePressed = false;
-            gp.gameState = gp.interactState;
-            interactCol = 1;
-        }
-        break;
+            if (npc.dialogueSet == 1 && npc.dialogueIndex == 5) {
+                gp.keyH.spacePressed = false;
+                gp.gameState = gp.interactState;
+                interactCol = 1;
+            } break;
         case "Claire":
-        if (npc.dialogueSet == 0 && npc.dialogueIndex == 4) {
-            gp.keyH.spacePressed = false;
-            gp.gameState = gp.interactState;
-            interactCol = 1;
-        }
+            if (npc.dialogueSet == 0 && npc.dialogueIndex == 4) {
+                gp.keyH.spacePressed = false;
+                gp.gameState = gp.interactState;
+                interactCol = 1;
+            } break;
         case "Fear":
-        if (npc.dialogueSet == 0 && npc.dialogueIndex == 4 && npc.interactionHappened == false) {
-            gp.keyH.spacePressed = false;
-            gp.gameState = gp.interactState;
-            interactCol = 1;
-            npc.interactionHappened = true;
-        }
+            if (npc.dialogueSet == 0 && npc.dialogueIndex == 4 && npc.interactionHappened == false) {
+                gp.keyH.spacePressed = false;
+                gp.gameState = gp.interactState;
+                interactCol = 1;
+                npc.interactionHappened = true;
+            } break;
+        case "Edward":
+            if (npc.dialogueSet == 0 && npc.dialogueIndex == 2) {
+                gp.keyH.spacePressed = false;
+                gp.gameState = gp.interactState;
+                interactCol = 1;
+            }
     }
 }
 

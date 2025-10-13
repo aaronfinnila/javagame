@@ -36,7 +36,31 @@ public void getImage() {
 public void setDialogue() {
 
     dialogues[0][0] = "Hello and welcome to the\nGolden Estate Casino!";
-    dialogues[0][1] = "What game would you like to play?";
+    dialogues[0][1] = "Would you like to play?";
+    dialogues[0][2] = "";
+
+    dialogues[1][0] = "Roulette it is!";
+
+    dialogues[2][0] = "They say that you miss\nevery shot you don't take...";
+    dialogues[2][1] = "But maybe you'll hit it\nnext time!";
+
+}
+
+public void getInteractChoices() {
+
+    if (gp.ui.interactChoice == 1) {
+        gp.keyH.spacePressed = false;
+        startDialogue(this, 1);
+        gp.ui.interactChoice = 0;
+    } else if (gp.ui.interactChoice == 2) {
+        gp.keyH.spacePressed = false;
+        startDialogue(this, 2);
+        gp.ui.interactChoice = 0;
+    }
+}
+
+public String getInteractText() {
+    return "Play roulette? (15 gold bet)";
 }
 
 public void speak() {

@@ -97,7 +97,7 @@ public class EventHandler {
                 }
             }
             if (hit(gp.treasureislandMap,35,52,"up") == true && gp.keyH.ePressed == true) {
-                teleportPlayer(gp.casinoMap, 47, 56, gp.inside);
+                teleportPlayer(gp.casinoMap, 52, 56, gp.inside);
             }
             
             // DUNGEON
@@ -147,7 +147,7 @@ public class EventHandler {
 
             // CASINO
 
-            if (hit(gp.casinoMap,47,56,"down") == true && gp.keyH.ePressed == true) {
+            if (hit(gp.casinoMap,52,56,"down") == true && gp.keyH.ePressed == true) {
                 teleportPlayer(gp.treasureislandMap, 35, 52 , gp.outside);
             }
         }
