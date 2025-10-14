@@ -40,9 +40,12 @@ public void setDialogue() {
     dialogues[0][2] = "";
 
     dialogues[1][0] = "Roulette it is!";
+    dialogues[1][1] = "";
 
     dialogues[2][0] = "They say that you miss\nevery shot you don't take...";
     dialogues[2][1] = "But maybe you'll hit it\nnext time!";
+
+    dialogues[3][0] = "Ah, it seems that you don't\nhave enough gold to play...";
 
 }
 
@@ -50,7 +53,11 @@ public void getInteractChoices() {
 
     if (gp.ui.interactChoice == 1) {
         gp.keyH.spacePressed = false;
-        startDialogue(this, 1);
+        if (gp.player.gold < 15) {
+            startDialogue(this, 3);
+        } else {
+            startDialogue(this, 1);
+        }
         gp.ui.interactChoice = 0;
     } else if (gp.ui.interactChoice == 2) {
         gp.keyH.spacePressed = false;

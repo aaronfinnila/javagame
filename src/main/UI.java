@@ -210,6 +210,10 @@ public class UI {
         if (gp.gameState == gp.interactState) {
             drawInteractState();
         }
+
+        if (gp.gameState == gp.casinoState) {
+            drawCasinoState();
+        }
     }
 
 public void drawInventory(Entity entity, boolean cursor) {
@@ -503,6 +507,7 @@ public void drawDialogueScreen() {
     y += gp.tileSize;
 
     checkInteractState();
+    checkCasinoState();
     
     if (npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null) {
         
@@ -1317,6 +1322,32 @@ public void drawInteractState() {
     npc.getInteractChoices();
 }
 
+public void drawCasinoState() {
+
+    int x = gp.tileSize * 3;
+    int y = (gp.tileSize * 2) + 10;
+    int width = gp.screenWidth - (gp.tileSize*6);
+    int height = gp.screenHeight - (gp.tileSize*4);
+    
+    drawSubWindow(x, y, width, height);
+
+    for (int j = 3; j < 10; j++) {
+        for (int i = 5; i < 15; i++) {
+            x = gp.tileSize*i;
+            y = (gp.tileSize*j) - 10;
+            width = gp.tileSize;
+            height = gp.tileSize;
+            g2.drawRect(x, y, width, height);
+            if ((i + j) % 2 == 0) {
+                g2.setColor(Color.black);
+            } else {
+                g2.setColor(Color.red);
+            }
+            g2.fillRect(x, y, width, height);
+        }
+    }
+}
+
 public void checkInteractState() {
     switch (npc.name) {
         case "Kalsu":
@@ -1344,6 +1375,17 @@ public void checkInteractState() {
                 gp.gameState = gp.interactState;
                 interactCol = 1;
             }
+    }
+}
+
+public void checkCasinoState() {
+    switch (npc.name) {
+        case "Edward":
+            if (npc.dialogueSet == 1 && npc.dialogueIndex == 1) {
+                gp.keyH.spacePressed = false;
+                gp.gameState = gp.casinoState;
+                interactCol = 1;
+            } 
     }
 }
 
