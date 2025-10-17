@@ -1324,27 +1324,65 @@ public void drawInteractState() {
 
 public void drawCasinoState() {
 
-    int x = gp.tileSize * 3;
-    int y = (gp.tileSize * 2) + 10;
-    int width = gp.screenWidth - (gp.tileSize*6);
-    int height = gp.screenHeight - (gp.tileSize*4);
+    int x = 24;
+    int y = 24;
+    int width = gp.screenWidth-gp.tileSize;
+    int height = gp.screenHeight-gp.tileSize;
     
     drawSubWindow(x, y, width, height);
 
-    for (int j = 3; j < 10; j++) {
+    x = gp.tileSize*3;
+    y = (gp.tileSize*1);
+    width = gp.tileSize*14;
+    height = (gp.tileSize*9)+48;
+
+    g2.setColor(Color.DARK_GRAY);
+    g2.fillOval(x, y, width, height);
+
+    for (int j = 3; j < 9; j++) {
         for (int i = 5; i < 15; i++) {
             x = gp.tileSize*i;
             y = (gp.tileSize*j) - 10;
             width = gp.tileSize;
             height = gp.tileSize;
-            g2.drawRect(x, y, width, height);
             if ((i + j) % 2 == 0) {
-                g2.setColor(Color.black);
+                g2.setColor(Color.RED);
             } else {
-                g2.setColor(Color.red);
+                g2.setColor(Color.BLACK);
+            }
+            int num = ((10*(j-3))+(i-5));
+            if (num % 14 == 0) {
+                g2.setColor(Color.GREEN);
             }
             g2.fillRect(x, y, width, height);
         }
+    }
+
+    g2.setFont(consola.deriveFont(25F));
+    g2.setColor(Color.WHITE);
+    String text = "Which one will you choose?";
+    g2.drawString(text,getXforCenteredText(text), (gp.tileSize*2)+16);
+    g2.setColor(Color.RED);
+    text = "RED";
+    g2.drawString(text,gp.tileSize*6, (gp.tileSize*10)-24);
+    g2.setColor(Color.BLACK);
+    text = "BLACK";
+    g2.drawString(text,gp.tileSize*9, (gp.tileSize*10)-24);
+    g2.setColor(Color.GREEN);
+    text = "GREEN";
+    g2.drawString(text,gp.tileSize*12, (gp.tileSize*10)-24);
+
+    if (interactCol == 0) {
+        g2.drawString("___", (x+gp.tileSize*4), y+gp.tileSize*9);
+    } else if (interactCol == 1) {
+        g2.drawString("___", (x+gp.tileSize*8)-7, y+gp.tileSize*9);
+    } else if (interactCol == 2) {
+        g2.drawString("___", (x+gp.tileSize*12)-7, y+gp.tileSize*9);
+    }
+
+    switch (interactChoice) {
+        case 1:
+            
     }
 }
 
@@ -1374,6 +1412,9 @@ public void checkInteractState() {
                 gp.keyH.spacePressed = false;
                 gp.gameState = gp.interactState;
                 interactCol = 1;
+            }
+            if (npc.dialogueSet == 3) {
+                npc.dialogueSet = 0;
             }
     }
 }

@@ -14,6 +14,7 @@ import obj.OBJ_Bench;
 import obj.OBJ_Bookshelf;
 import obj.OBJ_Bow_Default;
 import obj.OBJ_Casino;
+import obj.OBJ_Casino_Interior;
 import obj.OBJ_Cave_Entrance;
 import obj.OBJ_Hitbox;
 import obj.OBJ_House1;
@@ -362,7 +363,7 @@ public class AssetSetter {
         mapNum++;
         i = 0;
         
-        // HOUSE3;
+        // HOUSE3
 
         gp.obj[mapNum][i] = new OBJ_House3_Interior(gp);
         gp.obj[mapNum][i].worldX = 45*gp.tileSize-12;
@@ -401,6 +402,13 @@ public class AssetSetter {
         
         mapNum++;
         i = 0;
+
+        // CASINO
+
+        gp.obj[mapNum][i] = new OBJ_Casino_Interior(gp);
+        gp.obj[mapNum][i].worldX = 46*gp.tileSize-12;
+        gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
+        i++;
     }
     
     public void setNPC() {

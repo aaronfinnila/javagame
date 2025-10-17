@@ -43,10 +43,11 @@ public void setDialogue() {
     dialogues[1][1] = "";
 
     dialogues[2][0] = "They say that you miss\nevery shot you don't take...";
-    dialogues[2][1] = "But maybe you'll hit it\nnext time!";
+    dialogues[2][1] = "But maybe you'll hit it next\ntime!";
 
-    dialogues[3][0] = "Ah, it seems that you don't\nhave enough gold to play...";
+    dialogues[3][0] = "";
 
+    dialogues[4][0] = "Ah, it seems that you don't\nhave enough gold to play...";
 }
 
 public void getInteractChoices() {
@@ -56,6 +57,7 @@ public void getInteractChoices() {
         if (gp.player.gold < 15) {
             startDialogue(this, 3);
         } else {
+            gp.player.gold -= 15;
             startDialogue(this, 1);
         }
         gp.ui.interactChoice = 0;

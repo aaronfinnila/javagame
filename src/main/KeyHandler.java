@@ -50,6 +50,9 @@ public class KeyHandler implements KeyListener{
         else if (gp.gameState == gp.interactState) {
             interactState(code);
         }
+        else if (gp.gameState == gp.casinoState) {
+            casinoState(code);
+        }
     }
 
     public void titleState(int code) {
@@ -498,6 +501,33 @@ public class KeyHandler implements KeyListener{
             } else {
                 gp.ui.interactChoice = 2;
             }    
+        }
+    }
+
+    public void casinoState(int code) {
+        if (code == KeyEvent.VK_A) {
+            if (gp.ui.interactCol != 0) {
+                gp.ui.interactCol--;
+                gp.playSE(10);
+            }
+        }
+        if (code == KeyEvent.VK_D) {
+            if (gp.ui.interactCol != 2) {
+                gp.ui.interactCol++;
+                gp.playSE(10);
+            }
+        }
+        if (code == KeyEvent.VK_SPACE) {
+            spacePressed = true;
+        }
+        if (spacePressed) {
+            if (gp.ui.interactCol == 0) {
+                gp.ui.interactChoice = 1;
+            } else if (gp.ui.interactCol == 1) {
+                gp.ui.interactChoice = 2;
+            } else {
+                gp.ui.interactChoice = 3;
+            }
         }
     }
 
