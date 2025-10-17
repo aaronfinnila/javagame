@@ -22,7 +22,7 @@ import environment.EnvironmentManager;
 import tile.TileManager;
 import tile_interactive.InteractiveTile;
 
-public class GamePanel extends JPanel implements Runnable{
+public class GamePanel extends JPanel implements Runnable {
     
     // SCREEN SETTINGS
 
@@ -38,7 +38,7 @@ public class GamePanel extends JPanel implements Runnable{
     
     public final int maxWorldCol = 100;
     public final int maxWorldRow = 100;
-    public final int maxMap = 10;
+    public final int maxMap = 20;
     public final int maxMapSize = 100;
     public int currentMap = 0;
     public final int introislandMap = 0;
@@ -95,6 +95,7 @@ public class GamePanel extends JPanel implements Runnable{
     public Entity projectile[][] = new Entity[maxMap][50];
     public ArrayList<Entity> particleList = new ArrayList<>();
     ArrayList<Entity> entityList = new ArrayList<>();
+    public ArrayList<Entity> animateList = new ArrayList<>();
 
     // GAME STATE
 
@@ -373,8 +374,8 @@ public class GamePanel extends JPanel implements Runnable{
 
             // DRAW ENTITIES
 
-            for (Entity entity : entityList) {
-                entity.draw(g2);
+            for (Entity e : entityList) {
+                e.draw(g2);
             }
 
             // CLEAR ENTITY LIST
@@ -388,6 +389,12 @@ public class GamePanel extends JPanel implements Runnable{
             // UI
             
             ui.draw(g2);
+
+            for (Entity e : animateList) {
+                if (gameState == casinoState) {
+                    e.draw(g2);
+                }
+            }
              
             // DEBUG 
             

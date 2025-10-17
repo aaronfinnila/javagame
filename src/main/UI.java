@@ -1372,17 +1372,20 @@ public void drawCasinoState() {
     text = "GREEN";
     g2.drawString(text,gp.tileSize*12, (gp.tileSize*10)-24);
 
+    g2.setColor(Color.white);
+
     if (interactCol == 0) {
-        g2.drawString("___", (x+gp.tileSize*4), y+gp.tileSize*9);
+        g2.drawString("___", (gp.tileSize*6), (gp.tileSize*10)-20);
     } else if (interactCol == 1) {
-        g2.drawString("___", (x+gp.tileSize*8)-7, y+gp.tileSize*9);
+        g2.drawString("_____", (gp.tileSize*9), (gp.tileSize*10)-20);
     } else if (interactCol == 2) {
-        g2.drawString("___", (x+gp.tileSize*12)-7, y+gp.tileSize*9);
+        g2.drawString("_____", (gp.tileSize*12), (gp.tileSize*10)-20);
     }
 
-    switch (interactChoice) {
-        case 1:
-            
+    if (interactChoice != 0) {
+        gp.animateList.getFirst().onPath = true;
+        gp.animateList.getFirst().update();
+        gp.animateList.getFirst().setAction();
     }
 }
 

@@ -16,6 +16,7 @@ import obj.OBJ_Bow_Default;
 import obj.OBJ_Casino;
 import obj.OBJ_Casino_Interior;
 import obj.OBJ_Cave_Entrance;
+import obj.OBJ_CircleObject;
 import obj.OBJ_Hitbox;
 import obj.OBJ_House1;
 import obj.OBJ_House1_Interior;
@@ -408,6 +409,10 @@ public class AssetSetter {
         gp.obj[mapNum][i] = new OBJ_Casino_Interior(gp);
         gp.obj[mapNum][i].worldX = 46*gp.tileSize-12;
         gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
+        i++;
+        gp.animateList.add(new OBJ_CircleObject(gp));
+        gp.animateList.get(0).worldX = 48*gp.tileSize;
+        gp.animateList.get(0).worldY = 44*gp.tileSize;
         i++;
     }
     

@@ -505,6 +505,7 @@ public class KeyHandler implements KeyListener{
     }
 
     public void casinoState(int code) {
+
         if (code == KeyEvent.VK_A) {
             if (gp.ui.interactCol != 0) {
                 gp.ui.interactCol--;
@@ -528,6 +529,9 @@ public class KeyHandler implements KeyListener{
             } else {
                 gp.ui.interactChoice = 3;
             }
+        }
+        if (code == KeyEvent.VK_ESCAPE) {
+            gp.gameState = gp.playState;
         }
     }
 
