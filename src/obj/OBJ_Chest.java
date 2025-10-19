@@ -21,15 +21,22 @@ public class OBJ_Chest extends Entity {
     }
 
     public void use(Entity entity) {
+
+        boolean playerHasKey = false;
+        for (Entity e : gp.player.inventory) {
+            if (e.name.equals("Chest Key")) {
+                playerHasKey = true;
+            }
+        }
         
-            if (gp.player.hasKey != 0 && gp.keyH.ePressed == true && this.usedObject == false) {
+            if (playerHasKey == true && gp.keyH.ePressed == true && this.usedObject == false) {
                 gp.playSE(12);
                 gp.ui.showMessage("You found an item!");
-                for (int i = 0; i < gp.obj.length;i++) {
+                for (int i = 0; i < gp.obj.length; i++) {
                     if (gp.obj[gp.currentMap][i] == null) {
-                        gp.obj[gp.currentMap][i] = new OBJ_Coin(gp);
-                        gp.obj[gp.currentMap][i].worldX = gp.tileSize*8;
-                        gp.obj[gp.currentMap][i].worldY = gp.tileSize*40;
+                        gp.obj[gp.currentMap][i] = new OBJ_Nightingale(gp);
+                        gp.obj[gp.currentMap][i].worldX = gp.tileSize*55;
+                        gp.obj[gp.currentMap][i].worldY = gp.tileSize*48;
                         break;
                     }
                 }
@@ -38,9 +45,9 @@ public class OBJ_Chest extends Entity {
                 solidArea.height += 10;
                 this.usedObject = true;
                 entity.hasKey--;
-                for (int i=0;i<gp.player.inventory.size();i++) {
-                    if (gp.player.inventory.get(i).name.equals("Creamor Key")) {
-                        gp.player.inventory.remove(i);
+                for (Entity e : gp.player.inventory) {
+                    if (e.name.equals("Chest Key")) {
+                        gp.player.inventory.remove(e);
                         break;
                     }
                 }

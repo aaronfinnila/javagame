@@ -94,6 +94,7 @@ public class KeyHandler implements KeyListener{
                     case 3: gp.playMusic(19); break;
                     case 4: gp.playMusic(20); break;
                     case 7: gp.playMusic(31); break;
+                    case 8: gp.playMusic(34); break;
                 }
             }
             if (gp.ui.commandNumber == 2) {
@@ -151,7 +152,7 @@ public class KeyHandler implements KeyListener{
 
         // ADMIN KEYBINDS
 
-        if (code == KeyEvent.VK_M) {
+/*         if (code == KeyEvent.VK_M) {
             if (gp.musicPlaying == true) {
                 gp.stopMusic();
             } else if (gp.musicPlaying == false) {
@@ -174,7 +175,7 @@ public class KeyHandler implements KeyListener{
             else if (showDebug == true) {
                 showDebug = false;
             }
-        }
+        } */
     }
 
     public void pauseState(int code) {
@@ -197,6 +198,7 @@ public class KeyHandler implements KeyListener{
                 case 5: gp.playMusic(20); break;
                 case 6: gp.playMusic(20); break;
                 case 7: gp.playMusic(31); break;
+                case 8: gp.playMusic(34); break;
             }
         }
     }
@@ -506,32 +508,41 @@ public class KeyHandler implements KeyListener{
 
     public void casinoState(int code) {
 
-        if (code == KeyEvent.VK_A) {
-            if (gp.ui.interactChoice == 0) {
-                if (gp.ui.interactCol != 0) {
-                    gp.ui.interactCol--;
-                    gp.playSE(10);
+        if (gp.ui.winOrLose.equals("")) {
+            if (code == KeyEvent.VK_A) {
+                if (gp.ui.interactChoice == 0) {
+                    if (gp.ui.interactCol != 0) {
+                        gp.ui.interactCol--;
+                        gp.playSE(10);
+                    }
+                }
+            }
+            if (code == KeyEvent.VK_D) {
+                if (gp.ui.interactChoice == 0) {
+                    if (gp.ui.interactCol != 2) {
+                        gp.ui.interactCol++;
+                        gp.playSE(10);
+                    }
                 }
             }
         }
-        if (code == KeyEvent.VK_D) {
-            if (gp.ui.interactChoice == 0) {
-                if (gp.ui.interactCol != 2) {
-                    gp.ui.interactCol++;
-                    gp.playSE(10);
-                }
-            }
-        }
+
         if (code == KeyEvent.VK_SPACE) {
             spacePressed = true;
         }
         if (spacePressed) {
-            if (gp.ui.interactCol == 0) {
-                gp.ui.interactChoice = 1;
-            } else if (gp.ui.interactCol == 1) {
-                gp.ui.interactChoice = 2;
-            } else {
-                gp.ui.interactChoice = 3;
+            if (gp.ui.winOrLose.equals("")) {
+                if (gp.ui.interactCol == 0) {
+                    gp.ui.interactChoice = 1;
+                } else if (gp.ui.interactCol == 1) {
+                    gp.ui.interactChoice = 2;
+                } else {
+                    gp.ui.interactChoice = 3;
+                }
+            } else if (gp.ui.winOrLose.equals("win")) {
+                gp.ui.npc.startDialogue(gp.ui.npc, 6);
+            } else if (gp.ui.winOrLose.equals("lose")) {
+                gp.ui.npc.startDialogue(gp.ui.npc, 7);
             }
         }
         if (code == KeyEvent.VK_ESCAPE) {

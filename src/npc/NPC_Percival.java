@@ -48,6 +48,18 @@ public void setDialogue() {
     dialogues[1][1] = "...";
     dialogues[1][2] = "You're still here.";
     dialogues[1][3] = "What do you want?";
+    dialogues[1][4] = "";
+
+    dialogues[2][0] = "That's none of your business,\ntraveler.";
+    dialogues[2][1] = "You're a nosy one, aren't you?";
+    dialogues[2][2] = "...";
+    dialogues[2][3] = "(sigh)\n";
+    dialogues[2][4] = "Alright then, it's an old book.";
+    dialogues[2][5] = "Has to do with the history of\nthis place.";
+    dialogues[2][6] = "Now go off and harass some-\nbody else, will you?";
+
+    dialogues[3][0] = "What happened to the peace\nand quiet in this darn village?";
+
 }
 
 public void setAction() {
@@ -59,6 +71,23 @@ public void setAction() {
     }
 }
 
+public String getInteractText() {
+
+    return "Ask what he's reading?";
+}
+
+public void getInteractChoices() {
+
+    if (gp.ui.interactChoice == 1) {
+        gp.keyH.spacePressed = false;
+        startDialogue(this, 2);
+        gp.ui.interactChoice = 0;
+    } else if (gp.ui.interactChoice == 2) {
+        gp.keyH.spacePressed = false;
+        startDialogue(this, 3);
+        gp.ui.interactChoice = 0;
+    }
+}
 public void speak() {
 
     super.speak();

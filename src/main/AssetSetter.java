@@ -10,12 +10,15 @@ import npc.NPC_Michael;
 import npc.NPC_Percival;
 import npc.NPC_Rock;
 import npc.NPC_Rubert;
+import npc.NPC_Sofa;
+import obj.OBJ_Arrow;
 import obj.OBJ_Bench;
 import obj.OBJ_Bookshelf;
 import obj.OBJ_Bow_Default;
 import obj.OBJ_Casino;
 import obj.OBJ_Casino_Interior;
 import obj.OBJ_Cave_Entrance;
+import obj.OBJ_Chest;
 import obj.OBJ_CircleObject;
 import obj.OBJ_Hitbox;
 import obj.OBJ_House1;
@@ -49,10 +52,10 @@ public class AssetSetter {
 
         // INTRO ISLAND
 
-        gp.obj[mapNum][i] = new OBJ_Rowboat(gp);
+/*         gp.obj[mapNum][i] = new OBJ_Rowboat(gp);
         gp.obj[mapNum][i].worldX = 33*gp.tileSize;
         gp.obj[mapNum][i].worldY = 31*gp.tileSize;
-        i++;
+        i++; */
         gp.obj[mapNum][i] = new OBJ_Bow_Default(gp);
         gp.obj[mapNum][i].worldX = 30*gp.tileSize;
         gp.obj[mapNum][i].worldY = 31*gp.tileSize;
@@ -361,6 +364,15 @@ public class AssetSetter {
 
         // DUNGEON
 
+        gp.obj[mapNum][i] = new OBJ_Arrow(gp);
+        gp.obj[mapNum][i].worldX = 45*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 27*gp.tileSize;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Arrow(gp);
+        gp.obj[mapNum][i].worldX = 36*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 61*gp.tileSize;
+        i++;
+
         mapNum++;
         i = 0;
         
@@ -399,6 +411,10 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldY = 54*gp.tileSize+30;
         gp.obj[mapNum][i].solidArea.width = 60;
         gp.obj[mapNum][i].solidArea.height = 60;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Chest(gp);
+        gp.obj[mapNum][i].worldX = 55*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 50*gp.tileSize;
         i++;
         
         mapNum++;
@@ -495,6 +511,11 @@ public class AssetSetter {
         gp.npc[mapNum][i] = new NPC_Fear(gp);
         gp.npc[mapNum][i].worldX = 55 * gp.tileSize;
         gp.npc[mapNum][i].worldY = 30 * gp.tileSize;
+        i++;
+        gp.npc[mapNum][i] = new NPC_Sofa(gp);
+        gp.npc[mapNum][i].worldX = 51 * gp.tileSize;
+        gp.npc[mapNum][i].worldY = 77 * gp.tileSize;
+        i++;
         
         mapNum++;
         i=0;
@@ -541,10 +562,10 @@ public class AssetSetter {
         int mapNum = 0;
         int i = 0;
 
-        gp.monster[mapNum][i] = new MON_Slime(gp);
+/*         gp.monster[mapNum][i] = new MON_Slime(gp);
         gp.monster[mapNum][i].worldX = 33 * gp.tileSize;
         gp.monster[mapNum][i].worldY = 22 * gp.tileSize;
-        i++;
+        i++; */
 
         mapNum++;
         i = 0;
@@ -561,11 +582,13 @@ public class AssetSetter {
         int mapNum = 0;
         int i = 0;
 
-        gp.iTile[mapNum][i] = new IT_SmallRock(gp, 17, 30);
+        mapNum = gp.treasureislandMap;
+
+        gp.iTile[mapNum][i] = new IT_SmallRock(gp, 43, 68);
         i++;
-        gp.iTile[mapNum][i] = new IT_SmallRock(gp, 17, 29);
+        gp.iTile[mapNum][i] = new IT_SmallRock(gp, 43, 69);
         i++;
-        gp.iTile[mapNum][i] = new IT_SmallRock(gp, 17, 28);
+        gp.iTile[mapNum][i] = new IT_SmallRock(gp, 43, 70);
         i++;
     }
 }

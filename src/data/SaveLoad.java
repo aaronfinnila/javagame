@@ -25,7 +25,7 @@ import obj.OBJ_House1;
 import obj.OBJ_House1_Interior;
 import obj.OBJ_House2;
 import obj.OBJ_House2_Interior;
-import obj.OBJ_Key;
+import obj.OBJ_Creamor_Key;
 import obj.OBJ_Lantern_Ground;
 import obj.OBJ_Lantern_Inv;
 import obj.OBJ_Longsword;
@@ -76,7 +76,7 @@ public class SaveLoad {
             case OBJ_House1.objName: obj = new OBJ_House1(gp); break;
             case OBJ_House2_Interior.objName: obj = new OBJ_House2_Interior(gp); break;
             case OBJ_House2.objName: obj = new OBJ_House2(gp); break;
-            case OBJ_Key.objName: obj = new OBJ_Key(gp); break;
+            case OBJ_Creamor_Key.objName: obj = new OBJ_Creamor_Key(gp); break;
             case OBJ_Lantern_Ground.objName: obj = new OBJ_Lantern_Ground(gp); break;
             case OBJ_Questionmark.objName: obj = new OBJ_Questionmark(gp); break;
             case OBJ_Questionmark2.objName: obj = new OBJ_Questionmark2(gp); break;

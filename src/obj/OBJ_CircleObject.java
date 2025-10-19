@@ -22,7 +22,7 @@ public class OBJ_CircleObject extends Entity {
         this.gp = gp;
         name = objName;
         speed = 4;
-        type = type_animated_object;
+        type = type_nocollision_object;
         collision = false;
         direction = "still";
         down1 = setup("/res/objects/circleobject", gp.tileSize, gp.tileSize);
@@ -31,30 +31,33 @@ public class OBJ_CircleObject extends Entity {
     public void setAction() {
         
         if (onPath == true) {
-            System.out.println("result: " + result);
             direction = "right";
-            System.out.println(gp.player.gold);
             if (getGoalCol(this) > 56 && row < 5) {
                 row++;
-                worldX = 48*gp.tileSize;
+                worldX = (48*gp.tileSize)-24;
                 worldY += gp.tileSize;
             }
-            if ((getGoalCol(this)-48)+(row*10) == result) {              
-                System.out.println("circle STOPPED!!!");
+            if (worldX-(48*48)+(row*48)*10 == (result*48)-24) {
                 onPath = false;
                 direction = "still";
-/*                 worldX = 47*gp.tileSize+24;
-                worldY = 44*gp.tileSize; */
                 if (gp.ui.interactChoice == 3 && result % 14 == 0) {
+                    gp.ui.goldWon = 15*14;
                     gp.player.gold += 15*13;
-                } else if (gp.ui.interactChoice == 2 && result % 2 == 0) {
+                    gp.ui.winOrLose = "win";
+                } else if (gp.ui.interactChoice == 1 && ((result % 2 == 0 && row % 2 == 0) ||
+                (result % 2 != 0 && row % 2 != 0) )) {
+                    gp.ui.goldWon = 30;
                     gp.player.gold += 15;
-                } else if (gp.ui.interactChoice == 1 && result % 2 != 0) {
+                    gp.ui.winOrLose = "win";
+                } else if (gp.ui.interactChoice == 2 && ((result % 2 != 0 && row % 2 == 0) ||
+                (result % 2 == 0 && row % 2 != 0))) {
+                    gp.ui.goldWon = 30;
                     gp.player.gold += 15;
+                    gp.ui.winOrLose = "win";
                 } else {
                     gp.player.gold -= 15;
+                    gp.ui.winOrLose = "lose";
                 }
-                System.out.println("AFTER: " + gp.player.gold);
                 result = random.nextInt(60);
                 row = 0;
                 gp.ui.interactChoice = 0;

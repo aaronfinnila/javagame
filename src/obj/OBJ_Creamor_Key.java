@@ -3,16 +3,16 @@ package obj;
 import entity.Entity;
 import main.GamePanel;
 
-public class OBJ_Key extends Entity {
+public class OBJ_Creamor_Key extends Entity {
 
     public final static String objName = "Creamor Key";
 
-    public OBJ_Key(GamePanel gp) {
+    public OBJ_Creamor_Key(GamePanel gp) {
         
         super(gp);
 
         name = objName;
-        down1 = setup("/res/objects/key", gp.tileSize, gp.tileSize);
+        down1 = setup("/res/objects/creamorkey", gp.tileSize, gp.tileSize);
         image = down1;
         type = type_pickup_only;
         collision = true;

@@ -27,12 +27,12 @@ public class NPC_Rock extends Entity {
         soundNum = 25;
     }
 
-    public void getImage() {}
+public void getImage() {}
 
 public void setDialogue() {
 
     dialogues[0][0] = "What brings you to this place? I hope it's not that \ntreasure...";
-    dialogues[0][1] = "I've seen plenty youngins just like you, greener as\nthe grass of Midland.";
+    dialogues[0][1] = "I've seen plenty youngins just like you, green as\nthe grass of Midland.";
     dialogues[0][2] = "Most of their stories don't end too well...";
     dialogues[0][3] = "That place is beautiful on the surface, but underneath...";
     dialogues[0][4] = "I can tell you more when you're ready. Start by defeating\nthose slimes south of here.";
@@ -55,8 +55,10 @@ public void setDialogue() {
     dialogues[2][8] = "But I suppose you have no other choice than to go there and\nsee for yourself.";
     dialogues[2][9] = "There should be a boat for you at the southeastern\ncorner of this island.";
     dialogues[2][10] = "You can use it to get to the other island.";
-    dialogues[2][11] = "Best of luck kiddo...";
-    dialogues[2][12] = "You're gonna need it...";
+    dialogues[2][11] = "Make sure to find shelter before it gets dark.";
+    dialogues[2][12] = "You never know what's lurking out there...";
+    dialogues[2][13] = "Best of luck kiddo...";
+    dialogues[2][14] = "You're gonna need it...";
 }
 
 public void setAction() {}

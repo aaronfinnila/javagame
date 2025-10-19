@@ -21,9 +21,9 @@ public class OBJ_Coin extends Entity {
     }
     public void use(Entity entity) {
         
-        entity.gold += 5;
+        entity.gold += 50;
         gp.ui.showMessage("You found a Coin!");
-        gp.ui.showGoldMessage("You received 5 gold!");
+        gp.ui.showGoldMessage("You received 50 gold!");
         gp.playSE(1);
     }
 }

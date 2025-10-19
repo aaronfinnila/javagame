@@ -47,11 +47,12 @@ public class OBJ_Table extends Entity {
 
     public void speak() {
 
-        super.speak();
-        startDialogue(this, 0);
+        if (direction.equals("down")) {
+            startDialogue(this, 0);
+        } else {
+            startDialogue(this, 1);
+        }
     }
-
-    public void setAction() {}
 
     public void setDialogue() {
 

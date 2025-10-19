@@ -7,8 +7,6 @@ import java.awt.image.BufferedImage;
 import main.GamePanel;
 import main.KeyHandler;
 import obj.OBJ_Arrow;
-import obj.OBJ_Hammer;
-import obj.OBJ_Potion_Red;
 import obj.OBJ_Shield_Default;
 import obj.OBJ_Sword_Default;
 import tile.TileManager;
@@ -114,8 +112,6 @@ public class Player extends Entity {
         inventory.clear();
         inventory.add(currentWeapon);
         inventory.add(currentShield);
-        inventory.add(new OBJ_Hammer(gp));
-        inventory.add(new OBJ_Potion_Red(gp));
     }
 
     public int getAttack() {
@@ -437,10 +433,6 @@ public void getShootImage() {
 
             else if (type == type_static_object) {
                 gp.obj[gp.currentMap][i].use(this);
-            }
-
-            else if (type == type_animated_object) {
-                
             }
 
             // INVENTORY ITEMS

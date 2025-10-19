@@ -5,7 +5,7 @@ import java.util.Random;
 
 import entity.Entity;
 import main.GamePanel;
-import obj.OBJ_Key;
+import obj.OBJ_Creamor_Key;
 import obj.OBJ_Nightingale;
 public class NPC_Kalsu extends Entity {
 
@@ -93,7 +93,7 @@ public void setDialogue() {
 }
 
 public void setItems() {
-    inventory.add(new OBJ_Key(gp));
+    inventory.add(new OBJ_Creamor_Key(gp));
 }
 
 public void setAction() {
@@ -137,7 +137,6 @@ public void getInteractChoices() {
         startDialogue(this, 3);
         gp.ui.interactChoice = 0;
     } else if (gp.ui.interactChoice == 2) {
-        System.out.println(gp.keyH.spacePressed);
         gp.keyH.spacePressed = false;
         startDialogue(this, 2);
         gp.ui.interactChoice = 0;

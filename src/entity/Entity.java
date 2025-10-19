@@ -120,6 +120,7 @@ public class Entity {
     public final int type_animated_object = 11;
     public final int type_projectile = 12;
     public final int type_light = 13;
+    public final int type_nocollision_object = 14;
 
     public Entity(GamePanel gp) {
         this.gp = gp;
@@ -361,7 +362,7 @@ public class Entity {
 
     public void checkCollision() {
 
-        if (this.type != type_animated_object) {
+        if (this.type != type_nocollision_object) {
             collisionOn = false;
             gp.cChecker.checkTile(this);
             gp.cChecker.checkObject(this, false);
@@ -369,7 +370,6 @@ public class Entity {
             gp.cChecker.checkEntity(this, gp.monster);
             gp.cChecker.checkEntity(this, gp.iTile);
             boolean contactPlayer = gp.cChecker.checkPlayer(this);
-            
             
             if (this.type == type_monster && contactPlayer == true) {
                 damagePlayer(attack);

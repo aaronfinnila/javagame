@@ -57,9 +57,9 @@ public class OBJ_Arrow extends Projectile {
 
     public void use(Entity entity) {
         
-        gp.player.arrows++;
+        gp.player.arrows += 5;
         gp.ui.showMessage("You found Arrows!");
-        gp.ui.showGoldMessage("You received 1 Arrow!");
+        gp.ui.showGoldMessage("You received 5 Arrow!");
         gp.playSE(13);
     }
 }

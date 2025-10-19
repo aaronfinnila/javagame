@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import entity.Entity;
+import monster.MON_Slime;
 import obj.OBJ_Arrow;
 import obj.OBJ_Coin;
 import obj.OBJ_Heart;
@@ -44,10 +45,12 @@ public class UI {
     public int interactCol = 0;
     public int interactChoice = 0;
     public int playerItemIndex = 0;
+    public int goldWon = 0;
     int counter = 0;
     public int charIndex = 0;
     public String combinedText = "";
     public String tempDirection = "";
+    public String winOrLose = "";
     public Entity npc;
 
     public UI(GamePanel gp) {
@@ -495,10 +498,6 @@ public void drawDialogueScreen() {
             textSize = 20;
         } break;
     }
-
-/*     if (gp.ui.currentDialogue.equals("Oh, right! Because THIS one will be the one who gets\nit all! SURELY he won't end up like the rest, RIIGHT???")) {
-        textSize = 20;
-    } */
     
     // DIALOGUE 
 
@@ -510,8 +509,6 @@ public void drawDialogueScreen() {
     checkCasinoState();
     
     if (npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null) {
-        
-/*         currentDialogue = npc.dialogues[npc.dialogueSet][npc.dialogueIndex]; */
 
         char characters[] = npc.dialogues[npc.dialogueSet][npc.dialogueIndex].toCharArray();
 
@@ -544,7 +541,9 @@ public void drawDialogueScreen() {
 
         if (gp.gameState == gp.dialogueState) {
             gp.gameState = gp.playState;
-            npc.direction = tempDirection;
+            if (tempDirection.equals("") == false) {
+                npc.direction = tempDirection;
+            }
             tempDirection = "";
         }
     }
@@ -1049,6 +1048,7 @@ public void drawTransition() {
                 case 3: gp.playMusic(19); break;
                 case 4: gp.playMusic(20); break;
                 case 7: gp.playMusic(31); break;
+                case 8: gp.playMusic(34); break;
             }
         } else if (counter == 49 && gp.eManager.lighting.filterAlpha > 0.4f) {
             gp.gameState = gp.playState;
@@ -1065,6 +1065,7 @@ public void drawTransition() {
                 case 3: gp.playMusic(19); break;
                 case 4: gp.playMusic(20); break;
                 case 7: gp.playMusic(31); break;
+                case 8: gp.playMusic(34); break;
             }
             }
             gp.changeArea();
@@ -1361,31 +1362,44 @@ public void drawCasinoState() {
     g2.setFont(consola.deriveFont(25F));
     g2.setColor(Color.WHITE);
     String text = "Which one will you choose?";
-    g2.drawString(text,getXforCenteredText(text), (gp.tileSize*2)+16);
-    g2.setColor(Color.RED);
-    text = "RED";
-    if (interactChoice == 0 || interactChoice == 1) {
+
+    if (winOrLose.equals("") && interactChoice == 0) {
+        g2.drawString(text,getXforCenteredText(text), (gp.tileSize*2)+16);
+        g2.setColor(Color.RED);
+        text = "RED";
         g2.drawString(text,gp.tileSize*6, (gp.tileSize*10)-24);
-    }
-    g2.setColor(Color.BLACK);
-    text = "BLACK";
-    if (interactChoice == 0 || interactChoice == 2) {
+        g2.setColor(Color.BLACK);
+        text = "BLACK";
         g2.drawString(text,gp.tileSize*9, (gp.tileSize*10)-24);
-    }
-    g2.setColor(Color.GREEN);
-    text = "GREEN";
-    if (interactChoice == 0 || interactChoice == 3) {
+        g2.setColor(Color.GREEN);
+        text = "GREEN";
         g2.drawString(text,gp.tileSize*12, (gp.tileSize*10)-24);
-    }
+        g2.setColor(Color.white);
+        if (interactCol == 0) {
+            g2.drawString("___", (gp.tileSize*6), (gp.tileSize*10)-20);
+        } else if (interactCol == 1) {
+            g2.drawString("_____", (gp.tileSize*9), (gp.tileSize*10)-20);
+        } else if (interactCol == 2) {
+            g2.drawString("_____", (gp.tileSize*12), (gp.tileSize*10)-20);
+        }
+    } else if (interactChoice != 0) {
+        g2.setColor(Color.WHITE);
+        text = "Rolling...";
+        g2.drawString(text,getXforCenteredText(text), (gp.tileSize*2)+16);
 
-    g2.setColor(Color.white);
-
-    if (interactCol == 0) {
-        g2.drawString("___", (gp.tileSize*6), (gp.tileSize*10)-20);
-    } else if (interactCol == 1) {
-        g2.drawString("_____", (gp.tileSize*9), (gp.tileSize*10)-20);
-    } else if (interactCol == 2) {
-        g2.drawString("_____", (gp.tileSize*12), (gp.tileSize*10)-20);
+        if (interactCol == 0) {
+            g2.setColor(Color.RED);
+            text = "RED";
+            g2.drawString(text,gp.tileSize*6, (gp.tileSize*10)-24);
+        } else if (interactCol == 1) {
+            g2.setColor(Color.BLACK);
+            text = "BLACK";
+            g2.drawString(text,gp.tileSize*9, (gp.tileSize*10)-24);
+        } else if (interactCol == 2) {
+            g2.setColor(Color.GREEN);
+            text = "GREEN";
+            g2.drawString(text,gp.tileSize*12, (gp.tileSize*10)-24);
+        }
     }
 
     if (interactChoice != 0) {
@@ -1393,7 +1407,20 @@ public void drawCasinoState() {
         gp.animateList.getFirst().onPath = true;
         gp.animateList.getFirst().update();
         gp.animateList.getFirst().setAction();
+
+
     }
+
+    if (winOrLose.equals("win")) {
+        g2.setColor(Color.GREEN);
+        text = "CONGRATULATIONS! YOU WON " + goldWon + " GOLD!";
+        g2.drawString(text,getXforCenteredText(text), (gp.tileSize*2)+16);
+    } else if (winOrLose.equals("lose")) {
+        g2.setColor(Color.RED);
+        text = "You lost. Better luck next time!";
+        g2.drawString(text,getXforCenteredText(text), (gp.tileSize*2)+16);
+    }
+
 }
 
 public void checkInteractState() {
@@ -1426,6 +1453,58 @@ public void checkInteractState() {
             if (npc.dialogueSet == 3) {
                 npc.dialogueSet = 0;
             }
+            if (npc.dialogueSet == 5) {
+                npc.dialogueSet = 0;
+            }
+            if (npc.dialogueSet == 6 && npc.dialogueIndex == 2) {
+                gp.keyH.spacePressed = false;
+                gp.gameState = gp.interactState;
+                interactCol = 1;
+            }
+            if (npc.dialogueSet == 7 && npc.dialogueIndex == 2) {
+                gp.keyH.spacePressed = false;
+                gp.gameState = gp.interactState;
+                interactCol = 1;
+            } break;
+        case "Percival":
+            if (npc.dialogueSet == 1 && npc.dialogueIndex == 4) {
+                gp.keyH.spacePressed = false;
+                gp.gameState = gp.interactState;
+                interactCol = 1;
+            } break;
+        case "Sofa":
+            if (npc.dialogueSet == 0 && npc.dialogueIndex == 3) {
+                gp.keyH.spacePressed = false;
+                gp.monster[gp.currentMap][0] = new MON_Slime(gp);
+                gp.monster[gp.currentMap][0].worldX = 51*gp.tileSize;
+                gp.monster[gp.currentMap][0].worldY = 73*gp.tileSize;
+                gp.monster[gp.currentMap][0].maxHealth = 10;
+                gp.monster[gp.currentMap][0].health = 10;
+                
+                gp.monster[gp.currentMap][1] = new MON_Slime(gp);
+                gp.monster[gp.currentMap][1].worldX = 57*gp.tileSize;
+                gp.monster[gp.currentMap][1].worldY = 82*gp.tileSize;
+                gp.monster[gp.currentMap][1].maxHealth = 10;
+                gp.monster[gp.currentMap][1].health = 10;
+                
+                gp.monster[gp.currentMap][2] = new MON_Slime(gp);
+                gp.monster[gp.currentMap][2].worldX = 52*gp.tileSize;
+                gp.monster[gp.currentMap][2].worldY = 82*gp.tileSize;
+                gp.monster[gp.currentMap][2].maxHealth = 10;
+                gp.monster[gp.currentMap][2].health = 10;
+                
+                gp.monster[gp.currentMap][3] = new MON_Slime(gp);
+                gp.monster[gp.currentMap][3].worldX = 49*gp.tileSize;
+                gp.monster[gp.currentMap][3].worldY = 76*gp.tileSize;
+                gp.monster[gp.currentMap][3].maxHealth = 10;
+                gp.monster[gp.currentMap][3].health = 10;
+                
+                gp.monster[gp.currentMap][4] = new MON_Slime(gp);
+                gp.monster[gp.currentMap][4].worldX = 60*gp.tileSize;
+                gp.monster[gp.currentMap][4].worldY = 73*gp.tileSize;
+                gp.monster[gp.currentMap][4].maxHealth = 10;
+                gp.monster[gp.currentMap][4].health = 10;
+            } break;
     }
 }
 
@@ -1433,6 +1512,10 @@ public void checkCasinoState() {
     switch (npc.name) {
         case "Edward":
             if (npc.dialogueSet == 1 && npc.dialogueIndex == 1) {
+                winOrLose = "";
+                goldWon = 0;
+                gp.animateList.get(0).worldX = 47*gp.tileSize+24;
+                gp.animateList.get(0).worldY = 44*gp.tileSize;
                 gp.keyH.spacePressed = false;
                 gp.gameState = gp.casinoState;
                 interactCol = 1;

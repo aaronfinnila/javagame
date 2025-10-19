@@ -48,6 +48,16 @@ public void setDialogue() {
     dialogues[3][0] = "";
 
     dialogues[4][0] = "Ah, it seems that you don't\nhave enough gold to play...";
+
+    dialogues[5][0] = "";
+
+    dialogues[6][0] = "Congratulations! It seems you've\nwon!";
+    dialogues[6][1] = "Would you like to play again?";
+    dialogues[6][2] = "";
+
+    dialogues[7][0] = "Oh, looks like you've lost...";
+    dialogues[7][1] = "But remember, Midland wasn't built\nin a day! Care to try again?";
+    dialogues[7][2] = "";
 }
 
 public void getInteractChoices() {
@@ -55,7 +65,7 @@ public void getInteractChoices() {
     if (gp.ui.interactChoice == 1) {
         gp.keyH.spacePressed = false;
         if (gp.player.gold < 15) {
-            startDialogue(this, 3);
+            startDialogue(this, 4);
         } else {
             startDialogue(this, 1);
         }
