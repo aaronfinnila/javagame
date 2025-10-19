@@ -507,15 +507,19 @@ public class KeyHandler implements KeyListener{
     public void casinoState(int code) {
 
         if (code == KeyEvent.VK_A) {
-            if (gp.ui.interactCol != 0) {
-                gp.ui.interactCol--;
-                gp.playSE(10);
+            if (gp.ui.interactChoice == 0) {
+                if (gp.ui.interactCol != 0) {
+                    gp.ui.interactCol--;
+                    gp.playSE(10);
+                }
             }
         }
         if (code == KeyEvent.VK_D) {
-            if (gp.ui.interactCol != 2) {
-                gp.ui.interactCol++;
-                gp.playSE(10);
+            if (gp.ui.interactChoice == 0) {
+                if (gp.ui.interactCol != 2) {
+                    gp.ui.interactCol++;
+                    gp.playSE(10);
+                }
             }
         }
         if (code == KeyEvent.VK_SPACE) {

@@ -57,7 +57,6 @@ public void getInteractChoices() {
         if (gp.player.gold < 15) {
             startDialogue(this, 3);
         } else {
-            gp.player.gold -= 15;
             startDialogue(this, 1);
         }
         gp.ui.interactChoice = 0;

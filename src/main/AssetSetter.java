@@ -411,7 +411,7 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldY = 42*gp.tileSize-12;
         i++;
         gp.animateList.add(new OBJ_CircleObject(gp));
-        gp.animateList.get(0).worldX = 48*gp.tileSize;
+        gp.animateList.get(0).worldX = 47*gp.tileSize+24;
         gp.animateList.get(0).worldY = 44*gp.tileSize;
         i++;
     }

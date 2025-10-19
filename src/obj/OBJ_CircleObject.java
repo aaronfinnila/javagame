@@ -1,6 +1,7 @@
 package obj;
 
 import java.awt.Graphics2D;
+import java.util.Random;
 
 import entity.Entity;
 import main.GamePanel;
@@ -11,6 +12,8 @@ public class OBJ_CircleObject extends Entity {
 
     GamePanel gp;
     int row = 0;
+    Random random = new Random();
+    int result = random.nextInt(60);
 
     public OBJ_CircleObject(GamePanel gp) {
         
@@ -28,18 +31,33 @@ public class OBJ_CircleObject extends Entity {
     public void setAction() {
         
         if (onPath == true) {
-            System.out.println(direction);
+            System.out.println("result: " + result);
             direction = "right";
-            System.out.println(getGoalCol(this));
-            if (getGoalCol(this) > 56 && row < 6) {
+            System.out.println(gp.player.gold);
+            if (getGoalCol(this) > 56 && row < 5) {
                 row++;
                 worldX = 48*gp.tileSize;
                 worldY += gp.tileSize;
             }
-            if (row == 6) {
+            if ((getGoalCol(this)-48)+(row*10) == result) {              
                 System.out.println("circle STOPPED!!!");
                 onPath = false;
                 direction = "still";
+/*                 worldX = 47*gp.tileSize+24;
+                worldY = 44*gp.tileSize; */
+                if (gp.ui.interactChoice == 3 && result % 14 == 0) {
+                    gp.player.gold += 15*13;
+                } else if (gp.ui.interactChoice == 2 && result % 2 == 0) {
+                    gp.player.gold += 15;
+                } else if (gp.ui.interactChoice == 1 && result % 2 != 0) {
+                    gp.player.gold += 15;
+                } else {
+                    gp.player.gold -= 15;
+                }
+                System.out.println("AFTER: " + gp.player.gold);
+                result = random.nextInt(60);
+                row = 0;
+                gp.ui.interactChoice = 0;
             }
         } else {
 

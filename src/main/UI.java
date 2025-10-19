@@ -1351,7 +1351,7 @@ public void drawCasinoState() {
                 g2.setColor(Color.BLACK);
             }
             int num = ((10*(j-3))+(i-5));
-            if (num % 14 == 0) {
+            if (num % 14 == 0 && num != 0) {
                 g2.setColor(Color.GREEN);
             }
             g2.fillRect(x, y, width, height);
@@ -1364,13 +1364,19 @@ public void drawCasinoState() {
     g2.drawString(text,getXforCenteredText(text), (gp.tileSize*2)+16);
     g2.setColor(Color.RED);
     text = "RED";
-    g2.drawString(text,gp.tileSize*6, (gp.tileSize*10)-24);
+    if (interactChoice == 0 || interactChoice == 1) {
+        g2.drawString(text,gp.tileSize*6, (gp.tileSize*10)-24);
+    }
     g2.setColor(Color.BLACK);
     text = "BLACK";
-    g2.drawString(text,gp.tileSize*9, (gp.tileSize*10)-24);
+    if (interactChoice == 0 || interactChoice == 2) {
+        g2.drawString(text,gp.tileSize*9, (gp.tileSize*10)-24);
+    }
     g2.setColor(Color.GREEN);
     text = "GREEN";
-    g2.drawString(text,gp.tileSize*12, (gp.tileSize*10)-24);
+    if (interactChoice == 0 || interactChoice == 3) {
+        g2.drawString(text,gp.tileSize*12, (gp.tileSize*10)-24);
+    }
 
     g2.setColor(Color.white);
 
@@ -1383,6 +1389,7 @@ public void drawCasinoState() {
     }
 
     if (interactChoice != 0) {
+        interactCol = interactChoice - 1;
         gp.animateList.getFirst().onPath = true;
         gp.animateList.getFirst().update();
         gp.animateList.getFirst().setAction();
