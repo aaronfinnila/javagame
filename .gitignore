@@ -1,2 +1,6 @@
 config.txt
 *.log
+.ico
+.jar
+.iml
+runtime

@@ -40,7 +40,7 @@ public class OBJ_CircleObject extends Entity {
             if (worldX-(48*48)+(row*48)*10 == (result*48)-24) {
                 onPath = false;
                 direction = "still";
-                if (gp.ui.interactChoice == 3 && result % 14 == 0) {
+                if (gp.ui.interactChoice == 3 && result % 14 == 0 && result != 0) {
                     gp.ui.goldWon = 15*14;
                     gp.player.gold += 15*13;
                     gp.ui.winOrLose = "win";

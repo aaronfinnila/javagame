@@ -1049,6 +1049,7 @@ public void drawTransition() {
                 case 4: gp.playMusic(20); break;
                 case 7: gp.playMusic(31); break;
                 case 8: gp.playMusic(34); break;
+                case 9: gp.playMusic(36); break;
             }
         } else if (counter == 49 && gp.eManager.lighting.filterAlpha > 0.4f) {
             gp.gameState = gp.playState;
@@ -1066,6 +1067,7 @@ public void drawTransition() {
                 case 4: gp.playMusic(20); break;
                 case 7: gp.playMusic(31); break;
                 case 8: gp.playMusic(34); break;
+                case 9: gp.playMusic(36); break;
             }
             }
             gp.changeArea();

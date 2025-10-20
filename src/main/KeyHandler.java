@@ -95,6 +95,7 @@ public class KeyHandler implements KeyListener{
                     case 4: gp.playMusic(20); break;
                     case 7: gp.playMusic(31); break;
                     case 8: gp.playMusic(34); break;
+                    case 9: gp.playMusic(36); break;
                 }
             }
             if (gp.ui.commandNumber == 2) {
@@ -199,6 +200,7 @@ public class KeyHandler implements KeyListener{
                 case 6: gp.playMusic(20); break;
                 case 7: gp.playMusic(31); break;
                 case 8: gp.playMusic(34); break;
+                case 9: gp.playMusic(36); break;
             }
         }
     }

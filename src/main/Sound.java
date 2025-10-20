@@ -55,6 +55,7 @@ public class Sound {
         soundURL[33] = getClass().getResource("/res/sound/percivaltext.wav");
         soundURL[34] = getClass().getResource("/res/sound/house3.wav");
         soundURL[35] = getClass().getResource("/res/sound/sofatext.wav");
+        soundURL[36] = getClass().getResource("/res/sound/volcanovillage.wav");
     }
 
     public void setFile(int i) {

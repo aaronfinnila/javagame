@@ -1,6 +1,5 @@
 package main;
 
-import monster.MON_Slime;
 import npc.NPC_Claire;
 import npc.NPC_DialogueHolder;
 import npc.NPC_Edward;
@@ -11,7 +10,6 @@ import npc.NPC_Percival;
 import npc.NPC_Rock;
 import npc.NPC_Rubert;
 import npc.NPC_Sofa;
-import obj.OBJ_Arrow;
 import obj.OBJ_Bench;
 import obj.OBJ_Bookshelf;
 import obj.OBJ_Bow_Default;
@@ -364,15 +362,6 @@ public class AssetSetter {
 
         // DUNGEON
 
-        gp.obj[mapNum][i] = new OBJ_Arrow(gp);
-        gp.obj[mapNum][i].worldX = 45*gp.tileSize;
-        gp.obj[mapNum][i].worldY = 27*gp.tileSize;
-        i++;
-        gp.obj[mapNum][i] = new OBJ_Arrow(gp);
-        gp.obj[mapNum][i].worldX = 36*gp.tileSize;
-        gp.obj[mapNum][i].worldY = 61*gp.tileSize;
-        i++;
-
         mapNum++;
         i = 0;
         
@@ -559,13 +548,13 @@ public class AssetSetter {
 
     public void setMonster() {
 
-        int mapNum = 0;
+/*         int mapNum = 0;
         int i = 0;
 
-/*         gp.monster[mapNum][i] = new MON_Slime(gp);
+        gp.monster[mapNum][i] = new MON_Slime(gp);
         gp.monster[mapNum][i].worldX = 33 * gp.tileSize;
         gp.monster[mapNum][i].worldY = 22 * gp.tileSize;
-        i++; */
+        i++;
 
         mapNum++;
         i = 0;
@@ -574,7 +563,7 @@ public class AssetSetter {
         i = 0;
 
         mapNum++;
-        i = 0;
+        i = 0; */
     }
 
     public void setInteractiveTile() {
