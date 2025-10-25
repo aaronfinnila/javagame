@@ -1,5 +1,6 @@
 package main;
 
+import monster.MON_Slime;
 import npc.NPC_Claire;
 import npc.NPC_DialogueHolder;
 import npc.NPC_Edward;
@@ -50,10 +51,10 @@ public class AssetSetter {
 
         // INTRO ISLAND
 
-/*         gp.obj[mapNum][i] = new OBJ_Rowboat(gp);
+        gp.obj[mapNum][i] = new OBJ_Rowboat(gp);
         gp.obj[mapNum][i].worldX = 33*gp.tileSize;
         gp.obj[mapNum][i].worldY = 31*gp.tileSize;
-        i++; */
+        i++;
         gp.obj[mapNum][i] = new OBJ_Bow_Default(gp);
         gp.obj[mapNum][i].worldX = 30*gp.tileSize;
         gp.obj[mapNum][i].worldY = 31*gp.tileSize;
@@ -548,22 +549,13 @@ public class AssetSetter {
 
     public void setMonster() {
 
-/*         int mapNum = 0;
+        int mapNum = 0;
         int i = 0;
 
         gp.monster[mapNum][i] = new MON_Slime(gp);
         gp.monster[mapNum][i].worldX = 33 * gp.tileSize;
         gp.monster[mapNum][i].worldY = 22 * gp.tileSize;
         i++;
-
-        mapNum++;
-        i = 0;
-        
-        mapNum++;
-        i = 0;
-
-        mapNum++;
-        i = 0; */
     }
 
     public void setInteractiveTile() {
