@@ -1,1 +1,1 @@
-2D adventure game made in Java. First programming project, made with guidance of RyiSnow 2D game tutorial on YouTube.
+2D adventure game made in Java. Made with guidance of RyiSnow 2D game tutorial on YouTube. Playable version available on awsy.itch.io/rilk
