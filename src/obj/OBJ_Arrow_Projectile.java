@@ -4,13 +4,13 @@ import entity.Entity;
 import entity.Projectile;
 import main.GamePanel;
 
-public class OBJ_Arrow extends Projectile {
+public class OBJ_Arrow_Projectile extends Projectile {
 
-    public final static String objName = "Arrow";
+    public final static String objName = "Arrow_Projectile";
 
     GamePanel gp;
 
-    public OBJ_Arrow(GamePanel gp) {
+    public OBJ_Arrow_Projectile(GamePanel gp) {
         
         super(gp);
         this.gp = gp;
@@ -20,7 +20,6 @@ public class OBJ_Arrow extends Projectile {
         maxHealth = 80;
         health = maxHealth;
         attack = 1;
-        description = name + "\n\nA quiver of 5 arrows.";
         useCost = 1;
         price = 15;
         type = type_projectile;
@@ -59,7 +58,7 @@ public class OBJ_Arrow extends Projectile {
         
         gp.player.arrows += 5;
         gp.ui.showMessage("You found Arrows!");
-        gp.ui.showGoldMessage("You received 5 Arrow!");
+        gp.ui.showGoldMessage("You received 5 Arrows!");
         gp.playSE(13);
     }
 }

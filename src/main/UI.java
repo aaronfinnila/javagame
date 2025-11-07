@@ -11,7 +11,7 @@ import java.io.InputStream;
 
 import entity.Entity;
 import monster.MON_Slime;
-import obj.OBJ_Arrow;
+import obj.OBJ_Arrow_Projectile;
 import obj.OBJ_Coin;
 import obj.OBJ_Heart;
 
@@ -74,7 +74,7 @@ public class UI {
         heart_empty = heart.image3;
         heart_half = heart.image2;
         heart_full = heart.image;
-        Entity arrowEnt = new OBJ_Arrow(gp);
+        Entity arrowEnt = new OBJ_Arrow_Projectile(gp);
         arrow = arrowEnt.image;
         Entity goldCoin = new OBJ_Coin(gp);
         coin = goldCoin.down1;

@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 import main.GamePanel;
 import main.KeyHandler;
-import obj.OBJ_Arrow;
+import obj.OBJ_Arrow_Projectile;
 import obj.OBJ_Shield_Default;
 import obj.OBJ_Sword_Default;
 import tile.TileManager;
@@ -50,7 +50,7 @@ public class Player extends Entity {
         speed = defaultSpeed;
         maxHealth = 6;
         health = maxHealth;
-        arrows = 50;
+        arrows = 0;
         level = 1;
         strength = 1;
         dexterity = 1;
@@ -62,7 +62,7 @@ public class Player extends Entity {
         currentWeapon = new OBJ_Sword_Default(gp);
         currentShield = new OBJ_Shield_Default(gp);
         currentLight = null;
-        projectile = new OBJ_Arrow(gp);
+        projectile = new OBJ_Arrow_Projectile(gp);
         attack = getAttack();
         defense = getDefense();
         getImage();

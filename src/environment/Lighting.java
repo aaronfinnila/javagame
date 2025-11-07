@@ -152,9 +152,9 @@ public class Lighting {
         }
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 
-        // DAYSTATE DEBUG
+        // DAYSTATE ADMIN DEBUG
         
-        String state = "";
+/*         String state = "";
 
         switch (dayState) {
             case day: {state = "Day"; break;}
@@ -166,6 +166,6 @@ public class Lighting {
         g2.setFont(g2.getFont().deriveFont(50f));
         g2.drawString(state, gp.screenWidth-gp.tileSize*3, gp.screenHeight-gp.tileSize*3);
         String filt = Float.toString(filterAlpha);
-        g2.drawString(filt, gp.screenWidth-gp.tileSize*3, gp.screenHeight-gp.tileSize*2);
+        g2.drawString(filt, gp.screenWidth-gp.tileSize*3, gp.screenHeight-gp.tileSize*2); */
     }
 }

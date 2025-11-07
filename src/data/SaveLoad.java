@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 
 import main.GamePanel;
-import obj.OBJ_Arrow;
+import obj.OBJ_Arrow_Projectile;
 import obj.OBJ_Bench;
 import obj.OBJ_Bookshelf;
 import obj.OBJ_Boots;
@@ -65,7 +65,7 @@ public class SaveLoad {
             case OBJ_Potion_Red.objName: obj = new OBJ_Potion_Red(gp); break;
             case OBJ_Shield_Default.objName: obj = new OBJ_Shield_Default(gp); break;
             case OBJ_Lantern_Inv.objName: obj = new OBJ_Lantern_Inv(gp); break;
-            case OBJ_Arrow.objName: obj = new OBJ_Arrow(gp); break;
+            case OBJ_Arrow_Projectile.objName: obj = new OBJ_Arrow_Projectile(gp); break;
             case OBJ_Bench.objName: obj = new OBJ_Bench(gp); break;
             case OBJ_Boots.objName: obj = new OBJ_Boots(gp); break;
             case OBJ_Chest.objName: obj = new OBJ_Chest(gp); break;

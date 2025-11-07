@@ -56,7 +56,7 @@ public void setDialogue() {
     dialogues[2][3] = "(sigh)\n";
     dialogues[2][4] = "Alright then, it's an old book.";
     dialogues[2][5] = "Has to do with the history of\nthis place.";
-    dialogues[2][6] = "Now go off and harass some-\nbody else, will you?";
+    dialogues[2][6] = "Now go off and harass somebody\nelse, will you?";
 
     dialogues[3][0] = "What happened to the peace\nand quiet in this darn village?";
 

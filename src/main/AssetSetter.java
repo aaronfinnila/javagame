@@ -50,10 +50,13 @@ public class AssetSetter {
 
         // INTRO ISLAND
 
+        // ADMIN OBJECTS
+
 /*         gp.obj[mapNum][i] = new OBJ_Rowboat(gp);
         gp.obj[mapNum][i].worldX = 33*gp.tileSize;
         gp.obj[mapNum][i].worldY = 31*gp.tileSize;
-        i++; */
+        i++;
+
         gp.obj[mapNum][i] = new OBJ_Bow_Default(gp);
         gp.obj[mapNum][i].worldX = 30*gp.tileSize;
         gp.obj[mapNum][i].worldY = 31*gp.tileSize;
@@ -69,7 +72,7 @@ public class AssetSetter {
         gp.obj[mapNum][i] = new OBJ_Longsword(gp);
         gp.obj[mapNum][i].worldX = 31*gp.tileSize;
         gp.obj[mapNum][i].worldY = 24*gp.tileSize;
-        i++;
+        i++; */
 
         mapNum++;
         i = 0;
