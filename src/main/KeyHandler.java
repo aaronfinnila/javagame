@@ -153,7 +153,7 @@ public class KeyHandler implements KeyListener{
 
         // ADMIN KEYBINDS
 
-/*         if (code == KeyEvent.VK_M) {
+        if (code == KeyEvent.VK_M) {
             if (gp.musicPlaying == true) {
                 gp.stopMusic();
             } else if (gp.musicPlaying == false) {
@@ -176,7 +176,7 @@ public class KeyHandler implements KeyListener{
             else if (showDebug == true) {
                 showDebug = false;
             }
-        } */
+        }
     }
 
     public void pauseState(int code) {

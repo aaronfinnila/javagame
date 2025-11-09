@@ -86,7 +86,7 @@ public class EventHandler {
             }
             if (hit(gp.treasureislandMap,66,27,"up") == true && gp.keyH.ePressed == true) {
                 if (gp.dayState().equals("night")) {
-                    if (gp.player.hasKey > 0) {
+                    if (gp.player.hasCreamorKey == true) {
                         gp.player.lightUpdated = true;
                         teleportPlayer(gp.storeMapNight, 47, 56, gp.dungeon);
                     } else {

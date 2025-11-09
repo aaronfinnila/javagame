@@ -19,6 +19,8 @@ public class Player extends Entity {
     public boolean lightUpdated = false;
     public final int screenX;
     public final int screenY;
+    public boolean hasCreamorKey = false;
+    public boolean hasChestKey = false;
 
     public Player(GamePanel gp, KeyHandler keyH, TileManager tileM) {
 
@@ -58,7 +60,6 @@ public class Player extends Entity {
         exp = 0;
         nextLevelExp = 5;
         gold = 50;
-        hasKey = 0;
         currentWeapon = new OBJ_Sword_Default(gp);
         currentShield = new OBJ_Shield_Default(gp);
         currentLight = null;
@@ -101,7 +102,6 @@ public class Player extends Entity {
         spriteNum = 1;
         dialogueIndex = 0;
         dyingCounter = 0;
-        hasKey = 0;
         hpBarCounter =
         attackAvailableCounter = 0;
         knockBackCounter = 0;
@@ -439,7 +439,7 @@ public void getShootImage() {
 
             else if (type == type_sword || type == type_shield || type == type_shoot || type == type_consumable || type == type_hammer || type == type_light) {
                 if (inventory.size() != maxInventorySize) {
-                    if (objectName == "Creamor Key") {hasKey++;}
+                    if (objectName == "Creamor Key") {hasCreamorKey = true;}
                     inventory.add(gp.obj[gp.currentMap][i]);
                     gp.playSE(1);
                     text = "You got a " + objectName + "!";

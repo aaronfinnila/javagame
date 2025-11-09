@@ -22,14 +22,14 @@ public class OBJ_Chest extends Entity {
 
     public void use(Entity entity) {
 
-        boolean playerHasKey = false;
+        boolean playerHasChestKey = false;
         for (Entity e : gp.player.inventory) {
             if (e.name.equals("Chest Key")) {
-                playerHasKey = true;
+                playerHasChestKey = true;
             }
         }
         
-            if (playerHasKey == true && gp.keyH.ePressed == true && this.usedObject == false) {
+            if (playerHasChestKey == true && gp.keyH.ePressed == true && this.usedObject == false) {
                 gp.playSE(12);
                 gp.ui.showMessage("You found an item!");
                 for (int i = 0; i < gp.obj.length; i++) {
@@ -44,7 +44,7 @@ public class OBJ_Chest extends Entity {
                 this.worldY -= 15;
                 solidArea.height += 10;
                 this.usedObject = true;
-                entity.hasKey--;
+                gp.player.hasChestKey = false;
                 for (Entity e : gp.player.inventory) {
                     if (e.name.equals("Chest Key")) {
                         gp.player.inventory.remove(e);
@@ -52,7 +52,7 @@ public class OBJ_Chest extends Entity {
                     }
                 }
             } else {
-                if (this.usedObject == false && gp.player.hasKey == 0 && gp.keyH.ePressed == true) {
+                if (this.usedObject == false && gp.player.hasChestKey == false && gp.keyH.ePressed == true) {
                     gp.ui.showMessage("You need a key!");
                 }
             }

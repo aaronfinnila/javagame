@@ -129,8 +129,9 @@ public void getInteractChoices() {
         }
         inventory.add(gp.player.inventory.get(gp.ui.playerItemIndex));
         gp.player.inventory.add(inventory.getFirst());
-        gp.player.hasKey++;
+        gp.player.hasCreamorKey = true;
         gp.player.inventory.remove(gp.ui.playerItemIndex);
+        gp.player.getAttackImage();
         inventory.remove(inventory.getFirst());
         gp.keyH.spacePressed = false;
         gp.playSE(1);

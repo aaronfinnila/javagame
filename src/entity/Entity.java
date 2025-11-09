@@ -60,7 +60,6 @@ public class Entity {
     public int dialogueIndex = 0;
     public int dialogueSet = -1;
     public int dyingCounter = 0;
-    public int hasKey = 0;
     public int hpBarCounter;
     public int attackAvailableCounter = 0;
     public int knockBackCounter = 0;
