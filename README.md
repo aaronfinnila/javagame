@@ -19,7 +19,7 @@ Features several explorable areas, combat, story, NPC interactions, secrets and 
 - A casino where you can gamble your (in-game) money
 
 ## Playing the Game
-The game files can be downloaded for free [here](https://www.awsy.itch.io/rilk).
+The game files can be downloaded for free [here](https://awsy.itch.io/rilk).
 When trying to download the game you will be prompted if you wish to donate. 
 This is completely optional, and can be skipped by clicking on "No thanks, just take me to the downloads".
 The game controls are keyboard only. Movement works with the WASD keys, and other controls can be found by pressing the ESC key and navigating
@@ -29,5 +29,6 @@ to the controls view.
 ## Credits & Acknowledgements
 Original tutorial / guidance inspired by RyiSnow’s 2D Java Game videos (YouTube).
 [Here](https://www.youtube.com/@RyiSnow) is a link to his channel.
+
 
 
