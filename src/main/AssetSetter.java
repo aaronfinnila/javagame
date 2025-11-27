@@ -13,7 +13,6 @@ import npc.NPC_Sofa;
 import obj.OBJ_Bench;
 import obj.OBJ_Bookshelf;
 import obj.OBJ_Boots;
-import obj.OBJ_Bow_Default;
 import obj.OBJ_Casino;
 import obj.OBJ_Casino_Interior;
 import obj.OBJ_Cave_Entrance;
@@ -28,9 +27,6 @@ import obj.OBJ_House2;
 import obj.OBJ_House2_Interior;
 import obj.OBJ_House3;
 import obj.OBJ_House3_Interior;
-import obj.OBJ_Lantern_Inv;
-import obj.OBJ_Longsword;
-import obj.OBJ_Nightingale;
 import obj.OBJ_Rowboat;
 import obj.OBJ_Store;
 import obj.OBJ_Store_Interior;
@@ -55,7 +51,7 @@ public class AssetSetter {
 
         // ADMIN OBJECTS
 
-        gp.obj[mapNum][i] = new OBJ_Rowboat(gp);
+/*         gp.obj[mapNum][i] = new OBJ_Rowboat(gp);
         gp.obj[mapNum][i].worldX = 33*gp.tileSize;
         gp.obj[mapNum][i].worldY = 31*gp.tileSize;
         i++;
@@ -75,7 +71,7 @@ public class AssetSetter {
         gp.obj[mapNum][i] = new OBJ_Longsword(gp);
         gp.obj[mapNum][i].worldX = 31*gp.tileSize;
         gp.obj[mapNum][i].worldY = 24*gp.tileSize;
-        i++;
+        i++; */
 
         mapNum++;
         i = 0;

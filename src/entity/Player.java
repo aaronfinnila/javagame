@@ -7,8 +7,6 @@ import java.awt.image.BufferedImage;
 import main.GamePanel;
 import main.KeyHandler;
 import obj.OBJ_Arrow_Projectile;
-import obj.OBJ_Diamond_Heart;
-import obj.OBJ_Hammer;
 import obj.OBJ_Shield_Default;
 import obj.OBJ_Sword_Default;
 import tile.TileManager;
@@ -115,11 +113,6 @@ public class Player extends Entity {
         inventory.clear();
         inventory.add(currentWeapon);
         inventory.add(currentShield);
-        inventory.add(new OBJ_Diamond_Heart(gp));
-        inventory.add(new OBJ_Diamond_Heart(gp));
-        inventory.add(new OBJ_Diamond_Heart(gp));
-        inventory.add(new OBJ_Hammer(gp));
-/*         diamondHeartCount = 3; */
     }   
 
     public int getAttack() {
