@@ -25,6 +25,7 @@ public class NPC_Rock extends Entity {
         spawn1 = false;
         spawn2 = false;
         soundNum = 25;
+        solidArea.width = 48*2;
     }
 
 public void getImage() {}
@@ -71,11 +72,11 @@ public void speak() {
         dialogueSet--;
     }
 
-    if (gp.player.level == 2) {
-        dialogueSet = 1;;
+    if (gp.monster[0][0] == null && gp.monster[0][1] == null && dialogueSet == 0 && spawn1 == true) {
+        dialogueSet = 1;
     }
 
-    if (gp.player.level == 3) {
+    if (gp.monster[0][0] == null && gp.monster[0][1] == null && dialogueSet == 1 && spawn2 == true) {
         dialogueSet = 2;
     }
 
@@ -88,10 +89,6 @@ public void speak() {
         gp.monster[0][1].worldX = 22*gp.tileSize;
         gp.monster[0][1].worldY = 32*gp.tileSize;
         
-        gp.monster[0][2] = new MON_Slime(gp);
-        gp.monster[0][2].worldX = 24*gp.tileSize;
-        gp.monster[0][2].worldY = 32*gp.tileSize;
-        
         spawn1 = true;
     }
 
@@ -103,14 +100,6 @@ public void speak() {
         gp.monster[0][1] = new MON_Slime(gp);
         gp.monster[0][1].worldX = 22*gp.tileSize;
         gp.monster[0][1].worldY = 32*gp.tileSize;
-        
-        gp.monster[0][2] = new MON_Slime(gp);
-        gp.monster[0][2].worldX = 24*gp.tileSize;
-        gp.monster[0][2].worldY = 32*gp.tileSize;
-        
-        gp.monster[0][3] = new MON_Slime(gp);
-        gp.monster[0][3].worldX = 26*gp.tileSize;
-        gp.monster[0][3].worldY = 32*gp.tileSize;
         
         gp.monster[0][4] = new MON_Slime(gp);
         gp.monster[0][4].worldX = 28*gp.tileSize;

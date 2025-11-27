@@ -53,6 +53,9 @@ public class KeyHandler implements KeyListener{
         else if (gp.gameState == gp.casinoState) {
             casinoState(code);
         }
+        else if (gp.gameState == gp.endGameState) {
+            endGameState(code);
+        }
     }
 
     public void titleState(int code) {
@@ -260,6 +263,7 @@ public class KeyHandler implements KeyListener{
 
         if (code == KeyEvent.VK_ESCAPE) {
             gp.gameState = gp.playState;
+            gp.ui.subState = 0;
         }
         if (code == KeyEvent.VK_SPACE) {
             spacePressed = true;
@@ -549,6 +553,15 @@ public class KeyHandler implements KeyListener{
         }
         if (code == KeyEvent.VK_ESCAPE) {
             gp.gameState = gp.playState;
+        }
+    }
+
+    public void endGameState(int code) {
+
+        if (code == KeyEvent.VK_ESCAPE) {
+            if (gp.ui.scenePhase == 7) {
+                System.exit(0);
+            }
         }
     }
 

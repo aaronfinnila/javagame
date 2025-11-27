@@ -112,6 +112,7 @@ public class CollisionChecker {
     // NPC OR MONSTER COLLISION
 
 public int checkEntity(Entity entity, Entity[][] target) {
+    
     int index = 999;
 
     for(int i=0; i < target[1].length; i++) {
@@ -125,7 +126,6 @@ public int checkEntity(Entity entity, Entity[][] target) {
             target[gp.currentMap][i].solidArea.y = target[gp.currentMap][i].worldY + target[gp.currentMap][i].solidArea.y;
 
             switch(entity.direction) {
-
                 case "up":
                 entity.solidArea.y -= entity.speed;
                 break;

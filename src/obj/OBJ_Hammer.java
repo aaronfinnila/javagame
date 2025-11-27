@@ -21,6 +21,6 @@ public class OBJ_Hammer extends Entity {
         knockBackPower = 4;
         type = type_hammer;
         price = 60;
-        description = name + "\n\nSolid hammer. Often used\nfor breaking rocks.";
+        description = name + "\n\nSolid hammer. Often used\nto break rocks.";
     }
 }

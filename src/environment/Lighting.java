@@ -80,8 +80,11 @@ public class Lighting {
     }
 
     public void resetDay() {
+
         dayState = day;
         filterAlpha = 0f;
+        gp.currentArea = gp.outside;
+        gp.currentMap = gp.introislandMap;
     }
 
     public void update() {
@@ -94,7 +97,7 @@ public class Lighting {
         if (dayState == day) {
             dayCounter++;
 
-            if (dayCounter > 600) {
+            if (dayCounter > 4500) {
                 dayState = dusk;
                 dayCounter = 0;
                 if (gp.currentMap == gp.introislandMap || gp.currentMap == gp.treasureislandMap) {
@@ -104,7 +107,7 @@ public class Lighting {
         }
         
         if (dayState == dusk) {
-            filterAlpha += 0.0002f;
+            filterAlpha += 0.0006f;
 
             if (filterAlpha > 1f) {
                 filterAlpha = 1f;
@@ -118,7 +121,7 @@ public class Lighting {
         if (dayState == night) {
             dayCounter++;
 
-            if (dayCounter > 600) {
+            if (dayCounter > 2500) {
                 dayState = dawn;
                 dayCounter = 0;
                 if (gp.currentMap == gp.treasureislandMap || gp.currentMap == gp.introislandMap) {
@@ -128,7 +131,7 @@ public class Lighting {
         }
 
         if (dayState == dawn) {
-            filterAlpha -= 0.0002f;
+            filterAlpha -= 0.0006f;
 
             if (filterAlpha < 0f) {
                 filterAlpha = 0;

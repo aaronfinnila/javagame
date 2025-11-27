@@ -1,5 +1,6 @@
 package main;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class Main {
@@ -12,6 +13,7 @@ public class Main {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
         window.setTitle("Rilk");
+        new Main().setIcon();
 
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);
@@ -30,4 +32,9 @@ public class Main {
         gamePanel.startGameThread();
     }
 
+    public void setIcon() {
+
+        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("res/player/boy_down_1.png"));
+        window.setIconImage(icon.getImage());
+    }
 }

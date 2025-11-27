@@ -7,7 +7,6 @@ import main.GamePanel;
 import obj.OBJ_Arrows_Inv;
 import obj.OBJ_Bow_Default;
 import obj.OBJ_Chest_Key;
-import obj.OBJ_Hammer;
 import obj.OBJ_Lantern_Inv;
 import obj.OBJ_Longsword;
 import obj.OBJ_Potion_Red;
@@ -75,7 +74,6 @@ public void setItems() {
     inventory.add(new OBJ_Potion_Red(gp));
     inventory.add(new OBJ_Bow_Default(gp));
     inventory.add(new OBJ_Longsword(gp));
-    inventory.add(new OBJ_Hammer(gp));
     inventory.add(new OBJ_Chest_Key(gp));
     inventory.add(new OBJ_Lantern_Inv(gp));
     inventory.add(new OBJ_Arrows_Inv(gp));

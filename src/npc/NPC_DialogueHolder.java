@@ -36,6 +36,9 @@ public class NPC_DialogueHolder extends Entity {
     public void setDialogue() {
 
         dialogues[0][0] = "Bhi Her\nThe Art of Bar";
+
         dialogues[1][0] = "Jonathan Rilk\nAdvanced Esoteric Alchemy";
+
+        dialogues[2][0] = "Thanks for playing";
     }
 }

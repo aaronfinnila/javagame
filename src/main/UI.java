@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
@@ -8,11 +9,14 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import entity.Entity;
 import monster.MON_Slime;
 import obj.OBJ_Arrow_Projectile;
 import obj.OBJ_Coin;
+import obj.OBJ_Diamond_Heart;
+import obj.OBJ_Hammer;
 import obj.OBJ_Heart;
 
 public class UI {
@@ -47,6 +51,9 @@ public class UI {
     public int playerItemIndex = 0;
     public int goldWon = 0;
     int counter = 0;
+    public int scenePhase = 0;
+    float sceneAlpha = 0;
+
     public int charIndex = 0;
     public String combinedText = "";
     public String tempDirection = "";
@@ -217,6 +224,10 @@ public class UI {
         if (gp.gameState == gp.casinoState) {
             drawCasinoState();
         }
+
+        if (gp.gameState == gp.endGameState) {
+            drawEndGameState();
+        }
     }
 
 public void drawInventory(Entity entity, boolean cursor) {
@@ -384,7 +395,7 @@ public void drawTitleScreen() {
 
     // BACKGROUND
 
-    g2.setColor(new Color(40, 100, 40));
+    g2.setColor(new Color(128, 128, 128));
     g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
     // TITLE NAME
@@ -401,14 +412,15 @@ public void drawTitleScreen() {
 
     // MAIN COLOR
 
-    g2.setColor(Color.white);
+    g2.setColor(new Color(173, 216, 230));
     g2.drawString(text, x, y);
 
-    // CHARACTER IMAGE
+    // IMAGE
 
     x = gp.screenWidth / 2 - (gp.tileSize)/2 - 30;
     y += gp.tileSize*1 + 10;
-    g2.drawImage(gp.player.down1, x, y, gp.tileSize*2, gp.tileSize*2, null);
+    BufferedImage diamondImage = gp.player.setup("/res/objects/diamondheart", gp.tileSize, gp.tileSize);
+    g2.drawImage(diamondImage, x, y, gp.tileSize*2, gp.tileSize*2, null);
 
     // MENU
 
@@ -790,7 +802,7 @@ public void options_top(int frameX, int frameY) {
 
     // BACK
 
-    textY += gp.tileSize*2;
+    textY += gp.tileSize*2+8;
     g2.drawString("Back", textX, textY);
     if (commandNumber == 5) {
         g2.drawString(">", textX-25, textY);
@@ -861,23 +873,25 @@ public void options_control(int frameX, int frameY) {
 
     textX = frameX + gp.tileSize;
     textY += gp.tileSize;
-    g2.drawString("Move", textX, textY); textY += gp.tileSize;
-    g2.drawString("Attack", textX, textY); textY += gp.tileSize;
-    g2.drawString("Shoot", textX, textY); textY += gp.tileSize;
-    g2.drawString("Inventory", textX, textY); textY += gp.tileSize;
-    g2.drawString("Pause", textX, textY); textY += gp.tileSize;
-    g2.drawString("Interact", textX, textY); textY += gp.tileSize;
-    g2.drawString("Options", textX, textY); textY += gp.tileSize;
+    g2.drawString("Move", textX, textY); textY += gp.tileSize-5;
+    g2.drawString("Attack", textX, textY); textY += gp.tileSize-5;
+    g2.drawString("Shoot", textX, textY); textY += gp.tileSize-5;
+    g2.drawString("Inventory", textX, textY); textY += gp.tileSize-5;
+    g2.drawString("Pause", textX, textY); textY += gp.tileSize-5;
+    g2.drawString("Interact", textX, textY); textY += gp.tileSize-5;
+    g2.drawString("Options", textX, textY); textY += gp.tileSize-5;
+    g2.drawString("Next Dialogue", textX, textY); textY += gp.tileSize-5;
 
     textX = frameX + gp.tileSize*6;
     textY = frameY + gp.tileSize*2;
-    g2.drawString("WASD", textX, textY); textY += gp.tileSize;
-    g2.drawString("Q", textX, textY); textY += gp.tileSize;
-    g2.drawString("R", textX, textY); textY += gp.tileSize;
-    g2.drawString("C", textX, textY); textY += gp.tileSize;
-    g2.drawString("P", textX, textY); textY += gp.tileSize;
-    g2.drawString("E", textX, textY); textY += gp.tileSize;
-    g2.drawString("ESC", textX, textY); textY += gp.tileSize;
+    g2.drawString("WASD", textX, textY); textY += gp.tileSize-5;
+    g2.drawString("Q", textX, textY); textY += gp.tileSize-5;
+    g2.drawString("R", textX, textY); textY += gp.tileSize-5;
+    g2.drawString("C", textX, textY); textY += gp.tileSize-5;
+    g2.drawString("P", textX, textY); textY += gp.tileSize-5;
+    g2.drawString("E", textX, textY); textY += gp.tileSize-5;
+    g2.drawString("ESC", textX, textY); textY += gp.tileSize-5;
+    g2.drawString("SPACE", textX, textY); textY += gp.tileSize-5;
 
     // BACK
 
@@ -940,7 +954,7 @@ public void title_newGameConfirmation(int frameX, int frameY) {
 
     // BACKGROUND
 
-    g2.setColor(new Color(40, 100, 40));
+    g2.setColor(new Color(128, 128, 128));
     g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
     int textX = gp.tileSize*2;
@@ -1366,7 +1380,7 @@ public void drawCasinoState() {
     String text = "Which one will you choose?";
 
     if (winOrLose.equals("") && interactChoice == 0) {
-        g2.drawString(text,getXforCenteredText(text), (gp.tileSize*2)+16);
+        g2.drawString(text, getXforCenteredText(text), (gp.tileSize*2)+16);
         g2.setColor(Color.RED);
         text = "RED";
         g2.drawString(text,gp.tileSize*6, (gp.tileSize*10)-24);
@@ -1387,20 +1401,20 @@ public void drawCasinoState() {
     } else if (interactChoice != 0) {
         g2.setColor(Color.WHITE);
         text = "Rolling...";
-        g2.drawString(text,getXforCenteredText(text), (gp.tileSize*2)+16);
+        g2.drawString(text, getXforCenteredText(text), (gp.tileSize*2)+16);
 
         if (interactCol == 0) {
             g2.setColor(Color.RED);
             text = "RED";
-            g2.drawString(text,gp.tileSize*6, (gp.tileSize*10)-24);
+            g2.drawString(text, gp.tileSize*6, (gp.tileSize*10)-24);
         } else if (interactCol == 1) {
             g2.setColor(Color.BLACK);
             text = "BLACK";
-            g2.drawString(text,gp.tileSize*9, (gp.tileSize*10)-24);
+            g2.drawString(text, gp.tileSize*9, (gp.tileSize*10)-24);
         } else if (interactCol == 2) {
             g2.setColor(Color.GREEN);
             text = "GREEN";
-            g2.drawString(text,gp.tileSize*12, (gp.tileSize*10)-24);
+            g2.drawString(text, gp.tileSize*12, (gp.tileSize*10)-24);
         }
     }
 
@@ -1409,20 +1423,149 @@ public void drawCasinoState() {
         gp.animateList.getFirst().onPath = true;
         gp.animateList.getFirst().update();
         gp.animateList.getFirst().setAction();
-
-
     }
 
     if (winOrLose.equals("win")) {
         g2.setColor(Color.GREEN);
         text = "CONGRATULATIONS! YOU WON " + goldWon + " GOLD!";
-        g2.drawString(text,getXforCenteredText(text), (gp.tileSize*2)+16);
+        g2.drawString(text, getXforCenteredText(text), (gp.tileSize*2)+16);
     } else if (winOrLose.equals("lose")) {
         g2.setColor(Color.RED);
         text = "You lost. Better luck next time!";
-        g2.drawString(text,getXforCenteredText(text), (gp.tileSize*2)+16);
+        g2.drawString(text, getXforCenteredText(text), (gp.tileSize*2)+16);
     }
 
+}
+
+public void drawEndGameState() {
+
+    if (scenePhase == 0) {
+        gp.stopMusic();
+        scenePhase++;
+    }
+    if (scenePhase == 1) {
+        sceneAlpha += 0.005f;
+        if (sceneAlpha > 1f) {
+            sceneAlpha = 1f;
+        }
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, sceneAlpha));
+        g2.setColor(Color.black);
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        if (sceneAlpha == 1f) {
+            scenePhase++;
+        }
+    }
+    if (scenePhase == 2) {
+        counter++;
+        if (counter > 1000) {
+            scenePhase++;
+            counter = 0;
+        }
+        g2.setColor(Color.black);
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        g2.setColor(new Color(173, 216, 230));
+        g2.setFont(consola.deriveFont(30F));
+        String text = "You and the old man begun your";
+        g2.drawString(text, getXforCenteredText(text), gp.tileSize*2);
+        text = "journey to Midland: a much larger continent,";
+        g2.drawString(text, getXforCenteredText(text), gp.tileSize*3);
+        text = "far, far away...";
+        g2.drawString(text, getXforCenteredText(text), gp.tileSize*4);
+        text = "Peace was finally brought to Treasure Island.";
+        g2.drawString(text, getXforCenteredText(text), gp.tileSize*5);
+        text = "But you did not yet feel at peace,";
+        g2.drawString(text, getXforCenteredText(text), gp.tileSize*6);
+        text = "for there was still so much more to explore...";
+        g2.drawString(text, getXforCenteredText(text), gp.tileSize*7);
+    }
+    if (scenePhase == 3) {
+        gp.playMusic(36);
+        scenePhase++;
+    }
+    if (scenePhase == 4) {
+        g2.setColor(Color.black);
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+    
+        g2.setColor(new Color(173, 216, 230));
+        g2.setFont(consola.deriveFont(65F));
+        String text = "Rilk";
+        g2.drawString(text, getXforCenteredText(text), gp.tileSize*4);
+        counter++;
+        if (counter > 400) {
+            scenePhase++;
+            counter = 0;
+        }
+    }
+    if (scenePhase == 5) {
+        g2.setColor(Color.black);
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        g2.setColor(new Color(255, 255, 255));
+        g2.setFont(consola.deriveFont(40F));
+        String text = "Thank you for playing!";
+        g2.drawString(text, getXforCenteredText(text), gp.tileSize*4);
+        g2.setColor(new Color(255, 255, 255));
+        g2.setFont(consola.deriveFont(40F));
+        counter++;
+        if (counter > 300) {
+            scenePhase++;
+            counter = gp.tileSize*4;
+        }
+    }
+    if (scenePhase == 6) {
+        g2.setColor(Color.black);
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        counter--;
+        g2.setColor(new Color(255, 255, 255));
+        g2.setFont(consola.deriveFont(40F));
+        String text = "Thank you for playing!";
+        g2.drawString(text, getXforCenteredText(text), counter);
+        text = "Credits & Acknowledgements";
+        g2.drawString(text, getXforCenteredText(text), counter+gp.tileSize*10);
+        g2.setColor(new Color(173, 216, 230));
+        g2.setFont(consola.deriveFont(30F));
+        text = "Programming: awsy";
+        g2.drawString(text, getXforCenteredText(text), counter+gp.tileSize*14);
+        text = "Music: awsy";
+        g2.drawString(text, getXforCenteredText(text), counter+gp.tileSize*16);
+        text = "Art: awsy";
+        g2.drawString(text, getXforCenteredText(text), counter+gp.tileSize*18);
+        g2.setColor(new Color(255, 255, 255));
+        g2.setFont(consola.deriveFont(40F));
+        text = "Special thanks to:";
+        g2.drawString(text, getXforCenteredText(text), counter+gp.tileSize*22);
+        g2.setColor(new Color(173, 216, 230));
+        g2.setFont(consola.deriveFont(30F));
+        text = "RyiSnow for Tutorial & Inspiration <3";
+        g2.drawString(text, getXforCenteredText(text), counter+gp.tileSize*26);
+        text = "Oscar for Art (Chest, Key, Boots) & Playtesting";
+        g2.drawString(text, getXforCenteredText(text), counter+gp.tileSize*28);
+        text = "Axel for Playtesting";
+        g2.drawString(text, getXforCenteredText(text), counter+gp.tileSize*30);
+        text = "Ville for Music (Casino / Outro)";
+        g2.drawString(text, getXforCenteredText(text), counter+gp.tileSize*32);
+        text = "Thank you!";
+        g2.drawString(text, getXforCenteredText(text), counter+gp.tileSize*38);
+        if (counter + gp.tileSize*34 == 0) {
+            scenePhase++;
+            sceneAlpha = 0;
+        }
+    }
+    if (scenePhase == 7) {
+        g2.setColor(Color.black);
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        g2.setColor(new Color(173, 216, 230));
+        g2.setFont(consola.deriveFont(30F));
+        String text = "Thank you!";
+        g2.drawString(text, getXforCenteredText(text), counter+gp.tileSize*38);
+        text = "(press ESC to exit)";
+        g2.drawString(text, getXforCenteredText(text), counter+gp.tileSize*45);
+    }
 }
 
 public void checkInteractState() {
@@ -1440,11 +1583,17 @@ public void checkInteractState() {
                 interactCol = 1;
             } break;
         case "Fear":
-            if (npc.dialogueSet == 0 && npc.dialogueIndex == 4 && npc.interactionHappened == false) {
+            if (npc.dialogueSet == 0 && npc.dialogueIndex == 4) {
                 gp.keyH.spacePressed = false;
                 gp.gameState = gp.interactState;
                 interactCol = 1;
-                npc.interactionHappened = true;
+            }
+            if (npc.dialogueSet == 1 && npc.dialogueIndex == 2 && npc.usedObject == false) {
+                System.out.println("fear ui");
+                gp.obj[gp.currentMap][0] = new OBJ_Diamond_Heart(gp);
+                gp.obj[gp.currentMap][0].worldX = gp.player.worldX;
+                gp.obj[gp.currentMap][0].worldY = gp.player.worldY;
+                npc.usedObject = true;
             } break;
         case "Edward":
             if (npc.dialogueSet == 0 && npc.dialogueIndex == 2) {
@@ -1473,9 +1622,36 @@ public void checkInteractState() {
                 gp.keyH.spacePressed = false;
                 gp.gameState = gp.interactState;
                 interactCol = 1;
-            } break;
+            }
+            if (npc.dialogueSet == 5 && npc.dialogueIndex == 6 && npc.interactionHappened == false) {
+                gp.obj[gp.currentMap][7] = new OBJ_Hammer(gp);
+                gp.obj[gp.currentMap][7].worldX = gp.player.worldX;
+                gp.obj[gp.currentMap][7].worldY = gp.player.worldY;
+                ArrayList<Integer> numbers = new ArrayList<>();
+                for (Entity e : gp.player.inventory) {
+                    if (e.name == "Diamond Heart") {
+                        numbers.add(gp.player.inventory.indexOf(e));
+                    }
+                }
+                for (int i : numbers) {
+                    System.out.println(i);
+                    gp.player.inventory.remove(i);
+                    gp.player.diamondHeartCount--;
+                }
+                npc.interactionHappened = true;
+            }
+            if (npc.dialogueSet == 7 && npc.dialogueIndex == 4) {
+                gp.keyH.spacePressed = false;
+                gp.gameState = gp.interactState;
+                interactCol = 1;
+            }
+            if (npc.dialogueSet == 11 && npc.dialogueIndex == 1) {
+                gp.keyH.spacePressed = false;
+                gp.gameState = gp.endGameState;
+            }
+            break;
         case "Sofa":
-            if (npc.dialogueSet == 0 && npc.dialogueIndex == 3) {
+            if (npc.dialogueSet == 0 && npc.dialogueIndex == 3 && npc.interactionHappened == false) {
                 gp.keyH.spacePressed = false;
                 gp.monster[gp.currentMap][0] = new MON_Slime(gp);
                 gp.monster[gp.currentMap][0].worldX = 51*gp.tileSize;
@@ -1506,6 +1682,14 @@ public void checkInteractState() {
                 gp.monster[gp.currentMap][4].worldY = 73*gp.tileSize;
                 gp.monster[gp.currentMap][4].maxHealth = 10;
                 gp.monster[gp.currentMap][4].health = 10;
+
+                npc.interactionHappened = true;
+            }
+            if (npc.usedObject == false && npc.dialogueSet == 2 && npc.dialogueIndex == 3) {
+                gp.obj[gp.currentMap][0] = new OBJ_Diamond_Heart(gp);
+                gp.obj[gp.currentMap][0].worldX = gp.player.worldX;
+                gp.obj[gp.currentMap][0].worldY = gp.player.worldY;
+                npc.usedObject = true;
             } break;
     }
 }

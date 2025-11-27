@@ -79,6 +79,7 @@ public void setDialogue() {
     dialogues[0][5] = "Another GRAND ADVENTURER, coming\nfor the LEGENDARY TREASURE, huh?";
     dialogues[0][6] = "Oh, right! Because THIS one will be the one who gets\nit all! SURELY he won't end up like the rest, RIIGHT???";
     dialogues[0][7] = "And then we will be waiting...\nwon't we, my queen? Oh yes, yes\nwe will...";
+    dialogues[0][8] = "A Longsword would be nice,\nwouldn't it? Hmm... where could we\nget that?";
 
     dialogues[1][0] = "Oh, that's a nice sword you got...";
     dialogues[1][1] = "Oh yes, very shiny...";

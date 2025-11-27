@@ -19,6 +19,7 @@ public class OBJ_Coin extends Entity {
         down1 = setup("/res/objects/coin", gp.tileSize - 25, gp.tileSize - 25);
         collision = true;
     }
+    
     public void use(Entity entity) {
         
         entity.gold += 50;

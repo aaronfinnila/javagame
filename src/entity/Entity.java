@@ -120,6 +120,7 @@ public class Entity {
     public final int type_projectile = 12;
     public final int type_light = 13;
     public final int type_nocollision_object = 14;
+    public final int type_heart = 14;
 
     public Entity(GamePanel gp) {
         this.gp = gp;
@@ -564,7 +565,7 @@ public class Entity {
                     if (attacking == true && shooting == false) {
                         tempScreenY = screenY - gp.tileSize;
                         if(attackNum == 1) {image = attackUp1;}
-                        if (attackNum == 2) {image = attackUp2;}
+                        if(attackNum == 2) {image = attackUp2;}
                     }
                     if (shooting == true && attacking == false) {
                         if(shootNum == 1) {image = shootUp1;}

@@ -53,15 +53,16 @@ public void setDialogue() {
     dialogues[0][3] = "Only darkness...";
     dialogues[0][4] = "";
 
-    dialogues[1][0] = "He will have you...";
-    dialogues[1][1] = "...";
-    dialogues[1][2] = "Look for him...";
-    dialogues[1][3] = "In the depths...";
+    dialogues[1][0] = "...";
+    dialogues[1][1] = "Oh...";
+    dialogues[1][2] = "Warm...";
 
-    dialogues[2][0] = "...";
-    dialogues[2][1] = "Oh...";
-    dialogues[2][2] = "Run...";
-    dialogues[2][3] = "Quickly...";
+    dialogues[2][0] = "";
+
+    dialogues[4][0] = "...";
+    dialogues[4][1] = "Oh...";
+    dialogues[4][2] = "Run...";
+    dialogues[4][3] = "Quickly...";
 }
 
 public void setAction() {
@@ -118,13 +119,13 @@ public void getInteractChoices() {
         startDialogue(this, 1);
         gp.ui.interactChoice = 0;
     } else if (gp.ui.interactChoice == 2) {
-        startDialogue(this, 2);
+        startDialogue(this, 4);
         gp.ui.interactChoice = 0;
     }
 }
 
 public String getInteractText() {
-    String text = "Sacrifice your soul?";
+    String text = "Hug him?";
     return text;
 }
 

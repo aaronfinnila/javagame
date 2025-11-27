@@ -12,12 +12,15 @@ import npc.NPC_Rubert;
 import npc.NPC_Sofa;
 import obj.OBJ_Bench;
 import obj.OBJ_Bookshelf;
+import obj.OBJ_Boots;
 import obj.OBJ_Bow_Default;
 import obj.OBJ_Casino;
 import obj.OBJ_Casino_Interior;
 import obj.OBJ_Cave_Entrance;
 import obj.OBJ_Chest;
 import obj.OBJ_CircleObject;
+import obj.OBJ_Coin;
+import obj.OBJ_Diamond_Heart;
 import obj.OBJ_Hitbox;
 import obj.OBJ_House1;
 import obj.OBJ_House1_Interior;
@@ -102,6 +105,14 @@ public class AssetSetter {
         gp.obj[mapNum][i] = new OBJ_Store(gp);
         gp.obj[mapNum][i].worldX = 64*gp.tileSize;
         gp.obj[mapNum][i].worldY = 19*gp.tileSize;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Boots(gp);
+        gp.obj[mapNum][i].worldX = 28*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 67*gp.tileSize;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Coin(gp);
+        gp.obj[mapNum][i].worldX = 11*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 28*gp.tileSize;
         i++;
         // hitboxes for store
         gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
@@ -360,10 +371,20 @@ public class AssetSetter {
 
         // STOREMAPSECRET
 
+        gp.obj[mapNum][i] = new OBJ_Diamond_Heart(gp);
+        gp.obj[mapNum][i].worldX = 51*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 47*gp.tileSize;
+        i++;
+
         mapNum++;
         i = 0;
 
         // DUNGEON
+
+        gp.obj[mapNum][i] = new OBJ_Coin(gp);
+        gp.obj[mapNum][i].worldX = 36*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 64*gp.tileSize;
+        i++;
 
         mapNum++;
         i = 0;
@@ -440,6 +461,12 @@ public class AssetSetter {
         i = 0;
 
         // TREASURE ISLAND
+
+        gp.npc[mapNum][i] = new NPC_Percival(gp);
+        gp.npc[mapNum][i].worldX = 38 * gp.tileSize;
+        gp.npc[mapNum][i].worldY = 83 * gp.tileSize;
+        gp.npc[mapNum][i].speed = 1;
+        i++;
 
         mapNum++;
         i=0;

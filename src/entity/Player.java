@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 import main.GamePanel;
 import main.KeyHandler;
 import obj.OBJ_Arrow_Projectile;
+import obj.OBJ_Diamond_Heart;
+import obj.OBJ_Hammer;
 import obj.OBJ_Shield_Default;
 import obj.OBJ_Sword_Default;
 import tile.TileManager;
@@ -21,6 +23,7 @@ public class Player extends Entity {
     public final int screenY;
     public boolean hasCreamorKey = false;
     public boolean hasChestKey = false;
+    public int diamondHeartCount = 0;
 
     public Player(GamePanel gp, KeyHandler keyH, TileManager tileM) {
 
@@ -112,7 +115,12 @@ public class Player extends Entity {
         inventory.clear();
         inventory.add(currentWeapon);
         inventory.add(currentShield);
-    }
+        inventory.add(new OBJ_Diamond_Heart(gp));
+        inventory.add(new OBJ_Diamond_Heart(gp));
+        inventory.add(new OBJ_Diamond_Heart(gp));
+        inventory.add(new OBJ_Hammer(gp));
+/*         diamondHeartCount = 3; */
+    }   
 
     public int getAttack() {
         return attack = strength * currentWeapon.attackValue;
@@ -437,7 +445,7 @@ public void getShootImage() {
 
             // INVENTORY ITEMS
 
-            else if (type == type_sword || type == type_shield || type == type_shoot || type == type_consumable || type == type_hammer || type == type_light) {
+            else if (type == type_sword || type == type_shield || type == type_shoot || type == type_consumable || type == type_hammer || type == type_light || type == type_heart) {
                 if (inventory.size() != maxInventorySize) {
                     if (objectName == "Creamor Key") {hasCreamorKey = true;}
                     inventory.add(gp.obj[gp.currentMap][i]);
@@ -448,6 +456,9 @@ public void getShootImage() {
                 }
                 gp.ui.showMessage(text);
                 gp.obj[gp.currentMap][i] = null;
+                if (type == type_heart) {
+                    diamondHeartCount++;
+                }
             }
             }
         }
