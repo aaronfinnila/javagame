@@ -95,10 +95,10 @@ public void setDialogue() {
 public void setAction() {
 
     if (gp.currentMap == gp.house3Map) {
-        if (getGoalCol(this) == 55) {
-            searchPath(47, 83);
+        if (getGoalCol(this) == 54) {
+            searchPath(47, 46);
         } else if (getGoalCol(this) == 47) {
-            searchPath(55, 83);
+            searchPath(54, 46);
         }
     } else {
         if (getGoalCol(this) == 38) {

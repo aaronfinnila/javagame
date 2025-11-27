@@ -435,17 +435,19 @@ public void drawTitleScreen() {
     g2.drawString(text, x, y);
     if (commandNumber == 0) {
         g2.drawString(">", x-gp.tileSize, y);
-        if (gp.keyH.spacePressed == true && gp.saveExists == true) {
+        /* if (gp.keyH.spacePressed == true && gp.saveExists == true) {
             subState = 1;
             gp.keyH.spacePressed = false;
-        } else if (gp.keyH.spacePressed == true && gp.saveExists == false) {
+        } else  */
+        if (gp.keyH.spacePressed == true) {
             gp.gameState = gp.playState;
+            gp.currentMap = gp.introislandMap;
             gp.playMusic(0);
-            gp.resetGame(false);
+            gp.resetGame(true);
         }
     }
 
-    g2.setFont(g2.getFont().deriveFont(Font.BOLD, 36F));
+/*     g2.setFont(g2.getFont().deriveFont(Font.BOLD, 36F));
     text = "LOAD GAME";
     x = gp.screenWidth / 2 - (gp.tileSize*2) - 15;
     y = gp.screenHeight - (gp.tileSize * 3);
@@ -455,17 +457,17 @@ public void drawTitleScreen() {
     g2.drawString(text, x, y);
     if (commandNumber == 1) {
         g2.drawString(">", x-gp.tileSize, y);
-    }
+    } */
 
     g2.setFont(g2.getFont().deriveFont(Font.BOLD, 36F));
     text = "QUIT";
     x = gp.screenWidth / 2 - (gp.tileSize*2) - 15;
-    y = gp.screenHeight - (gp.tileSize * 2);
+    y = gp.screenHeight - (gp.tileSize * 3);
     g2.setColor(Color.black);
     g2.drawString(text, x+3, y+3);
     g2.setColor(Color.white);
     g2.drawString(text, x, y);
-    if (commandNumber == 2) {
+    if (commandNumber == 1) {
         g2.drawString(">", x-gp.tileSize, y);
     }
 }
@@ -912,7 +914,7 @@ public void options_endGameConfirmation(int frameX, int frameY) {
     int textX = frameX + gp.tileSize - 15;
     int textY = frameY + gp.tileSize*3;
 
-    currentDialogue = "Quit the game and\nreturn to title screen?\n(unsaved progress will\nbe lost)";
+    currentDialogue = "Quit the game and\nreturn to title screen?\n(progress will be lost)";
 
     for (String line : currentDialogue.split("\n")) {
         g2.drawString(line, textX, textY);
@@ -1589,10 +1591,14 @@ public void checkInteractState() {
                 interactCol = 1;
             }
             if (npc.dialogueSet == 1 && npc.dialogueIndex == 2 && npc.usedObject == false) {
-                System.out.println("fear ui");
-                gp.obj[gp.currentMap][0] = new OBJ_Diamond_Heart(gp);
-                gp.obj[gp.currentMap][0].worldX = gp.player.worldX;
-                gp.obj[gp.currentMap][0].worldY = gp.player.worldY;
+                for (int i = 0; i < 5; i++) {
+                    if (gp.obj[gp.currentMap][i] == null) {
+                        gp.obj[gp.currentMap][i] = new OBJ_Diamond_Heart(gp);
+                        gp.obj[gp.currentMap][i].worldX = gp.player.worldX;
+                        gp.obj[gp.currentMap][i].worldY = gp.player.worldY;
+                        break;
+                    }
+                }
                 npc.usedObject = true;
             } break;
         case "Edward":
@@ -1686,10 +1692,16 @@ public void checkInteractState() {
                 npc.interactionHappened = true;
             }
             if (npc.usedObject == false && npc.dialogueSet == 2 && npc.dialogueIndex == 3) {
-                gp.obj[gp.currentMap][0] = new OBJ_Diamond_Heart(gp);
-                gp.obj[gp.currentMap][0].worldX = gp.player.worldX;
-                gp.obj[gp.currentMap][0].worldY = gp.player.worldY;
-                npc.usedObject = true;
+                for (int i = 0; i < 5; i++) {
+                    if (gp.obj[gp.currentMap][i] == null) {
+                        gp.obj[gp.currentMap][0] = new OBJ_Diamond_Heart(gp);
+                        gp.obj[gp.currentMap][0].worldX = gp.player.worldX;
+                        gp.obj[gp.currentMap][0].worldY = gp.player.worldY;
+                        npc.usedObject = true;
+                        break;
+                    }
+
+                }
             } break;
     }
 }

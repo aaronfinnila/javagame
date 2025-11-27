@@ -15,7 +15,7 @@ public class OBJ_Diamond_Heart extends Entity {
         down1 = setup("/res/objects/diamondheart",gp.tileSize,gp.tileSize);
         image = down1;
         type = type_heart;
-        price = 1200;
+        price = 0;
         description = name + "\n\nThe legendary Heart of Rilk.\nAccording to legend, only\nthree of these exist.";
     }
 }

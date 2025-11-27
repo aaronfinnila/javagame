@@ -51,7 +51,7 @@ public class EventHandler {
     public void setDialogue() {
         
         eventMaster.dialogues[0][0] = "You fall into a pit!";
-        eventMaster.dialogues[1][0] = "    The goddess statue fills you with joy.\n    Your health has been replenished.\n    (Progress has been saved)";
+        eventMaster.dialogues[1][0] = "    The goddess statue fills you with joy.\n    Your health has been replenished.";
     }
 
     public void checkEvent(){

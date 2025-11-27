@@ -110,6 +110,14 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = 11*gp.tileSize;
         gp.obj[mapNum][i].worldY = 28*gp.tileSize;
         i++;
+        gp.obj[mapNum][i] = new OBJ_Coin(gp);
+        gp.obj[mapNum][i].worldX = 77*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 75*gp.tileSize;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Coin(gp);
+        gp.obj[mapNum][i].worldX = 28*gp.tileSize;
+        gp.obj[mapNum][i].worldY = 51*gp.tileSize;
+        i++;
         // hitboxes for store
         gp.obj[mapNum][i] = new OBJ_Hitbox(gp);
         gp.obj[mapNum][i].worldX = 68*gp.tileSize-10;

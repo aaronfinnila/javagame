@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Random;
 
-public class KeyHandler implements KeyListener{
+public class KeyHandler implements KeyListener {
 
     GamePanel gp;
     public boolean upPressed, downPressed, leftPressed, rightPressed, ePressed, spacePressed, shootKeyPressed, attackKeyPressed, escPressed;
@@ -62,7 +62,7 @@ public class KeyHandler implements KeyListener{
         if (code == KeyEvent.VK_S) {
             gp.ui.commandNumber++;
             if (gp.ui.subState == 0) {
-                if (gp.ui.commandNumber > 2) {
+                if (gp.ui.commandNumber > 1) {
                     gp.ui.commandNumber = 0;
                 }
             } else {
@@ -76,7 +76,7 @@ public class KeyHandler implements KeyListener{
             gp.ui.commandNumber--;
             if (gp.ui.subState == 0) {
                 if (gp.ui.commandNumber < 0) {
-                    gp.ui.commandNumber = 2;
+                    gp.ui.commandNumber = 1;
                 }
             } else {
                 if (gp.ui.commandNumber < 0) {
@@ -87,7 +87,7 @@ public class KeyHandler implements KeyListener{
 
         if (code == KeyEvent.VK_SPACE) {
             spacePressed = true;
-            if (gp.ui.commandNumber == 1 && gp.ui.subState == 0) {
+/*             if (gp.ui.commandNumber == 1 && gp.ui.subState == 0) {
                 gp.saveLoad.load();
                 gp.gameState = gp.playState;
                 switch (gp.currentMap) {
@@ -100,7 +100,7 @@ public class KeyHandler implements KeyListener{
                     case 8: gp.playMusic(34); break;
                     case 9: gp.playMusic(36); break;
                 }
-            }
+            } */
             if (gp.ui.commandNumber == 2) {
                 System.exit(0);
             }
@@ -337,31 +337,20 @@ public class KeyHandler implements KeyListener{
             // RETRY
 
             if (gp.ui.commandNumber == 0) {
-                if (gp.saveExists == true) {
-                    gp.saveLoad.load();
-                    gp.gameState = gp.playState;
-                    switch (gp.currentMap) {
-                        case 0: gp.playMusic(0); break;
-                        case 1: gp.playMusic(17); break;
-                        case 2: gp.playMusic(18); break;
-                        case 3: gp.playMusic(19); break;
-                        case 4: gp.playMusic(20); break;
-                    }
-                } else {
-                    gp.currentMap = gp.introislandMap;
-                    gp.player.worldX = 1150;
-                    gp.player.worldY = 1150;
+                gp.currentMap = gp.introislandMap;
+                gp.resetGame(true);
+                gp.gameState = gp.playState;
+                gp.playMusic(0);
+                }
+                
+                // QUIT
+                
+                else if (gp.ui.commandNumber == 1) {
+                    gp.gameState = gp.titleState;
+                    gp.resetGame(true);
                 }
             }
-
-            // QUIT
-
-            else if (gp.ui.commandNumber == 1) {
-                gp.gameState = gp.titleState;
-                gp.resetGame(true);
-            }
         }
-    }
 
     public void tradeState(int code) {
 

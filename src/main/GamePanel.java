@@ -154,6 +154,10 @@ public class GamePanel extends JPanel implements Runnable {
         player.restoreStatus();
         aSetter.setNPC();
         aSetter.setMonster();
+
+        for (int i = 0; i < 10; i++) {
+            monster[currentMap][i] = null;
+        }
         
         if (restart == true) {
             player.setItems();
