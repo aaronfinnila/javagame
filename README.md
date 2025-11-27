@@ -22,6 +22,9 @@ Features several explorable areas, combat, story, NPC interactions, secrets and 
 The game files can be downloaded for free [here](https://awsy.itch.io/rilk).
 When trying to download the game you will be prompted if you wish to donate. 
 This is completely optional, and can be skipped by clicking on "No thanks, just take me to the downloads".
+After downloading and extracting the files, the game can be played by running the "rilk.exe" file. 
+Note that the executable only works on Windows. For Linux / Mac users, the game can be played by for example downloading the source code from
+this repository and compiling and running it.
 The game controls are keyboard only. Movement works with the WASD keys, and other controls can be found by pressing the ESC key and navigating
 to the controls view.
 
@@ -29,6 +32,7 @@ to the controls view.
 ## Credits & Acknowledgements
 Original tutorial / guidance inspired by RyiSnow’s 2D Java Game videos (YouTube).
 [Here](https://www.youtube.com/@RyiSnow) is a link to his channel.
+
 
 
 
