@@ -1,4 +1,4 @@
-# Rilk: a Java 2D RPG
+# Rilk: a 2D Java RPG
 
 A simple 2D adventure RPG built entirely with vanilla Java libraries.  
 Features several explorable areas, combat, story, NPC interactions, secrets and more.
@@ -32,6 +32,7 @@ to the controls view.
 
 ## Credits & Acknowledgements
 Original tutorial / guidance inspired by RyiSnow’s 2D Java Game videos [(Youtube)](https://www.youtube.com/@RyiSnow).
+
 
 
 
